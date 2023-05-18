@@ -17,8 +17,8 @@ app.get("/", (req, res) => {
 //routes
 app.use("/api/users", userRoutes);
 
-DBConnection;
-
-app.listen(4000, () => {
-  console.log("Server is listenning on port", process.env.PORT);
-});
+if (DBConnection) {
+  app.listen(4000, () => {
+    console.log("Server is listenning on port", process.env.PORT);
+  });
+}
