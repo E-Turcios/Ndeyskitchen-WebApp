@@ -42,7 +42,7 @@ async function getUserCredentials(req, res) {
   if (!match) return res.status(404).json({ error: PASSWORD_INCORRECT });
 
   try {
-    const token = jwt.sign({ id: id }, process.env.JWT);
+    const token = jwt.sign({ id: id }, process.env.JWT, { expiresIn: '1d' });
     return res
       .status(200)
       .cookie('token', token, { httpOnly: true, secure: true })
@@ -56,10 +56,10 @@ async function validateUser(req, res, next) {
   try {
     const userID = jwt.verify(req.headers.authorization, process.env.JWT);
 
-    console.log(userID);
     const user = await User.findOne({ _id: userID.id });
 
     if (!user) return res.status(401).json({ error: UNAUTHORIZED_REQUEST });
+
     req.user = user;
     next();
   } catch (err) {
@@ -69,7 +69,7 @@ async function validateUser(req, res, next) {
 
 async function getAllUsers(req, res) {
   const users = await User.find().sort();
-  console.log(req.user);
+
   if (req.user) {
     if (!users) return res.status(404).json({ error: USERS_NOT_FOUND });
     return res.status(200).json(users);
@@ -78,12 +78,16 @@ async function getAllUsers(req, res) {
   return res.status(401).json({ error: UNAUTHORIZED_REQUEST });
 }
 
-const getUser = async (req, res) => {
-  const id = req.params.id;
-
+async function isUserValid(id) {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: USER_NOT_FOUND });
   }
+}
+
+const getUser = async (req, res) => {
+  const id = req.params.id;
+
+  isUserValid(id);
 
   const user = await User.findById(id);
 
@@ -95,9 +99,7 @@ const getUser = async (req, res) => {
 async function deleteUser(req, res) {
   const id = req.params.id;
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: USER_NOT_FOUND });
-  }
+  isUserValid(id);
 
   try {
     const user = await User.deleteOne({ _id: id });
