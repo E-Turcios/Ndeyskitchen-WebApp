@@ -14,10 +14,10 @@ router.post('/', createUser);
 
 router.post('/user', getUserCredentials);
 
-router.get('/:id', getUser);
+router.get('/:id', validateUser, getUser);
 
 router.get('/', validateUser, getAllUsers);
 
-router.delete('/:id', deleteUser);
+router.delete('/:id', validateUser, deleteUser);
 
 module.exports = router;

@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useAuthContext from '../hooks/useAuthContext';
 export default function Profile() {
-  const [users, setUsers] = useState(null);
   const navigate = useNavigate();
+  const [users, setUsers] = useState(null);
+  const { user } = useAuthContext();
+
+  if (!user) navigate('/login');
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -19,6 +23,7 @@ export default function Profile() {
       if (!response.ok) navigate('/login');
 
       setUsers(userData);
+      console.log(response.status);
     };
     fetchUsers();
   }, []);
