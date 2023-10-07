@@ -2,12 +2,15 @@ import { useState, React } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PasswordInput from '../components/PasswordInput';
 import Image from '../components/Image';
+import useAuthContext from '../hooks/useAuthContext';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [isLoading, setIsLoading] = useState(null);
+  const { dispatch } = useAuthContext();
 
   const navigate = useNavigate();
 
@@ -15,6 +18,7 @@ export default function Login() {
     event.preventDefault();
 
     const user = { email, password };
+    setIsLoading(true);
 
     const response = await fetch('api/users/user', {
       method: 'POST',
@@ -37,6 +41,8 @@ export default function Login() {
 
     if (response.ok) {
       localStorage.setItem('token', json.token);
+      dispatch({ type: 'LOGIN', payload: json });
+      setIsLoading(false);
       navigate('/');
     }
   }
@@ -89,7 +95,7 @@ export default function Login() {
           </p>
         </form>
       </div>
-      <button type="submit" className="continue-with-btn">
+      <button disabled={isLoading} type="submit" className="continue-with-btn">
         Continue with
         <Image className="logos" src={'google.png'} alt="google-logo" />
       </button>
