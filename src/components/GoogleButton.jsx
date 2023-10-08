@@ -1,0 +1,39 @@
+import React from 'react';
+import { GoogleLogin, GoogleLogout } from '@react-oauth/google';
+import jwt_decode from 'jwt-decode';
+
+export default function GoogleButton() {
+  async function createGoogleUser(response) {
+    const decoded = jwt_decode(response.credential);
+    const { given_name, family_name, email, sub } = decoded;
+
+    const user = {
+      firstName: given_name,
+      lastName: family_name,
+      email: email,
+      sub: sub,
+      number: 0,
+    };
+
+    console.log(user);
+
+    const data = await fetch('/api/users', {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log(data);
+  }
+  return (
+    <GoogleLogin
+      onSuccess={createGoogleUser}
+      theme="filled_black"
+      shape="circle"
+      logo_alignment="center"
+      onScriptLoadError={() => console.log('Error')}
+    ></GoogleLogin>
+  );
+}
