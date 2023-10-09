@@ -66,7 +66,7 @@ export default function Login() {
       },
     });
 
-    const json = await data.json();
+    const json = await response.json();
 
     if (!response.ok) {
       console.log('OH NOOOO');
@@ -129,8 +129,9 @@ export default function Login() {
       </div>
       <GoogleLogin
         onSuccess={getGoogleUser}
-        theme="filled_black"
+        theme="outline"
         shape="circle"
+        width="20px"
         logo_alignment="center"
         onScriptLoadError={() => console.log('Error')}
       ></GoogleLogin>

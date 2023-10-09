@@ -159,8 +159,9 @@ export default function Signup() {
 
       <GoogleLogin
         onSuccess={createGoogleUser}
-        theme="filled_black"
+        theme="outline"
         shape="circle"
+        width="20px"
         logo_alignment="center"
         onScriptLoadError={() => console.log('Error')}
       ></GoogleLogin>
