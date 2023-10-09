@@ -1,9 +1,10 @@
 import { useState, React } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
 import PasswordInput from '../components/PasswordInput';
 import Image from '../components/Image';
 import useAuthContext from '../hooks/useAuthContext';
-import GoogleButton from '../components/GoogleButton';
+import jwt_decode from 'jwt-decode';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -21,7 +22,7 @@ export default function Login() {
     const user = { email, password };
     setIsLoading(true);
 
-    const response = await fetch('api/users/user', {
+    const response = await fetch('api/users/getUser', {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
@@ -47,6 +48,35 @@ export default function Login() {
       navigate('/');
     }
     console.log(json);
+  }
+
+  async function getGoogleUser(data) {
+    const decode = jwt_decode(data.credential);
+    const { email } = decode;
+
+    const user = {
+      email: email,
+    };
+
+    const response = await fetch('api/users/getGoogleUser', {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const json = await data.json();
+
+    if (!response.ok) {
+      console.log('OH NOOOO');
+    }
+
+    if (response.ok) {
+      localStorage.setItem('token', json.token);
+      dispatch({ type: 'LOGIN', payload: json });
+      navigate('/');
+    }
   }
 
   return (
@@ -97,8 +127,13 @@ export default function Login() {
           </p>
         </form>
       </div>
-
-      <GoogleButton />
+      <GoogleLogin
+        onSuccess={getGoogleUser}
+        theme="filled_black"
+        shape="circle"
+        logo_alignment="center"
+        onScriptLoadError={() => console.log('Error')}
+      ></GoogleLogin>
     </div>
   );
 }

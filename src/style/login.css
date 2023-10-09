@@ -28,6 +28,7 @@
     flex-direction: column;
     align-items: center;
     max-width: 387px;
+    margin-bottom: 15px;
 }
 
 .login-form .form-btn:hover {

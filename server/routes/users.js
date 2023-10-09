@@ -7,6 +7,7 @@ const {
   deleteUser,
   getUserCredentials,
   validateUser,
+  getGoogleUserCredentials,
 } = require('../controllers/userController');
 
 const router = express.Router();
@@ -15,7 +16,9 @@ router.post('/', createUser);
 
 router.post('/createGoogleUser', createUser);
 
-router.post('/user', getUserCredentials);
+router.post('/getUser', getUserCredentials);
+
+router.post('/getGoogleUser', getGoogleUserCredentials);
 
 router.get('/:id', validateUser, getUser);
 

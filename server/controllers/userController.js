@@ -67,6 +67,25 @@ async function getUserCredentials(req, res) {
   }
 }
 
+async function getGoogleUserCredentials(req, res) {
+  const { email, sub } = req.body;
+  const user = await User.findOne({ email: email });
+
+  if (!user) return res.status(404).json({ error: USER_NOT_FOUND });
+
+  const id = user._id;
+
+  try {
+    const token = jwt.sign({ id: id }, process.env.JWT, { expiresIn: '3d' });
+    return res
+      .status(200)
+      .cookie('token', token, { httpOnly: true, secure: true })
+      .json({ token: token });
+  } catch (err) {
+    return res.status(500).json({ error: err });
+  }
+}
+
 async function validateUser(req, res, next) {
   try {
     const userID = jwt.verify(req.headers.authorization, process.env.JWT);
@@ -131,5 +150,6 @@ module.exports = {
   getAllUsers,
   deleteUser,
   getUserCredentials,
+  getGoogleUserCredentials,
   validateUser,
 };

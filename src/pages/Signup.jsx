@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import PasswordInput from '../components/PasswordInput';
-import GoogleButton from '../components/GoogleButton';
+import { GoogleLogin } from '@react-oauth/google';
+import jwt_decode from 'jwt-decode';
 
 export default function Signup() {
   const [firstName, setFirstName] = useState('');
@@ -57,6 +58,31 @@ export default function Signup() {
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  async function createGoogleUser(response) {
+    const decoded = jwt_decode(response.credential);
+
+    const { sub, given_name, family_name, email } = decoded;
+
+    const user = {
+      _id: sub,
+      firstName: given_name,
+      lastName: family_name,
+      email: email,
+      sub: sub,
+      number: 0,
+    };
+
+    const data = await fetch('/api/users/createGoogleUser', {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log(data);
   }
 
   return (
@@ -130,7 +156,14 @@ export default function Signup() {
           Already have an account? <a href="/Login">Login here</a>
         </p>
       </form>
-      <GoogleButton />
+
+      <GoogleLogin
+        onSuccess={createGoogleUser}
+        theme="filled_black"
+        shape="circle"
+        logo_alignment="center"
+        onScriptLoadError={() => console.log('Error')}
+      ></GoogleLogin>
     </div>
   );
 }
