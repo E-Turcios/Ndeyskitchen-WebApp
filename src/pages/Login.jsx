@@ -126,15 +126,15 @@ export default function Login() {
             Don't have an account? <a href="/Signup">Signup here</a>
           </p>
         </form>
+        <GoogleLogin
+          onSuccess={getGoogleUser}
+          theme="outline"
+          shape="circle"
+          width="20px"
+          logo_alignment="center"
+          onScriptLoadError={() => console.log('Error')}
+        ></GoogleLogin>
       </div>
-      <GoogleLogin
-        onSuccess={getGoogleUser}
-        theme="outline"
-        shape="circle"
-        width="20px"
-        logo_alignment="center"
-        onScriptLoadError={() => console.log('Error')}
-      ></GoogleLogin>
     </div>
   );
 }
