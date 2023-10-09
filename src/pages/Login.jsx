@@ -42,11 +42,11 @@ export default function Login() {
 
     if (response.ok) {
       localStorage.setItem('token', json.token);
-      dispatch({ type: 'LOGIN', payload: json });
+      dispatch({ type: 'LOGIN', payload: json.token });
       setIsLoading(false);
       navigate('/');
     }
-    console.log(localStorage);
+    console.log(json);
   }
 
   return (

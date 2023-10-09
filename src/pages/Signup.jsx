@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import PasswordInput from '../components/PasswordInput';
-import Image from '../components/Image';
 import GoogleButton from '../components/GoogleButton';
 
 export default function Signup() {
