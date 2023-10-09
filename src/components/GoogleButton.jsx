@@ -5,7 +5,7 @@ import jwt_decode from 'jwt-decode';
 export default function GoogleButton() {
   async function createGoogleUser(response) {
     const decoded = jwt_decode(response.credential);
-    const { given_name, family_name, email, sub } = decoded;
+    const { sub, given_name, family_name, email } = decoded;
 
     const user = {
       firstName: given_name,
@@ -17,7 +17,7 @@ export default function GoogleButton() {
 
     console.log(user);
 
-    const data = await fetch('/api/users', {
+    const data = await fetch('/api/users/createGoogleUser', {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {

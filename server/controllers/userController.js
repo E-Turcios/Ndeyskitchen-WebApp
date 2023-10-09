@@ -29,6 +29,21 @@ async function createUser(req, res) {
   });
 }
 
+async function createGoogleUser(req, res) {
+  const { firstName, lastName, email } = req.body;
+
+  try {
+    const user = await User.create({
+      firstName,
+      lastName,
+      email,
+    });
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
+
 async function getUserCredentials(req, res) {
   const { email, password } = req.body;
 
@@ -111,6 +126,7 @@ async function deleteUser(req, res) {
 
 module.exports = {
   createUser,
+  createGoogleUser,
   getUser,
   getAllUsers,
   deleteUser,

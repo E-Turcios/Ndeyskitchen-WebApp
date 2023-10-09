@@ -9,7 +9,6 @@ const UserSchema = new Schema(
     email: { type: String, required: true, unique: true, maxlength: 100 },
     password: { type: String, required: false, maxlength: 100 },
     number: { type: Number, required: false, unique: true, maxlength: 10 },
-    sub: { type: String, required: false, maxlength: 100 },
     order: [],
   },
   { timestamps: true }

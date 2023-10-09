@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import PasswordInput from '../components/PasswordInput';
 import Image from '../components/Image';
 import useAuthContext from '../hooks/useAuthContext';
+import GoogleButton from '../components/GoogleButton';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -88,7 +89,7 @@ export default function Login() {
             <a>Forgot password</a>
           </p>
 
-          <button type="submit" className="form-btn">
+          <button disabled={isLoading} type="submit" className="form-btn">
             Login
           </button>
           <p className="form-link">
@@ -96,10 +97,8 @@ export default function Login() {
           </p>
         </form>
       </div>
-      <button disabled={isLoading} type="submit" className="continue-with-btn">
-        Continue with
-        <Image className="logos" src={'google.png'} alt="google-logo" />
-      </button>
+
+      <GoogleButton />
     </div>
   );
 }

@@ -4,41 +4,38 @@ import Profile from '../pages/Profile';
 import Signup from '../pages/Signup';
 import Home from '../pages/Home';
 import useAuthContext from '../hooks/useAuthContext';
-import { GoogleOAuthProvider } from '@react-oauth/google';
 
 function App() {
   const { user } = useAuthContext();
 
   return (
-    <GoogleOAuthProvider clientId={`${process.env.GOOGLE_API_TOKEN}`}>
-      <div className="App">
-        <BrowserRouter>
-          <div className="pages">
-            <Routes>
-              <Route
-                path="/"
-                element={user ? <Home /> : <Navigate to="/login" />}
-              />
+    <div className="App">
+      <BrowserRouter>
+        <div className="pages">
+          <Routes>
+            <Route
+              path="/"
+              element={user ? <Home /> : <Navigate to="/login" />}
+            />
 
-              <Route
-                path="/login"
-                element={!user ? <Login /> : <Navigate to="/" />}
-              />
+            <Route
+              path="/login"
+              element={!user ? <Login /> : <Navigate to="/" />}
+            />
 
-              <Route
-                path="/signup"
-                element={!user ? <Signup /> : <Navigate to="/" />}
-              />
+            <Route
+              path="/signup"
+              element={!user ? <Signup /> : <Navigate to="/" />}
+            />
 
-              <Route
-                path="/profile"
-                element={user ? <Profile /> : <Navigate to="/login" />}
-              />
-            </Routes>
-          </div>
-        </BrowserRouter>
-      </div>
-    </GoogleOAuthProvider>
+            <Route
+              path="/profile"
+              element={user ? <Profile /> : <Navigate to="/login" />}
+            />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </div>
   );
 }
 
