@@ -4,6 +4,7 @@ import App from './components/App';
 import './style/style.css';
 import './style/login.css';
 import './style/signup.css';
+import './style/forgot-password.css';
 import { AuthContextProvider } from './context/AuthContext';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 

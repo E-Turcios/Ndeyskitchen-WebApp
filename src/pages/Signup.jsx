@@ -60,8 +60,8 @@ export default function Signup() {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  async function createGoogleUser(response) {
-    const decoded = jwt_decode(response.credential);
+  async function createGoogleUser(data) {
+    const decoded = jwt_decode(data.credential);
 
     const { sub, given_name, family_name, email } = decoded;
 
@@ -74,13 +74,19 @@ export default function Signup() {
       number: 0,
     };
 
-    const data = await fetch('/api/users/createGoogleUser', {
+    const response = await fetch('/api/users/createGoogleUser', {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
         'Content-Type': 'application/json',
       },
     });
+
+    const json = await response.json();
+
+    if (response.ok || response.status === 400) {
+      navigate('/login');
+    }
 
     console.log(data);
   }

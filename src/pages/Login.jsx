@@ -126,6 +126,7 @@ export default function Login() {
             Don't have an account? <a href="/Signup">Signup here</a>
           </p>
         </form>
+
         <GoogleLogin
           onSuccess={getGoogleUser}
           theme="outline"

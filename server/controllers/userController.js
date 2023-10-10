@@ -68,7 +68,8 @@ async function getUserCredentials(req, res) {
 }
 
 async function getGoogleUserCredentials(req, res) {
-  const { email, sub } = req.body;
+  const { email } = req.body;
+
   const user = await User.findOne({ email: email });
 
   if (!user) return res.status(404).json({ error: USER_NOT_FOUND });
@@ -84,6 +85,16 @@ async function getGoogleUserCredentials(req, res) {
   } catch (err) {
     return res.status(500).json({ error: err });
   }
+}
+
+async function getUserEmail(req, res) {
+  const { email } = req.body;
+
+  const user = await User.findOne({ email: email });
+
+  if (!user) return res.status(404).json({ error: USER_NOT_FOUND });
+
+  res.status(200).json(user);
 }
 
 async function validateUser(req, res, next) {
@@ -118,7 +129,7 @@ async function isUserValid(id) {
   }
 }
 
-const getUser = async (req, res) => {
+async function getUser(req, res) {
   const id = req.params.id;
 
   isUserValid(id);
@@ -128,7 +139,7 @@ const getUser = async (req, res) => {
   if (!user) return res.status(404).json({ error: USER_NOT_FOUND });
 
   res.status(200).json(user);
-};
+}
 
 async function deleteUser(req, res) {
   const id = req.params.id;
@@ -147,6 +158,7 @@ module.exports = {
   createUser,
   createGoogleUser,
   getUser,
+  getUserEmail,
   getAllUsers,
   deleteUser,
   getUserCredentials,

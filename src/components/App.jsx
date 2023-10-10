@@ -3,6 +3,7 @@ import Login from '../pages/Login';
 import Profile from '../pages/Profile';
 import Signup from '../pages/Signup';
 import Home from '../pages/Home';
+import ForgotPassword from '../pages/ForgotPassword';
 import useAuthContext from '../hooks/useAuthContext';
 
 function App() {
@@ -33,6 +34,8 @@ function App() {
               path="/"
               element={user ? <Home /> : <Navigate to="/login" />}
             />
+
+            <Route path="/forgotpassword" element={<ForgotPassword />} />
           </Routes>
         </div>
       </BrowserRouter>
