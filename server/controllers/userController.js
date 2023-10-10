@@ -1,8 +1,10 @@
-const User = require('../database/models/userModel');
 const mongoose = require('mongoose');
+const crypto = require('crypto');
+const User = require('../database/models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
+const nodemailer = require('nodemailer');
+
 require('dotenv').config();
 
 const {
@@ -129,6 +131,40 @@ async function forgotPassword(req, res) {
 
     const link = `http://localhost:8080/api/users/reset-password/${user._id}/${token}/${userToken}`;
     console.log(link);
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: `${process.env.EMAIL_ADDRESS}`,
+        pass: `${process.env.EMAIL_PASSWORD}`,
+      },
+    });
+
+    const mailOptions = {
+      from: 'youremail@gmail.com',
+      to: user.email,
+      subject: 'Reset Password',
+      html: `
+      <div>
+      <p><strong>From: Ndey's Kitchen</strong></p>
+      <p>Hello,</p>
+      <p>You have requested to reset your password for your Ndey's Kitchen account.</p>
+      <p>Click the link below to reset your password:</p>
+      <p><a href="${link}">Reset Password</a></p>
+      <p>This link will expire in 15 minutes.</p>
+      <p>If you did not request this password reset, you can safely ignore this email.</p>
+      <p>Best regards,<br>Ndey's Kitchen</p>
+    </div>
+  `,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
 
     return res.status(200).json({ token: userToken, link: link });
   } catch (err) {

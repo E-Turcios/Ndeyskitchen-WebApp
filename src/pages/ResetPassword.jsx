@@ -1,34 +1,33 @@
 import { React, useState, useEffect } from 'react';
 
 export default function ResetPassword() {
-  const [check, setCheck] = useState('Error');
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await fetch(
-        '/api/users/reset-password/:id/:token/:userToken',
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            authorization: localStorage.getItem('token'),
-          },
-        }
-      );
+  async function handleSubmit(event) {
+    event.preventDefault();
 
-      const json = await response.json();
+    const user = { email };
 
-      if (!response.ok) console.log('NOT OK');
+    const response = await fetch('/api/users/forgot-password', {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-      if (response.ok) {
-        setCheck('No Error');
-        console.log('OK');
-        localStorage.removeItem('token');
-      }
+    const json = await response.json();
 
-      console.log(json);
-    };
-    fetchUsers();
-  }, []);
+    if (json.error === 'User not found') {
+      setEmailError(true);
+    }
 
-  return <h1>{check}</h1>;
+    if (response.ok) {
+      localStorage.setItem('token', json.token);
+      setIsVerified(true);
+      console.log('User successfully found');
+    }
+
+    console.log(json.token);
+  }
+
+  return <h1>Hello</h1>;
 }
