@@ -2,6 +2,7 @@ const User = require('../database/models/userModel');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 require('dotenv').config();
 
 const {
@@ -94,7 +95,36 @@ async function getUserEmail(req, res) {
 
   if (!user) return res.status(404).json({ error: USER_NOT_FOUND });
 
-  res.status(200).json(user);
+  const id = user._id;
+
+  try {
+    const userToken = jwt.sign({ id: id }, process.env.JWT, {
+      expiresIn: '3m',
+    });
+
+    const promise = new Promise((resolve, reject) => {
+      crypto.randomBytes(32, (error, buffer) => {
+        if (error) reject(error);
+        const token = buffer.toString('hex');
+        resolve(token);
+      });
+    });
+
+    const token = await promise;
+
+    const link = `http://localhost:8080/api/users/reset-password/${user._id}/${token}`;
+    console.log(link);
+
+    return res.status(200).json({ token: userToken, link: link });
+  } catch (err) {
+    return res.status(500).json({ error: err });
+  }
+}
+
+async function resetPassword(req, res) {
+  if (req.user) {
+    return res.status(200).json({ Message: 'Reset Password' });
+  } else return res.status(401).json({ error: UNAUTHORIZED_REQUEST });
 }
 
 async function validateUser(req, res, next) {
@@ -164,4 +194,5 @@ module.exports = {
   getUserCredentials,
   getGoogleUserCredentials,
   validateUser,
+  resetPassword,
 };

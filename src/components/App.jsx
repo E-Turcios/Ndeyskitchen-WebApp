@@ -4,6 +4,7 @@ import Profile from '../pages/Profile';
 import Signup from '../pages/Signup';
 import Home from '../pages/Home';
 import ForgotPassword from '../pages/ForgotPassword';
+import ResetPassword from '../pages/ResetPassword';
 import useAuthContext from '../hooks/useAuthContext';
 
 function App() {
@@ -35,7 +36,8 @@ function App() {
               element={user ? <Home /> : <Navigate to="/login" />}
             />
 
-            <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
           </Routes>
         </div>
       </BrowserRouter>

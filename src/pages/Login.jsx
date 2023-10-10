@@ -116,7 +116,9 @@ export default function Login() {
           />
 
           <p className="forgot-password">
-            <a>Forgot password</a>
+            <a className="forgot-password" href="/forgot-password">
+              Forgot password
+            </a>
           </p>
 
           <button disabled={isLoading} type="submit" className="form-btn">
