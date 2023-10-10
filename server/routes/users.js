@@ -2,12 +2,12 @@ const express = require('express');
 const {
   createUser,
   getUser,
-  getUserEmail,
   getAllUsers,
   deleteUser,
   getUserCredentials,
   validateUser,
   getGoogleUserCredentials,
+  forgotPassword,
   resetPassword,
 } = require('../controllers/userController');
 
@@ -17,7 +17,7 @@ router.post('/', createUser);
 
 router.post('/createGoogleUser', createUser);
 
-router.post('/forgot-password', getUserEmail);
+router.post('/forgot-password', forgotPassword);
 
 router.post('/getUser', getUserCredentials);
 
@@ -27,7 +27,7 @@ router.get('/:id', validateUser, getUser);
 
 router.get('/', validateUser, getAllUsers);
 
-router.get('/reset-password/:id/:token', validateUser, resetPassword);
+router.get('/reset-password/:id/:token/:userToken', resetPassword);
 
 router.delete('/:id', validateUser, deleteUser);
 

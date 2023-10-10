@@ -4,13 +4,16 @@ export default function ResetPassword() {
   const [check, setCheck] = useState('Error');
   useEffect(() => {
     const fetchUsers = async () => {
-      const response = await fetch('/api/users/reset-password/:id/:token', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: localStorage.getItem('token'),
-        },
-      });
+      const response = await fetch(
+        '/api/users/reset-password/:id/:token/:userToken',
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: localStorage.getItem('token'),
+          },
+        }
+      );
 
       const json = await response.json();
 
@@ -18,7 +21,8 @@ export default function ResetPassword() {
 
       if (response.ok) {
         setCheck('No Error');
-        localStorage.removeItem('token');
+        console.log('OK');
+        //localStorage.removeItem('token');
       }
 
       console.log(json);

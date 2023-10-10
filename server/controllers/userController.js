@@ -58,7 +58,7 @@ async function getUserCredentials(req, res) {
   if (!match) return res.status(404).json({ error: PASSWORD_INCORRECT });
 
   try {
-    const token = jwt.sign({ id: id }, process.env.JWT, { expiresIn: '3d' });
+    const token = jwt.sign({ id: id }, process.env.JWT, { expiresIn: '1d' });
     return res
       .status(200)
       .cookie('token', token, { httpOnly: true, secure: true })
@@ -78,7 +78,7 @@ async function getGoogleUserCredentials(req, res) {
   const id = user._id;
 
   try {
-    const token = jwt.sign({ id: id }, process.env.JWT, { expiresIn: '3d' });
+    const token = jwt.sign({ id: id }, process.env.JWT, { expiresIn: '1d' });
     return res
       .status(200)
       .cookie('token', token, { httpOnly: true, secure: true })
@@ -86,45 +86,6 @@ async function getGoogleUserCredentials(req, res) {
   } catch (err) {
     return res.status(500).json({ error: err });
   }
-}
-
-async function getUserEmail(req, res) {
-  const { email } = req.body;
-
-  const user = await User.findOne({ email: email });
-
-  if (!user) return res.status(404).json({ error: USER_NOT_FOUND });
-
-  const id = user._id;
-
-  try {
-    const userToken = jwt.sign({ id: id }, process.env.JWT, {
-      expiresIn: '3m',
-    });
-
-    const promise = new Promise((resolve, reject) => {
-      crypto.randomBytes(32, (error, buffer) => {
-        if (error) reject(error);
-        const token = buffer.toString('hex');
-        resolve(token);
-      });
-    });
-
-    const token = await promise;
-
-    const link = `http://localhost:8080/api/users/reset-password/${user._id}/${token}`;
-    console.log(link);
-
-    return res.status(200).json({ token: userToken, link: link });
-  } catch (err) {
-    return res.status(500).json({ error: err });
-  }
-}
-
-async function resetPassword(req, res) {
-  if (req.user) {
-    return res.status(200).json({ Message: 'Reset Password' });
-  } else return res.status(401).json({ error: UNAUTHORIZED_REQUEST });
 }
 
 async function validateUser(req, res, next) {
@@ -137,6 +98,56 @@ async function validateUser(req, res, next) {
 
     req.user = user;
     next();
+  } catch (err) {
+    return res.status(401);
+  }
+}
+
+async function forgotPassword(req, res) {
+  const { email } = req.body;
+
+  const user = await User.findOne({ email: email });
+
+  if (!user) return res.status(404).json({ error: USER_NOT_FOUND });
+
+  const id = user._id;
+
+  try {
+    const userToken = jwt.sign({ id: id }, process.env.JWT, {
+      expiresIn: '15m',
+    });
+
+    const promise = new Promise((resolve, reject) => {
+      crypto.randomBytes(10, (error, buffer) => {
+        if (error) reject(error);
+        const token = buffer.toString('hex');
+        resolve(token);
+      });
+    });
+
+    const token = await promise;
+
+    const link = `http://localhost:8080/api/users/reset-password/${user._id}/${token}/${userToken}`;
+    console.log(link);
+
+    return res.status(200).json({ token: userToken, link: link });
+  } catch (err) {
+    return res.status(500).json({ error: err });
+  }
+}
+
+async function resetPassword(req, res) {
+  const { userToken } = req.params;
+
+  try {
+    const userID = jwt.verify(userToken, process.env.JWT);
+    console.log(userID.id);
+
+    const user = await User.findOne({ _id: userID.id });
+
+    if (!user) return res.status(401).json({ error: UNAUTHORIZED_REQUEST });
+
+    return res.status(200).json({ Message: 'Reset Password' });
   } catch (err) {
     return res.status(401);
   }
@@ -188,7 +199,7 @@ module.exports = {
   createUser,
   createGoogleUser,
   getUser,
-  getUserEmail,
+  forgotPassword,
   getAllUsers,
   deleteUser,
   getUserCredentials,
