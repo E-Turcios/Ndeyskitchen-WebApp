@@ -7,7 +7,7 @@ import ForgotPassword from '../pages/ForgotPassword';
 import ResetPassword from '../pages/ResetPassword';
 import useAuthContext from '../hooks/useAuthContext';
 
-function App() {
+export default function App() {
   const { user } = useAuthContext();
 
   console.log(user);
@@ -37,12 +37,13 @@ function App() {
             />
 
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route
+              path="/reset-password/:userToken"
+              element={<ResetPassword />}
+            />
           </Routes>
         </div>
       </BrowserRouter>
     </div>
   );
 }
-
-export default App;

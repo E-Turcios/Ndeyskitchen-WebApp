@@ -1,14 +1,13 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 export default function ResetPassword() {
-  async function handleSubmit(event) {
-    event.preventDefault();
+  const { userToken } = useParams();
 
-    const user = { email };
-
-    const response = await fetch('/api/users/forgot-password', {
+  async function verifyLink() {
+    const response = await fetch('/api/users/reset-password/', {
       method: 'POST',
-      body: JSON.stringify(user),
+      body: JSON.stringify({ userToken }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -16,18 +15,11 @@ export default function ResetPassword() {
 
     const json = await response.json();
 
-    if (json.error === 'User not found') {
-      setEmailError(true);
-    }
+    if (!response.ok) console.log('Well damn');
 
-    if (response.ok) {
-      localStorage.setItem('token', json.token);
-      setIsVerified(true);
-      console.log('User successfully found');
-    }
-
-    console.log(json.token);
+    if (response.ok) console.log(json.Message);
   }
 
+  verifyLink();
   return <h1>Hello</h1>;
 }

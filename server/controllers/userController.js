@@ -115,10 +115,6 @@ async function forgotPassword(req, res) {
   const id = user._id;
 
   try {
-    const userToken = jwt.sign({ id: id }, process.env.JWT, {
-      expiresIn: '15m',
-    });
-
     const promise = new Promise((resolve, reject) => {
       crypto.randomBytes(10, (error, buffer) => {
         if (error) reject(error);
@@ -129,7 +125,11 @@ async function forgotPassword(req, res) {
 
     const token = await promise;
 
-    const link = `http://localhost:8080/api/users/reset-password/${user._id}/${token}/${userToken}`;
+    const userToken = jwt.sign({ id: id, token: token }, process.env.JWT, {
+      expiresIn: '1s',
+    });
+
+    const link = `http://localhost:8081/reset-password/${userToken}`;
     console.log(link);
 
     const transporter = nodemailer.createTransport({
@@ -173,16 +173,12 @@ async function forgotPassword(req, res) {
 }
 
 async function resetPassword(req, res) {
-  const { userToken } = req.params;
-
+  const { userToken } = req.body;
   try {
     const userID = jwt.verify(userToken, process.env.JWT);
     console.log(userID.id);
-
     const user = await User.findOne({ _id: userID.id });
-
     if (!user) return res.status(401).json({ error: UNAUTHORIZED_REQUEST });
-
     return res.status(200).json({ Message: 'Reset Password' });
   } catch (err) {
     return res.status(401);

@@ -23,11 +23,11 @@ router.post('/getUser', getUserCredentials);
 
 router.post('/getGoogleUser', getGoogleUserCredentials);
 
+router.post('/reset-password/', resetPassword);
+
 router.get('/:id', validateUser, getUser);
 
 router.get('/', validateUser, getAllUsers);
-
-router.get('/reset-password/:id/:token/:userToken', resetPassword);
 
 router.delete('/:id', validateUser, deleteUser);
 
