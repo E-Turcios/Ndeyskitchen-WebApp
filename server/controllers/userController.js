@@ -125,8 +125,10 @@ async function forgotPassword(req, res) {
 
     const token = await promise;
 
+    await User.findByIdAndUpdate(id, { token: token });
+
     const userToken = jwt.sign({ id: id, token: token }, process.env.JWT, {
-      expiresIn: '1s',
+      expiresIn: '15m',
     });
 
     const link = `http://localhost:8081/reset-password/${userToken}`;
@@ -174,11 +176,17 @@ async function forgotPassword(req, res) {
 
 async function resetPassword(req, res) {
   const { userToken } = req.body;
+
   try {
-    const userID = jwt.verify(userToken, process.env.JWT);
-    console.log(userID.id);
-    const user = await User.findOne({ _id: userID.id });
+    const userData = jwt.verify(userToken, process.env.JWT);
+
+    const user = await User.findOne({
+      _id: userData.id,
+      token: userData.token,
+    });
+
     if (!user) return res.status(401).json({ error: UNAUTHORIZED_REQUEST });
+
     return res.status(200).json({ Message: 'Reset Password' });
   } catch (err) {
     return res.status(401);
