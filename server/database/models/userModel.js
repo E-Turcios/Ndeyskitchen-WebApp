@@ -10,7 +10,6 @@ const UserSchema = new Schema(
     password: { type: String, required: false, maxlength: 100 },
     number: { type: Number, required: false, unique: true, maxlength: 10 },
     token: { type: String, required: false, maxlength: 100 },
-    order: [],
   },
   { timestamps: true }
 );
