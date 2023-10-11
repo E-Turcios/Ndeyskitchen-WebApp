@@ -15,33 +15,22 @@ export default function App() {
     <div className="App">
       <BrowserRouter>
         <div className="pages">
-          <Routes>
-            <Route
-              path="/login"
-              element={!user ? <Login /> : <Navigate to="/" />}
-            />
-
-            <Route
-              path="/signup"
-              element={!user ? <Signup /> : <Navigate to="/" />}
-            />
-
-            <Route
-              path="/profile"
-              element={user ? <Profile /> : <Navigate to="/login" />}
-            />
-
-            <Route
-              path="/"
-              element={user ? <Home /> : <Navigate to="/login" />}
-            />
-
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route
-              path="/reset-password/:userToken"
-              element={<ResetPassword />}
-            />
-          </Routes>
+          {user ? (
+            <Routes>
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/" element={<Home />} />
+            </Routes>
+          ) : (
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route
+                path="/reset-password/:userToken"
+                element={<ResetPassword />}
+              />
+            </Routes>
+          )}
         </div>
       </BrowserRouter>
     </div>
