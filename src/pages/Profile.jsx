@@ -1,9 +1,12 @@
 import { React, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useAuthContext from '../hooks/useAuthContext';
 
 export default function Profile() {
   const navigate = useNavigate();
   const [users, setUsers] = useState(null);
+
+  const { dispatch } = useAuthContext();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -17,7 +20,10 @@ export default function Profile() {
 
       const userData = await response.json();
 
-      if (!response.ok) navigate('/login');
+      if (!response.ok) {
+        localStorage.removeItem('token');
+        dispatch({ type: 'LOGOUT' });
+      }
 
       setUsers(userData);
       console.log(response.status);
