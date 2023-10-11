@@ -16,7 +16,7 @@ async function validateUser(req, res, next) {
         if (err === null) {
           const user = await User.findOne({ _id: payload.id });
           req.user = user;
-          console.log(req.user);
+
           next();
         }
 

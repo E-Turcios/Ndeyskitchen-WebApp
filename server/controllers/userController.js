@@ -62,7 +62,7 @@ async function getUserCredentials(req, res) {
   if (!match) return res.status(404).json({ error: PASSWORD_INCORRECT });
 
   try {
-    const token = jwt.sign({ id: id }, process.env.JWT, { expiresIn: '1s' });
+    const token = jwt.sign({ id: id }, process.env.JWT, { expiresIn: '1d' });
     return res
       .status(200)
       .cookie('token', token, { httpOnly: true, secure: true })
@@ -148,11 +148,8 @@ async function forgotPassword(req, res) {
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email sent: ' + info.response);
-      }
+      if (error) console.log(error);
+      console.log('Email sent: ' + info.response);
     });
 
     return res.status(200).json({ token: userToken, link: link });
@@ -162,32 +159,8 @@ async function forgotPassword(req, res) {
 }
 
 async function resetPasswordLink(req, res) {
-  const { userToken } = req.body;
-
-  try {
-    jwt.verify(userToken, process.env.JWT, async (err, data) => {
-      const payload = jwt.verify(userToken, process.env.JWT, {
-        ignoreExpiration: true,
-      });
-      if (err === null) {
-        const user = await User.findOne({
-          _id: payload.id,
-          token: payload.token,
-        });
-
-        if (!user) return res.status(401).json({ error: UNAUTHORIZED_REQUEST });
-
-        return res.status(200).json({ Message: RESET_PASSWORD });
-      }
-
-      if (err.name === 'TokenExpiredError') {
-        await User.findByIdAndUpdate(payload.id, { token: '' });
-        return res.status(401).json({ Message: UNAUTHORIZED_REQUEST });
-      }
-    });
-  } catch (err) {
-    return res.status(401);
-  }
+  if (!req.user) return res.status(401).json({ Message: UNAUTHORIZED_REQUEST });
+  return res.status(200).json({ Message: RESET_PASSWORD });
 }
 
 async function resetPassword(req, res) {

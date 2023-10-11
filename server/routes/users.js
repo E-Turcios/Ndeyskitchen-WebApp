@@ -11,7 +11,11 @@ const {
   resetPassword,
 } = require('../controllers/userController');
 
-const { validateUser, validateResetPasswordToken } = require('../middlewares');
+const {
+  validateUser,
+  validateResetPasswordToken,
+  validateResetPasswordLinkToken,
+} = require('../middlewares');
 
 const router = express.Router();
 
@@ -25,7 +29,11 @@ router.post('/getUser', getUserCredentials);
 
 router.post('/getGoogleUser', getGoogleUserCredentials);
 
-router.post('/reset-password-link', resetPasswordLink);
+router.post(
+  '/reset-password-link',
+  validateResetPasswordLinkToken,
+  resetPasswordLink
+);
 
 router.post('/reset-password', validateResetPasswordToken, resetPassword);
 
