@@ -115,7 +115,7 @@ async function forgotPassword(req, res) {
     await User.findByIdAndUpdate(id, { token: token });
 
     const userToken = jwt.sign({ id: id, token: token }, process.env.JWT, {
-      expiresIn: '1h',
+      expiresIn: '30s',
     });
 
     const link = `http://localhost:8081/reset-password/${userToken}`;
@@ -165,16 +165,31 @@ async function resetPasswordLink(req, res) {
   const { userToken } = req.body;
 
   try {
-    const userData = jwt.verify(userToken, process.env.JWT);
+    const userData = jwt.verify(
+      userToken,
+      process.env.JWT,
+      async (err, data) => {
+        const payload = jwt.verify(userToken, process.env.JWT, {
+          ignoreExpiration: true,
+        });
+        if (err === null) {
+          const user = await User.findOne({
+            _id: payload.id,
+            token: payload.token,
+          });
 
-    const user = await User.findOne({
-      _id: userData.id,
-      token: userData.token,
-    });
+          if (!user)
+            return res.status(401).json({ error: UNAUTHORIZED_REQUEST });
 
-    if (!user) return res.status(401).json({ error: UNAUTHORIZED_REQUEST });
+          return res.status(200).json({ Message: RESET_PASSWORD });
+        }
 
-    return res.status(200).json({ Message: RESET_PASSWORD });
+        if (err.name === 'TokenExpiredError') {
+          await User.findByIdAndUpdate(payload.id, { token: '' });
+          return res.status(401).json({ Message: UNAUTHORIZED_REQUEST });
+        }
+      }
+    );
   } catch (err) {
     return res.status(401);
   }

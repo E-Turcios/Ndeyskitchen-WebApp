@@ -1,17 +1,14 @@
 import { React, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
 
 export default function ResetPassword() {
   const { userToken } = useParams();
   const navigate = useNavigate();
-  const [isExpired, setIsExpired] = useState(true);
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [passwordError, setPasswordError] = useState(false);
-
-  const decode = jwt_decode(userToken);
+  const [isExpired, setIsExpired] = useState(false);
 
   async function verifyLink() {
     const response = await fetch('/api/users/reset-password-link', {
@@ -24,10 +21,12 @@ export default function ResetPassword() {
 
     const json = await response.json();
 
-    if (!response.ok) console.log(response);
+    if (!response.ok) {
+      setIsExpired(true);
+      console.log(json.Message);
+    }
 
     if (response.ok) {
-      setIsExpired(false);
       console.log(json.Message);
     }
   }
@@ -62,7 +61,12 @@ export default function ResetPassword() {
   }
 
   return isExpired ? (
-    <h1>Link Expired</h1>
+    <div className="reset-password-link-expired">
+      <p>The link has expired</p>
+      <p>
+        Go back to the <a href="/forgot-password">forgot password</a> page
+      </p>
+    </div>
   ) : (
     <div className="reset-password-container">
       <div className="reset-password-form-container">
