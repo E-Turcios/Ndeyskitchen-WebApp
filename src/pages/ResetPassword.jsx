@@ -52,8 +52,6 @@ export default function ResetPassword() {
       },
     });
 
-    const json = await response.json();
-
     if (!response.ok) console.log(json.error);
 
     if (response.ok) {

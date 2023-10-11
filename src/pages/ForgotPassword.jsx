@@ -68,7 +68,11 @@ export default function ForgotPassword() {
             Submit
           </button>
 
-          {isVerified && <p className="verifiaction-text">Check your email</p>}
+          {isVerified && (
+            <a onClick={handleSubmit} className="resend-email-text">
+              Re-send email
+            </a>
+          )}
         </form>
       </div>
     </div>
