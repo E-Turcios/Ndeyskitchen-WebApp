@@ -1,19 +1,30 @@
 const User = require('../database/models/userModel');
 const jwt = require('jsonwebtoken');
 
-const { UNAUTHORIZED_REQUEST } = require('../messages');
+const { TOKEN_EXPIRED } = require('../messages');
 
 async function validateUser(req, res, next) {
   try {
-    const userID = jwt.verify(req.headers.authorization, process.env.JWT);
+    jwt.verify(
+      req.headers.authorization,
+      process.env.JWT,
+      async (err, data) => {
+        const payload = jwt.verify(req.headers.authorization, process.env.JWT, {
+          ignoreExpiration: true,
+        });
 
-    const user = await User.findOne({ _id: userID.id });
+        if (err === null) {
+          const user = await User.findOne({ _id: payload.id });
+          req.user = user;
+          console.log(req.user);
+          next();
+        }
 
-    if (!user) return res.status(401).json({ error: UNAUTHORIZED_REQUEST });
-
-    req.user = user;
-    console.log(req.user);
-    next();
+        if (err && err.name === 'TokenExpiredError') {
+          return res.status(401).json({ Message: TOKEN_EXPIRED });
+        }
+      }
+    );
   } catch (err) {
     return res.status(401);
   }

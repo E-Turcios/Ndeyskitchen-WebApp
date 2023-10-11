@@ -5,4 +5,5 @@ module.exports = {
   PASSWORD_INCORRECT: 'Password incorrect',
   RESET_PASSWORD: 'Reset password',
   PASSWORD_RESET: 'Password reset',
+  TOKEN_EXPIRED: 'Token expired',
 };

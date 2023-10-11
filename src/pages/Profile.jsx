@@ -18,14 +18,18 @@ export default function Profile() {
         },
       });
 
-      const userData = await response.json();
+      const json = await response.json();
+
+      if (json.Message === 'Token expired') {
+        navigate('/login');
+      }
 
       if (!response.ok) {
         localStorage.removeItem('token');
         dispatch({ type: 'LOGOUT' });
       }
 
-      setUsers(userData);
+      setUsers(json);
       console.log(response.status);
     };
     fetchUsers();

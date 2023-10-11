@@ -62,7 +62,7 @@ async function getUserCredentials(req, res) {
   if (!match) return res.status(404).json({ error: PASSWORD_INCORRECT });
 
   try {
-    const token = jwt.sign({ id: id }, process.env.JWT, { expiresIn: '1d' });
+    const token = jwt.sign({ id: id }, process.env.JWT, { expiresIn: '1s' });
     return res
       .status(200)
       .cookie('token', token, { httpOnly: true, secure: true })
@@ -165,31 +165,26 @@ async function resetPasswordLink(req, res) {
   const { userToken } = req.body;
 
   try {
-    const userData = jwt.verify(
-      userToken,
-      process.env.JWT,
-      async (err, data) => {
-        const payload = jwt.verify(userToken, process.env.JWT, {
-          ignoreExpiration: true,
+    jwt.verify(userToken, process.env.JWT, async (err, data) => {
+      const payload = jwt.verify(userToken, process.env.JWT, {
+        ignoreExpiration: true,
+      });
+      if (err === null) {
+        const user = await User.findOne({
+          _id: payload.id,
+          token: payload.token,
         });
-        if (err === null) {
-          const user = await User.findOne({
-            _id: payload.id,
-            token: payload.token,
-          });
 
-          if (!user)
-            return res.status(401).json({ error: UNAUTHORIZED_REQUEST });
+        if (!user) return res.status(401).json({ error: UNAUTHORIZED_REQUEST });
 
-          return res.status(200).json({ Message: RESET_PASSWORD });
-        }
-
-        if (err.name === 'TokenExpiredError') {
-          await User.findByIdAndUpdate(payload.id, { token: '' });
-          return res.status(401).json({ Message: UNAUTHORIZED_REQUEST });
-        }
+        return res.status(200).json({ Message: RESET_PASSWORD });
       }
-    );
+
+      if (err.name === 'TokenExpiredError') {
+        await User.findByIdAndUpdate(payload.id, { token: '' });
+        return res.status(401).json({ Message: UNAUTHORIZED_REQUEST });
+      }
+    });
   } catch (err) {
     return res.status(401);
   }
@@ -202,7 +197,6 @@ async function resetPassword(req, res) {
 
   try {
     const hash = await bcrypt.hash(password, 11);
-    console.log(hash);
 
     await User.findByIdAndUpdate(req.user._id, { password: hash });
   } catch (err) {

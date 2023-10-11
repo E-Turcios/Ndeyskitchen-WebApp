@@ -1,5 +1,5 @@
 const { validateUser } = require('./validateUser');
-const { validateResetPasswordToken } = require('./validateRestPasswordToken');
+const { validateResetPasswordToken } = require('./validateResetPasswordToken');
 
 module.exports = {
   validateUser,
