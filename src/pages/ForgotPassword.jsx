@@ -48,7 +48,7 @@ export default function ForgotPassword() {
           </p>
 
           <label className="form-label" htmlFor="email">
-            Enter Your email
+            Enter your email
           </label>
 
           <input
