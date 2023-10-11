@@ -3,4 +3,6 @@ module.exports = {
   USERS_NOT_FOUND: 'Users not found',
   UNAUTHORIZED_REQUEST: 'Unauthorized request',
   PASSWORD_INCORRECT: 'Password incorrect',
+  RESET_PASSWORD: 'Reset password',
+  PASSWORD_RESET: 'Password reset',
 };
