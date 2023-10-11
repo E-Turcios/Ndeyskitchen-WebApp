@@ -115,7 +115,7 @@ async function forgotPassword(req, res) {
     await User.findByIdAndUpdate(id, { token: token });
 
     const userToken = jwt.sign({ id: id, token: token }, process.env.JWT, {
-      expiresIn: '30s',
+      expiresIn: '15m',
     });
 
     const link = `http://localhost:8081/reset-password/${userToken}`;
