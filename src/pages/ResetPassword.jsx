@@ -57,6 +57,7 @@ export default function ResetPassword() {
     if (!response.ok) console.log(json.error);
 
     if (response.ok) {
+      console.log(json.status);
       console.log('YESSSSSSSSSSS');
       setPassword('');
       setPasswordConfirmation('');

@@ -25,7 +25,6 @@ export default function ForgotPassword() {
     }
 
     if (response.ok) {
-      localStorage.setItem('token', json.token);
       setIsVerified(true);
       console.log('User successfully found');
     }

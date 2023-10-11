@@ -12,7 +12,9 @@ const {
   USERS_NOT_FOUND,
   UNAUTHORIZED_REQUEST,
   PASSWORD_INCORRECT,
-} = require('../errors');
+  RESET_PASSWORD,
+  PASSWORD_RESET,
+} = require('../messages');
 
 async function createUser(req, res) {
   const { firstName, lastName, email, password, number } = req.body;
@@ -90,21 +92,6 @@ async function getGoogleUserCredentials(req, res) {
   }
 }
 
-async function validateUser(req, res, next) {
-  try {
-    const userID = jwt.verify(req.headers.authorization, process.env.JWT);
-
-    const user = await User.findOne({ _id: userID.id });
-
-    if (!user) return res.status(401).json({ error: UNAUTHORIZED_REQUEST });
-
-    req.user = user;
-    next();
-  } catch (err) {
-    return res.status(401);
-  }
-}
-
 async function forgotPassword(req, res) {
   const { email } = req.body;
 
@@ -128,7 +115,7 @@ async function forgotPassword(req, res) {
     await User.findByIdAndUpdate(id, { token: token });
 
     const userToken = jwt.sign({ id: id, token: token }, process.env.JWT, {
-      expiresIn: '15m',
+      expiresIn: '1h',
     });
 
     const link = `http://localhost:8081/reset-password/${userToken}`;
@@ -174,7 +161,7 @@ async function forgotPassword(req, res) {
   }
 }
 
-async function resetPassword(req, res) {
+async function resetPasswordLink(req, res) {
   const { userToken } = req.body;
 
   try {
@@ -187,10 +174,26 @@ async function resetPassword(req, res) {
 
     if (!user) return res.status(401).json({ error: UNAUTHORIZED_REQUEST });
 
-    return res.status(200).json({ Message: 'Reset Password' });
+    return res.status(200).json({ Message: RESET_PASSWORD });
   } catch (err) {
     return res.status(401);
   }
+}
+
+async function resetPassword(req, res) {
+  const { password } = req.body;
+
+  if (!req.user) return res.status(401).json({ Message: UNAUTHORIZED_REQUEST });
+
+  try {
+    const hash = await bcrypt.hash(password, 11);
+    console.log(hash);
+
+    await User.findByIdAndUpdate(req.user._id, { password: hash });
+  } catch (err) {
+    return res.status(401).json({ error: err });
+  }
+  return res.status(200).json({ Message: PASSWORD_RESET });
 }
 
 async function getAllUsers(req, res) {
@@ -244,6 +247,6 @@ module.exports = {
   deleteUser,
   getUserCredentials,
   getGoogleUserCredentials,
-  validateUser,
+  resetPasswordLink,
   resetPassword,
 };
