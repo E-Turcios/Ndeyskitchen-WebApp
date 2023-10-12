@@ -74,9 +74,9 @@ async function getUserCredentials(req, res) {
 }
 
 async function getGoogleUserCredentials(req, res) {
-  const { email } = req.body;
+  const { email, sub } = req.body;
 
-  const user = await User.findOne({ email: email });
+  const user = await User.findOne({ email: email, sub: sub });
 
   if (!user) return res.status(404).json({ Message: USER_NOT_FOUND });
 

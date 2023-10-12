@@ -52,10 +52,11 @@ export default function Login() {
 
   async function getGoogleUser(data) {
     const decode = jwt_decode(data.credential);
-    const { email } = decode;
+    const { email, sub } = decode;
 
     const user = {
       email: email,
+      sub: sub,
     };
 
     const response = await fetch('api/users/getGoogleUser', {
@@ -69,7 +70,7 @@ export default function Login() {
     const json = await response.json();
 
     if (!response.ok) {
-      console.log('OH NOOOO');
+      console.log(json.Message);
     }
 
     if (response.ok) {
