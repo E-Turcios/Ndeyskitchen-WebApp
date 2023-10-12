@@ -8,7 +8,6 @@ export default function ResetPassword() {
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [passwordError, setPasswordError] = useState(false);
-  const [isExpired, setIsExpired] = useState(false);
 
   async function verifyLink() {
     const response = await fetch('/api/users/reset-password-link', {
@@ -22,8 +21,11 @@ export default function ResetPassword() {
     const json = await response.json();
 
     if (!response.ok) {
-      setIsExpired(true);
       console.log(json.Message);
+    }
+
+    if (json.Message === 'Token expired') {
+      navigate('/redirect-to-forgot-password');
     }
 
     if (response.ok) {
@@ -54,20 +56,11 @@ export default function ResetPassword() {
     if (!response.ok) console.log(json.error);
 
     if (response.ok) {
-      setPassword('');
-      setPasswordConfirmation('');
       navigate('/login');
     }
   }
 
-  return isExpired ? (
-    <div className="reset-password-link-expired">
-      <p>The link has expired</p>
-      <p>
-        Go back to the <a href="/forgot-password">forgot password</a> page
-      </p>
-    </div>
-  ) : (
+  return (
     <div className="reset-password-container">
       <div className="reset-password-form-container">
         <form className="reset-password-form" onSubmit={handleSubmit}>

@@ -5,6 +5,7 @@ import Signup from '../pages/Signup';
 import Home from '../pages/Home';
 import ForgotPassword from '../pages/ForgotPassword';
 import ResetPassword from '../pages/ResetPassword';
+import RedirectToForgotPassword from '../pages/RedirectToForgotPassword';
 import useAuthContext from '../hooks/useAuthContext';
 
 export default function App() {
@@ -28,6 +29,10 @@ export default function App() {
               <Route
                 path="/reset-password/:userToken"
                 element={<ResetPassword />}
+              />
+              <Route
+                path="/redirect-to-forgot-password"
+                element={<RedirectToForgotPassword />}
               />
             </Routes>
           )}
