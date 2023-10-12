@@ -29,23 +29,24 @@ async function createUser(req, res) {
       });
       res.status(200).json(user);
     } catch (error) {
-      res.status(400).json({ error: error.message });
+      res.status(400).json({ Message: error.message });
     }
   });
 }
 
 async function createGoogleUser(req, res) {
-  const { firstName, lastName, email } = req.body;
+  const { firstName, lastName, email, sub } = req.body;
 
   try {
     const user = await User.create({
       firstName,
       lastName,
       email,
+      sub,
     });
     res.status(200).json(user);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ Message: error.message });
   }
 }
 
@@ -68,7 +69,7 @@ async function getUserCredentials(req, res) {
       .cookie('token', token, { httpOnly: true, secure: true })
       .json({ token: token });
   } catch (err) {
-    return res.status(500).json({ error: err });
+    return res.status(500).json({ Message: err });
   }
 }
 
@@ -77,18 +78,15 @@ async function getGoogleUserCredentials(req, res) {
 
   const user = await User.findOne({ email: email });
 
-  if (!user) return res.status(404).json({ error: USER_NOT_FOUND });
+  if (!user) return res.status(404).json({ Message: USER_NOT_FOUND });
 
   const id = user._id;
 
   try {
     const token = jwt.sign({ id: id }, process.env.JWT, { expiresIn: '1d' });
-    return res
-      .status(200)
-      .cookie('token', token, { httpOnly: true, secure: true })
-      .json({ token: token });
+    return res.status(200).json({ token: token });
   } catch (err) {
-    return res.status(500).json({ error: err });
+    return res.status(500).json({ Message: err });
   }
 }
 
@@ -97,7 +95,7 @@ async function forgotPassword(req, res) {
 
   const user = await User.findOne({ email: email });
 
-  if (!user) return res.status(404).json({ error: USER_NOT_FOUND });
+  if (!user) return res.status(404).json({ Message: USER_NOT_FOUND });
 
   const id = user._id;
 
@@ -154,7 +152,7 @@ async function forgotPassword(req, res) {
 
     return res.status(200).json({ token: userToken, link: link });
   } catch (err) {
-    return res.status(500).json({ error: err });
+    return res.status(500).json({ Message: err });
   }
 }
 
@@ -173,7 +171,7 @@ async function resetPassword(req, res) {
 
     await User.findByIdAndUpdate(req.user._id, { password: hash });
   } catch (err) {
-    return res.status(401).json({ error: err });
+    return res.status(401).json({ Message: err });
   }
   return res.status(200).json({ Message: PASSWORD_RESET });
 }
@@ -182,16 +180,16 @@ async function getAllUsers(req, res) {
   const users = await User.find().sort();
 
   if (req.user) {
-    if (!users) return res.status(404).json({ error: USERS_NOT_FOUND });
+    if (!users) return res.status(404).json({ Message: USERS_NOT_FOUND });
     return res.status(200).json(users);
   }
 
-  return res.status(401).json({ error: UNAUTHORIZED_REQUEST });
+  return res.status(401).json({ Message: UNAUTHORIZED_REQUEST });
 }
 
 async function isUserValid(id) {
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: USER_NOT_FOUND });
+    return res.status(404).json({ Message: USER_NOT_FOUND });
   }
 }
 
@@ -202,7 +200,7 @@ async function getUser(req, res) {
 
   const user = await User.findById(id);
 
-  if (!user) return res.status(404).json({ error: USER_NOT_FOUND });
+  if (!user) return res.status(404).json({ Message: USER_NOT_FOUND });
 
   res.status(200).json(user);
 }

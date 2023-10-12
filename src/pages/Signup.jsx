@@ -65,8 +65,9 @@ export default function Signup() {
 
     const { sub, given_name, family_name, email } = decoded;
 
+    console.log(decoded);
+
     const user = {
-      _id: sub,
       firstName: given_name,
       lastName: family_name,
       email: email,
@@ -87,8 +88,6 @@ export default function Signup() {
     if (response.ok || response.status === 400) {
       navigate('/login');
     }
-
-    console.log(data);
   }
 
   return (

@@ -1,6 +1,7 @@
 const express = require('express');
 const {
   createUser,
+  createGoogleUser,
   getUser,
   getAllUsers,
   deleteUser,
@@ -21,7 +22,7 @@ const router = express.Router();
 
 router.post('/', createUser);
 
-router.post('/createGoogleUser', createUser);
+router.post('/createGoogleUser', createGoogleUser);
 
 router.post('/forgot-password', forgotPassword);
 
