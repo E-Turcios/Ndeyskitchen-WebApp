@@ -8,6 +8,7 @@ export default function ResetPassword() {
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [passwordError, setPasswordError] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   async function verifyLink() {
     const response = await fetch('/api/users/reset-password-link', {
@@ -26,9 +27,11 @@ export default function ResetPassword() {
 
     if (json.Message === 'Token expired') {
       navigate('/redirect-to-forgot-password');
+      return;
     }
 
     if (response.ok) {
+      setShowForm(true);
       console.log(json.Message);
     }
   }
@@ -61,50 +64,52 @@ export default function ResetPassword() {
   }
 
   return (
-    <div className="reset-password-container">
-      <div className="reset-password-form-container">
-        <form className="reset-password-form" onSubmit={handleSubmit}>
-          <p className="reset-password-form-header">
-            <strong>Reset Password</strong>
-          </p>
+    showForm && (
+      <div className="reset-password-container">
+        <div className="reset-password-form-container">
+          <form className="reset-password-form" onSubmit={handleSubmit}>
+            <p className="reset-password-form-header">
+              <strong>Reset Password</strong>
+            </p>
 
-          <label className="form-label" htmlFor="password">
-            Password
-          </label>
+            <label className="form-label" htmlFor="password">
+              Password
+            </label>
 
-          <input
-            className="input-box"
-            type="text"
-            id="password"
-            value={password}
-            maxLength="12"
-            minLength="8"
-            onChange={event => setPassword(event.target.value)}
-            required
-          />
+            <input
+              className="input-box"
+              type="text"
+              id="password"
+              value={password}
+              maxLength="12"
+              minLength="8"
+              onChange={event => setPassword(event.target.value)}
+              required
+            />
 
-          <label className="form-label" htmlFor="password-confirmation">
-            Confirm Password
-          </label>
+            <label className="form-label" htmlFor="password-confirmation">
+              Confirm Password
+            </label>
 
-          <input
-            className="input-box"
-            type="text"
-            id="password-confirmation"
-            value={passwordConfirmation}
-            maxLength="12"
-            minLength="8"
-            onChange={event => setPasswordConfirmation(event.target.value)}
-            style={{ border: passwordError ? '0.15rem solid #DC952F' : '' }}
-            onClick={() => setPasswordError(false)}
-            required
-          />
+            <input
+              className="input-box"
+              type="text"
+              id="password-confirmation"
+              value={passwordConfirmation}
+              maxLength="12"
+              minLength="8"
+              onChange={event => setPasswordConfirmation(event.target.value)}
+              style={{ border: passwordError ? '0.15rem solid #DC952F' : '' }}
+              onClick={() => setPasswordError(false)}
+              required
+            />
 
-          <button type="submit" className="form-btn">
-            Submit
-          </button>
-        </form>
+            <button type="submit" className="form-btn">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    )
   );
 }
