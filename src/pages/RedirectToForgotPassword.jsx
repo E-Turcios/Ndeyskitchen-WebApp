@@ -5,7 +5,8 @@ export default function RedirectToForgotPassword() {
     <div className="reset-password-link-expired">
       <p>The link has expired.</p>
       <p>
-        Go back to the <a href="/forgot-password">forgot password</a> page.
+        Go back to the <a href="/forgot-password">forgot password</a> page to
+        request another link.
       </p>
     </div>
   );

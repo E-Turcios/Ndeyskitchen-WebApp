@@ -51,6 +51,10 @@
     margin-bottom: 5px;
 }
 
+.forgot-password:hover{
+    color:#000000
+}
+
 /* Media Queries */
 
 @media (max-width: 660px) {
