@@ -18,20 +18,20 @@ const {
 
 async function createUser(req, res) {
   const { firstName, lastName, email, password, number } = req.body;
-  bcrypt.hash(password, 11, async (error, hash) => {
-    try {
-      const user = await User.create({
-        firstName,
-        lastName,
-        email,
-        password: hash,
-        number,
-      });
-      res.status(200).json(user);
-    } catch (error) {
-      res.status(400).json({ Message: error.message });
-    }
-  });
+  const hash = await bcrypt.hash(password, 11);
+
+  try {
+    const user = await User.create({
+      firstName,
+      lastName,
+      email,
+      password: hash,
+      number,
+    });
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json({ Message: error.message });
+  }
 }
 
 async function createGoogleUser(req, res) {
