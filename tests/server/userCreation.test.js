@@ -1,6 +1,5 @@
 const app = require('../../server/index');
 const supertest = require('supertest');
-const bcrypt = require('bcrypt');
 const User = require('../../server/database/models/userModel');
 const databaseConnection = require('./databaseConnection');
 
@@ -17,8 +16,6 @@ const wrongData = {
   password: 'password',
   number: '1010101011',
 };
-
-const timeout = 10000;
 
 beforeAll(async () => {
   await databaseConnection.openDBConnection();
@@ -40,22 +37,14 @@ afterAll(async () => {
 });
 
 describe('User Creation test', () => {
-  it(
-    'Successful user creation test',
-    async () => {
-      const response = await supertest(app).post('/api/users/').send(data);
+  it('Successful user creation test', async () => {
+    const response = await supertest(app).post('/api/users/').send(data);
 
-      expect(response.statusCode).toEqual(200);
-    },
-    timeout
-  );
+    expect(response.statusCode).toEqual(200);
+  });
 
-  it(
-    'Failed user creation test',
-    async () => {
-      const response = await supertest(app).post('/api/users/').send(wrongData);
-      expect(response.statusCode).toBe(400);
-    },
-    timeout
-  );
+  it('Failed user creation test', async () => {
+    const response = await supertest(app).post('/api/users/').send(wrongData);
+    expect(response.statusCode).toBe(400);
+  });
 });

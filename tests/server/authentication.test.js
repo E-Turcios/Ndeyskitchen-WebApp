@@ -62,26 +62,16 @@ afterAll(async () => {
 });
 
 describe('Auhentication test', () => {
-  it(
-    'In-house login test',
-    async () => {
-      const response = await supertest(app)
-        .post('/api/users/getUser')
-        .send(data);
+  it('In-house login test', async () => {
+    const response = await supertest(app).post('/api/users/getUser').send(data);
 
-      expect(response.statusCode).toEqual(200);
-    },
-    timeout
-  );
+    expect(response.statusCode).toEqual(200);
+  });
 
-  it(
-    'Failed in-house login test',
-    async () => {
-      const response = await supertest(app)
-        .post('/api/users/getUser')
-        .send(wrongData);
-      expect(response.statusCode).toBe(404);
-    },
-    timeout
-  );
+  it('Failed in-house login test', async () => {
+    const response = await supertest(app)
+      .post('/api/users/getUser')
+      .send(wrongData);
+    expect(response.statusCode).toBe(404);
+  });
 });
