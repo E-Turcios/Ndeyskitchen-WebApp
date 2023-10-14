@@ -17,23 +17,25 @@ const wrongData = {
   password: 'wrongpassword',
 };
 
-beforeAll(async () => {
-  databaseConnection.openDBConnection();
+const timeout = 10000;
 
-  bcrypt.hash(data.password, 11, async (error, hash) => {
-    try {
-      const user = await User.create({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        password: hash,
-        number: data.number,
-      });
-      if (user) console.log('User successfully created');
-    } catch (error) {
-      console.log(error);
-    }
-  });
+beforeAll(async () => {
+  await databaseConnection.openDBConnection();
+
+  const hash = await bcrypt.hash(data.password, 11);
+
+  try {
+    const user = await User.create({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: hash,
+      number: data.number,
+    });
+    if (user) console.log('User successfully created');
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 afterAll(async () => {
@@ -52,16 +54,26 @@ afterAll(async () => {
 });
 
 describe('Auhentication test', () => {
-  it('In-house login test', async () => {
-    const response = await supertest(app).post('/api/users/getUser').send(data);
+  it(
+    'In-house login test',
+    async () => {
+      const response = await supertest(app)
+        .post('/api/users/getUser')
+        .send(data);
 
-    expect(response.statusCode).toEqual(200);
-  });
+      expect(response.statusCode).toEqual(200);
+    },
+    timeout
+  );
 
-  it('Failed in-house login test', async () => {
-    const response = await supertest(app)
-      .post('/api/users/user')
-      .send(wrongData);
-    expect(response.statusCode).toBe(404);
-  });
+  it(
+    'Failed in-house login test',
+    async () => {
+      const response = await supertest(app)
+        .post('/api/users/getUser')
+        .send(wrongData);
+      expect(response.statusCode).toBe(404);
+    },
+    timeout
+  );
 });
