@@ -142,10 +142,7 @@ async function forgotPassword(req, res) {
   `,
     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) console.log(error);
-      console.log('Email sent: ' + info.response);
-    });
+    await transporter.sendMail(mailOptions);
 
     return res.status(200).json({ token: userToken, link: link });
   } catch (err) {
