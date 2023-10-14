@@ -1,8 +1,8 @@
 const app = require('../../server/index');
 const supertest = require('supertest');
 const bcrypt = require('bcrypt');
-const mongoose = require('mongoose');
 const User = require('../../server/database/models/userModel');
+const databaseConnection = require('./databaseConnection');
 
 const data = {
   firstName: 'Jane',
@@ -18,7 +18,7 @@ const wrongData = {
 };
 
 beforeAll(async () => {
-  openDBConnection();
+  databaseConnection.openDBConnection();
 
   bcrypt.hash(data.password, 11, async (error, hash) => {
     try {
@@ -46,35 +46,22 @@ afterAll(async () => {
     console.log(error);
   }
 
-  closeDBConnection().then(() => {
+  databaseConnection.closeDBConnection().then(() => {
     console.log('Database connection successfully closed!');
   });
 });
 
-describe('Session cookie test', () => {
-  it('Login cookie test', async () => {
-    const response = await supertest(app).post('/api/users/user').send(data);
+describe('Auhentication test', () => {
+  it('In-house login test', async () => {
+    const response = await supertest(app).post('/api/users/getUser').send(data);
 
     expect(response.statusCode).toEqual(200);
   });
 
-  it('Failed login cookie test', async () => {
+  it('Failed in-house login test', async () => {
     const response = await supertest(app)
       .post('/api/users/user')
       .send(wrongData);
     expect(response.statusCode).toBe(404);
   });
 });
-
-async function openDBConnection() {
-  mongoose
-    .connect(process.env.URI)
-    .then(() => {
-      console.log('Database connection successfully opened');
-    })
-    .catch(err => console.log(err));
-}
-
-async function closeDBConnection() {
-  mongoose.connection.close();
-}
