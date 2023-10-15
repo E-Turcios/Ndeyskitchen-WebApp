@@ -16,11 +16,14 @@ const {
   RESET_PASSWORD,
   PASSWORD_RESET,
   EMAIL_DOES_NOT_EXIST,
+  TOKEN_EXPIRED,
 } = require('../messages');
 
 async function verifyEmailLink(req, res, next) {
   const { email } = req.body;
   const { collectedToken } = req.body;
+
+  //console.log(collectedToken);
 
   try {
     const promise = new Promise((resolve, reject) => {
@@ -42,7 +45,7 @@ async function verifyEmailLink(req, res, next) {
     );
 
     const link = `http://localhost:8081/verify-email/${userToken}`;
-    console.log(link);
+    //console.log(link);
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -85,8 +88,11 @@ async function verifyEmail(req, res, next) {
 
   console.log(userToken);
 
-  jwt.verify(req.userToken, process.env.JWT, async (err, payload) => {
-    if (err === null) next();
+  jwt.verify(userToken, process.env.JWT, async (err, payload) => {
+    if (err === null) {
+      req.userToken = payload;
+      next();
+    }
 
     if (err && err.name === 'JsonWebTokenError') {
       console.log(err);
@@ -101,6 +107,8 @@ async function verifyEmail(req, res, next) {
 
 async function createUser(req, res) {
   const { firstName, lastName, email, password, number } = req.body;
+
+  if (req.userToken) console.log('Yessss');
 
   const hash = await bcrypt.hash(password, 11);
 
