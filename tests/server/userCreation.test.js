@@ -8,7 +8,7 @@ const data = {
   lastName: 'Doe',
   email: 'abdoul92i@yahoo.com',
   password: 'password',
-  number: '1010101011 ',
+  number: '1010101011',
 };
 
 const missingData = {
