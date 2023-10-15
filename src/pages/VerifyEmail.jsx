@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 export default function VerifyEmail() {
   const { userToken } = useParams();
+  const navigate = useNavigate();
 
   console.log(userToken);
 
@@ -16,8 +17,14 @@ export default function VerifyEmail() {
       },
     });
 
-    if (!response.ok) console.log('Smh ');
-    if (response.ok) console.log('Yess');
+    const json = await response.json();
+
+    if (!response.ok) {
+      console.log(json.Message);
+    }
+    if (response.ok) {
+      navigate('/login');
+    }
   }
 
   useEffect(() => {

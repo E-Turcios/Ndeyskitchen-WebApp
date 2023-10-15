@@ -84,29 +84,6 @@ async function verifyEmailLink(req, res, next) {
   }
 }
 
-async function verifyEmail(req, res, next) {
-  const { userToken } = req.body;
-
-  jwt.verify(userToken, process.env.JWT, async (err, payload) => {
-    if (err === null) {
-      req.token = payload.token;
-      req.firstName = payload.firstName;
-      req.lastName = payload.lastName;
-      req.email = payload.email;
-      req.password = payload.password;
-      req.number = payload.number;
-      next();
-    }
-    if (err && err.name === 'JsonWebTokenError') {
-      console.log(err);
-      return res.status(401).json({ Message: UNAUTHORIZED_REQUEST });
-    }
-    if (err && err.name === 'TokenExpiredError') {
-      return res.status(401).json({ Message: TOKEN_EXPIRED });
-    }
-  });
-}
-
 async function createUser(req, res) {
   const { userToken } = req.body;
 
@@ -114,10 +91,6 @@ async function createUser(req, res) {
     return res.status(401).json({ Message: EMAIL_VERIFICATION_FAILED });
 
   const { firstName, lastName, email, password, number } = req;
-
-  const parsedNumber = parseInt(number, 10);
-
-  console.log(parsedNumber);
 
   const hash = await bcrypt.hash(password, 11);
 
@@ -127,12 +100,13 @@ async function createUser(req, res) {
       lastName,
       email,
       password: hash,
-      number: parsedNumber,
+      number,
     });
-    res.status(200).json(user);
+
+    return res.status(200).json(user);
   } catch (error) {
     console.log(error.message);
-    res.status(500).json({ Message: error.message });
+    return res.status(500).json({ Message: error.message });
   }
 }
 
@@ -160,7 +134,7 @@ async function getUserCredentials(req, res) {
   if (!user) return res.status(404).json({ error: USER_NOT_FOUND });
 
   const id = user._id;
-  const match = await bcrypt.compare(password, user.password);
+  const match = bcrypt.compare(password, user.password);
 
   if (!match) return res.status(404).json({ error: PASSWORD_INCORRECT });
 
@@ -326,5 +300,4 @@ module.exports = {
   resetPasswordLink,
   resetPassword,
   verifyEmailLink,
-  verifyEmail,
 };

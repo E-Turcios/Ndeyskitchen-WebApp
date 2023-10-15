@@ -11,13 +11,13 @@ const {
   resetPasswordLink,
   resetPassword,
   verifyEmailLink,
-  verifyEmail,
 } = require('../controllers/userController');
 
 const {
   validateUser,
   validateResetPasswordToken,
   validateResetPasswordLinkToken,
+  verifyEmail,
 } = require('../middlewares');
 
 const router = express.Router();

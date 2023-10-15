@@ -8,8 +8,14 @@ const UserSchema = new Schema(
     lastName: { type: String, required: true, minlength: 2, maxlength: 50 },
     email: { type: String, required: true, unique: true, maxlength: 100 },
     password: { type: String, required: false, maxlength: 100 },
-    number: { type: Number, required: false, unique: true, maxlength: 10 },
-    sub: { type: String, required: false, maxlength: 100 },
+    number: { type: String, required: false, unique: true, maxlength: 10 },
+    sub: {
+      type: String,
+      required: false,
+      unique: true,
+      maxlength: 100,
+      sparse: true,
+    },
     token: { type: String, required: false, maxlength: 100 },
   },
   { timestamps: true }
