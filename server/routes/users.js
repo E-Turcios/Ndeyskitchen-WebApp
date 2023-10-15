@@ -22,8 +22,6 @@ const {
 
 const router = express.Router();
 
-router.post('/verify-email', verifyEmail);
-
 router.post('/', verifyEmailLink, verifyEmail, createUser);
 
 router.post('/createGoogleUser', createGoogleUser);
