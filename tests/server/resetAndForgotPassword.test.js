@@ -72,7 +72,7 @@ describe('Forgot test', () => {
   });
 });
 
-describe('Reset link test', () => {
+describe('Reset password link test', () => {
   it('Successful reset link password test', async () => {
     console.log(userToken);
     const response = await supertest(app)
@@ -82,11 +82,30 @@ describe('Reset link test', () => {
   });
 
   it('Failed reset password link test', async () => {
-    userToken = userToken + '_added_value';
-    console.log(userToken);
+    const newToken = userToken + '_added_value';
+    console.log(newToken);
     const response = await supertest(app)
       .post('/api/users/reset-password-link')
-      .send({ userToken });
+      .send({ userToken: newToken });
+    expect(response.statusCode).toBe(401);
+  });
+});
+
+describe('Reset password test', () => {
+  it('Successful reset password test', async () => {
+    console.log(userToken);
+    const response = await supertest(app)
+      .post('/api/users/reset-password')
+      .send({ password: '1234567890', userToken });
+    expect(response.statusCode).toEqual(200);
+  });
+
+  it('Failed reset password test', async () => {
+    const newToken = userToken + '_added_value';
+    console.log(newToken);
+    const response = await supertest(app)
+      .post('/api/users/reset-password-link')
+      .send({ password: '1234567890', userToken: newToken });
     expect(response.statusCode).toBe(401);
   });
 });
