@@ -90,7 +90,7 @@ describe('User Creation test', () => {
     expect(response.statusCode).toEqual(200);
   });
 
-  xit('Failed google user creation test', async () => {
+  it('Failed google user creation test', async () => {
     const response = await supertest(app)
       .post('/api/users/createGoogleUser')
       .send(wrongGoogleData);
