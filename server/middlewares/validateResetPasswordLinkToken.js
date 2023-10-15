@@ -5,6 +5,7 @@ const { TOKEN_EXPIRED } = require('../messages');
 
 async function validateResetPasswordLinkToken(req, res, next) {
   const { userToken } = req.body;
+  console.log(userToken);
 
   try {
     jwt.verify(userToken, process.env.JWT, async (err, data) => {
@@ -19,11 +20,13 @@ async function validateResetPasswordLinkToken(req, res, next) {
         });
 
         req.user = user;
+        console.log(user.firstName);
         next();
       }
 
       if (err && err.name === 'TokenExpiredError') {
         await User.findByIdAndUpdate(payload.id, { token: '' });
+        console.log(payload.id);
         return res.status(401).json({ Message: TOKEN_EXPIRED });
       }
     });

@@ -16,7 +16,7 @@ const wrongData = {
   email: 'john@example.com',
 };
 
-let token;
+let userToken;
 
 beforeAll(async () => {
   await databaseConnection.openDBConnection();
@@ -58,8 +58,7 @@ describe('Forgot test', () => {
       .post('/api/users/forgot-password')
       .send(data)
       .expect(res => {
-        const token = res.body.token;
-        console.log(token);
+        userToken = res.body.token;
       });
 
     expect(response.statusCode).toEqual(200);
@@ -75,17 +74,19 @@ describe('Forgot test', () => {
 
 describe('Reset link test', () => {
   it('Successful reset link password test', async () => {
+    console.log(userToken);
     const response = await supertest(app)
       .post('/api/users/reset-password-link')
-      .send(token);
+      .send({ userToken });
     expect(response.statusCode).toEqual(200);
   });
 
   it('Failed reset password link test', async () => {
+    userToken = userToken + '_added_value';
+    console.log(userToken);
     const response = await supertest(app)
       .post('/api/users/reset-password-link')
-      .send(token + 'added value');
-    console.log(token + 'added value');
+      .send({ userToken });
     expect(response.statusCode).toBe(401);
   });
 });
