@@ -4,6 +4,7 @@ const User = require('../database/models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
+const qedmail = require('qed-mail');
 
 require('dotenv').config();
 
@@ -14,10 +15,87 @@ const {
   PASSWORD_INCORRECT,
   RESET_PASSWORD,
   PASSWORD_RESET,
+  EMAIL_DOES_NOT_EXIST,
 } = require('../messages');
+
+async function verifyEmailLink(req, res, next) {
+  const { email } = req.body;
+
+  try {
+    const promise = new Promise((resolve, reject) => {
+      crypto.randomBytes(10, (error, buffer) => {
+        if (error) reject(error);
+        const token = buffer.toString('hex');
+        resolve(token);
+      });
+    });
+
+    const token = await promise;
+
+    const userToken = jwt.sign(
+      { email: email, token: token },
+      process.env.JWT,
+      {
+        expiresIn: '15m',
+      }
+    );
+
+    const link = `http://localhost:8081/verify-email/${userToken}`;
+    console.log(link);
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: `${process.env.EMAIL_ADDRESS}`,
+        pass: `${process.env.EMAIL_PASSWORD}`,
+      },
+    });
+
+    const mailOptions = {
+      from: 'youremail@gmail.com',
+      to: email,
+      subject: 'Email Verification',
+      html: `
+      <div>
+      <p><strong>From: Ndey's Kitchen</strong></p>
+      <p>Hello,</p>
+      <p>You are almost done signing up.</p>
+      <p>Click the link below to veify your email:</p>
+      <p><a href="${link}">Verify Email</a></p>
+      <p>This link will expire in 15 minutes.</p>
+      <p>If you did not signup for <a href="">www.ndeyskitchen.com</a>, you can safely ignore this email.</p>
+      <p>Best regards,<br>Ndey's Kitchen</p>
+    </div>
+  `,
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    req.userToken = userToken;
+    next();
+  } catch (err) {
+    return res.status(500).json({ Message: err });
+  }
+}
+
+async function verifyEmail(req, res, next) {
+  jwt.verify(req.userToken, process.env.JWT, async (err, payload) => {
+    if (err === null) next();
+
+    if (err && err.name === 'JsonWebTokenError') {
+      console.log(err);
+      return res.status(401).json({ Message: UNAUTHORIZED_REQUEST });
+    }
+
+    if (err && err.name === 'TokenExpiredError') {
+      return res.status(401).json({ Message: TOKEN_EXPIRED });
+    }
+  });
+}
 
 async function createUser(req, res) {
   const { firstName, lastName, email, password, number } = req.body;
+
   const hash = await bcrypt.hash(password, 11);
 
   try {
@@ -223,4 +301,6 @@ module.exports = {
   getGoogleUserCredentials,
   resetPasswordLink,
   resetPassword,
+  verifyEmailLink,
+  verifyEmail,
 };

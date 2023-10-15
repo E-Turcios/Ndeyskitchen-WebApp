@@ -6,4 +6,5 @@ module.exports = {
   RESET_PASSWORD: 'Reset password',
   PASSWORD_RESET: 'Password reset',
   TOKEN_EXPIRED: 'Token expired',
+  EMAIL_DOES_NOT_EXIST: 'Email does not exist',
 };

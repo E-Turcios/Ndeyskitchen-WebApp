@@ -10,6 +10,8 @@ const {
   forgotPassword,
   resetPasswordLink,
   resetPassword,
+  verifyEmailLink,
+  verifyEmail,
 } = require('../controllers/userController');
 
 const {
@@ -20,7 +22,7 @@ const {
 
 const router = express.Router();
 
-router.post('/', createUser);
+router.post('/', verifyEmailLink, verifyEmail, createUser);
 
 router.post('/createGoogleUser', createGoogleUser);
 

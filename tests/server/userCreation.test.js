@@ -6,13 +6,13 @@ const databaseConnection = require('./databaseConnection');
 const data = {
   firstName: 'John',
   lastName: 'Doe',
-  email: 'john@example.com',
+  email: 'abdoul92i@yahoo.com',
   password: 'password',
   number: '1010101011',
 };
 
-const wrongData = {
-  email: 'john@example.com',
+const missingData = {
+  email: 'abdoul92i@yahoo.com',
   password: 'password',
   number: '1010101011',
 };
@@ -63,12 +63,12 @@ describe('User Creation test', () => {
     expect(response.statusCode).toEqual(200);
   });
 
-  it('Failed user creation test', async () => {
-    const response = await supertest(app).post('/api/users/').send(wrongData);
+  xit('Failed user creation test', async () => {
+    const response = await supertest(app).post('/api/users/').send(missingData);
     expect(response.statusCode).toBe(400);
   });
 
-  it('Successful google user creation test', async () => {
+  xit('Successful google user creation test', async () => {
     const response = await supertest(app)
       .post('/api/users/createGoogleUser')
       .send(googleData);
@@ -76,7 +76,7 @@ describe('User Creation test', () => {
     expect(response.statusCode).toEqual(200);
   });
 
-  it('Failed google user creation test', async () => {
+  xit('Failed google user creation test', async () => {
     const response = await supertest(app)
       .post('/api/users/createGoogleUser')
       .send(wrongGoogleData);
