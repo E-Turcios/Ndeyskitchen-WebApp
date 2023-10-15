@@ -11,7 +11,6 @@ export default function Signup() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setPasswordConfirmation] = useState('');
   const [number, setNumber] = useState('');
-  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -27,7 +26,7 @@ export default function Signup() {
     };
 
     if (password === confirmPassword) {
-      const response = await fetch('/api/users', {
+      const response = await fetch('/api/users/verify-email-link', {
         method: 'POST',
         body: JSON.stringify(user),
         headers: {
@@ -38,20 +37,11 @@ export default function Signup() {
       const json = await response.json();
 
       if (!response.ok) {
-        console.log(json.error);
-        setError(json.error);
+        console.log(json.Message);
       }
 
       if (response.ok) {
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setPassword('');
-        setPasswordConfirmation('');
-        setNumber('');
-        setError(null);
-        console.log('New user added successfully', json);
-        navigate('/login');
+        console.log(json.Message);
       }
     }
   }

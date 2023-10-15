@@ -7,4 +7,6 @@ module.exports = {
   PASSWORD_RESET: 'Password reset',
   TOKEN_EXPIRED: 'Token expired',
   EMAIL_DOES_NOT_EXIST: 'Email does not exist',
+  EMAIL_BEING_VERIFIED: 'Email being verified',
+  EMAIL_VERIFICATION_FAILED: 'Email verification failed',
 };

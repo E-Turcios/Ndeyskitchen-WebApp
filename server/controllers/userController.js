@@ -4,7 +4,6 @@ const User = require('../database/models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
-const qedmail = require('qed-mail');
 
 require('dotenv').config();
 
@@ -15,12 +14,14 @@ const {
   PASSWORD_INCORRECT,
   RESET_PASSWORD,
   PASSWORD_RESET,
-  EMAIL_DOES_NOT_EXIST,
   TOKEN_EXPIRED,
+  EMAIL_BEING_VERIFIED,
+  EMAIL_DOES_NOT_EXIST,
+  EMAIL_VERIFICATION_FAILED,
 } = require('../messages');
 
 async function verifyEmailLink(req, res, next) {
-  const { email } = req.body;
+  const { firstName, lastName, password, email, number } = req.body;
 
   try {
     const promise = new Promise((resolve, reject) => {
@@ -35,7 +36,11 @@ async function verifyEmailLink(req, res, next) {
 
     const userToken = jwt.sign(
       {
+        firstName: firstName,
+        lastName: lastName,
+        password: password,
         email: email,
+        number: number,
         token: token,
       },
       process.env.JWT,
@@ -45,7 +50,6 @@ async function verifyEmailLink(req, res, next) {
     );
 
     const link = `http://localhost:8081/verify-email/${userToken}`;
-    //console.log(link);
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -74,23 +78,23 @@ async function verifyEmailLink(req, res, next) {
     };
 
     await transporter.sendMail(mailOptions);
-    req.token = token;
-    console.log(req.token);
-    next();
+    return res.status(200).json({ Message: EMAIL_BEING_VERIFIED });
   } catch (err) {
     return res.status(500).json({ Message: err });
   }
 }
 
 async function verifyEmail(req, res, next) {
-  const verificationToken1 = req.params.verificationToken;
+  const { userToken } = req.body;
 
-  console.log(verificationToken1);
-
-  jwt.verify(req.token, process.env.JWT, async (err, payload) => {
-    //console.log(payload);
+  jwt.verify(userToken, process.env.JWT, async (err, payload) => {
     if (err === null) {
-      req.verified = payload.token;
+      req.token = payload.token;
+      req.firstName = payload.firstName;
+      req.lastName = payload.lastName;
+      req.email = payload.email;
+      req.password = payload.password;
+      req.number = payload.number;
       next();
     }
     if (err && err.name === 'JsonWebTokenError') {
@@ -104,7 +108,16 @@ async function verifyEmail(req, res, next) {
 }
 
 async function createUser(req, res) {
-  const { firstName, lastName, email, password, number } = req.body;
+  const { userToken } = req.body;
+
+  if (!req.token)
+    return res.status(401).json({ Message: EMAIL_VERIFICATION_FAILED });
+
+  const { firstName, lastName, email, password, number } = req;
+
+  const parsedNumber = parseInt(number, 10);
+
+  console.log(parsedNumber);
 
   const hash = await bcrypt.hash(password, 11);
 
@@ -114,11 +127,12 @@ async function createUser(req, res) {
       lastName,
       email,
       password: hash,
-      number,
+      number: parsedNumber,
     });
     res.status(200).json(user);
   } catch (error) {
-    res.status(400).json({ Message: error.message });
+    console.log(error.message);
+    res.status(500).json({ Message: error.message });
   }
 }
 

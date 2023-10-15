@@ -22,7 +22,9 @@ const {
 
 const router = express.Router();
 
-router.post('/', verifyEmailLink, verifyEmail, createUser);
+router.post('/verify-email-link', verifyEmailLink);
+
+router.post('/', verifyEmail, createUser);
 
 router.post('/createGoogleUser', createGoogleUser);
 

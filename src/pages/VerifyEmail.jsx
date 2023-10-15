@@ -10,6 +10,7 @@ export default function VerifyEmail() {
   async function validateEmail() {
     const response = await fetch('/api/users', {
       method: 'POST',
+      body: JSON.stringify({ userToken }),
       headers: {
         'Content-Type': 'application/json',
       },
