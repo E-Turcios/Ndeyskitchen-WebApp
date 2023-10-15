@@ -8,15 +8,16 @@ export default function VerifyEmail() {
   console.log(userToken);
 
   async function validateEmail() {
-    const response = await fetch('/api/users', {
+    const response = await fetch('/api/users/', {
       method: 'POST',
-      body: JSON.stringify({ userToken }),
       headers: {
         'Content-Type': 'application/json',
+        authorization: JSON.stringify({ verificationToken: userToken }),
       },
     });
 
     if (!response.ok) console.log('Smh ');
+    if (response.ok) console.log('Yess');
   }
 
   useEffect(() => {

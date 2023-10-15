@@ -1,12 +1,12 @@
-const mongoose = require('mongoose');
-const crypto = require('crypto');
-const User = require('../database/models/userModel');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const nodemailer = require('nodemailer');
-const qedmail = require('qed-mail');
+const mongoose = require("mongoose");
+const crypto = require("crypto");
+const User = require("../database/models/userModel");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
+const qedmail = require("qed-mail");
 
-require('dotenv').config();
+require("dotenv").config();
 
 const {
   USER_NOT_FOUND,
@@ -17,19 +17,16 @@ const {
   PASSWORD_RESET,
   EMAIL_DOES_NOT_EXIST,
   TOKEN_EXPIRED,
-} = require('../messages');
+} = require("../messages");
 
 async function verifyEmailLink(req, res, next) {
-  const { email } = req.body;
-  const { collectedToken } = req.body;
-
-  //console.log(collectedToken);
+  const {email} = req.body;
 
   try {
     const promise = new Promise((resolve, reject) => {
       crypto.randomBytes(10, (error, buffer) => {
         if (error) reject(error);
-        const token = buffer.toString('hex');
+        const token = buffer.toString("hex");
         resolve(token);
       });
     });
@@ -37,10 +34,13 @@ async function verifyEmailLink(req, res, next) {
     const token = await promise;
 
     const userToken = jwt.sign(
-      { email: email, token: token },
+      {
+        email: email,
+        token: token,
+      },
       process.env.JWT,
       {
-        expiresIn: '15m',
+        expiresIn: "1h",
       }
     );
 
@@ -48,7 +48,7 @@ async function verifyEmailLink(req, res, next) {
     //console.log(link);
 
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: "gmail",
       auth: {
         user: `${process.env.EMAIL_ADDRESS}`,
         pass: `${process.env.EMAIL_PASSWORD}`,
@@ -56,9 +56,9 @@ async function verifyEmailLink(req, res, next) {
     });
 
     const mailOptions = {
-      from: 'youremail@gmail.com',
+      from: "youremail@gmail.com",
       to: email,
-      subject: 'Email Verification',
+      subject: "Email Verification",
       html: `
       <div>
       <p><strong>From: Ndey's Kitchen</strong></p>
@@ -74,41 +74,43 @@ async function verifyEmailLink(req, res, next) {
     };
 
     await transporter.sendMail(mailOptions);
-
-    req.userToken = userToken;
-    req.collectedToken = collectedToken;
-    next();
+    req.token = token;
   } catch (err) {
-    return res.status(500).json({ Message: err });
+    return res.status(500).json({Message: err});
   }
 }
 
 async function verifyEmail(req, res, next) {
-  const { userToken } = req.body;
+  const {verificationToken} = req.headers.authorization;
 
-  console.log(userToken);
+  if (!req.token) return res.status(401).json({Message: UNAUTHORIZED_REQUEST});
 
-  jwt.verify(userToken, process.env.JWT, async (err, payload) => {
+  console.log(verificationToken);
+
+  jwt.verify(req.token, process.env.JWT, async (err, payload) => {
+    //console.log(payload);
     if (err === null) {
-      req.userToken = payload;
+      req.verified = payload.token;
       next();
     }
-
-    if (err && err.name === 'JsonWebTokenError') {
+    if (err && err.name === "JsonWebTokenError") {
       console.log(err);
-      return res.status(401).json({ Message: UNAUTHORIZED_REQUEST });
+      return res.status(401).json({Message: UNAUTHORIZED_REQUEST});
     }
-
-    if (err && err.name === 'TokenExpiredError') {
-      return res.status(401).json({ Message: TOKEN_EXPIRED });
+    if (err && err.name === "TokenExpiredError") {
+      return res.status(401).json({Message: TOKEN_EXPIRED});
     }
   });
 }
 
 async function createUser(req, res) {
-  const { firstName, lastName, email, password, number } = req.body;
+  const {firstName, lastName, email, password, number} = req.body;
+  const {verificationToken} = req.headers.authorization;
 
-  if (req.userToken) console.log('Yessss');
+  if (!req.verified)
+    return res.status(401).json({Message: UNAUTHORIZED_REQUEST});
+
+  console.log(firstName);
 
   const hash = await bcrypt.hash(password, 11);
 
@@ -122,12 +124,12 @@ async function createUser(req, res) {
     });
     res.status(200).json(user);
   } catch (error) {
-    res.status(400).json({ Message: error.message });
+    res.status(400).json({Message: error.message});
   }
 }
 
 async function createGoogleUser(req, res) {
-  const { firstName, lastName, email, sub } = req.body;
+  const {firstName, lastName, email, sub} = req.body;
 
   try {
     const user = await User.create({
@@ -138,53 +140,53 @@ async function createGoogleUser(req, res) {
     });
     res.status(200).json(user);
   } catch (error) {
-    res.status(400).json({ Message: error.message });
+    res.status(400).json({Message: error.message});
   }
 }
 
 async function getUserCredentials(req, res) {
-  const { email, password } = req.body;
+  const {email, password} = req.body;
 
-  const user = await User.findOne({ email: email });
+  const user = await User.findOne({email: email});
 
-  if (!user) return res.status(404).json({ error: USER_NOT_FOUND });
+  if (!user) return res.status(404).json({error: USER_NOT_FOUND});
 
   const id = user._id;
   const match = await bcrypt.compare(password, user.password);
 
-  if (!match) return res.status(404).json({ error: PASSWORD_INCORRECT });
+  if (!match) return res.status(404).json({error: PASSWORD_INCORRECT});
 
   try {
-    const token = jwt.sign({ id: id }, process.env.JWT, { expiresIn: '1d' });
-    return res.status(200).json({ token: token });
+    const token = jwt.sign({id: id}, process.env.JWT, {expiresIn: "1d"});
+    return res.status(200).json({token: token});
   } catch (err) {
-    return res.status(500).json({ Message: err });
+    return res.status(500).json({Message: err});
   }
 }
 
 async function getGoogleUserCredentials(req, res) {
-  const { email, sub } = req.body;
+  const {email, sub} = req.body;
 
-  const user = await User.findOne({ email: email, sub: sub });
+  const user = await User.findOne({email: email, sub: sub});
 
-  if (!user) return res.status(404).json({ Message: USER_NOT_FOUND });
+  if (!user) return res.status(404).json({Message: USER_NOT_FOUND});
 
   const id = user._id;
 
   try {
-    const token = jwt.sign({ id: id }, process.env.JWT, { expiresIn: '1d' });
-    return res.status(200).json({ token: token });
+    const token = jwt.sign({id: id}, process.env.JWT, {expiresIn: "1d"});
+    return res.status(200).json({token: token});
   } catch (err) {
-    return res.status(500).json({ Message: err });
+    return res.status(500).json({Message: err});
   }
 }
 
 async function forgotPassword(req, res) {
-  const { email } = req.body;
+  const {email} = req.body;
 
-  const user = await User.findOne({ email: email });
+  const user = await User.findOne({email: email});
 
-  if (!user) return res.status(404).json({ Message: USER_NOT_FOUND });
+  if (!user) return res.status(404).json({Message: USER_NOT_FOUND});
 
   const id = user._id;
 
@@ -192,24 +194,24 @@ async function forgotPassword(req, res) {
     const promise = new Promise((resolve, reject) => {
       crypto.randomBytes(10, (error, buffer) => {
         if (error) reject(error);
-        const token = buffer.toString('hex');
+        const token = buffer.toString("hex");
         resolve(token);
       });
     });
 
     const token = await promise;
 
-    await User.findByIdAndUpdate(id, { token: token });
+    await User.findByIdAndUpdate(id, {token: token});
 
-    const userToken = jwt.sign({ id: id, token: token }, process.env.JWT, {
-      expiresIn: '15m',
+    const userToken = jwt.sign({id: id, token: token}, process.env.JWT, {
+      expiresIn: "15m",
     });
 
     const link = `http://localhost:8081/reset-password/${userToken}`;
     console.log(link);
 
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: "gmail",
       auth: {
         user: `${process.env.EMAIL_ADDRESS}`,
         pass: `${process.env.EMAIL_PASSWORD}`,
@@ -217,9 +219,9 @@ async function forgotPassword(req, res) {
     });
 
     const mailOptions = {
-      from: 'youremail@gmail.com',
+      from: "youremail@gmail.com",
       to: user.email,
-      subject: 'Reset Password',
+      subject: "Reset Password",
       html: `
       <div>
       <p><strong>From: Ndey's Kitchen</strong></p>
@@ -236,46 +238,46 @@ async function forgotPassword(req, res) {
 
     await transporter.sendMail(mailOptions);
 
-    return res.status(200).json({ token: userToken, link: link });
+    return res.status(200).json({token: userToken, link: link});
   } catch (err) {
-    return res.status(500).json({ Message: err });
+    return res.status(500).json({Message: err});
   }
 }
 
 async function resetPasswordLink(req, res) {
-  if (!req.user) return res.status(401).json({ Message: UNAUTHORIZED_REQUEST });
-  return res.status(200).json({ Message: RESET_PASSWORD });
+  if (!req.user) return res.status(401).json({Message: UNAUTHORIZED_REQUEST});
+  return res.status(200).json({Message: RESET_PASSWORD});
 }
 
 async function resetPassword(req, res) {
-  const { password } = req.body;
+  const {password} = req.body;
 
-  if (!req.user) return res.status(401).json({ Message: UNAUTHORIZED_REQUEST });
+  if (!req.user) return res.status(401).json({Message: UNAUTHORIZED_REQUEST});
 
   try {
     const hash = await bcrypt.hash(password, 11);
 
-    await User.findByIdAndUpdate(req.user._id, { password: hash });
+    await User.findByIdAndUpdate(req.user._id, {password: hash});
   } catch (err) {
-    return res.status(401).json({ Message: err });
+    return res.status(401).json({Message: err});
   }
-  return res.status(200).json({ Message: PASSWORD_RESET });
+  return res.status(200).json({Message: PASSWORD_RESET});
 }
 
 async function getAllUsers(req, res) {
   const users = await User.find().sort();
 
   if (req.user) {
-    if (!users) return res.status(404).json({ Message: USERS_NOT_FOUND });
+    if (!users) return res.status(404).json({Message: USERS_NOT_FOUND});
     return res.status(200).json(users);
   }
 
-  return res.status(401).json({ Message: UNAUTHORIZED_REQUEST });
+  return res.status(401).json({Message: UNAUTHORIZED_REQUEST});
 }
 
 async function isUserValid(id) {
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ Message: USER_NOT_FOUND });
+    return res.status(404).json({Message: USER_NOT_FOUND});
   }
 }
 
@@ -286,7 +288,7 @@ async function getUser(req, res) {
 
   const user = await User.findById(id);
 
-  if (!user) return res.status(404).json({ Message: USER_NOT_FOUND });
+  if (!user) return res.status(404).json({Message: USER_NOT_FOUND});
 
   res.status(200).json(user);
 }
@@ -297,10 +299,10 @@ async function deleteUser(req, res) {
   isUserValid(id);
 
   try {
-    const user = await User.deleteOne({ _id: id });
-    if (!user) res.status(200).json({ mssg: 'Deletion Complete' });
+    const user = await User.deleteOne({_id: id});
+    if (!user) res.status(200).json({mssg: "Deletion Complete"});
   } catch (err) {
-    res.status(200).json({ mssg: 'Deletion Incomplete' });
+    res.status(200).json({mssg: "Deletion Incomplete"});
   }
 }
 
