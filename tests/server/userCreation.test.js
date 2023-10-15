@@ -6,13 +6,7 @@ const databaseConnection = require('./databaseConnection');
 const data = {
   firstName: 'John',
   lastName: 'Doe',
-  email: 'abdoul92i@yahoo.com',
-  password: 'password',
-  number: '1010101011',
-};
-
-const missingData = {
-  email: 'abdoul92i@yahoo.com',
+  email: 'gtczllwpgshmnenmha@ckptr.com',
   password: 'password',
   number: '1010101011',
 };
@@ -30,6 +24,8 @@ const wrongGoogleData = {
   email: 'jane@gmail.com',
   sub: 'ushgjkdshksdmvjdshds',
 };
+
+let token;
 
 beforeAll(async () => {
   await databaseConnection.openDBConnection();
@@ -56,16 +52,34 @@ afterAll(async () => {
   });
 });
 
+describe('Verification email link test', () => {
+  it('Successful verification email generated', async () => {
+    const response = await supertest(app)
+      .post('/api/users/verify-email-link')
+      .send(data)
+      .expect(res => {
+        token = res.body.token;
+      });
+
+    expect(response.statusCode).toEqual(200);
+  });
+});
+
 describe('User Creation test', () => {
   it('Successful user creation test', async () => {
-    const response = await supertest(app).post('/api/users/').send(data);
+    const response = await supertest(app)
+      .post('/api/users/')
+      .send({ userToken: token });
 
     expect(response.statusCode).toEqual(200);
   });
 
-  xit('Failed user creation test', async () => {
-    const response = await supertest(app).post('/api/users/').send(missingData);
-    expect(response.statusCode).toBe(400);
+  it('Failed user creation test', async () => {
+    const newToken = token + '_added_value';
+    const response = await supertest(app)
+      .post('/api/users/')
+      .send({ userToken: newToken });
+    expect(response.statusCode).toBe(401);
   });
 
   xit('Successful google user creation test', async () => {

@@ -14,13 +14,11 @@ const {
   PASSWORD_INCORRECT,
   RESET_PASSWORD,
   PASSWORD_RESET,
-  TOKEN_EXPIRED,
   EMAIL_BEING_VERIFIED,
-  EMAIL_DOES_NOT_EXIST,
   EMAIL_VERIFICATION_FAILED,
 } = require('../messages');
 
-async function verifyEmailLink(req, res, next) {
+async function verifyEmailLink(req, res) {
   const { firstName, lastName, password, email, number } = req.body;
 
   try {
@@ -78,7 +76,9 @@ async function verifyEmailLink(req, res, next) {
     };
 
     await transporter.sendMail(mailOptions);
-    return res.status(200).json({ Message: EMAIL_BEING_VERIFIED });
+    return res
+      .status(200)
+      .json({ token: userToken, Message: EMAIL_BEING_VERIFIED });
   } catch (err) {
     return res.status(500).json({ Message: err });
   }
