@@ -6,8 +6,6 @@ export default function VerifyEmail() {
   const { userToken } = useParams();
   const navigate = useNavigate();
 
-  console.log(userToken);
-
   async function validateEmail() {
     const response = await fetch('/api/users', {
       method: 'POST',
@@ -30,5 +28,12 @@ export default function VerifyEmail() {
   useEffect(() => {
     validateEmail();
   }, []);
-  return <div>Your email is being verified</div>;
+  return (
+    <div className="link-expired">
+      <p>This link has expired.</p>
+      <p>
+        To get another link <a href="/signup">signup again</a>.
+      </p>
+    </div>
+  );
 }

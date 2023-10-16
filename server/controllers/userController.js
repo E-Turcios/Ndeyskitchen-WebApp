@@ -44,7 +44,7 @@ async function verifyEmailLink(req, res) {
       },
       process.env.JWT,
       {
-        expiresIn: '1h',
+        expiresIn: '15m',
       }
     );
 

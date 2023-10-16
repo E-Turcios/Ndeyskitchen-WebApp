@@ -149,7 +149,7 @@ export default function Signup() {
           maxLength="50"
           placeholder="Residence"
           onChange={event =>
-            setResidence(capitalizeFirstLetter(event.target.value.trim()))
+            setResidence(capitalizeFirstLetter(event.target.value))
           }
           value={residence}
           required

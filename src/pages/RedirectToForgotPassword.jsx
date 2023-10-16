@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function RedirectToForgotPassword() {
   return (
-    <div className="reset-password-link-expired">
+    <div className="link-expired">
       <p>The link has expired.</p>
       <p>
         Go back to the <a href="/forgot-password">forgot password</a> page to
