@@ -12,6 +12,7 @@ export default function Signup() {
   const [confirmPassword, setPasswordConfirmation] = useState('');
   const [number, setNumber] = useState('');
   const [residence, setResidence] = useState('');
+  const [isSent, setIsSent] = useState(false);
 
   const navigate = useNavigate();
 
@@ -42,9 +43,7 @@ export default function Signup() {
         console.log(json.Message);
       }
 
-      if (response.ok) {
-        console.log(json.Message);
-      }
+      if (json.Message === 'Email being verified') setIsSent(true);
     }
   }
 
@@ -88,7 +87,6 @@ export default function Signup() {
         <p className="signup-form-header">
           <strong>Signup</strong>
         </p>
-
         <input
           className="input-box"
           type="text"
@@ -145,7 +143,6 @@ export default function Signup() {
           value={number}
           required
         />
-
         <input
           className="input-box"
           type="text"
@@ -157,7 +154,12 @@ export default function Signup() {
           value={residence}
           required
         />
-
+        {isSent && (
+          <p className="check-email">
+            Check your email for verification.{' '}
+            <a onClick={handleSubmit}>Re-send</a>
+          </p>
+        )}
         <button type="submit" className="form-btn">
           Signup
         </button>
