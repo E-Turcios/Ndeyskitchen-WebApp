@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
 import useAuthContext from '../hooks/useAuthContext';
 
@@ -14,9 +15,8 @@ export default function Home() {
   };
 
   return (
-    <div>
-      {user && <button onClick={logOut}>Home/Logout</button>}
-      {!user && <h1>No user</h1>}
+    <div className="home-page-container">
+      <Navbar />
     </div>
   );
 }

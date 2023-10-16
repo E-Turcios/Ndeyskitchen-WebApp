@@ -20,10 +20,10 @@ export default function App() {
           {user ? (
             <Routes>
               <Route path="/profile" element={<Profile />} />
-              <Route path="/" element={<Home />} />
             </Routes>
           ) : (
             <Routes>
+              <Route path="/" element={<Home />} />
               <Route path="/signup" element={<Signup />} />
               <Route
                 path="/verify-email/:userToken"
