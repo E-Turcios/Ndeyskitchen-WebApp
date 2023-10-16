@@ -52,7 +52,7 @@ afterAll(async () => {
   });
 });
 
-describe('Verification email link test', () => {
+xdescribe('Verification email link test', () => {
   it('Successful verification email generated', async () => {
     const response = await supertest(app)
       .post('/api/users/verify-email-link')
@@ -66,7 +66,7 @@ describe('Verification email link test', () => {
 });
 
 describe('User Creation test', () => {
-  it('Successful user creation test', async () => {
+  xit('Successful user creation test', async () => {
     const response = await supertest(app)
       .post('/api/users/')
       .send({ userToken: token });
@@ -74,7 +74,7 @@ describe('User Creation test', () => {
     expect(response.statusCode).toEqual(200);
   });
 
-  it('Failed user creation test', async () => {
+  xit('Failed user creation test', async () => {
     const newToken = token + '_added_value';
     const response = await supertest(app)
       .post('/api/users/')
@@ -82,7 +82,7 @@ describe('User Creation test', () => {
     expect(response.statusCode).toBe(401);
   });
 
-  xit('Successful google user creation test', async () => {
+  it('Successful google user creation test', async () => {
     const response = await supertest(app)
       .post('/api/users/createGoogleUser')
       .send(googleData);

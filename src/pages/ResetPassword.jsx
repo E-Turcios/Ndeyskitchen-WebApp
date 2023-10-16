@@ -78,7 +78,7 @@ export default function ResetPassword() {
 
             <input
               className="input-box"
-              type="text"
+              type="password"
               id="password"
               value={password}
               maxLength="12"
@@ -93,7 +93,7 @@ export default function ResetPassword() {
 
             <input
               className="input-box"
-              type="text"
+              type="password"
               id="password-confirmation"
               value={passwordConfirmation}
               maxLength="12"

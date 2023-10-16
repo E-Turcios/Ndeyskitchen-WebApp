@@ -4,6 +4,7 @@ const User = require('../database/models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
+const { sendEmail } = require('../sendEmail');
 
 require('dotenv').config();
 
@@ -50,33 +51,22 @@ async function verifyEmailLink(req, res) {
 
     const link = `http://localhost:8081/verify-email/${userToken}`;
 
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: `${process.env.EMAIL_ADDRESS}`,
-        pass: `${process.env.EMAIL_PASSWORD}`,
-      },
-    });
+    const receiver = email;
+    const subject = 'Email Verification';
+    const message = `
+    <div>
+    <p><strong>From: Ndey's Kitchen</strong></p>
+    <p>Hello,</p>
+    <p>You are almost done signing up.</p>
+    <p>Click the link below to veify your email:</p>
+    <p><a href="${link}">Verify Email</a></p>
+    <p>This link will expire in 15 minutes.</p>
+    <p>If you did not signup for <a href="">www.ndeyskitchen.com</a>, you can safely ignore this email.</p>
+    <p>Best regards,<br>Ndey's Kitchen</p>
+  </div>
+`;
 
-    const mailOptions = {
-      from: 'youremail@gmail.com',
-      to: email,
-      subject: 'Email Verification',
-      html: `
-      <div>
-      <p><strong>From: Ndey's Kitchen</strong></p>
-      <p>Hello,</p>
-      <p>You are almost done signing up.</p>
-      <p>Click the link below to veify your email:</p>
-      <p><a href="${link}">Verify Email</a></p>
-      <p>This link will expire in 15 minutes.</p>
-      <p>If you did not signup for <a href="">www.ndeyskitchen.com</a>, you can safely ignore this email.</p>
-      <p>Best regards,<br>Ndey's Kitchen</p>
-    </div>
-  `,
-    };
-
-    await transporter.sendMail(mailOptions);
+    sendEmail(subject, message, receiver);
     return res
       .status(200)
       .json({ token: userToken, Message: EMAIL_BEING_VERIFIED });
@@ -105,6 +95,19 @@ async function createUser(req, res) {
       residence,
     });
 
+    const receiver = email;
+    const subject = 'Verification Completed';
+    const message = `
+    <div>
+      <p><strong>From: Ndey's Kitchen</strong></p>
+      <p>Hello,</p>
+      <p>You have been verified.</p>
+      <p>Best regards,<br>Ndey's Kitchen</p>
+    </div>
+`;
+
+    sendEmail(subject, message, receiver);
+
     return res.status(200).json(user);
   } catch (error) {
     console.log(error.message);
@@ -124,6 +127,7 @@ async function createGoogleUser(req, res) {
     });
     res.status(200).json(user);
   } catch (error) {
+    console.log(error);
     res.status(400).json({ Message: error.message });
   }
 }
@@ -192,22 +196,11 @@ async function forgotPassword(req, res) {
     });
 
     const link = `http://localhost:8081/reset-password/${userToken}`;
-    console.log(link);
 
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: `${process.env.EMAIL_ADDRESS}`,
-        pass: `${process.env.EMAIL_PASSWORD}`,
-      },
-    });
-
-    const mailOptions = {
-      from: 'youremail@gmail.com',
-      to: user.email,
-      subject: 'Reset Password',
-      html: `
-      <div>
+    const receiver = user.email;
+    const subject = 'Reset Password';
+    const message = `
+    <div>
       <p><strong>From: Ndey's Kitchen</strong></p>
       <p>Hello,</p>
       <p>You have requested to reset your password for your Ndey's Kitchen account.</p>
@@ -217,10 +210,9 @@ async function forgotPassword(req, res) {
       <p>If you did not request this password reset, you can safely ignore this email.</p>
       <p>Best regards,<br>Ndey's Kitchen</p>
     </div>
-  `,
-    };
+`;
 
-    await transporter.sendMail(mailOptions);
+    sendEmail(subject, message, receiver);
 
     return res.status(200).json({ token: userToken, link: link });
   } catch (err) {
