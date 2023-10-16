@@ -19,7 +19,7 @@ const {
 } = require('../messages');
 
 async function verifyEmailLink(req, res) {
-  const { firstName, lastName, password, email, number } = req.body;
+  const { firstName, lastName, password, email, number, residence } = req.body;
 
   try {
     const promise = new Promise((resolve, reject) => {
@@ -39,6 +39,7 @@ async function verifyEmailLink(req, res) {
         password: password,
         email: email,
         number: number,
+        residence: residence,
         token: token,
       },
       process.env.JWT,
@@ -90,7 +91,7 @@ async function createUser(req, res) {
   if (!req.token)
     return res.status(401).json({ Message: EMAIL_VERIFICATION_FAILED });
 
-  const { firstName, lastName, email, password, number } = req;
+  const { firstName, lastName, email, password, number, residence } = req;
 
   const hash = await bcrypt.hash(password, 11);
 
@@ -101,6 +102,7 @@ async function createUser(req, res) {
       email,
       password: hash,
       number,
+      residence,
     });
 
     return res.status(200).json(user);

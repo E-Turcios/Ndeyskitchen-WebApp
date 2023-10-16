@@ -16,6 +16,7 @@ const UserSchema = new Schema(
       maxlength: 100,
       sparse: true,
     },
+    residence: { type: String, required: false, maxlength: 50 },
     token: { type: String, required: false, maxlength: 100 },
   },
   { timestamps: true }

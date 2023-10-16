@@ -11,6 +11,7 @@ export default function Signup() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setPasswordConfirmation] = useState('');
   const [number, setNumber] = useState('');
+  const [residence, setResidence] = useState('');
 
   const navigate = useNavigate();
 
@@ -23,6 +24,7 @@ export default function Signup() {
       email,
       password,
       number,
+      residence,
     };
 
     if (password === confirmPassword) {
@@ -141,6 +143,18 @@ export default function Signup() {
           placeholder="Phone number"
           onChange={event => setNumber(event.target.value.trim())}
           value={number}
+          required
+        />
+
+        <input
+          className="input-box"
+          type="text"
+          maxLength="50"
+          placeholder="Residence"
+          onChange={event =>
+            setResidence(capitalizeFirstLetter(event.target.value.trim()))
+          }
+          value={residence}
           required
         />
 

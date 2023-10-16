@@ -15,7 +15,7 @@
     border: 1px solid #000000;
     border-radius: 5px;
     width: 320px;
-    height: 610px;
+    height: 670px;
     padding: 0 1.25rem;
     display: flex;
     flex-direction: column;
@@ -43,11 +43,15 @@
    
     .signup-form {
         width: 280px;
-        height: 525px;
+        height: 585px;
     }
 
     .signup-form-header {
         font-size: 32px;
+    }
+
+    .signup-form .form-btn {
+       margin-top: 15px;
     }
 }
 
@@ -55,17 +59,21 @@
 
     .signup-form {
         width: 270px;
-        height: 470px;
+        height: 510px;
     }
    
     .signup-form-header {
         font-size: 24px;
     }
+
+    .signup-form .form-btn {
+        margin-top: 15px;
+     }
 }
 
 @media (max-width: 520px) {
     .signup-form {
-        height: 500px;
+        height: 540px;
     }
     .signup-form-header {
         font-size: 24px;
@@ -77,12 +85,16 @@
    
     .signup-form {
         width: 200px;
-        height: 410px;
+        height: 430px;
     }
     
     .signup-form-header {
         font-size: 23px;
         margin-bottom: 10px;
     }
+
+    .signup-form .form-btn {
+       font-size: 10px
+     }
     
 }
