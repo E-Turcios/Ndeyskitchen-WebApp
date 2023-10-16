@@ -11,7 +11,6 @@ async function validateResetPasswordToken(req, res, next) {
     });
 
     req.user = user;
-
     next();
   } catch (err) {}
 }

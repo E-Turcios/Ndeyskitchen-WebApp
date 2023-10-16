@@ -105,7 +105,6 @@ async function createUser(req, res) {
       <p>Best regards,<br>Ndey's Kitchen</p>
     </div>
 `;
-
     sendEmail(subject, message, receiver);
 
     return res.status(200).json(user);
@@ -211,7 +210,6 @@ async function forgotPassword(req, res) {
       <p>Best regards,<br>Ndey's Kitchen</p>
     </div>
 `;
-
     sendEmail(subject, message, receiver);
 
     return res.status(200).json({ token: userToken, link: link });
@@ -234,6 +232,18 @@ async function resetPassword(req, res) {
     const hash = await bcrypt.hash(password, 11);
 
     await User.findByIdAndUpdate(req.user._id, { password: hash });
+
+    const receiver = req.user.email;
+    const subject = 'Password Successfully Reset';
+    const message = `
+    <div>
+      <p><strong>From: Ndey's Kitchen</strong></p>
+      <p>Hello,</p>
+      <p>You are password has been reset as requested.</p>
+      <p>Best regards,<br>Ndey's Kitchen</p>
+    </div>
+`;
+    sendEmail(subject, message, receiver);
   } catch (err) {
     return res.status(401).json({ Message: err });
   }
