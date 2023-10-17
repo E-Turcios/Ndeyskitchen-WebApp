@@ -8,6 +8,13 @@ import ResetPassword from '../pages/ResetPassword';
 import RedirectToForgotPassword from '../pages/RedirectToForgotPassword';
 import VerifyEmail from '../pages/VerifyEmail';
 import useAuthContext from '../hooks/useAuthContext';
+import '../style/style.css';
+import '../style/login.css';
+import '../style/signup.css';
+import '../style/forgot-password.css';
+import '../style/reset-password.css';
+import '../style/home.css';
+import '../style/navbar.css';
 
 export default function App() {
   const { user } = useAuthContext();

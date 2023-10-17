@@ -1,13 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './components/App';
-import './style/style.css';
-import './style/login.css';
-import './style/signup.css';
-import './style/forgot-password.css';
-import './style/reset-password.css';
-import './style/home.css';
-import './style/navbar.css';
 import { AuthContextProvider } from './context/AuthContext';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
