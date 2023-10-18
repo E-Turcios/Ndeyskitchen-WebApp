@@ -1,3 +1,4 @@
+/* #DC952F #371821 */
 .home-page-container{
     height: 100vh;
 }
@@ -16,14 +17,37 @@
 .loyalty-program-banner a{
     text-decoration: underline;
     color:#FFFFFF;
-    margin-left: 3px;
+   
 }
 
-.loyalty-program-banner-icons{
-    margin-left: 3px;
+/* Catgory */
+
+.category-container{
+    background-color: #DC952F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    gap:50px;
 }
 
-.loyalty-program-banner-icons span{
-    color: #FFD700;
-    font-size: 23px;
+.category-sweet-salty-btn{
+    font-family: 'Questrial', sans-serif;
+    font-weight: 400;
+    background-color: #000000;
+    color: #FFFFFF;
+    width: 200px;
+    height: 60px;
+    font-size: 24px;
+    border: none;
+    border-radius: 40px;
+    transition: scale 0.3s;
 }
+
+.category-sweet-salty-btn:hover{
+    cursor: pointer;
+    scale: 1.1;
+}
+
+
+
