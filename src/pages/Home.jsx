@@ -1,6 +1,7 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import LoyaltyProgramBanner from '../components/LoyaltyProgramBanner';
 import useAuthContext from '../hooks/useAuthContext';
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
   return (
     <div className="home-page-container">
       <Navbar />
+      <LoyaltyProgramBanner />
     </div>
   );
 }
