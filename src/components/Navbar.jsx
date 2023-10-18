@@ -1,6 +1,4 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import Image from '../components/Image';
 
 export default function Navbar() {
@@ -19,12 +17,12 @@ export default function Navbar() {
         <div className="navbar-search-bar-container">
           <input placeholder="Search our menu" className="search-bar" />
         </div>
-        <div className="navbar-icons">
-          <FontAwesomeIcon
-            icon={faCartShopping}
-            style={{ color: 'red' }}
-            className="fa-thin"
-          />
+        <div className="navbar-icons-container">
+          <span class="material-symbols-outlined icons">shopping_bag</span>
+          <span class="material-symbols-outlined icons">person</span>
+          <button type="button" className="form-btn">
+            <a href="/login">Login</a>
+          </button>
         </div>
       </div>
     </div>
