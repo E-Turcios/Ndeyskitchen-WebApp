@@ -25,9 +25,11 @@ export default function Navbar() {
             shopping_bag
           </span>
           <span class="material-symbols-outlined navbar-icons">person</span>
-          <button type="button" className="form-btn">
-            <a href="/login">Login</a>
-          </button>
+          <a href="/login">
+            <button type="button" className="form-btn">
+              Login
+            </button>
+          </a>
         </div>
       </div>
     </div>

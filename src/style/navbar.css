@@ -99,6 +99,7 @@
 
 .navbar-icons-container .form-btn{
     background-color: #FFFFFF;
+    color:#371821;
     font-size:19px;
     width: 85px;
     height: 30px;
@@ -111,14 +112,11 @@
 
 .navbar-icons-container .form-btn a{
     text-decoration: none;
-    color:#371821;
 }
 
 .navbar-icons-container .form-btn:hover{
-    border: none;
+    cursor: pointer;
     background-color: #000000;
-}
-
-.navbar-icons-container a:hover{
     color: #FFFFFF;
+    border: none;
 }
