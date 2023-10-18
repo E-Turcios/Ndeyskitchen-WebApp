@@ -5,7 +5,10 @@ export default function Navbar() {
   return (
     <div className="navbar-container">
       <div className="logo-img-container">
-        <Image className="logo-img" src={'ndeys-kitchen.png'} />
+        <a href="/">
+          {' '}
+          <Image className="logo-img" src={'ndeys-kitchen.png'} />
+        </a>
       </div>
 
       <div className="navbar-information">

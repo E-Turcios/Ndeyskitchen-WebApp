@@ -14,7 +14,6 @@
 }
 
 .navbar-container .logo-img{
-    height: 80%;
     border-style:none;
 }
 
@@ -51,7 +50,7 @@
     left: 0;
     background-color: #DC952F;
     transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
+    transition: transform .3s ease-out;
   }
 
   .navbar-information a:hover::after {
@@ -100,12 +99,14 @@
 
 .navbar-icons-container .form-btn{
     background-color: #FFFFFF;
-    font-size:22px;
+    font-size:19px;
     width: 85px;
     height: 30px;
     padding:0;
     margin:auto 100px auto 0;
     border: 2px solid #371821;
+    border-radius: 3px;
+    transition: background-color 0.3s;
 }
 
 .navbar-icons-container .form-btn a{
@@ -114,6 +115,10 @@
 }
 
 .navbar-icons-container .form-btn:hover{
-    background-color: #DC952F;
-    outline-offset: 2px;
+    border: none;
+    background-color: #000000;
+}
+
+.navbar-icons-container a:hover{
+    color: #FFFFFF;
 }

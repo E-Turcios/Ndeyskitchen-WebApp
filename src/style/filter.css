@@ -27,6 +27,7 @@
     background-color: #FFFFFF;
     height: 30px;
     font-size: 13px;
+    transition: background-color .3s;
 }
 
 .filter-types button:hover{
