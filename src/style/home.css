@@ -6,7 +6,7 @@
 /* Loyalty Program Banner */
 
 .loyalty-program-banner{
-    background-color: #d0ccc7;
+    background-color: #f0f0f0;
     width:100vw;
     height:50px;
     display: flex;
@@ -23,7 +23,6 @@
 /* Catgory */
 
 .category-container{
-    background-color: #DC952F;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,8 +46,9 @@
 
 .category-sweet-salty-btn:hover{
     cursor: pointer;
-    background-color: #FFFFFF;
     color: #371821;
+    background-color: #FFFFFF;
+    border: 1px solid #371821;
 }
 
 /* Filter and menu container */
