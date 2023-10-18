@@ -8,13 +8,13 @@
 
 .logo-img-container{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    width:390px
 }
 
 .navbar-container .logo-img{
     height: 80%;
-    margin-left: 100px;
     border-style:none;
 }
 
@@ -24,7 +24,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 21.5%;
+    width: 379px;
     gap: 25px;
 }
 
@@ -68,7 +68,7 @@
 }
 
 .navbar-search-bar-container{
-    width: 75%;
+    width: 1377px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,7 +87,7 @@
 /* Navbar Icons */
 
 .navbar-icons-container{
-    width: 25%;
+    width: 459px;
     display: flex;
     align-items: center;
     justify-content: center;

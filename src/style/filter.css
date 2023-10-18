@@ -1,0 +1,43 @@
+/* #DC952F #371821 */
+.filter-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 300px;
+    font-family: 'Questrial', sans-serif;
+    border-right: 1px solid #c5c0c0;
+    gap: 2px;
+}
+
+.filter-hedears{
+    font-size: 20px;
+    color: #371821;
+
+}
+
+.filter-types{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+   
+}
+
+.filter-types button{
+    background-color: #FFFFFF;
+    height: 30px;
+    font-size: 13px;
+}
+
+.filter-types button:hover{
+    cursor: pointer;
+    background-color: #DC952F;
+}
+
+.items button:focus {
+    background-color: #DC952F;
+}
+
+.flavors button:focus {
+    background-color: #DC952F;
+}

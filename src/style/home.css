@@ -7,6 +7,7 @@
 
 .loyalty-program-banner{
     background-color: #000000;
+    width:100vw;
     height:50px;
     display: flex;
     justify-content: center;
@@ -27,26 +28,33 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 200px;
+    height: 140px;
     gap:50px;
+    border-bottom: 1px solid #c5c0c0;
 }
 
 .category-sweet-salty-btn{
     font-family: 'Questrial', sans-serif;
     font-weight: 400;
-    background-color: #000000;
-    color: #FFFFFF;
-    width: 200px;
-    height: 60px;
-    font-size: 24px;
-    border: none;
-    border-radius: 40px;
+    background-color: #FFFFFF;
+    color: #000000;
+    width: 120px;
+    height: 50px;
+    font-size: 21px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    letter-spacing: 1px;
     transition: scale 0.3s;
 }
 
 .category-sweet-salty-btn:hover{
     cursor: pointer;
     scale: 1.1;
+}
+
+/* Filter and menu container */
+.filter-menu-container{
+    height: 100%;
 }
 
 

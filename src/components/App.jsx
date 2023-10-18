@@ -15,6 +15,7 @@ import '../style/forgot-password.css';
 import '../style/reset-password.css';
 import '../style/home.css';
 import '../style/navbar.css';
+import '../style/filter.css';
 
 export default function App() {
   const { user } = useAuthContext();

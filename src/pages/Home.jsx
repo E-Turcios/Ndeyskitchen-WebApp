@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import LoyaltyProgramBanner from '../components/LoyaltyProgramBanner';
 import Category from '../components/Category';
+import Filter from '../components/Filter';
 import useAuthContext from '../hooks/useAuthContext';
 
 export default function Home() {
@@ -21,6 +22,9 @@ export default function Home() {
       <Navbar />
       <LoyaltyProgramBanner />
       <Category />
+      <div className="filter-menu-container">
+        <Filter />
+      </div>
     </div>
   );
 }
