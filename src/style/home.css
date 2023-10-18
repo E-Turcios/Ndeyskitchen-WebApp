@@ -12,7 +12,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-   
 }
 
 .loyalty-program-banner a{
@@ -35,14 +34,13 @@
 
 .category-sweet-salty-btn{
     font-family: 'Questrial', sans-serif;
-    font-weight: 400;
     background-color: #371821;
     color: #ffffff;
     width: 120px;
     height: 50px;
     font-size: 21px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     letter-spacing: 1px;
     transition: background-color .3s;
 }
@@ -54,6 +52,7 @@
 }
 
 /* Filter and menu container */
+
 .filter-menu-container{
     height: 100%;
 }
