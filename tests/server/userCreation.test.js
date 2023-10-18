@@ -52,7 +52,7 @@ afterAll(async () => {
   });
 });
 
-xdescribe('Verification email link test', () => {
+describe('Verification email link test', () => {
   it('Successful verification email generated', async () => {
     const response = await supertest(app)
       .post('/api/users/verify-email-link')
@@ -66,7 +66,7 @@ xdescribe('Verification email link test', () => {
 });
 
 describe('User Creation test', () => {
-  xit('Successful user creation test', async () => {
+  it('Successful user creation test', async () => {
     const response = await supertest(app)
       .post('/api/users/')
       .send({ userToken: token });
@@ -74,7 +74,7 @@ describe('User Creation test', () => {
     expect(response.statusCode).toEqual(200);
   });
 
-  xit('Failed user creation test', async () => {
+  it('Failed user creation test', async () => {
     const newToken = token + '_added_value';
     const response = await supertest(app)
       .post('/api/users/')
