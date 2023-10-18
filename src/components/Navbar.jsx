@@ -18,8 +18,10 @@ export default function Navbar() {
           <input placeholder="Search our menu" className="search-bar" />
         </div>
         <div className="navbar-icons-container">
-          <span class="material-symbols-outlined icons">shopping_bag</span>
-          <span class="material-symbols-outlined icons">person</span>
+          <span class="material-symbols-outlined navbar-icons">
+            shopping_bag
+          </span>
+          <span class="material-symbols-outlined navbar-icons">person</span>
           <button type="button" className="form-btn">
             <a href="/login">Login</a>
           </button>

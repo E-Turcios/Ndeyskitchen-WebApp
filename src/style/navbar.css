@@ -2,7 +2,6 @@
 .navbar-container{
     display: flex;
     height: 150px;
-    border-bottom: 2px solid #c6c2c2
 }
 
 /* Logo */
@@ -94,7 +93,7 @@
     justify-content: center;
     gap: 10px;
 }
-.icons{
+.navbar-icons{
     color:#371821;
     font-size: 40px;
 }
