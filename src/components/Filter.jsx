@@ -3,7 +3,7 @@ import React from 'react';
 export default function Filter() {
   return (
     <div className="filter-container">
-      <p className="filter-hedears">Type</p>
+      <p className="filter-hedears">Types</p>
       <div className="filter-types items">
         <button>All</button>
         <button>Cakes</button>
@@ -13,7 +13,7 @@ export default function Filter() {
         <button>Milshakes</button>
       </div>
 
-      <p className="filter-hedears">Flavor</p>
+      <p className="filter-hedears">Flavors</p>
       <div className="filter-types flavors">
         <button>Chocolat</button>
 

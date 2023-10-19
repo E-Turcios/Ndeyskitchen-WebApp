@@ -1,6 +1,6 @@
 /* #DC952F #371821 */
 
-.items-container{
+.item-container{
     font-family: 'Questrial', sans-serif;
     display: flex;
     height: 395px;
@@ -14,7 +14,6 @@
     align-items: center;
     border: 1px solid #371821;
     border-radius: 5px;
-    height: 395px;
     gap: 5px
 }
 
