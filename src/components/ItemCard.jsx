@@ -3,7 +3,7 @@ import Image from '../components/Image';
 
 export default function ItemCard(props) {
   return (
-    <div className="items-container">
+    <div className="item-container">
       <div className="item-card-container">
         <div className="item-image-container">
           <img className="item-image" src={props.src} />
