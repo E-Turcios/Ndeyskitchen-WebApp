@@ -82,6 +82,8 @@
     font-size: 18px;
     border: none;
     border-radius: 5px;
+    transition: background-color .3s;
+    transition: color .3s;
  }
 
  .buy-item-btn:hover{

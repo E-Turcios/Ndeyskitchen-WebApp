@@ -9,7 +9,8 @@
 }
 
 .filter-hedears{
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: bold;
     color: #371821;
 
 }
@@ -36,14 +37,17 @@
     cursor: pointer;
     background-color: #DC952F;
     text-decoration: none;
+    transition: text-decoration .3s;
 }
 
 .items button:focus {
     background-color: #DC952F;
     text-decoration: none;
+    transition: text-decoration .3s;
 }
 
 .flavors button:focus {
     background-color: #DC952F;
     text-decoration: none;
+    transition: text-decoration .3s;
 }
