@@ -87,15 +87,21 @@ function MobileNavbar() {
         <input placeholder="Search our menu" className="search-bar" />
         <a className="hamburger-menu-information">Menu</a>
         <a className="hamburger-menu-information">Order</a>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <span className="material-symbols-outlined navbar-icons">person</span>
-        </div>
+        {isActive ? (
+          <a className="hamburger-menu-information">Profile</a>
+        ) : (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <span className="material-symbols-outlined navbar-icons">
+              person
+            </span>
+          </div>
+        )}
 
         <a className="navbar-btn-link" href="/login">
           <button type="button" className="navbar-btn">

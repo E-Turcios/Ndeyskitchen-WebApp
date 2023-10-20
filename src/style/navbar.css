@@ -37,10 +37,12 @@
     padding: 7px;
     font-size: 26px;
     letter-spacing: 2px;
+    transition: color .3s;
 }
 
 .navbar-information a:hover {
     cursor: pointer;
+    color: #DC952F
    }
   
 .navbar-information a::after {
@@ -73,10 +75,15 @@
 .search-bar{
     width:200px;
     height:30px;
-    border: 2px solid #371821;
+    border: 2px solid #c5c0c0;
     border-radius: 5px;
     text-align: center; 
     font-size: 14.5px;
+    transition: border .3s;
+}
+
+.search-bar:hover{
+    border-color: #DC952F;
 }
 
 /* Navbar Icons */
@@ -94,11 +101,31 @@
     color:#371821;
     font-size: 40px;
     transition: color .3s;
+    position: relative;
 }
 
 .navbar-icons:hover{
     cursor: pointer;
     color:#DC952F;
+}
+
+  
+.navbar-icons::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #DC952F;
+    transform-origin: bottom right;
+    transition: transform .3s ease-out;
+}
+
+.navbar-icons:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
 
 .navbar-btn{
@@ -111,7 +138,7 @@
     margin:auto ;
     border: 2px solid #371821;
     border-radius: 3px;
-    transition: background-color 0.3s;
+    transition: color 0.3s;
 }
 
 .navbar-btn-link{
@@ -120,9 +147,8 @@
 
 .navbar-btn:hover{
     cursor: pointer;
-    background-color: #371821;
-    color: #FFFFFF;
-    border: none;
+    color: #DC952F;
+    border: 2px solid #DC952F;;
 }
 
 /* Hamburger Menu */
@@ -170,6 +196,11 @@
     border-radius: 5px;
     text-align: center; 
     font-size: 14.5px;
+    transition: border-color .3s;
+}
+
+.hamburger-menu-items .search-bar:hover{
+   border-color: #DC952F
 }
 
 .hamburger-menu-information{
@@ -178,11 +209,14 @@
     position: relative;
     font-size: 30px;
     letter-spacing: 2px;
+    transition: color .3s;
 }
 
 
 .hamburger-menu-information:hover {
     cursor: pointer;
+    cursor: pointer;
+    color: #DC952F
    }
   
 .hamburger-menu-information::after {
