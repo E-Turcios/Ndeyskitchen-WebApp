@@ -6,14 +6,8 @@ body {
 
 /* image */
 
-.logo-img {
+.img {
     width: 115.44px
-}
-
-.logos {
-    width: 9%;
-    margin-left: 5px;
-    transform: translate(0, 2px);
 }
 
 .hide-unhide {
