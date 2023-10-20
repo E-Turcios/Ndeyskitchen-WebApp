@@ -82,7 +82,7 @@ export default function Login() {
 
   return (
     <div className="login-container">
-      <Image className="logo-img" src={'logo.png'} />
+      <Image className="img" src={'logo.png'} />
       <div className="login-form-container">
         <form className="login-form" onSubmit={handleSubmit}>
           <p className="login-form-header">
