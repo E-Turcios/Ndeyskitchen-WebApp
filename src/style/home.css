@@ -76,5 +76,19 @@
     height: 100%;
 }
 
+@media (max-width: 1000px){
+
+    .loyalty-program-banner{
+        margin-top: 150px;
+    }
+}
+
+@media (max-width: 520px){
+    
+    .loyalty-program-banner{
+        margin-top: 130px;
+    }
+}
+
 
 

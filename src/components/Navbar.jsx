@@ -44,6 +44,7 @@ function MobileNavbar() {
 
   function hamburgerMenuClicked() {
     setIsActive(!isActive);
+    console.log('Im being clicked');
   }
 
   return (
@@ -62,7 +63,7 @@ function MobileNavbar() {
 
           {isActive ? (
             <span
-              class="material-symbols-outlined navbar-icons hamburger-menu open"
+              className="material-symbols-outlined navbar-icons hamburger-menu open"
               onClick={hamburgerMenuClicked}
             >
               close
@@ -80,7 +81,7 @@ function MobileNavbar() {
 
       <div
         className={
-          isActive ? 'hamburger-menu-items.active' : 'hamburger-menu-items'
+          isActive ? 'hamburger-menu-items active' : 'hamburger-menu-items'
         }
       >
         <input placeholder="Search our menu" className="search-bar" />
