@@ -59,12 +59,22 @@ function MobileNavbar() {
           <span className="material-symbols-outlined navbar-icons">
             shopping_bag
           </span>
-          <span
-            className="material-symbols-outlined navbar-icons hamburger-menu"
-            onClick={hamburgerMenuClicked}
-          >
-            menu
-          </span>
+
+          {isActive ? (
+            <span
+              class="material-symbols-outlined navbar-icons hamburger-menu open"
+              onClick={hamburgerMenuClicked}
+            >
+              close
+            </span>
+          ) : (
+            <span
+              className="material-symbols-outlined navbar-icons hamburger-menu"
+              onClick={hamburgerMenuClicked}
+            >
+              menu
+            </span>
+          )}
         </div>
       </div>
 

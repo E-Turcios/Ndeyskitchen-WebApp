@@ -93,6 +93,12 @@
 .navbar-icons{
     color:#371821;
     font-size: 40px;
+    transition: color .3s;
+}
+
+.navbar-icons:hover{
+    cursor: pointer;
+    color:#DC952F;
 }
 
 .navbar-btn{
@@ -123,6 +129,11 @@
 
 .hamburger-menu{
     display: none;
+    transition: color 0.3s ease;
+}
+
+.open{
+    color: #DC952F;
 }
 
 .hamburger-menu-navbar-container{
