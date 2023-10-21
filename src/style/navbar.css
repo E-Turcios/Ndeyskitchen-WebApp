@@ -426,7 +426,7 @@
     }
 
     .hamburger-menu-navbar-elements .img{
-        width: 100px
+        width: 115px
     }
 
     .navbar-icons-container .active{
@@ -434,7 +434,7 @@
     }
 
     .navbar-icons{
-        font-size:35px;
+        font-size: 38px;
     }
 
     .hamburger-menu-items .search-bar{
@@ -450,71 +450,4 @@
     }
 }
 
-@media (max-width: 450px) {
-
-    .hamburger-menu-navbar-container{
-        height: 110px;
-    }
-
-    .hamburger-menu-items{
-        top: 130px;
-    }
-
-    .hamburger-menu-navbar-elements .img{
-        width: 90px
-    }
-
-    .navbar-icons{
-        font-size:30px;
-    }
-
-    .hamburger-menu-navbar-elements a{
-        left: 30px
-      }
-
-    .hamburger-menu-navbar-icons-container{
-        right: 30px;
-    }
-
-    .hamburger-menu-information{
-        font-size: 16px;
-    }
-
-    .hamburger-menu-items .search-bar{
-        width: 170px;
-        height: 26px;
-        font-size: 13px;
-    }
-
-    .navbar-btn{
-        font-size:18px;
-        height: 30px;
-        width: 75px;
-    }
-}
-
-@media (max-width: 350px) {
-
-    .hamburger-menu-navbar-elements .img{
-        width: 80px
-    }
-
-    .navbar-icons{
-        font-size: 28px;
-    }
-
-    .hamburger-menu-navbar-elements a{
-        left: 20px
-    }
-
-    .hamburger-menu-navbar-icons-container{
-        right: 20px;
-    }
-
-    .hamburger-menu-items .search-bar{
-        width: 150px;
-        height: 26px;
-        font-size: 13px;
-    }
-}
 

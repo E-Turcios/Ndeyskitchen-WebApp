@@ -159,7 +159,7 @@
     }
     
     .category-sweet-salty-btn{
-        width: 63px;
+        width: 65px;
         height: 35px;
         font-size: 14px;
     }
@@ -167,15 +167,11 @@
 
 @media (max-width: 450px) {
 
-    .loyalty-program-banner{
-        margin-top: 110px;
-    }
-
     .loyalty-program-banner a{
-        font-size: 11px;
+        font-size: 12.1px;
     }
 
-    .category-container{
+    /* .category-container{
         height: 60px;
         gap: 9px;
     }
@@ -184,12 +180,9 @@
         width: 60px;
         height: 32px;
         font-size: 12px;
-    }
+    } */
 }
 
-@media (max-width: 350px) {
-
-}
 
 
 

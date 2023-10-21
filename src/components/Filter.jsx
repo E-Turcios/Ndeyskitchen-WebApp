@@ -11,11 +11,11 @@ export default function Filter() {
   }
 
   return (
-    <div className="filter-container">
+    <div className="filter-container" onClick={arrowHandleClick}>
       <div className="filter">
         <p>Filter</p>
         {isSmallScreen && (
-          <span class="material-symbols-outlined" onClick={arrowHandleClick}>
+          <span className="material-symbols-outlined">
             {isClicked ? 'expand_less' : 'expand_more'}
           </span>
         )}
