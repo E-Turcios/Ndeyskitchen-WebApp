@@ -3,7 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import Image from '../components/Image';
 
 export default function Navbar() {
-  const isBigScreen = useMediaQuery({ query: '(min-width: 1000px)' });
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1050px)' });
   return isBigScreen ? <ComputerNavbar /> : <MobileNavbar />;
 }
 
@@ -17,7 +17,8 @@ function ComputerNavbar() {
 
         <div className="navbar-information">
           <a>Menu</a>
-          <a>Order</a>
+          <a>Orders</a>
+          <a>Rewards</a>
         </div>
       </div>
 
