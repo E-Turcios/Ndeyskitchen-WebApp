@@ -5,6 +5,7 @@ import LoyaltyProgramBanner from '../components/LoyaltyProgramBanner';
 import Category from '../components/Category';
 import Filter from '../components/Filter';
 import ItemCard from '../components/ItemCard';
+import Contact from '../components/Contact';
 import useAuthContext from '../hooks/useAuthContext';
 
 export default function Home() {
@@ -76,9 +77,40 @@ export default function Home() {
               name={name}
               components={components}
             />
+            <ItemCard
+              src={src}
+              price={price}
+              name={name}
+              components={components}
+            />
+            <ItemCard
+              src={src}
+              price={price}
+              name={name}
+              components={components}
+            />
+            <ItemCard
+              src={src}
+              price={price}
+              name={name}
+              components={components}
+            />
+            <ItemCard
+              src={src}
+              price={price}
+              name={name}
+              components={components}
+            />
+            <ItemCard
+              src={src}
+              price={price}
+              name={name}
+              components={components}
+            />
           </div>
         </div>
       </div>
+      {/* <Contact /> */}
     </div>
   );
 }

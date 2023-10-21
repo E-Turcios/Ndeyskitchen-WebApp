@@ -57,7 +57,7 @@
 
 .filter-menu-container{
     display: flex;
-    height: 100vh;
+    height: 100%;
     
 }
 
@@ -77,15 +77,58 @@
     justify-content:center;
     gap: 30px;
     height: 100%;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
 }
 
 .menu-content::-webkit-scrollbar { 
     display: none; 
 }
 
-.menu-content {
-    -ms-overflow-style: none;  
-    scrollbar-width: none;
+
+/* Contact */
+
+.contact{
+    background-color: #000000;
+    color: #7d7979;
+    display: flex;
+    padding: 50px;
+    justify-content: center; 
+    align-items: center;
+    
+}
+
+.information{
+    display: flex;
+    gap: 100px;
+}
+
+.email-support, .social-media{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    font-size: 16px;
+}
+
+.social-media{
+    align-items: center;
+}
+
+.social-media a{
+    text-decoration: none;
+}
+
+.email-support p, .social-media p{
+    margin:0;
+}
+
+.font-awesome-icon{
+    color: #FFFFFF;
+}
+
+.font-awesome-icon:hover{
+    cursor: pointer;
+    color: #DC952F;
 }
 
 /* Media Queries */

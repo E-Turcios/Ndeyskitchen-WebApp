@@ -86,10 +86,26 @@ function MobileNavbar() {
         style={{ left: isActive ? '0%' : null }}
       >
         <input placeholder="Search our menu" className="search-bar" />
-        <a className="hamburger-menu-information">Menu</a>
-        <a className="hamburger-menu-information">Order</a>
+        <a
+          className="hamburger-menu-information"
+          href="#menu"
+          onClick={hamburgerMenuClicked}
+        >
+          Menu
+        </a>
+        <a
+          className="hamburger-menu-information"
+          onClick={hamburgerMenuClicked}
+        >
+          Order
+        </a>
         {isActive ? (
-          <a className="hamburger-menu-information">Profile</a>
+          <a
+            className="hamburger-menu-information"
+            onClick={hamburgerMenuClicked}
+          >
+            Profile
+          </a>
         ) : (
           <div
             style={{
@@ -98,13 +114,20 @@ function MobileNavbar() {
               alignItems: 'center',
             }}
           >
-            <span className="material-symbols-outlined navbar-icons">
+            <span
+              className="material-symbols-outlined navbar-icons"
+              onClick={hamburgerMenuClicked}
+            >
               person
             </span>
           </div>
         )}
 
-        <a className="navbar-btn-link" href="/login">
+        <a
+          className="navbar-btn-link"
+          href="/login"
+          onClick={hamburgerMenuClicked}
+        >
           <button type="button" className="navbar-btn">
             Login
           </button>
