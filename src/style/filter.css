@@ -116,7 +116,7 @@
     }
 
     .items-container button{
-        height: 30px;
+        height: 25px;
         font-size: 13px;
     }
 
@@ -144,7 +144,7 @@
     }
 
     .items-container button{
-        height: 30px;
+        height: 22px;
         font-size: 13px;
     }
 }
@@ -156,6 +156,7 @@
     }
     
     .items-container button{
+        height: 20px;
         font-size: 12px;
     }
 
