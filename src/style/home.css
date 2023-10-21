@@ -78,6 +78,34 @@
 
 /* Media Queries */
 
+@media (max-width: 1300px){
+
+    .category-container{
+        height: 120px;
+        gap:40px;
+    }
+    
+    .category-sweet-salty-btn{
+        width: 100px;
+        height: 46px;
+        font-size: 21px;
+    }
+}
+
+@media (max-width: 1200px){
+
+    .category-container{
+        height: 110px;
+        gap:30px;
+    }
+    
+    .category-sweet-salty-btn{
+        width: 90px;
+        height: 46px;
+        font-size: 19px;
+    }
+}
+
 @media (max-width: 1050px){
 
     .loyalty-program-banner{
@@ -95,6 +123,17 @@
     .loyalty-program-banner a{
        font-size: 14px;
     }
+
+    .category-container{
+        height: 85px;
+        gap:20px;
+    }
+    
+    .category-sweet-salty-btn{
+        width: 70px;
+        height: 38px;
+        font-size: 17px;
+    }
 }
 
 @media (max-width: 450px) {
@@ -105,12 +144,32 @@
 
     .loyalty-program-banner a{
         font-size: 11px;
-     }
+    }
+
+    .category-container{
+        height: 60px;
+        gap: 9px;
+    }
+    
+    .category-sweet-salty-btn{
+        width: 55px;
+        height: 32px;
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 350px) {
 
-   
+    .category-container{
+        height: 60px;
+        gap: 9px;
+    }
+    
+    .category-sweet-salty-btn{
+        width: 55px;
+        height: 32px;
+        font-size: 12px;
+    }
 }
 
 
