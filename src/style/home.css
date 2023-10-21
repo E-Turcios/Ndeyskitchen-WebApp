@@ -71,14 +71,11 @@
 .menu-content{
     display: flex;
     flex-wrap: wrap;
-    overflow: scroll;
-    scrollbar-width: none;
+    overflow-y : auto;
     margin: 20px 0 0 0;
     justify-content:center;
     gap: 30px;
-    height: 100%;
     -ms-overflow-style: none;  
-    scrollbar-width: none;
 }
 
 .menu-content::-webkit-scrollbar { 
@@ -95,7 +92,6 @@
     padding: 50px;
     justify-content: center; 
     align-items: center;
-    
 }
 
 .information{
@@ -129,6 +125,18 @@
 .font-awesome-icon:hover{
     cursor: pointer;
     color: #DC952F;
+}
+
+/* Footer */
+.footer{
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    color: #FFFFFF
+}
+
+.footer p{
+    font-size: 13px;
 }
 
 /* Media Queries */
@@ -206,6 +214,19 @@
         height: 35px;
         font-size: 15px;
     }
+    
+    .information{
+        gap: 75px;
+    }
+    
+    .email-support, .social-media{
+        gap: 7px;
+        font-size: 14px;
+    }
+
+    .footer p{
+        font-size: 11px;
+    }
 }
 
 @media (max-width: 450px) {
@@ -213,17 +234,16 @@
     .loyalty-program-banner a{
         font-size: 12.1px;
     }
-
-    /* .category-container{
-        height: 60px;
-        gap: 9px;
+    
+    .information{
+        gap: 25px;
     }
     
-    .category-sweet-salty-btn{
-        width: 60px;
-        height: 32px;
-        font-size: 12px;
-    } */
+    .email-support, .social-media{
+        gap: 7px;
+        font-size: 13px;
+    }
+
 }
 
 

@@ -6,6 +6,7 @@ import Category from '../components/Category';
 import Filter from '../components/Filter';
 import ItemCard from '../components/ItemCard';
 import Contact from '../components/Contact';
+import Footer from '../components/Footer';
 import useAuthContext from '../hooks/useAuthContext';
 
 export default function Home() {
@@ -47,70 +48,11 @@ export default function Home() {
               name={name}
               components={components}
             />
-            <ItemCard
-              src={src}
-              price={price}
-              name={name}
-              components={components}
-            />
-            <ItemCard
-              src={src}
-              price={price}
-              name={name}
-              components={components}
-            />
-            <ItemCard
-              src={src}
-              price={price}
-              name={name}
-              components={components}
-            />
-            <ItemCard
-              src={src}
-              price={price}
-              name={name}
-              components={components}
-            />
-            <ItemCard
-              src={src}
-              price={price}
-              name={name}
-              components={components}
-            />
-            <ItemCard
-              src={src}
-              price={price}
-              name={name}
-              components={components}
-            />
-            <ItemCard
-              src={src}
-              price={price}
-              name={name}
-              components={components}
-            />
-            <ItemCard
-              src={src}
-              price={price}
-              name={name}
-              components={components}
-            />
-            <ItemCard
-              src={src}
-              price={price}
-              name={name}
-              components={components}
-            />
-            <ItemCard
-              src={src}
-              price={price}
-              name={name}
-              components={components}
-            />
           </div>
         </div>
       </div>
-      {/* <Contact /> */}
+      <Contact />
+      <Footer />
     </div>
   );
 }
