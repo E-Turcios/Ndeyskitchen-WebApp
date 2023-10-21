@@ -44,14 +44,22 @@ function MobileNavbar() {
 
   function hamburgerMenuClicked() {
     setIsActive(!isActive);
-    console.log('Im being clicked');
   }
 
   return (
     <div
       className="hamburger-menu-navbar-container"
-      style={{ height: isActive ? '100%' : null }}
+      style={{ height: isActive ? '100vh' : null }}
     >
+      {isActive && (
+        <style>
+          {`
+           body {
+              overflow: hidden;
+            }
+          `}
+        </style>
+      )}
       <div className="hamburger-menu-navbar-elements">
         <a href="/">
           <Image className="img" src={'ndeys-kitchen.png'} />
@@ -61,28 +69,20 @@ function MobileNavbar() {
             shopping_bag
           </span>
 
-          {isActive ? (
-            <span
-              className="material-symbols-outlined navbar-icons hamburger-menu open"
-              onClick={hamburgerMenuClicked}
-            >
-              close
-            </span>
-          ) : (
-            <span
-              className="material-symbols-outlined navbar-icons hamburger-menu"
-              onClick={hamburgerMenuClicked}
-            >
-              menu
-            </span>
-          )}
+          <span
+            className={`material-symbols-outlined navbar-icons hamburger-menu ${
+              isActive ? 'open' : ''
+            }`}
+            onClick={hamburgerMenuClicked}
+          >
+            {isActive ? 'close' : 'menu'}
+          </span>
         </div>
       </div>
 
       <div
-        className={
-          isActive ? 'hamburger-menu-items active' : 'hamburger-menu-items'
-        }
+        className="hamburger-menu-items"
+        style={{ left: isActive ? '0%' : null }}
       >
         <input placeholder="Search our menu" className="search-bar" />
         <a className="hamburger-menu-information">Menu</a>

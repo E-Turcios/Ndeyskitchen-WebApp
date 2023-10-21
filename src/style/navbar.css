@@ -172,7 +172,6 @@
     flex-direction: column;
     align-items: center; 
     height: 150px;
-    gap: 60px;
 }
 
 .hamburger-menu-navbar-elements{
@@ -249,18 +248,14 @@
 .hamburger-menu-items{
     position: fixed;
     display: flex;
-    justify-content: center;
     align-items: center;
     left:-100%;
     gap:50px;
+    top:150px;
     height: 100%;
     flex-direction: column;
     transition: .3s;
     width: 100%;
-}
-
-.hamburger-menu-items.active{
-    left: 0;
 }
 
 /* Media Queries */
