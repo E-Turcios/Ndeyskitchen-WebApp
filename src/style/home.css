@@ -1,4 +1,5 @@
 /* #DC952F #371821 */
+
 .home-page-container{
     height: 100vh;
     min-width: 380px;
@@ -56,7 +57,8 @@
 
 .filter-menu-container{
     display: flex;
-    height: 100%;
+    height: 100vh;
+    
 }
 
 .menu-container{
@@ -69,11 +71,22 @@
 .menu-content{
     display: flex;
     flex-wrap: wrap;
+    overflow: scroll;
+    scrollbar-width: none;
     margin: 20px 0 0 0;
     justify-content:center;
     gap: 30px;
     width: 100% ;
     height: 100%;
+}
+
+.menu-content::-webkit-scrollbar { 
+    display: none; 
+}
+
+.menu-content {
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
 }
 
 /* Media Queries */
@@ -110,6 +123,15 @@
 
     .loyalty-program-banner{
         margin-top: 150px;
+    }
+}
+
+@media (max-width: 850px){
+    
+    .filter-menu-container{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
     }
 }
 
@@ -160,16 +182,6 @@
 
 @media (max-width: 350px) {
 
-    .category-container{
-        height: 60px;
-        gap: 9px;
-    }
-    
-    .category-sweet-salty-btn{
-        width: 55px;
-        height: 32px;
-        font-size: 12px;
-    }
 }
 
 

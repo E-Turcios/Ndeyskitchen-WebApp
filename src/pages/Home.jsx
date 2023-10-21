@@ -76,12 +76,6 @@ export default function Home() {
               name={name}
               components={components}
             />
-            <ItemCard
-              src={src}
-              price={price}
-              name={name}
-              components={components}
-            />
           </div>
         </div>
       </div>
