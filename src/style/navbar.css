@@ -170,7 +170,6 @@
     flex-direction: column;
     align-items: center; 
     height: 150px;
-    min-width: 350px;
 }
 
 .hamburger-menu-navbar-elements{
@@ -405,6 +404,14 @@
 }
 
 @media (max-width: 570px) {
+
+    .hamburger-menu-navbar-icons-container{
+        right: 20px;
+    }
+    
+    .hamburger-menu-navbar-elements a{
+        left: 20px
+    }
 
     .hamburger-menu-navbar-container{
         height: 130px;

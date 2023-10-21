@@ -1,6 +1,7 @@
 /* #DC952F #371821 */
 .home-page-container{
     height: 100vh;
+    min-width: 380px;
 }
 
 /* Loyalty Program Banner */
@@ -8,7 +9,7 @@
 .loyalty-program-banner{
     margin-top: 150px;
     background-color: #f0f0f0;
-    width:100vw;
+    width:100%;
     height:50px;
     display: flex;
     justify-content: center;
@@ -18,7 +19,6 @@
 .loyalty-program-banner a{
     text-decoration: underline;
     color:#000000;
-   
 }
 
 /* Catgory */
@@ -76,7 +76,9 @@
     height: 100%;
 }
 
-@media (max-width: 1000px){
+/* Media Queries */
+
+@media (max-width: 1050px){
 
     .loyalty-program-banner{
         margin-top: 150px;
@@ -87,14 +89,31 @@
     
     .loyalty-program-banner{
         margin-top: 130px;
+        height: 35px;
+    }
+    
+    .loyalty-program-banner a{
+       font-size: 14px;
     }
 }
 
 @media (max-width: 450px) {
+
     .loyalty-program-banner{
         margin-top: 110px;
     }
+
+    .loyalty-program-banner a{
+        font-size: 11px;
+     }
 }
+
+@media (max-width: 350px) {
+
+   
+}
+
+
 
 
 
