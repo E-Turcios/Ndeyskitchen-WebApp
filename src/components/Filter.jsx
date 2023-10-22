@@ -11,8 +11,8 @@ export default function Filter() {
   }
 
   return (
-    <div className="filter-container" onClick={arrowHandleClick}>
-      <div className="filter">
+    <div className="filter-container">
+      <div className="filter" onClick={arrowHandleClick}>
         <p>Filter</p>
         {isSmallScreen && (
           <span className="material-symbols-outlined">
