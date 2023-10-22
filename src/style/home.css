@@ -72,7 +72,7 @@
     flex-wrap: wrap;
     justify-content:center;
     gap: 30px;
-    margin-bottom: 200px;
+    margin-bottom: 150px;
 }
 
 
@@ -149,7 +149,7 @@
 
     .menu-content{
         gap: 20px;
-        margin-bottom: 150px;
+        margin-bottom: 90px;
     }
 }
 
@@ -171,7 +171,6 @@
 
     .menu-content{
         gap: 11px;
-        margin-bottom: 90px;
     }
 }
 
@@ -220,6 +219,10 @@
 
     .footer p{
         font-size: 11px;
+    }
+
+    .menu-content{
+        margin-bottom: 30px;
     }
 }
 
