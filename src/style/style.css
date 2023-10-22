@@ -5,6 +5,8 @@ html{
 body {
     margin: 0;
     font-family: 'Rubik', sans-serif;
+    min-width: 380px;
+    overflow-x: hidden;
 }
 
 
