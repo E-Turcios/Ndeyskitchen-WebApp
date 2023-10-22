@@ -16,7 +16,7 @@ function ComputerNavbar() {
         </a>
 
         <div className="navbar-information">
-          <a>Menu</a>
+          <a href="#menu">Menu</a>
           <a>Orders</a>
           <a>Rewards</a>
         </div>

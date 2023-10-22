@@ -58,6 +58,7 @@
 .filter-menu-container{
     display: flex;
     height: 100%;
+    align-items: stretch
     
 }
 
@@ -66,22 +67,18 @@
     height: 100%;
     display: flex;
     justify-content:center;
+   
 }
 
 .menu-content{
     display: flex;
     flex-wrap: wrap;
-    overflow-y : auto;
+    height: 100%;
     margin: 20px 0 0 0;
     justify-content:center;
     gap: 30px;
-    -ms-overflow-style: none;  
+    min-height: 100%
 }
-
-.menu-content::-webkit-scrollbar { 
-    display: none; 
-}
-
 
 /* Contact */
 

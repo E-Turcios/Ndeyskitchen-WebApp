@@ -38,6 +38,7 @@
     font-size: 26px;
     letter-spacing: 2px;
     transition: color .3s;
+    text-decoration: none;
 }
 
 .navbar-information a:hover {
@@ -245,6 +246,7 @@
 }
 
 .hamburger-menu-items{
+    background-color: #FFFFFF;
     position: fixed;
     display: flex;
     align-items: center;
