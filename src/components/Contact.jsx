@@ -4,6 +4,7 @@ import {
   faInstagram,
   faSnapchat,
   faFacebook,
+  faWhatsapp,
 } from '@fortawesome/free-brands-svg-icons';
 
 export default function Contact() {
@@ -11,9 +12,15 @@ export default function Contact() {
     <div className="contact">
       <div className="information">
         <div className="email-support">
-          <p>Email & IT Support</p>
-          <a href="mailto:ndeyskitchen@gmail.com" style={{ color: 'white' }}>
-            ndeyskitchen@gmail.com
+          <p>Contact & IT Support</p>
+          <a href="mailto:ndeyskitchen@gmail.com">ndeyskitchen@gmail.com</a>
+          <a>
+            <FontAwesomeIcon icon={faWhatsapp} size="lg" target="_blank" />
+            <span> Gambia +220 794 4636</span>
+          </a>
+          <a>
+            <FontAwesomeIcon icon={faWhatsapp} size="lg" target="_blank" />
+            <span> Mali +223 93 97 77 74</span>
           </a>
         </div>
 
