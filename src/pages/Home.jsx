@@ -123,8 +123,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {/* <Contact />
-      <Footer /> */}
+      <Contact />
+      <Footer />
     </div>
   );
 }
