@@ -1,12 +1,11 @@
-html{
-    scroll-behavior: smooth;
-}
 
-body {
+body, html {
+    max-width: 100%;
+    overflow-x: hidden;
     margin: 0;
     font-family: 'Rubik', sans-serif;
     min-width: 380px;
-    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 
