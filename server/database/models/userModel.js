@@ -7,8 +7,8 @@ const UserSchema = new Schema(
     firstName: { type: String, required: true, minlength: 2, maxlength: 50 },
     lastName: { type: String, required: true, minlength: 2, maxlength: 50 },
     email: { type: String, required: true, unique: true, maxlength: 100 },
-    password: { type: String, required: false, maxlength: 100 },
-    number: { type: String, required: false, unique: true, maxlength: 10 },
+    password: { type: String, default: 'N/A', maxlength: 100 },
+    number: { type: String, default: 'N/A', unique: true, maxlength: 10 },
     sub: {
       type: String,
       required: false,
@@ -16,8 +16,8 @@ const UserSchema = new Schema(
       maxlength: 100,
       sparse: true,
     },
-    residence: { type: String, required: false, maxlength: 50 },
-    token: { type: String, required: false, maxlength: 100 },
+    residence: { type: String, default: 'N/A', maxlength: 50 },
+    token: { type: String, default: 'N/A', maxlength: 100 },
   },
   { timestamps: true }
 );
