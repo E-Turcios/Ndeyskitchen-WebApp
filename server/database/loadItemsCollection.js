@@ -2,13 +2,15 @@ const Item = require('../database/models/itemModel');
 const DBConnection = require('./DBConnect');
 const chalk = require('chalk');
 
+const image = 'img1.jpeg';
+
 const itemsData = [
   {
     name: 'CHOCOLATE CAKE',
     category: 'Sweet',
     components: 'Chocolate filling, vanilla icing',
     price: 20.99,
-    image: 'server/images/items/img1.jpeg',
+    image: image,
     alt: 'image',
   },
 
@@ -17,7 +19,7 @@ const itemsData = [
     category: 'Sweet',
     components: 'Chocolate filling, chocolate icing',
     price: 15.99,
-    image: 'server/images/items/img1.jpeg',
+    image: image,
     alt: 'image',
   },
 
@@ -26,7 +28,7 @@ const itemsData = [
     category: 'Sweet',
     components: 'Vanilla filling, vanilla icing',
     price: 25.99,
-    image: 'server/images/items/img1.jpeg',
+    image: image,
     alt: 'image',
   },
 
@@ -35,7 +37,7 @@ const itemsData = [
     category: 'Sweet',
     components: 'Vanilla filling, vanilla icing',
     price: 25.0,
-    image: 'server/images/items/img1.jpeg',
+    image: image,
     alt: 'image',
   },
 
@@ -44,7 +46,7 @@ const itemsData = [
     category: 'Salty',
     components: 'Tomato sauce, cheese',
     price: 20.99,
-    image: 'server/images/items/img1.jpeg',
+    image: image,
     alt: 'image',
   },
 
@@ -53,7 +55,7 @@ const itemsData = [
     category: 'Salty',
     components: 'BBQ sauce',
     price: 10.99,
-    image: 'server/images/items/img1.jpeg',
+    image: image,
     alt: 'image',
   },
 ];
