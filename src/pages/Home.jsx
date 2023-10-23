@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import LoyaltyProgramBanner from '../components/LoyaltyProgramBanner';
@@ -7,26 +7,46 @@ import Filter from '../components/Filter';
 import ItemCard from '../components/ItemCard';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
+import Loader from '../components/Loader';
 import useAuthContext from '../hooks/useAuthContext';
 
 export default function Home() {
   const { dispatch } = useAuthContext();
   const { user } = useAuthContext();
   const navigate = useNavigate();
-  const src =
-    'https://img.freepik.com/free-photo/delicious-glazed-doughnut_23-2150674014.jpg?t=st=1697665555~exp=1697669155~hmac=8bbad599c8852eb3079c96c2eaf79b5f747f07de8a8e18f1d28a4ff7576a03d0&w=826';
 
-  const price = '$ 20.99';
-  const name = 'CHOCOLATE CAKE';
-  const components = 'Chocolate filling, vanilla icing';
+  const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const logOut = () => {
+  useEffect(() => {
+    async function getItems() {
+      const response = await fetch('api/items', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const json = await response.json();
+
+      if (!response.ok) console.log(json.message);
+
+      setItems(json);
+      setIsLoading(false);
+      console.log(json);
+    }
+    getItems();
+  }, []);
+
+  function logOut() {
     localStorage.removeItem('token');
     dispatch({ type: 'LOGOUT' });
     navigate('/login');
-  };
+  }
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div className="home-page-container">
       <Navbar />
       <LoyaltyProgramBanner />
@@ -36,30 +56,16 @@ export default function Home() {
 
         <div className="menu-container">
           <div className="menu-content">
-            <ItemCard
-              src={src}
-              price={price}
-              name={name}
-              components={components}
-            />
-            <ItemCard
-              src={src}
-              price={price}
-              name={name}
-              components={components}
-            />
-            <ItemCard
-              src={src}
-              price={price}
-              name={name}
-              components={components}
-            />
-            <ItemCard
-              src={src}
-              price={price}
-              name={name}
-              components={components}
-            />
+            {items &&
+              items.map(item => (
+                <ItemCard
+                  key={item._id}
+                  name={item.name}
+                  price={item.price}
+                  components={item.components}
+                  src={item.image}
+                />
+              ))}
           </div>
         </div>
       </div>
