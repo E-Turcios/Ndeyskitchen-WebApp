@@ -66,7 +66,7 @@ async function loadItemsCollection() {
 
     const result = await Item.insertMany(itemsData);
 
-    if (result) console.log(chalk.cyan('Items data loaded successfully'));
+    if (result) console.log(chalk.yellow('Items data loaded successfully'));
   } catch (err) {
     console.error(`Error inserting documents: ${err.message}`);
   }
