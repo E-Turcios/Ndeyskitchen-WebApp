@@ -5,6 +5,15 @@
     margin: 0;
 }
 
+/* Loader  */
+
+.loader-container{
+    display: flex;
+    justify-content: center;
+   padding: 20px;
+    height: 100vh;
+}
+
 /* Loyalty Program Banner */
 
 .loyalty-program-banner{
