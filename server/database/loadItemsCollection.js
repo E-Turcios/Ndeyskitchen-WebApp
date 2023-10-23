@@ -9,6 +9,7 @@ const itemsData = [
     components: 'Chocolate filling, vanilla icing',
     price: 20.99,
     image: 'server/images/items/img1.jpeg',
+    alt: 'image',
   },
 
   {
@@ -17,6 +18,7 @@ const itemsData = [
     components: 'Chocolate filling, chocolate icing',
     price: 15.99,
     image: 'server/images/items/img1.jpeg',
+    alt: 'image',
   },
 
   {
@@ -25,6 +27,7 @@ const itemsData = [
     components: 'Vanilla filling, vanilla icing',
     price: 25.99,
     image: 'server/images/items/img1.jpeg',
+    alt: 'image',
   },
 
   {
@@ -33,6 +36,7 @@ const itemsData = [
     components: 'Vanilla filling, vanilla icing',
     price: 25.0,
     image: 'server/images/items/img1.jpeg',
+    alt: 'image',
   },
 
   {
@@ -41,6 +45,7 @@ const itemsData = [
     components: 'Tomato sauce, cheese',
     price: 20.99,
     image: 'server/images/items/img1.jpeg',
+    alt: 'image',
   },
 
   {
@@ -49,6 +54,7 @@ const itemsData = [
     components: 'BBQ sauce',
     price: 10.99,
     image: 'server/images/items/img1.jpeg',
+    alt: 'image',
   },
 ];
 
