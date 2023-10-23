@@ -2,7 +2,7 @@ export default function Image(props) {
   return (
     <img
       className={props.className}
-      alt="image"
+      alt={props.alt}
       src={require('../images/' + props.src)}
     />
   );
