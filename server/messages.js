@@ -9,4 +9,5 @@ module.exports = {
   EMAIL_DOES_NOT_EXIST: 'Email does not exist',
   EMAIL_BEING_VERIFIED: 'Email being verified',
   EMAIL_VERIFICATION_FAILED: 'Email verification failed',
+  ITEMS_NOT_FOUND: 'Items not found',
 };
