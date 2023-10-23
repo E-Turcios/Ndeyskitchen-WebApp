@@ -1,5 +1,6 @@
 const Item = require('../database/models/itemModel');
 const DBConnection = require('./DBConnect');
+const chalk = require('chalk');
 
 const itemsData = [
   {
@@ -57,7 +58,7 @@ async function loadItemsCollection() {
 
     const result = await Item.insertMany(itemsData);
 
-    if (result) console.log('Items data loaded successfully');
+    if (result) console.log(chalk.cyan('Items data loaded successfully'));
   } catch (err) {
     console.error(`Error inserting documents: ${err.message}`);
   }
