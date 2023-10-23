@@ -25,8 +25,6 @@ const wrongData = {
   password: 'wrongpassword',
 };
 
-const timeout = 10000;
-
 beforeAll(async () => {
   await databaseConnection.openDBConnection();
 
