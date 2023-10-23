@@ -85,18 +85,23 @@ afterAll(async () => {
   });
 });
 
-xdescribe('Items loading into database test', () => {
+describe('Items loading into the database test', () => {
   it('Items succesfuly loaded into database', async () => {
     const success = await itemsLoading();
-
     expect(success).toBe(true);
   });
 });
 
-describe('Items fetching from database test', () => {
-  it('items successfully fetched from database', async () => {
+describe('Items fetching from the database test', () => {
+  it('Successfully items fetching from the database', async () => {
     const response = await supertest(app).get('/api/items');
 
     expect(response.statusCode).toBe(200);
+  });
+
+  it('Failed items fetching from the database', async () => {
+    const response = await supertest(app).get('/api/items/wrong');
+
+    expect(response.statusCode).toBe(404);
   });
 });
