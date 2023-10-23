@@ -3,7 +3,6 @@ const crypto = require('crypto');
 const User = require('../database/models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const nodemailer = require('nodemailer');
 const { sendEmail } = require('../sendEmail');
 
 require('dotenv').config();
