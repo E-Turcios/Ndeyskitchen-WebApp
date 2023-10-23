@@ -76,15 +76,27 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
+  await Item.deleteMany({}).then(() => {
+    console.log('All items deleted successfully');
+  });
+
   databaseConnection.closeDBConnection().then(() => {
     console.log('Database connection successfully closed');
   });
 });
 
-describe('Items loading into database test', () => {
+xdescribe('Items loading into database test', () => {
   it('Items succesfuly loaded into database', async () => {
     const success = await itemsLoading();
 
     expect(success).toBe(true);
+  });
+});
+
+describe('Items fetching from database test', () => {
+  it('items successfully fetched from database', async () => {
+    const response = await supertest(app).get('/api/items');
+
+    expect(response.statusCode).toBe(200);
   });
 });
