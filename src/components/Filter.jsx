@@ -13,7 +13,7 @@ export default function Filter() {
     categoryStore.getCategory
   );
 
-  const filer = useSyncExternalStore(
+  const filter = useSyncExternalStore(
     filterStore.subscribe,
     filterStore.getFilter
   );
@@ -21,6 +21,12 @@ export default function Filter() {
   function arrowHandleClick() {
     setIsClicked(!isClicked);
   }
+
+  function handleFilterClick(filterId) {
+    filterStore.setId(filterId);
+  }
+
+  console.log(filter);
 
   return (
     <div className="filter-container">
@@ -37,40 +43,42 @@ export default function Filter() {
         <div className="items-container">
           {category === '' && (
             <>
-              <button>All</button>
-
-              <button>Cakes</button>
-
-              <button>Pizza</button>
-
-              <button>Milshakes</button>
-
-              <button>Wrap</button>
-
-              <button>Cupcakes</button>
-
-              <button>Wings</button>
+              <button onClick={() => handleFilterClick('All')}>All</button>
+              <button onClick={() => handleFilterClick('Cakes')}>Cakes</button>
+              <button onClick={() => handleFilterClick('Pizza')}>Pizza</button>
+              <button onClick={() => handleFilterClick('Milkshakes')}>
+                Milkshakes
+              </button>
+              <button onClick={() => handleFilterClick('Wrap')}>Wrap</button>
+              <button onClick={() => handleFilterClick('Cupcakes')}>
+                Cupcakes
+              </button>
+              <button onClick={() => handleFilterClick('Wings')}>Wings</button>
             </>
           )}
 
           {category === 'Sweet' && (
             <>
-              <button>All Sweets</button>
-              <button>Cakes</button>
-
-              <button>Cupcakes</button>
-
-              <button>Milshakes</button>
+              <button onClick={() => handleFilterClick('All Sweets')}>
+                All Sweets
+              </button>
+              <button onClick={() => handleFilterClick('Cakes')}>Cakes</button>
+              <button onClick={() => handleFilterClick('Cupcakes')}>
+                Cupcakes
+              </button>
+              <button onClick={() => handleFilterClick('Milkshakes')}>
+                Milkshakes
+              </button>
             </>
           )}
           {category === 'Savory' && (
             <>
-              <button>All Savory</button>
-              <button>Pizza</button>
-
-              <button>Wrap</button>
-
-              <button>Wings</button>
+              <button onClick={() => handleFilterClick('All Savory')}>
+                All Savory
+              </button>
+              <button onClick={() => handleFilterClick('Pizza')}>Pizza</button>
+              <button onClick={() => handleFilterClick('Wrap')}>Wrap</button>
+              <button onClick={() => handleFilterClick('Wings')}>Wings</button>
             </>
           )}
         </div>
@@ -81,40 +89,58 @@ export default function Filter() {
           <div className="items-container">
             {category === '' && (
               <>
-                <button>All</button>
-
-                <button>Cakes</button>
-
-                <button>Pizza</button>
-
-                <button>Milshakes</button>
-
-                <button>Wrap</button>
-
-                <button>Cupcakes</button>
-
-                <button>Wings</button>
+                <button onClick={() => handleFilterClick('All Sweets')}>
+                  All Sweets
+                </button>
+                <button onClick={() => handleFilterClick('Cakes')}>
+                  Cakes
+                </button>
+                <button onClick={() => handleFilterClick('Cupcakes')}>
+                  Cupcakes
+                </button>
+                <button onClick={() => handleFilterClick('Milkshakes')}>
+                  Milkshakes
+                </button>
               </>
             )}
 
             {category === 'Sweet' && (
               <>
-                <button>All Sweets</button>
-                <button>Cakes</button>
-
-                <button>Cupcakes</button>
-
-                <button>Milshakes</button>
+                <>
+                  <button onClick={() => handleFilterClick('All Savory')}>
+                    All Savory
+                  </button>
+                  <button onClick={() => handleFilterClick('Pizza')}>
+                    Pizza
+                  </button>
+                  <button onClick={() => handleFilterClick('Wrap')}>
+                    Wrap
+                  </button>
+                  <button onClick={() => handleFilterClick('Wings')}>
+                    Wings
+                  </button>
+                </>
               </>
             )}
             {category === 'Savory' && (
               <>
-                <button>All Savory</button>
-                <button>Pizza</button>
-
-                <button>Wrap</button>
-
-                <button>Wings</button>
+                <button onClick={() => handleFilterClick('All')}>All</button>
+                <button onClick={() => handleFilterClick('Cakes')}>
+                  Cakes
+                </button>
+                <button onClick={() => handleFilterClick('Pizza')}>
+                  Pizza
+                </button>
+                <button onClick={() => handleFilterClick('Milkshakes')}>
+                  Milkshakes
+                </button>
+                <button onClick={() => handleFilterClick('Wrap')}>Wrap</button>
+                <button onClick={() => handleFilterClick('Cupcakes')}>
+                  Cupcakes
+                </button>
+                <button onClick={() => handleFilterClick('Wings')}>
+                  Wings
+                </button>
               </>
             )}
           </div>
