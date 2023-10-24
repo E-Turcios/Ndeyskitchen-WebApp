@@ -58,9 +58,9 @@
     font-family: 'Questrial', sans-serif;
     background-color: #FFFFFF;
     color: #371821;
-    width: 120px;
-    height: 50px;
-    font-size: 21px;
+    width: 140px;
+    height: 60px;
+    font-size: 23px;
     border: 1px solid #371821;
     border-radius: 4px;
     letter-spacing: 1px;
@@ -206,7 +206,8 @@
     .menu-content{
         margin-bottom: 50px;
     }
-}
+
+   }
 
 @media (max-width: 570px){
     
@@ -228,6 +229,14 @@
         height: 35px;
         font-size: 15px;
     }
+
+    .category-sweet-salty-btn-on-click{
+        width: 120px;
+        height: 50px;
+        font-size: 21px;
+
+    }
+
     
     .information{
         gap: 75px;
