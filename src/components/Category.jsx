@@ -2,6 +2,7 @@ import { React, useState, useSyncExternalStore } from 'react';
 import categoryStore from '../stores/categoryStore';
 
 export default function Category() {
+  const [isAllButton, setIsAllButton] = useState(true);
   const [isSweetButton, setIsSweetButton] = useState(false);
   const [isSavoryButton, setIsSavoryButton] = useState(false);
 
@@ -21,6 +22,7 @@ export default function Category() {
       categoryStore.setId(event.target.id);
       setIsSweetButton(!isSweetButton);
       setIsSavoryButton(false);
+      setIsAllButton(false);
     } else {
       categoryStore.setId('');
       setIsSweetButton(!isSweetButton);
@@ -32,24 +34,50 @@ export default function Category() {
       categoryStore.setId(event.target.id);
       setIsSavoryButton(!isSavoryButton);
       setIsSweetButton(false);
+      setIsAllButton(false);
+    } else categoryStore.setId('');
+  }
+
+  function handleAllButtonClick(event) {
+    if (category === 'Savory' || category === 'Sweet') {
+      categoryStore.setId('');
+      setIsAllButton(!isAllButton);
+      setIsSweetButton(false);
+      setIsSavoryButton(false);
     } else categoryStore.setId('');
   }
 
   return (
     <div className="category-container" id="menu">
       <button
+        className={
+          isAllButton
+            ? 'category-sweet-salty-btn-on-click'
+            : 'category-sweet-salty-btn'
+        }
+        onClick={handleAllButtonClick}
+      >
+        All
+      </button>
+      <button
         id="Sweet"
-        className="category-sweet-salty-btn category-sweet-btn"
+        className={
+          isSweetButton
+            ? 'category-sweet-salty-btn-on-click'
+            : 'category-sweet-salty-btn'
+        }
         onClick={handleSweetButtonClick}
-        style={isSweetButton ? style : null}
       >
         Sweet
       </button>
       <button
         id="Savory"
-        className="category-sweet-salty-btn category-sweet-btn"
+        className={
+          isSavoryButton
+            ? 'category-sweet-salty-btn-on-click'
+            : 'category-sweet-salty-btn'
+        }
         onClick={handleSavoryButtonClick}
-        style={isSavoryButton ? style : null}
       >
         Savory
       </button>

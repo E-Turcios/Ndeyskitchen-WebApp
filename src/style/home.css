@@ -54,7 +54,20 @@
     transition: background-color .3s;
 }
 
-.category-sweet-salty-btn:hover{
+.category-sweet-salty-btn-on-click{
+    font-family: 'Questrial', sans-serif;
+    background-color: #FFFFFF;
+    color: #371821;
+    width: 120px;
+    height: 50px;
+    font-size: 21px;
+    border: 1px solid #371821;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    transition: background-color .3s;
+}
+
+.category-sweet-salty-btn:hover, .category-sweet-salty-btn-on-click{
     cursor: pointer;
     color: #371821;
     background-color: #FFFFFF;
