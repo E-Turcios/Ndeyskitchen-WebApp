@@ -17,18 +17,20 @@ export default function Category() {
   );
 
   function handleSweetButtonClick(event) {
-    categoryStore.setId(event.target.id);
-    setIsSweetButton(!isSweetButton);
-    setIsSavoryButton(false);
+    if (category === '' || category === 'savory') {
+      categoryStore.setId(event.target.id);
+      setIsSweetButton(!isSweetButton);
+      setIsSavoryButton(false);
+    } else categoryStore.setId('');
   }
 
   function handleSavoryButtonClick(event) {
-    categoryStore.setId(event.target.id);
-    setIsSavoryButton(!isSavoryButton);
-    setIsSweetButton(false);
+    if (category === '' || category === 'savory') {
+      categoryStore.setId(event.target.id);
+      setIsSavoryButton(!isSavoryButton);
+      setIsSweetButton(false);
+    } else categoryStore.setId('');
   }
-
-  console.log(category);
 
   return (
     <div className="category-container" id="menu">
