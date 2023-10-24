@@ -2,7 +2,6 @@ let notifiers = new Set();
 let buttonId = '';
 
 const categoryStore = {
-  //callback whenever store status changes
   subscribe(notify) {
     notifiers.add(notify);
 
@@ -14,7 +13,6 @@ const categoryStore = {
     notifiers.forEach(notify => notify());
   },
 
-  //return the store status
   getCategory() {
     return buttonId;
   },
