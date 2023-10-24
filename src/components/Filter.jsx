@@ -33,8 +33,26 @@ export default function Filter() {
         )}
       </div>
 
-      {isBigScreen && category ? (
+      {isBigScreen && (
         <div className="items-container">
+          {category === '' && (
+            <>
+              <button>All</button>
+
+              <button>Cakes</button>
+
+              <button>Pizza</button>
+
+              <button>Milshakes</button>
+
+              <button>Wrap</button>
+
+              <button>Cupcakes</button>
+
+              <button>Wings</button>
+            </>
+          )}
+
           {category === 'Sweet' && (
             <>
               <button>All Sweets</button>
@@ -56,32 +74,49 @@ export default function Filter() {
             </>
           )}
         </div>
-      ) : (
-        <div className="items-container">
-          <button>All</button>
-          <button>Cakes</button>
-
-          <button>Pizza</button>
-
-          <button>Milshakes</button>
-
-          <button>Wrap</button>
-
-          <button>Cupcakes</button>
-
-          <button>Wings</button>
-        </div>
       )}
 
       {isSmallScreen &&
         (isClicked ? (
           <div className="items-container">
-            <button>All</button>
-            <button>Cakes</button>
+            {category === '' && (
+              <>
+                <button>All</button>
 
-            <button>Cupcakes</button>
+                <button>Cakes</button>
 
-            <button>Milshakes</button>
+                <button>Pizza</button>
+
+                <button>Milshakes</button>
+
+                <button>Wrap</button>
+
+                <button>Cupcakes</button>
+
+                <button>Wings</button>
+              </>
+            )}
+
+            {category === 'Sweet' && (
+              <>
+                <button>All Sweets</button>
+                <button>Cakes</button>
+
+                <button>Cupcakes</button>
+
+                <button>Milshakes</button>
+              </>
+            )}
+            {category === 'Savory' && (
+              <>
+                <button>All Savory</button>
+                <button>Pizza</button>
+
+                <button>Wrap</button>
+
+                <button>Wings</button>
+              </>
+            )}
           </div>
         ) : null)}
     </div>
