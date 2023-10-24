@@ -43,7 +43,7 @@ const itemsData = [
 
   {
     name: 'PIZZA',
-    category: 'Salty',
+    category: 'Savory',
     components: 'Tomato sauce, cheese',
     price: 20.99,
     image: image,
@@ -52,7 +52,7 @@ const itemsData = [
 
   {
     name: 'CHICKEN WINGS',
-    category: 'Salty',
+    category: 'Savory',
     components: 'BBQ sauce',
     price: 10.99,
     image: image,
