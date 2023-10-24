@@ -13,7 +13,7 @@ const ItemSchema = new Schema(
     topping: { type: String, default: 'N/A' },
     icing: { type: String, default: 'N/A' },
     size: { type: String, default: 'N/A' },
-    price: { type: Number, default: 'N/A' },
+    price: { type: String, default: 'N/A' },
   },
   { timestamps: true }
 );
