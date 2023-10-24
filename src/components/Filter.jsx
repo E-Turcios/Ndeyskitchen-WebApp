@@ -1,6 +1,7 @@
 import { React, useState, useSyncExternalStore } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import categoryStore from '../stores/categoryStore';
+import filterStore from '../stores/filterStore';
 
 export default function Filter() {
   const [isClicked, setIsClicked] = useState(false);
@@ -10,6 +11,11 @@ export default function Filter() {
   const category = useSyncExternalStore(
     categoryStore.subscribe,
     categoryStore.getCategory
+  );
+
+  const filer = useSyncExternalStore(
+    filterStore.subscribe,
+    filterStore.getFilter
   );
 
   function arrowHandleClick() {
@@ -27,14 +33,43 @@ export default function Filter() {
         )}
       </div>
 
-      {isBigScreen && (
+      {isBigScreen && category ? (
+        <div className="items-container">
+          {category === 'Sweet' && (
+            <>
+              <button>All Sweets</button>
+              <button>Cakes</button>
+
+              <button>Cupcakes</button>
+
+              <button>Milshakes</button>
+            </>
+          )}
+          {category === 'Savory' && (
+            <>
+              <button>All Savory</button>
+              <button>Pizza</button>
+
+              <button>Wrap</button>
+
+              <button>Wings</button>
+            </>
+          )}
+        </div>
+      ) : (
         <div className="items-container">
           <button>All</button>
           <button>Cakes</button>
 
-          <button>Cupcakes</button>
+          <button>Pizza</button>
 
           <button>Milshakes</button>
+
+          <button>Wrap</button>
+
+          <button>Cupcakes</button>
+
+          <button>Wings</button>
         </div>
       )}
 
