@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useSyncExternalStore } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import LoyaltyProgramBanner from '../components/LoyaltyProgramBanner';
@@ -9,11 +9,17 @@ import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import Loader from '../components/Loader';
 import useAuthContext from '../hooks/useAuthContext';
+import categoryStore from '../stores/categoryStore';
 
 export default function Home() {
   const { dispatch } = useAuthContext();
   const { user } = useAuthContext();
   const navigate = useNavigate();
+
+  const category = useSyncExternalStore(
+    categoryStore.subscribe,
+    categoryStore.getCategory
+  );
 
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,7 +39,6 @@ export default function Home() {
 
       setItems(json);
       setIsLoading(false);
-      console.log(json);
     }
     getItems();
   }, []);
@@ -56,16 +61,27 @@ export default function Home() {
 
         <div className="menu-container">
           <div className="menu-content">
-            {items &&
-              items.map(item => (
-                <ItemCard
-                  key={item._id}
-                  name={item.name}
-                  price={item.price}
-                  components={item.components}
-                  src={item.image}
-                />
-              ))}
+            {category
+              ? items
+                  .filter(item => item.category === category)
+                  .map(item => (
+                    <ItemCard
+                      key={item._id}
+                      name={item.name}
+                      price={item.price}
+                      components={item.components}
+                      src={item.image}
+                    />
+                  ))
+              : items.map(item => (
+                  <ItemCard
+                    key={item._id}
+                    name={item.name}
+                    price={item.price}
+                    components={item.components}
+                    src={item.image}
+                  />
+                ))}
           </div>
         </div>
       </div>

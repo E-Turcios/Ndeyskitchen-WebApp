@@ -17,15 +17,18 @@ export default function Category() {
   );
 
   function handleSweetButtonClick(event) {
-    if (category === '' || category === 'savory') {
+    if (category === '' || category === 'Savory') {
       categoryStore.setId(event.target.id);
       setIsSweetButton(!isSweetButton);
       setIsSavoryButton(false);
-    } else categoryStore.setId('');
+    } else {
+      categoryStore.setId('');
+      setIsSweetButton(!isSweetButton);
+    }
   }
 
   function handleSavoryButtonClick(event) {
-    if (category === '' || category === 'savory') {
+    if (category === '' || category === 'Sweet') {
       categoryStore.setId(event.target.id);
       setIsSavoryButton(!isSavoryButton);
       setIsSweetButton(false);
@@ -35,7 +38,7 @@ export default function Category() {
   return (
     <div className="category-container" id="menu">
       <button
-        id="sweet"
+        id="Sweet"
         className="category-sweet-salty-btn category-sweet-btn"
         onClick={handleSweetButtonClick}
         style={isSweetButton ? style : null}
@@ -43,7 +46,7 @@ export default function Category() {
         Sweet
       </button>
       <button
-        id="savory"
+        id="Savory"
         className="category-sweet-salty-btn category-sweet-btn"
         onClick={handleSavoryButtonClick}
         style={isSavoryButton ? style : null}
