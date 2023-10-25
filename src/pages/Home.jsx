@@ -67,7 +67,7 @@ export default function Home() {
 
         <div className="menu-container">
           <div className="menu-content">
-            {category === '' &&
+            {category === 'All' &&
               items
                 .filter(item => filter === 'All' || item.filter === filter)
                 .map(item => (

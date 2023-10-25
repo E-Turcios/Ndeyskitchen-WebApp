@@ -3,7 +3,6 @@ import { useMediaQuery } from 'react-responsive';
 import categoryStore from '../stores/categoryStore';
 import filterStore from '../stores/filterStore';
 
-// Define constants for filter names
 const ALL = 'All';
 const CAKES = 'Cakes';
 const CUPCAKES = 'Cupcakes';
@@ -37,16 +36,18 @@ export default function Filter() {
 
   function All() {
     return (
-      <>
-        <button
-          className={filter === ALL ? 'clicked-button' : 'filter-button'}
-          onClick={() => handleFilterClick(ALL)}
-        >
-          All
-        </button>
-        <Sweet />
-        <Savory />
-      </>
+      category === 'All' && (
+        <>
+          <button
+            className={filter === ALL ? 'clicked-button' : 'filter-button'}
+            onClick={() => handleFilterClick(ALL)}
+          >
+            All
+          </button>
+          <Sweet />
+          <Savory />
+        </>
+      )
     );
   }
 
@@ -130,7 +131,7 @@ export default function Filter() {
 
       {isBigScreen && (
         <div className="items-container">
-          {category === '' && <All />}
+          {category === 'All' && <All />}
           {category === 'Sweet' && <Sweet />}
           {category === 'Savory' && <Savory />}
         </div>
@@ -139,7 +140,7 @@ export default function Filter() {
       {isSmallScreen &&
         (isClicked ? (
           <div className="items-container">
-            {category === '' && <All />}
+            {category === 'All' && <All />}
             {category === 'Sweet' && <Sweet />}
             {category === 'Savory' && <Savory />}
           </div>
