@@ -64,7 +64,8 @@
     border: 1px solid #371821;
     border-radius: 4px;
     letter-spacing: 1px;
-    transition: background-color .3s;
+    transition: height .5s;
+   
 }
 
 .category-sweet-salty-btn:hover, .category-sweet-salty-btn-on-click{
