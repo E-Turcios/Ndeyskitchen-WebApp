@@ -68,23 +68,37 @@
 /* Search Bar */
 
 .navbar-search-bar-container{
+    position: absolute;
+    right:315px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid #c5c0c0;
+    border-radius: 5px;  
+    transition: border .3s;
+}
+
+.navbar-search-bar-container:hover{
+    cursor: text;
+    border-color: #DC952F;
 }
 
 .search-bar{
     width:200px;
-    height:30px;
-    border: 2px solid #c5c0c0;
-    border-radius: 5px;
-    text-align: center; 
-    font-size: 14.5px;
-    transition: border .3s;
+    height:34px;
+    border: none;
+    font-size: 16px;
+    text-align: center;  
 }
 
-.search-bar:hover{
-    border-color: #DC952F;
+.search-bar:focus{
+    outline: none; 
+}
+
+
+.navbar-search-bar-container .navbar-icons{
+   font-size: 40px;
+   border-left: 2px solid #c5c0c0;
 }
 
 /* Navbar Icons */
@@ -187,17 +201,24 @@
     left: 80px
   }
 
-.hamburger-menu-items .search-bar{
-    width:200px;
-    height:30px;
-    border: 2px solid #371821;
-    border-radius: 5px;
-    text-align: center; 
-    font-size: 14.5px;
-    transition: border-color .3s;
+.hamburger-search-bar-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #c5c0c0;
+    border-radius: 5px;  
+    transition: border .3s;
 }
 
-.hamburger-menu-items .search-bar:hover{
+.hamburger-search-bar-container .navbar-icons{
+  border-left: 2px solid #c5c0c0;
+}
+
+.hamburger-menu-items .search-bar{
+   border: none; 
+}
+
+.hamburger-search-bar-container:hover{
    border-color: #DC952F
 }
 
@@ -284,13 +305,18 @@
         width: 113px
     }
 
-    .navbar-icons{
+    .navbar-icons, .navbar-search-bar-container .navbar-icons{
         font-size:37px;
     }
 
     .search-bar{
         width:190px;
         height:26px;
+        font-size: 16px;
+    }
+
+    .navbar-search-bar-container{
+        right: 259px; 
     }
 }
 
@@ -325,13 +351,12 @@
         width: 110px
     }
 
-    .navbar-icons{
-        font-size:34px;
+    .navbar-icons,  .navbar-search-bar-container .navbar-icons{
+        font-size: 34px;
     }
 
-    .search-bar{
-        width:180px;
-        height:24px;
+    .navbar-search-bar-container{
+        right: 213px; 
     }
 }
 
@@ -358,12 +383,16 @@
        font-size: 22px;
     }
 
-    .navbar-icons{
+    .navbar-icons,  .navbar-search-bar-container .navbar-icons{
         font-size:32px;
     }
 
     .search-bar{
         width:160px;
+    }
+
+    .navbar-search-bar-container{
+        right: 179px; 
     }
 }
 

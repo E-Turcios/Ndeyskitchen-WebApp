@@ -9,6 +9,11 @@ export default function Navbar() {
 }
 
 function ComputerNavbar() {
+  const [isSearchIconClicked, setIsSearchIconClicked] = useState(false);
+
+  function handleSearchIconClick() {
+    setIsSearchIconClicked(!isSearchIconClicked);
+  }
   return (
     <Headroom>
       <nav className="navbar-container">
@@ -24,8 +29,21 @@ function ComputerNavbar() {
           </div>
         </div>
 
-        <div className="navbar-search-bar-container">
-          <input placeholder="Search our menu" className="search-bar" />
+        <div
+          className="navbar-search-bar-container"
+          style={{ border: !isSearchIconClicked ? 'none' : null }}
+        >
+          {isSearchIconClicked && (
+            <input placeholder="Search our menu" className="search-bar" />
+          )}
+
+          <span
+            style={{ border: !isSearchIconClicked ? 'none' : null }}
+            onClick={handleSearchIconClick}
+            class="material-symbols-outlined navbar-icons"
+          >
+            search
+          </span>
         </div>
         <div className="navbar-icons-container">
           <span className="material-symbols-outlined navbar-icons">
@@ -45,6 +63,11 @@ function ComputerNavbar() {
 
 function MobileNavbar() {
   const [isActive, setIsActive] = useState(false);
+  const [isSearchIconClicked, setIsSearchIconClicked] = useState(false);
+
+  function handleSearchIconClick() {
+    setIsSearchIconClicked(!isSearchIconClicked);
+  }
 
   function hamburgerMenuClicked() {
     setIsActive(!isActive);
@@ -89,7 +112,23 @@ function MobileNavbar() {
           className="hamburger-menu-items"
           style={{ left: isActive ? '0%' : null }}
         >
-          <input placeholder="Search our menu" className="search-bar" />
+          <div
+            className="hamburger-search-bar-container"
+            style={{ border: !isSearchIconClicked ? 'none' : null }}
+          >
+            {isSearchIconClicked && (
+              <input placeholder="Search our menu" className="search-bar" />
+            )}
+
+            <span
+              style={{ border: !isSearchIconClicked ? 'none' : null }}
+              onClick={handleSearchIconClick}
+              class="material-symbols-outlined navbar-icons"
+            >
+              search
+            </span>
+          </div>
+
           <a
             className="hamburger-menu-information"
             href="#menu"
