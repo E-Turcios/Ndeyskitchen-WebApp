@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import PasswordInput from '../components/PasswordInput';
 import { GoogleLogin } from '@react-oauth/google';
+import PasswordInput from '../components/PasswordInput';
+import Image from '../components/Image';
 import jwt_decode from 'jwt-decode';
 
 export default function Signup() {
@@ -83,6 +84,9 @@ export default function Signup() {
 
   return (
     <div className="singup-container">
+      <a className="home-link" href="/">
+        <Image className="img" src={'ndeys-kitchen.png'} />
+      </a>
       <form className="signup-form" onSubmit={handleSubmit}>
         <p className="signup-form-header">
           <strong>Signup</strong>
