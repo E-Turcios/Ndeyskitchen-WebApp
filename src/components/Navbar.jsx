@@ -10,10 +10,8 @@ export default function Navbar() {
 
 function ComputerNavbar() {
   const [isSearchIconClicked, setIsSearchIconClicked] = useState(false);
+  const [searchText, setSearchText] = useState('');
 
-  function handleSearchIconClick() {
-    setIsSearchIconClicked(!isSearchIconClicked);
-  }
   return (
     <Headroom>
       <nav className="navbar-container">
@@ -34,12 +32,25 @@ function ComputerNavbar() {
           style={{ border: !isSearchIconClicked ? 'none' : null }}
         >
           {isSearchIconClicked && (
-            <input placeholder="Search our menu" className="search-bar" />
+            <>
+              <input
+                value={searchText}
+                onChange={event => setSearchText(event.target.value)}
+                placeholder="Search our menu"
+                className="search-bar"
+              />
+              <span
+                class="material-symbols-outlined input-delete"
+                onClick={() => setSearchText('')}
+              >
+                close
+              </span>
+            </>
           )}
 
           <span
             style={{ border: !isSearchIconClicked ? 'none' : null }}
-            onClick={handleSearchIconClick}
+            onClick={() => setIsSearchIconClicked(!isSearchIconClicked)}
             class="material-symbols-outlined navbar-icons"
           >
             search
@@ -64,10 +75,7 @@ function ComputerNavbar() {
 function MobileNavbar() {
   const [isActive, setIsActive] = useState(false);
   const [isSearchIconClicked, setIsSearchIconClicked] = useState(false);
-
-  function handleSearchIconClick() {
-    setIsSearchIconClicked(!isSearchIconClicked);
-  }
+  const [searchText, setSearchText] = useState('');
 
   function hamburgerMenuClicked() {
     setIsActive(!isActive);
@@ -117,12 +125,25 @@ function MobileNavbar() {
             style={{ border: !isSearchIconClicked ? 'none' : null }}
           >
             {isSearchIconClicked && (
-              <input placeholder="Search our menu" className="search-bar" />
+              <>
+                <input
+                  value={searchText}
+                  onChange={event => setSearchText(event.target.value)}
+                  placeholder="Search our menu"
+                  className="search-bar"
+                />
+                <span
+                  class="material-symbols-outlined input-delete"
+                  onClick={() => setSearchText('')}
+                >
+                  close
+                </span>
+              </>
             )}
 
             <span
               style={{ border: !isSearchIconClicked ? 'none' : null }}
-              onClick={handleSearchIconClick}
+              onClick={() => setIsSearchIconClicked(!isSearchIconClicked)}
               class="material-symbols-outlined navbar-icons"
             >
               search
