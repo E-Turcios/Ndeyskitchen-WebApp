@@ -69,7 +69,7 @@
 
 .navbar-search-bar-container{
     position: absolute;
-    right:315px;
+    right: 315px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,26 +79,43 @@
 }
 
 .navbar-search-bar-container:hover{
-    cursor: text;
     border-color: #DC952F;
 }
 
 .search-bar{
-    width:200px;
-    height:34px;
+    width: 200px;
+    height: 34px;
     border: none;
     font-size: 16px;
     text-align: center;  
+}
+
+.search-bar:hover{
+    cursor: text;
 }
 
 .search-bar:focus{
     outline: none; 
 }
 
-
 .navbar-search-bar-container .navbar-icons{
    font-size: 40px;
    border-left: 2px solid #c5c0c0;
+}
+
+.navbar-search-bar-container .navbar-icons:hover::after{
+    transform: scaleX(0);
+    transition: color .3s;
+ }
+
+
+
+.input-delete{
+    color: #c5c0c0;
+}
+
+.input-delete:hover{
+   cursor: pointer
 }
 
 /* Navbar Icons */
@@ -210,9 +227,16 @@
     transition: border .3s;
 }
 
+
+
 .hamburger-search-bar-container .navbar-icons{
   border-left: 2px solid #c5c0c0;
 }
+
+.hamburger-search-bar-container .navbar-icons:hover::after{
+    transform: scaleX(0);
+    transition: color .3s;
+  }
 
 .hamburger-menu-items .search-bar{
    border: none; 

@@ -9,7 +9,6 @@
 }
 
 .login-form-container {
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -69,6 +68,7 @@
 }
 
 @media (max-height: 775px) {
+
     .login-form {
         width: 260px;
         height: 370px;

@@ -15,6 +15,10 @@ body, html {
     width: 115.44px
 }
 
+.home-link .img{
+    width: 140px;
+}
+
 .hide-unhide {
     height: 1.8rem;
     position: absolute;
@@ -89,9 +93,11 @@ body, html {
         height: 30px;
     }
 
-    .logo-img {
-        width: 90px;
+    .home-link .img{
+        width: 115px;
     }
+
+   
 
     .form-btn {
         font-size: 14px;
@@ -110,8 +116,8 @@ body, html {
         margin: 7px auto;
         height: 30px;
     }
-    .logo-img {
-        width: 90px;
+    .home-link .img {
+        width: 115px;
     }
 
     .form-btn {
@@ -146,8 +152,8 @@ body, html {
         margin: 5px auto;
         height: 25px;
     }
-    .logo-img {
-        width: 80px;
+    .home-link .img {
+        width: 95px;
     }
     
     .form-btn {

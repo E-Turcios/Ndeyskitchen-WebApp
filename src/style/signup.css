@@ -9,6 +9,10 @@
     min-height: 490px;
 }
 
+.signup-container .img{
+    width: 140px
+}
+
 .signup-form {
     font-size: 14px;
     color: #000000;
