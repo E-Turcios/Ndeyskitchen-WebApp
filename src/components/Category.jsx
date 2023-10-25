@@ -15,12 +15,9 @@ export default function Category() {
   useSyncExternalStore(filterStore.subscribe, filterStore.getFilter);
 
   function handleCategoryButtonClick(category) {
-    if (category === category) {
-      categoryStore.setId('All');
-    } else {
-      categoryStore.setId(category);
-      filterStore.setId('All');
-    }
+    categoryStore.setId(category);
+    filterStore.setId('All');
+
     setIsSweetButton(category === 'Sweet');
     setIsSavoryButton(category === 'Savory');
     setIsAllButton(category === 'All');
