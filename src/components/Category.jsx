@@ -7,10 +7,7 @@ export default function Category() {
   const [isSweetButton, setIsSweetButton] = useState(false);
   const [isSavoryButton, setIsSavoryButton] = useState(false);
 
-  const category = useSyncExternalStore(
-    categoryStore.subscribe,
-    categoryStore.getCategory
-  );
+  useSyncExternalStore(categoryStore.subscribe, categoryStore.getCategory);
 
   useSyncExternalStore(filterStore.subscribe, filterStore.getFilter);
 
