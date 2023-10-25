@@ -14,28 +14,28 @@ export default function Category() {
 
   useSyncExternalStore(filterStore.subscribe, filterStore.getFilter);
 
-  function handleCategoryButtonClick(event, newCategory) {
-    if (category === newCategory) {
+  function handleCategoryButtonClick(category) {
+    if (category === category) {
       categoryStore.setId('All');
     } else {
-      categoryStore.setId(newCategory);
+      categoryStore.setId(category);
       filterStore.setId('All');
     }
-    setIsSweetButton(newCategory === 'Sweet');
-    setIsSavoryButton(newCategory === 'Savory');
-    setIsAllButton(newCategory === 'All');
+    setIsSweetButton(category === 'Sweet');
+    setIsSavoryButton(category === 'Savory');
+    setIsAllButton(category === 'All');
   }
 
-  function handleSweetButtonClick(event) {
-    handleCategoryButtonClick(event, 'Sweet');
+  function handleSweetButtonClick() {
+    handleCategoryButtonClick('Sweet');
   }
 
-  function handleSavoryButtonClick(event) {
-    handleCategoryButtonClick(event, 'Savory');
+  function handleSavoryButtonClick() {
+    handleCategoryButtonClick('Savory');
   }
 
   function handleAllButtonClick() {
-    handleCategoryButtonClick(null, 'All');
+    handleCategoryButtonClick('All');
   }
 
   return (
@@ -51,7 +51,6 @@ export default function Category() {
         All
       </button>
       <button
-        id="Sweet"
         className={
           isSweetButton
             ? 'category-sweet-salty-btn-on-click'
@@ -62,7 +61,6 @@ export default function Category() {
         Sweet
       </button>
       <button
-        id="Savory"
         className={
           isSavoryButton
             ? 'category-sweet-salty-btn-on-click'
