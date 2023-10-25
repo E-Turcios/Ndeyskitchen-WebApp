@@ -1,5 +1,5 @@
 let notifiers = new Set();
-let buttonId = '';
+let buttonId = 'All';
 
 const filterStore = {
   subscribe(notify) {

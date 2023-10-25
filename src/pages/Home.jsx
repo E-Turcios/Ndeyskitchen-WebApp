@@ -10,6 +10,7 @@ import Footer from '../components/Footer';
 import Loader from '../components/Loader';
 import useAuthContext from '../hooks/useAuthContext';
 import categoryStore from '../stores/categoryStore';
+import filterStore from '../stores/filterStore';
 
 export default function Home() {
   const { dispatch } = useAuthContext();
@@ -19,6 +20,11 @@ export default function Home() {
   const category = useSyncExternalStore(
     categoryStore.subscribe,
     categoryStore.getCategory
+  );
+
+  const filter = useSyncExternalStore(
+    filterStore.subscribe,
+    filterStore.getFilter
   );
 
   const [items, setItems] = useState([]);
@@ -61,19 +67,44 @@ export default function Home() {
 
         <div className="menu-container">
           <div className="menu-content">
-            {category
-              ? items
-                  .filter(item => item.category === category)
-                  .map(item => (
-                    <ItemCard
-                      key={item._id}
-                      name={item.name}
-                      price={item.price}
-                      components={item.components}
-                      src={item.image}
-                    />
-                  ))
-              : items.map(item => (
+            {category === '' &&
+              items
+                .filter(item => filter === 'All' || item.filter === filter)
+                .map(item => (
+                  <ItemCard
+                    key={item._id}
+                    name={item.name}
+                    price={item.price}
+                    components={item.components}
+                    src={item.image}
+                  />
+                ))}
+
+            {category === 'Sweet' &&
+              items
+                .filter(
+                  item =>
+                    item.category === 'Sweet' &&
+                    (filter === 'All' || item.filter === filter)
+                )
+                .map(item => (
+                  <ItemCard
+                    key={item._id}
+                    name={item.name}
+                    price={item.price}
+                    components={item.components}
+                    src={item.image}
+                  />
+                ))}
+
+            {category === 'Savory' &&
+              items
+                .filter(
+                  item =>
+                    item.category === 'Savory' &&
+                    (filter === 'All' || item.filter === filter)
+                )
+                .map(item => (
                   <ItemCard
                     key={item._id}
                     name={item.name}
