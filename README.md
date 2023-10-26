@@ -10,10 +10,13 @@ cd server/
 npm install
 cd ..
 ```
+
 5. Check doker-compose status with ```doker-compose --version```
 
 5a. If there is a version found, run docker-compose with ```docker-compose --build```
+
 5b. If there is no version found, open [Docker Desktop](https://www.docker.com/products/docker-desktop/) that you downloaded then run docker-compose with ```docker-compose --build```
+
 
 6. Load up the database with some items by running:
 
