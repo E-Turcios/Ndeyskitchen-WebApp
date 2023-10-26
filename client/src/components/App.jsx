@@ -28,6 +28,7 @@ export default function App() {
         <div className="pages">
           {user ? (
             <Routes>
+              <Route path="/" element={<Home />} />
               <Route path="/profile" element={<Profile />} />
             </Routes>
           ) : (

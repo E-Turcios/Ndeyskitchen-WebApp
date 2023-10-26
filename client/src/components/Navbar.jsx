@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import Image from '../components/Image';
+import Image from './Image';
 import Headroom from 'react-headroom';
 
 export default function Navbar() {
@@ -39,19 +39,21 @@ function ComputerNavbar() {
                 placeholder="Search our menu"
                 className="search-bar"
               />
-              <span
-                class="material-symbols-outlined input-delete"
-                onClick={() => setSearchText('')}
-              >
-                close
-              </span>
+              {searchText !== '' && (
+                <span
+                  className="material-symbols-outlined input-delete"
+                  onClick={() => setSearchText('')}
+                >
+                  close
+                </span>
+              )}
             </>
           )}
 
           <span
             style={{ border: !isSearchIconClicked ? 'none' : null }}
             onClick={() => setIsSearchIconClicked(!isSearchIconClicked)}
-            class="material-symbols-outlined navbar-icons"
+            className="material-symbols-outlined navbar-icons"
           >
             search
           </span>
@@ -133,7 +135,7 @@ function MobileNavbar() {
                   className="search-bar"
                 />
                 <span
-                  class="material-symbols-outlined input-delete"
+                  className="material-symbols-outlined input-delete"
                   onClick={() => setSearchText('')}
                 >
                   close
@@ -144,7 +146,7 @@ function MobileNavbar() {
             <span
               style={{ border: !isSearchIconClicked ? 'none' : null }}
               onClick={() => setIsSearchIconClicked(!isSearchIconClicked)}
-              class="material-symbols-outlined navbar-icons"
+              className="material-symbols-outlined navbar-icons"
             >
               search
             </span>

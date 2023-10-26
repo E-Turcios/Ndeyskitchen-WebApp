@@ -1,0 +1,53 @@
+{
+    "name": "ndeyskitchen",
+    "version": "0.1.0",
+    "proxy": "http://server:8080",
+    "private": true,
+    "dependencies": {
+        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+        "@fortawesome/fontawesome-svg-core": "^6.4.2",
+        "@fortawesome/free-brands-svg-icons": "^6.4.2",
+        "@fortawesome/free-regular-svg-icons": "^6.4.2",
+        "@fortawesome/free-solid-svg-icons": "^6.4.2",
+        "@fortawesome/react-fontawesome": "^0.2.0",
+        "@react-oauth/google": "^0.11.1",
+        "@reduxjs/toolkit": "^1.9.5",
+        "@testing-library/jest-dom": "^5.17.0",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/user-event": "^13.5.0",
+        "jwt-decode": "^3.1.2",
+        "react-headroom": "^3.2.1",
+        "react-responsive": "^9.0.2",
+        "react-onclickout": "^2.0.8",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.11.2",
+        "react-scripts": "5.0.1",
+        "react-spinners": "^0.13.8",
+        "web-vitals": "^2.1.4"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+      "extends": [
+        "react-app",
+        "react-app/jest"
+      ]
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    }
+  }

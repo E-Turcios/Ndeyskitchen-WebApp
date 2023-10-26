@@ -41,7 +41,7 @@ export default function Home() {
 
       const json = await response.json();
 
-      if (!response.ok) console.log(json.message);
+      if (!response.ok) console.log(json.Message);
 
       setItems(json);
       setIsLoading(false);

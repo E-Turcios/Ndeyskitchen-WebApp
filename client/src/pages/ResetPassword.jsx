@@ -56,7 +56,9 @@ export default function ResetPassword() {
       },
     });
 
-    if (!response.ok) console.log(json.error);
+    const json = await response.json();
+
+    if (!response.ok) console.log(json.Message);
 
     if (response.ok) {
       navigate('/login');

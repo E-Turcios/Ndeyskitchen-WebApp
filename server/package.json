@@ -1,0 +1,29 @@
+{
+    "name": "ndeyskitchen",
+    "version": "0.1.0",
+    "main": "server.js",
+    "private": true,
+    "dependencies": {
+        "bcrypt": "^5.1.0",
+        "chalk": "^4.1.2",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "jsonwebtoken": "^9.0.0",
+        "mongoose": "^7.6.2",
+        "morgan": "^1.10.0",
+        "nodemailer": "^6.9.6"
+    },
+    "scripts": {
+        "dev": "nodemon -L server.js",
+        "test": "jest --detectOpenHandles --watch"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "jest": "^29.5.0",
+        "nodemon": "^3.0.1",
+        "supertest": "^6.3.3"
+    }
+}

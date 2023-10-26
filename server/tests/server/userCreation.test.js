@@ -1,6 +1,6 @@
-const app = require('../../server/index');
+const app = require('../../index');
 const supertest = require('supertest');
-const User = require('../../server/database/models/userModel');
+const User = require('../../database/models/userModel');
 const databaseConnection = require('../database/databaseConnection');
 
 const data = {

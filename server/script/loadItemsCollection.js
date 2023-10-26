@@ -1,5 +1,5 @@
 const Item = require('../database/models/itemModel');
-const DBConnection = require('./DBConnect');
+const mongoose = require('mongoose');
 const chalk = require('chalk');
 
 const image = 'img1.jpeg';
@@ -76,15 +76,22 @@ const itemsData = [
   },
 ];
 
+mongoose
+  .connect('mongodb://localhost:27017/TestDatabase')
+  .then(() => {
+    console.log(chalk.cyan('Database Connection Established'));
+  })
+  .catch(err => console.log(err));
+
 async function loadItemsCollection() {
   try {
-    await DBConnection;
-
     const result = await Item.insertMany(itemsData);
 
     if (result) console.log(chalk.yellow('Items data loaded successfully'));
   } catch (err) {
     console.error(`Error inserting documents: ${err.message}`);
+  } finally {
+    mongoose.connection.close();
   }
 }
 
