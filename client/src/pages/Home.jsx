@@ -1,5 +1,4 @@
 import { React, useState, useEffect, useSyncExternalStore } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import LoyaltyProgramBanner from '../components/LoyaltyProgramBanner';
 import Category from '../components/Category';
@@ -8,15 +7,10 @@ import ItemCard from '../components/ItemCard';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import Loader from '../components/Loader';
-import useAuthContext from '../hooks/useAuthContext';
 import categoryStore from '../stores/categoryStore';
 import filterStore from '../stores/filterStore';
 
 export default function Home() {
-  const { dispatch } = useAuthContext();
-  const { user } = useAuthContext();
-  const navigate = useNavigate();
-
   const category = useSyncExternalStore(
     categoryStore.subscribe,
     categoryStore.getCategory
@@ -48,12 +42,6 @@ export default function Home() {
     }
     getItems();
   }, []);
-
-  function logOut() {
-    localStorage.removeItem('token');
-    dispatch({ type: 'LOGOUT' });
-    navigate('/login');
-  }
 
   return isLoading ? (
     <Loader />

@@ -68,8 +68,6 @@
 /* Search Bar */
 
 .navbar-search-bar-container{
-    position: absolute;
-    right: 315px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,16 +97,8 @@
 }
 
 .navbar-search-bar-container .navbar-icons{
-   font-size: 40px;
    border-left: 2px solid #c5c0c0;
 }
-
-.navbar-search-bar-container .navbar-icons:hover::after{
-    transform: scaleX(0);
-    transition: color .3s;
- }
-
-
 
 .input-delete{
     color: #c5c0c0;
@@ -137,25 +127,6 @@
 .navbar-icons:hover{
     cursor: pointer;
     color:#DC952F;
-}
-
-  
-.navbar-icons::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #DC952F;
-    transform-origin: bottom right;
-    transition: transform .3s ease-out;
-}
-
-.navbar-icons:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
 }
 
 .navbar-btn{
@@ -262,24 +233,6 @@
     cursor: pointer;
     color: #DC952F
    }
-  
-.hamburger-menu-information::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #DC952F;
-    transform-origin: bottom right;
-    transition: transform .3s ease-out;
-}
-
-.hamburger-menu-information:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
 
 .hamburger-menu-navbar-icons-container{
     position: absolute;
@@ -329,8 +282,8 @@
         width: 113px
     }
 
-    .navbar-icons, .navbar-search-bar-container .navbar-icons{
-        font-size:37px;
+    .navbar-icons {
+        font-size: 37px;
     }
 
     .search-bar{
@@ -375,7 +328,7 @@
         width: 110px
     }
 
-    .navbar-icons,  .navbar-search-bar-container .navbar-icons{
+    .navbar-icons{
         font-size: 34px;
     }
 
@@ -407,7 +360,7 @@
        font-size: 22px;
     }
 
-    .navbar-icons,  .navbar-search-bar-container .navbar-icons{
+    .navbar-icons{
         font-size:32px;
     }
 
