@@ -3,12 +3,20 @@
 Install packages and run the server with the following prompts in the terminal:
 
 ```bash
+cd server/
 npm install
-npm run dev
-npm start
+cd ..
+docker-compose up --build
 ```
-Then launch in your preferred browser the link: http://localhost:{$portnumber}/
 
-## ACCESS KEYS REQUIRED
+Load up the database with some items by running:
+
+```bash
+node server/scripts/loadItemsCollection.js
+```
+
+Then launch in your preferred browser the link: http://localhost:8081/
+
+## NO ACCESS KEYS REQUIRED
 
 
