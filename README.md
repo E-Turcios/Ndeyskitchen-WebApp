@@ -10,23 +10,16 @@ cd server/
 npm install
 cd ..
 ```
+5. Check doker-compose status with ```doker-compose --version```
 
-5. Check doker-compose status with :
-
-```bash
-doker-compose --version
-```
-
-5a. If there is no version open [Docker Desktop](https://www.docker.com/products/docker-desktop/) that you downloaded
-5b. Run docker-compose with ```docker-compose --build```
-   
+5a. If there is a version found, run docker-compose with ```docker-compose --build```
+5b. If there is no version found, open [Docker Desktop](https://www.docker.com/products/docker-desktop/) that you downloaded then run docker-compose with ```docker-compose --build```
 
 6. Load up the database with some items by running:
 
 ```bash
 node server/scripts/loadItemsCollection.js
 ```
-
 7. Then launch in your preferred browser the link: http://localhost:8081/
 
 ## NO ACCESS KEYS REQUIRED
