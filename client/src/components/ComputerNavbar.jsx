@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Headroom from 'react-headroom';
 import Image from './Image';
 import useAuthContext from '../hooks/useAuthContext';
@@ -6,6 +7,7 @@ import useAuthContext from '../hooks/useAuthContext';
 export default function ComputerNavbar() {
   const { dispatch } = useAuthContext();
   const { user } = useAuthContext();
+  const navigate = useNavigate();
 
   const [isSearchIconClicked, setIsSearchIconClicked] = useState(false);
   const [searchText, setSearchText] = useState('');
@@ -13,6 +15,10 @@ export default function ComputerNavbar() {
   function logOut() {
     localStorage.removeItem('token');
     dispatch({ type: 'LOGOUT' });
+  }
+
+  function logIn() {
+    navigate('/login');
   }
 
   return (
@@ -80,7 +86,7 @@ export default function ComputerNavbar() {
               </button>
             </a>
           ) : (
-            <a className="navbar-btn-link" href="/login">
+            <a className="navbar-btn-link" onClick={logIn}>
               <button type="button" className="navbar-btn">
                 Login
               </button>
