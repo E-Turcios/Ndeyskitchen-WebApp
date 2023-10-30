@@ -1,9 +1,9 @@
 import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SearchModal from './SearchModal';
 import Headroom from 'react-headroom';
 import Image from './Image';
-
+import SearchModal from './SearchModal';
+import SearchResult from './SearchResult';
 import useAuthContext from '../hooks/useAuthContext';
 
 export default function ComputerNavbar() {
@@ -72,15 +72,8 @@ export default function ComputerNavbar() {
               </span>
             </div>
 
-            <SearchModal>
-              <div className="search-result">
-                <p>Heeeyyy</p>
-
-                <p>Heeeyyy</p>
-                <p>Heeeyyy</p>
-                <p>Heeeyyy</p>
-                <p>Heeeyyy</p>
-              </div>
+            <SearchModal open={searchText !== ''}>
+              <SearchResult searchText={searchText} />
             </SearchModal>
           </div>
 

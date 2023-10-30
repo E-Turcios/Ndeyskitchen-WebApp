@@ -74,17 +74,23 @@
 }
 
 .search-result{
+    background-color: #FFFFFF;
     position: absolute; 
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
     top: 100px;
-    left: 1368px; 
-    width: 245px;
+    left: 1343px; 
+    width: 269px;
     z-index: 1;
-    background-color: rgb(227, 231, 231);
+    border: 2px solid #c5c0c0;
+    border-radius: 5px;  
+}
+
+.search-result p{
+    margin: 3px;
+    padding: 2px;
+    border-bottom: 1px solid #eeeeee;
+    overflow-y: scroll;
 }
 
 .navbar-search-bar-container{
