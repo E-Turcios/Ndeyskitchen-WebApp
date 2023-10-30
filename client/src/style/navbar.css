@@ -67,6 +67,26 @@
 
 /* Search Bar */
 
+.search-field{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.search-result{
+    position: absolute; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    top: 100px;
+    left: 1368px; 
+    width: 245px;
+    z-index: 1;
+    background-color: rgb(227, 231, 231);
+}
+
 .navbar-search-bar-container{
     display: flex;
     align-items: center;

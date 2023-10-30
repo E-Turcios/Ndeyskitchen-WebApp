@@ -1,7 +1,9 @@
 import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import SearchModal from './SearchModal';
 import Headroom from 'react-headroom';
 import Image from './Image';
+
 import useAuthContext from '../hooks/useAuthContext';
 
 export default function ComputerNavbar() {
@@ -37,36 +39,49 @@ export default function ComputerNavbar() {
         </div>
 
         <div className="navbar-icons-container">
-          <div
-            className="navbar-search-bar-container"
-            style={{ border: !isSearchIconClicked ? 'none' : null }}
-          >
-            {isSearchIconClicked && (
-              <>
-                <input
-                  value={searchText}
-                  onChange={event => setSearchText(event.target.value)}
-                  placeholder="Search our menu"
-                  className="search-bar"
-                />
-                {searchText !== '' && (
-                  <span
-                    className="material-symbols-outlined input-delete"
-                    onClick={() => setSearchText('')}
-                  >
-                    close
-                  </span>
-                )}
-              </>
-            )}
-
-            <span
+          <div className="search-field">
+            <div
+              className="navbar-search-bar-container"
               style={{ border: !isSearchIconClicked ? 'none' : null }}
-              onClick={() => setIsSearchIconClicked(!isSearchIconClicked)}
-              className="material-symbols-outlined navbar-icons"
             >
-              search
-            </span>
+              {isSearchIconClicked && (
+                <>
+                  <input
+                    value={searchText}
+                    onChange={event => setSearchText(event.target.value)}
+                    placeholder="Search our menu"
+                    className="search-bar"
+                  />
+                  {searchText !== '' && (
+                    <span
+                      className="material-symbols-outlined input-delete"
+                      onClick={() => setSearchText('')}
+                    >
+                      close
+                    </span>
+                  )}
+                </>
+              )}
+
+              <span
+                style={{ border: !isSearchIconClicked ? 'none' : null }}
+                onClick={() => setIsSearchIconClicked(!isSearchIconClicked)}
+                className="material-symbols-outlined navbar-icons"
+              >
+                search
+              </span>
+            </div>
+
+            <SearchModal>
+              <div className="search-result">
+                <p>Heeeyyy</p>
+
+                <p>Heeeyyy</p>
+                <p>Heeeyyy</p>
+                <p>Heeeyyy</p>
+                <p>Heeeyyy</p>
+              </div>
+            </SearchModal>
           </div>
 
           <span className="material-symbols-outlined navbar-icons">
