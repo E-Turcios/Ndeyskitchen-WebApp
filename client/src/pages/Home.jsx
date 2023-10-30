@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import Loader from '../components/Loader';
 import categoryStore from '../stores/categoryStore';
 import filterStore from '../stores/filterStore';
+import useFetchedItems from '../hooks/useFetchedItems';
 
 export default function Home() {
   const category = useSyncExternalStore(
@@ -21,27 +22,7 @@ export default function Home() {
     filterStore.getFilter
   );
 
-  const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function getItems() {
-      const response = await fetch('api/items', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      const json = await response.json();
-
-      if (!response.ok) console.log(json.Message);
-
-      setItems(json);
-      setIsLoading(false);
-    }
-    getItems();
-  }, []);
+  const { items, isLoading } = useFetchedItems();
 
   return isLoading ? (
     <Loader />
