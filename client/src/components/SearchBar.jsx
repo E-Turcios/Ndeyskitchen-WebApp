@@ -6,6 +6,8 @@ export default function SearchBar() {
   const [isSearchIconClicked, setIsSearchIconClicked] = useState(false);
   const [searchText, setSearchText] = useState('');
 
+  if (searchText === '') searchResultStore.setResult('');
+
   return (
     <>
       <div className="search-field">
@@ -24,7 +26,7 @@ export default function SearchBar() {
               {searchText !== '' && (
                 <span
                   className="material-symbols-outlined input-delete"
-                  onClick={() => searchResultStore.setResult(setSearchText(''))}
+                  onClick={() => setSearchText('')}
                 >
                   close
                 </span>
