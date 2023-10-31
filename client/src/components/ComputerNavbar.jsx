@@ -35,7 +35,7 @@ export default function ComputerNavbar() {
         </div>
 
         <div className="navbar-icons-container">
-          <SearchBar />
+          <SearchBar className="navbar-search-bar-container" />
 
           <span className="material-symbols-outlined navbar-icons">
             shopping_bag
