@@ -91,6 +91,12 @@
     padding: 2px;
     border-bottom: 1px solid #eeeeee;
     overflow-y: scroll;
+    transition: color .3s
+}
+
+.search-result p:hover{
+   cursor: pointer;
+   color: #DC952F
 }
 
 .navbar-search-bar-container{
