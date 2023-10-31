@@ -6,7 +6,7 @@ const image = 'img1.jpeg';
 
 const itemsData = [
   {
-    name: 'CHOCOLATE CAKE',
+    name: 'Chocolate Cake',
     category: 'Sweet',
     filter: 'Cakes',
     components: 'Chocolate filling, vanilla icing',
@@ -16,7 +16,7 @@ const itemsData = [
   },
 
   {
-    name: 'WRAP',
+    name: 'Wrap',
     category: 'Savory',
     filter: 'Wraps',
     components: 'Tomato sauce, cheese',
@@ -26,7 +26,7 @@ const itemsData = [
   },
 
   {
-    name: 'PUMPKIN CAKE',
+    name: 'Pumpkin Cake',
     category: 'Sweet',
     filter: 'Cakes',
     components: 'Chocolate filling, chocolate icing',
@@ -46,7 +46,7 @@ const itemsData = [
   },
 
   {
-    name: 'VANILLA CAKE',
+    name: 'Vanilla Cake',
     category: 'Sweet',
     filter: 'Cakes',
     components: 'Vanilla filling, vanilla icing',
@@ -56,7 +56,7 @@ const itemsData = [
   },
 
   {
-    name: 'PIZZA',
+    name: 'Pizza',
     category: 'Savory',
     filter: 'Pizza',
     components: 'Tomato sauce, cheese',
@@ -66,7 +66,7 @@ const itemsData = [
   },
 
   {
-    name: 'CHICKEN WINGS',
+    name: 'Chicken Wings',
     category: 'Savory',
     filter: 'Wings',
     components: 'BBQ sauce',
