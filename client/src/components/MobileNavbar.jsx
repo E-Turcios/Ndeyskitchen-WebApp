@@ -2,6 +2,7 @@ import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Headroom from 'react-headroom';
 import Image from './Image';
+import SearchBar from './SearchBar';
 import useAuthContext from '../hooks/useAuthContext';
 
 export default function MobileNavbar() {
@@ -10,8 +11,6 @@ export default function MobileNavbar() {
   const navigate = useNavigate();
 
   const [isActive, setIsActive] = useState(false);
-  const [isSearchIconClicked, setIsSearchIconClicked] = useState(false);
-  const [searchText, setSearchText] = useState('');
 
   function hamburgerMenuClicked() {
     setIsActive(!isActive);
@@ -65,37 +64,10 @@ export default function MobileNavbar() {
           className="hamburger-menu-items"
           style={{ left: isActive ? '0%' : null }}
         >
-          <div
+          <SearchBar
             className="hamburger-search-bar-container"
-            style={{ border: !isSearchIconClicked ? 'none' : null }}
-          >
-            {isSearchIconClicked && (
-              <>
-                <input
-                  value={searchText}
-                  onChange={event => setSearchText(event.target.value)}
-                  placeholder="Search our menu"
-                  className="search-bar"
-                />
-                {searchText !== '' && (
-                  <span
-                    className="material-symbols-outlined input-delete"
-                    onClick={() => setSearchText('')}
-                  >
-                    close
-                  </span>
-                )}
-              </>
-            )}
-
-            <span
-              style={{ border: !isSearchIconClicked ? 'none' : null }}
-              onClick={() => setIsSearchIconClicked(!isSearchIconClicked)}
-              className="material-symbols-outlined navbar-icons"
-            >
-              search
-            </span>
-          </div>
+            closeHamburgerMenu={hamburgerMenuClicked}
+          />
 
           <a
             className="hamburger-menu-information"

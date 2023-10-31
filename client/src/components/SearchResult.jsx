@@ -2,7 +2,7 @@ import React from 'react';
 import useFetchedItems from '../hooks/useFetchedItems';
 import searchResultStore from '../stores/searchResultStore';
 
-export default function SearchResult({ open, searchText }) {
+export default function SearchResult({ open, searchText, closeHamburgerMenu }) {
   const { items, isLoading } = useFetchedItems();
 
   const filteredItems = items.filter(item =>
@@ -18,7 +18,13 @@ export default function SearchResult({ open, searchText }) {
           <p>No result.</p>
         ) : (
           filteredItems.map((item, id) => (
-            <p key={id} onClick={() => searchResultStore.setResult(item.name)}>
+            <p
+              key={id}
+              onClick={() => {
+                searchResultStore.setResult(item.name);
+                closeHamburgerMenu();
+              }}
+            >
               {item.name}
             </p>
           ))

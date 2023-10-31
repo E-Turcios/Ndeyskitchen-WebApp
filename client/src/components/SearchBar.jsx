@@ -3,7 +3,7 @@ import SearchResult from './SearchResult';
 import searchResultStore from '../stores/searchResultStore';
 import useOnclickOutside from 'react-cool-onclickoutside';
 
-export default function SearchBar() {
+export default function SearchBar(props) {
   const [isSearchIconClicked, setIsSearchIconClicked] = useState(false);
   const [searchText, setSearchText] = useState('');
   const [open, setOpen] = useState(false);
@@ -25,7 +25,7 @@ export default function SearchBar() {
     <>
       <div className="search-field" ref={ref}>
         <div
-          className="navbar-search-bar-container"
+          className={props.className}
           style={{ border: !isSearchIconClicked ? 'none' : null }}
         >
           {isSearchIconClicked && (
@@ -56,7 +56,11 @@ export default function SearchBar() {
           </span>
         </div>
 
-        <SearchResult open={open} searchText={searchText} />
+        <SearchResult
+          open={open}
+          searchText={searchText}
+          closeHamburgerMenu={props.closeHamburgerMenu}
+        />
       </div>
     </>
   );
