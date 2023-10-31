@@ -2,18 +2,13 @@ import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Headroom from 'react-headroom';
 import Image from './Image';
-import SearchModal from './SearchModal';
-import SearchResult from './SearchResult';
+import SearchBar from './SearchBar';
 import useAuthContext from '../hooks/useAuthContext';
-import searchResultStore from '../stores/searchResultStore';
 
 export default function ComputerNavbar() {
   const { dispatch } = useAuthContext();
   const { user } = useAuthContext();
   const navigate = useNavigate();
-
-  const [isSearchIconClicked, setIsSearchIconClicked] = useState(false);
-  const [searchText, setSearchText] = useState('');
 
   function logOut() {
     localStorage.removeItem('token');
@@ -40,45 +35,7 @@ export default function ComputerNavbar() {
         </div>
 
         <div className="navbar-icons-container">
-          <div className="search-field">
-            <div
-              className="navbar-search-bar-container"
-              style={{ border: !isSearchIconClicked ? 'none' : null }}
-            >
-              {isSearchIconClicked && (
-                <>
-                  <input
-                    value={searchText}
-                    onChange={event => setSearchText(event.target.value)}
-                    placeholder="Search our menu"
-                    className="search-bar"
-                  />
-                  {searchText !== '' && (
-                    <span
-                      className="material-symbols-outlined input-delete"
-                      onClick={() =>
-                        searchResultStore.setResult(setSearchText(''))
-                      }
-                    >
-                      close
-                    </span>
-                  )}
-                </>
-              )}
-
-              <span
-                style={{ border: !isSearchIconClicked ? 'none' : null }}
-                onClick={() => setIsSearchIconClicked(!isSearchIconClicked)}
-                className="material-symbols-outlined navbar-icons"
-              >
-                search
-              </span>
-            </div>
-
-            <SearchModal open={searchText !== ''}>
-              <SearchResult searchText={searchText} />
-            </SearchModal>
-          </div>
+          <SearchBar />
 
           <span className="material-symbols-outlined navbar-icons">
             shopping_bag

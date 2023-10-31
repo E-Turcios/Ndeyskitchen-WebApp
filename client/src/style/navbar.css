@@ -44,7 +44,7 @@
 .navbar-information a:hover {
     cursor: pointer;
     color: #DC952F
-   }
+}
   
 .navbar-information a::after {
     content: '';
@@ -57,13 +57,12 @@
     background-color: #DC952F;
     transform-origin: bottom right;
     transition: transform .3s ease-out;
-  }
+}
 
   .navbar-information a:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
-  }
-
+}
 
 /* Search Bar */
 
@@ -75,13 +74,8 @@
 
 .search-result{
     background-color: #FFFFFF;
-    position: absolute; 
     display: flex;
     flex-direction: column;
-    top: 100px;
-    left: 1343px; 
-    width: 269px;
-    z-index: 1;
     border: 2px solid #c5c0c0;
     border-radius: 5px;  
 }
