@@ -229,15 +229,19 @@
 }
 
 
-
 .hamburger-search-bar-container .navbar-icons{
   border-left: 2px solid #c5c0c0;
+}
+
+.hamburger-menu-items .search-result{
+    width: 300px;
+    top: 46px;
 }
 
 .hamburger-search-bar-container .navbar-icons:hover::after{
     transform: scaleX(0);
     transition: color .3s;
-  }
+}
 
 .hamburger-menu-items .search-bar{
    border: none; 
@@ -495,6 +499,11 @@
         width: 200px;
         height: 35px;
         font-size: 17px;
+    }
+
+    .hamburger-menu-items .search-result{
+        width: 280px;
+        top: 50px;
     }
 
     .navbar-btn{
