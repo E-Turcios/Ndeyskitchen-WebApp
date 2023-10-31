@@ -56,6 +56,7 @@ export default function Home() {
                 ))}
 
             {category === 'All' &&
+              searchResult === '' &&
               items
                 .filter(item => filter === 'All' || item.filter === filter)
                 .map(item => (
@@ -69,6 +70,7 @@ export default function Home() {
                 ))}
 
             {category === 'Sweet' &&
+              searchResult === '' &&
               items
                 .filter(item => filter === 'All' || item.filter === filter)
                 .map(item => (
@@ -82,6 +84,7 @@ export default function Home() {
                 ))}
 
             {category === 'Savory' &&
+              searchResult === '' &&
               items
                 .filter(item => filter === 'All' || item.filter === filter)
                 .map(item => (
