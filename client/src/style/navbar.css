@@ -74,8 +74,12 @@
 
 .search-result{
     background-color: #FFFFFF;
+    position: absolute;
     display: flex;
     flex-direction: column;
+    width: 270px;
+    top: 46px;
+    z-index: 1;
     border: 2px solid #c5c0c0;
     border-radius: 5px;  
 }
@@ -321,6 +325,11 @@
     .navbar-search-bar-container{
         right: 259px; 
     }
+
+    .search-result{
+        width: 255px;
+        top: 43px;
+    }
 }
 
 @media (max-width: 1450px) {
@@ -332,6 +341,10 @@
     .navbar-start .img{
         width: 110px
     }
+
+    .search-result{
+        top: 40px;
+    }    
 }
 
 
@@ -360,6 +373,11 @@
 
     .navbar-search-bar-container{
         right: 213px; 
+    }
+
+    .search-result{
+        width: 223px;
+        top: 38px;
     }
 }
 
