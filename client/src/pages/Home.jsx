@@ -1,4 +1,4 @@
-import { React, useState, useEffect, useSyncExternalStore } from 'react';
+import { React, useSyncExternalStore } from 'react';
 import Navbar from '../components/Navbar';
 import LoyaltyProgramBanner from '../components/LoyaltyProgramBanner';
 import Category from '../components/Category';
@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import Loader from '../components/Loader';
 import categoryStore from '../stores/categoryStore';
 import filterStore from '../stores/filterStore';
+import searchResultStore from '../stores/searchResultStore';
 import useFetchedItems from '../hooks/useFetchedItems';
 
 export default function Home() {
@@ -20,6 +21,11 @@ export default function Home() {
   const filter = useSyncExternalStore(
     filterStore.subscribe,
     filterStore.getFilter
+  );
+
+  const searchResult = useSyncExternalStore(
+    searchResultStore.subscribe,
+    searchResultStore.getResult
   );
 
   const { items, isLoading } = useFetchedItems();
@@ -36,6 +42,19 @@ export default function Home() {
 
         <div className="menu-container">
           <div className="menu-content">
+            {searchResult !== '' &&
+              items
+                .filter(item => item.name === searchResult)
+                .map(item => (
+                  <ItemCard
+                    key={item._id}
+                    name={item.name}
+                    price={item.price}
+                    components={item.components}
+                    src={item.image}
+                  />
+                ))}
+
             {category === 'All' &&
               items
                 .filter(item => filter === 'All' || item.filter === filter)
