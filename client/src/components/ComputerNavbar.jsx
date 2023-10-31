@@ -35,7 +35,12 @@ export default function ComputerNavbar() {
         </div>
 
         <div className="navbar-icons-container">
-          <SearchBar className="navbar-search-bar-container" />
+          <SearchBar
+            className="navbar-search-bar-container"
+            closeHamburgerMenu={() => {
+              return;
+            }}
+          />
 
           <span className="material-symbols-outlined navbar-icons">
             shopping_bag
