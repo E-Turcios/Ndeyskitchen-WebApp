@@ -5,6 +5,7 @@ import Image from './Image';
 import SearchModal from './SearchModal';
 import SearchResult from './SearchResult';
 import useAuthContext from '../hooks/useAuthContext';
+import searchResultStore from '../stores/searchResultStore';
 
 export default function ComputerNavbar() {
   const { dispatch } = useAuthContext();
@@ -55,7 +56,9 @@ export default function ComputerNavbar() {
                   {searchText !== '' && (
                     <span
                       className="material-symbols-outlined input-delete"
-                      onClick={() => setSearchText('')}
+                      onClick={() =>
+                        searchResultStore.setResult(setSearchText(''))
+                      }
                     >
                       close
                     </span>

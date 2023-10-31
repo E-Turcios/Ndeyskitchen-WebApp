@@ -1,5 +1,6 @@
-import React from 'react';
+import { React } from 'react';
 import useFetchedItems from '../hooks/useFetchedItems';
+import searchResultStore from '../stores/searchResultStore';
 
 export default function SearchResult({ searchText }) {
   const { items, isLoading } = useFetchedItems();
@@ -14,7 +15,11 @@ export default function SearchResult({ searchText }) {
         <p>Searching...</p>
       ) : (
         filteredItems.map((item, id) => {
-          return <p key={id}>{item.name}</p>;
+          return (
+            <p key={id} onClick={() => searchResultStore.setResult(item.name)}>
+              {item.name}
+            </p>
+          );
         })
       )}
     </div>
