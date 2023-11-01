@@ -12,8 +12,6 @@ export default function SearchBar(props) {
     setOpen(searchText !== '');
   }, [searchText]);
 
-  console.log(open);
-
   const ref = useOnclickOutside(() => {
     setIsSearchIconClicked(false);
     setOpen(false);
