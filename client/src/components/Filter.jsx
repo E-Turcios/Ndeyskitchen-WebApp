@@ -4,13 +4,20 @@ import categoryStore from '../stores/categoryStore';
 import filterStore from '../stores/filterStore';
 import searchResultStore from '../stores/searchResultStore';
 
-const ALL = 'All';
-const CAKES = 'Cakes';
-const CUPCAKES = 'Cupcakes';
-const MILKSHAKES = 'Milkshakes';
-const PIZZA = 'Pizza';
-const WRAPS = 'Wraps';
-const WINGS = 'Wings';
+const filterObj = {
+  ALL: 'All',
+  CAKES: 'Cakes',
+  CUPCAKES: 'Cupcakes',
+  MILKSHAKES: 'Milkshakes',
+  PIZZA: 'Pizza',
+  WRAPS: 'Wrap',
+  WINGS: 'Wings',
+  COOKIES: 'Cookies',
+  FRUIT_PLATTER: 'Fruit Platter',
+  DESSERT_CUPS: 'Dessert Cups',
+  BREAK_FAST_BOX: 'Breakfast Box',
+  SNACKS: 'Snacks',
+};
 
 export default function Filter() {
   const [isClicked, setIsClicked] = useState(false);
@@ -27,6 +34,8 @@ export default function Filter() {
     filterStore.getFilter
   );
 
+  console.log(filter);
+
   function arrowHandleClick() {
     setIsClicked(!isClicked);
   }
@@ -41,8 +50,10 @@ export default function Filter() {
       category === 'All' && (
         <>
           <button
-            className={filter === ALL ? 'clicked-button' : 'filter-button'}
-            onClick={() => handleFilterClick(ALL)}
+            className={
+              filter === filterObj.ALL ? 'clicked-button' : 'filter-button'
+            }
+            onClick={() => handleFilterClick(filterObj.ALL)}
           >
             All
           </button>
@@ -58,30 +69,61 @@ export default function Filter() {
       <>
         {category === 'Sweet' && (
           <button
-            className={filter === ALL ? 'clicked-button' : 'filter-button'}
-            onClick={() => handleFilterClick(ALL)}
+            className={
+              filter === filterObj.ALL ? 'clicked-button' : 'filter-button'
+            }
+            onClick={() => handleFilterClick(filterObj.ALL)}
           >
             All Sweets
           </button>
         )}
 
         <button
-          className={filter === CAKES ? 'clicked-button' : 'filter-button'}
-          onClick={() => handleFilterClick(CAKES)}
+          className={
+            filter === filterObj.CAKES ? 'clicked-button' : 'filter-button'
+          }
+          onClick={() => handleFilterClick(filterObj.CAKES)}
         >
-          Cakes
+          {filterObj.CAKES}
+        </button>
+
+        <button
+          className={
+            filter === filterObj.CUPCAKES ? 'clicked-button' : 'filter-button'
+          }
+          onClick={() => handleFilterClick(filterObj.CUPCAKES)}
+        >
+          {filterObj.CUPCAKES}
+        </button>
+
+        <button
+          className={
+            filter === filterObj.FRUIT_PLATTER
+              ? 'clicked-button'
+              : 'filter-button'
+          }
+          onClick={() => handleFilterClick(filterObj.FRUIT_PLATTER)}
+        >
+          {filterObj.FRUIT_PLATTER}
         </button>
         <button
-          className={filter === CUPCAKES ? 'clicked-button' : 'filter-button'}
-          onClick={() => handleFilterClick(CUPCAKES)}
+          className={
+            filter === filterObj.DESSERT_CUPS
+              ? 'clicked-button'
+              : 'filter-button'
+          }
+          onClick={() => handleFilterClick(filterObj.DESSERT_CUPS)}
         >
-          Cupcakes
+          {filterObj.DESSERT_CUPS}
         </button>
+
         <button
-          className={filter === MILKSHAKES ? 'clicked-button' : 'filter-button'}
-          onClick={() => handleFilterClick(MILKSHAKES)}
+          className={
+            filter === filterObj.COOKIES ? 'clicked-button' : 'filter-button'
+          }
+          onClick={() => handleFilterClick(filterObj.COOKIES)}
         >
-          Milkshakes
+          {filterObj.COOKIES}
         </button>
       </>
     );
@@ -92,29 +134,31 @@ export default function Filter() {
       <>
         {category === 'Savory' && (
           <button
-            className={filter === ALL ? 'clicked-button' : 'filter-button'}
-            onClick={() => handleFilterClick(ALL)}
+            className={
+              filter === filterObj.ALL ? 'clicked-button' : 'filter-button'
+            }
+            onClick={() => handleFilterClick(filterObj.ALL)}
           >
             All Savory
           </button>
         )}
         <button
-          className={filter === PIZZA ? 'clicked-button' : 'filter-button'}
-          onClick={() => handleFilterClick(PIZZA)}
+          className={
+            filter === filterObj.SNACKS ? 'clicked-button' : 'filter-button'
+          }
+          onClick={() => handleFilterClick(filterObj.SNACKS)}
         >
-          Pizza
+          {filterObj.SNACKS}
         </button>
         <button
-          className={filter === WRAPS ? 'clicked-button' : 'filter-button'}
-          onClick={() => handleFilterClick(WRAPS)}
+          className={
+            filter === filterObj.BREAK_FAST_BOX
+              ? 'clicked-button'
+              : 'filter-button'
+          }
+          onClick={() => handleFilterClick(filterObj.BREAK_FAST_BOX)}
         >
-          Wrap
-        </button>
-        <button
-          className={filter === WINGS ? 'clicked-button' : 'filter-button'}
-          onClick={() => handleFilterClick(WINGS)}
-        >
-          Wings
+          {filterObj.BREAK_FAST_BOX}
         </button>
       </>
     );
