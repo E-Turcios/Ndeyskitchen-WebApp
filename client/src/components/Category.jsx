@@ -1,19 +1,17 @@
 import { React, useState, useSyncExternalStore } from 'react';
 import categoryStore from '../stores/categoryStore';
 import filterStore from '../stores/filterStore';
+import searchResultStore from '../stores/searchResultStore';
 
 export default function Category() {
   const [isAllButton, setIsAllButton] = useState(true);
   const [isSweetButton, setIsSweetButton] = useState(false);
   const [isSavoryButton, setIsSavoryButton] = useState(false);
 
-  useSyncExternalStore(categoryStore.subscribe, categoryStore.getCategory);
-
-  useSyncExternalStore(filterStore.subscribe, filterStore.getFilter);
-
   function handleCategoryButtonClick(category) {
     categoryStore.setId(category);
     filterStore.setId('All');
+    searchResultStore.setResult('');
 
     setIsSweetButton(category === 'Sweet');
     setIsSavoryButton(category === 'Savory');

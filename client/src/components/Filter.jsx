@@ -2,6 +2,7 @@ import { React, useState, useSyncExternalStore } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import categoryStore from '../stores/categoryStore';
 import filterStore from '../stores/filterStore';
+import searchResultStore from '../stores/searchResultStore';
 
 const ALL = 'All';
 const CAKES = 'Cakes';
@@ -32,6 +33,7 @@ export default function Filter() {
 
   function handleFilterClick(filterId) {
     filterStore.setId(filterId);
+    searchResultStore.setResult('');
   }
 
   function All() {
