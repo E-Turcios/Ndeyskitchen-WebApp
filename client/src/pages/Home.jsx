@@ -28,6 +28,8 @@ export default function Home() {
     searchResultStore.getResult
   );
 
+  if (searchResult) filterStore.setId('');
+
   const { items, isLoading } = useFetchedItems();
 
   return isLoading ? (
