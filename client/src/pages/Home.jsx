@@ -72,7 +72,11 @@ export default function Home() {
             {category === 'Sweet' &&
               searchResult === '' &&
               items
-                .filter(item => filter === 'All' || item.filter === filter)
+                .filter(
+                  item =>
+                    (filter === 'All' && item.category === category) ||
+                    item.filter === filter
+                )
                 .map(item => (
                   <ItemCard
                     key={item._id}
@@ -86,7 +90,11 @@ export default function Home() {
             {category === 'Savory' &&
               searchResult === '' &&
               items
-                .filter(item => filter === 'All' || item.filter === filter)
+                .filter(
+                  item =>
+                    (filter === 'All' && item.category === category) ||
+                    item.filter === filter
+                )
                 .map(item => (
                   <ItemCard
                     key={item._id}
