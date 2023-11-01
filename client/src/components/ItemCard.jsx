@@ -3,7 +3,10 @@ import Image from './Image';
 
 export default function ItemCard(props) {
   function truncateComponentList(components) {
-    if (components.length > 35) return components.slice(0, 35) + '...';
+    const maxLength = 35;
+
+    if (components.length > maxLength)
+      return components.slice(0, maxLength) + '...';
     return components;
   }
   return (
