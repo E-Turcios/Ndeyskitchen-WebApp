@@ -6,15 +6,18 @@ import searchResultStore from '../stores/searchResultStore';
 
 const filterObj = {
   ALL: 'All',
+};
+
+const sweetFilter = {
   CAKES: 'Cakes',
   CUPCAKES: 'Cupcakes',
-  MILKSHAKES: 'Milkshakes',
-  PIZZA: 'Pizza',
-  WRAPS: 'Wrap',
-  WINGS: 'Wings',
   COOKIES: 'Cookies',
   FRUIT_PLATTER: 'Fruit Platter',
   DESSERT_CUPS: 'Dessert Cups',
+};
+
+const savoryFilter = {
+  WINGS: 'Wings',
   BREAK_FAST_BOX: 'Breakfast Box',
   SNACKS: 'Snacks',
 };
@@ -78,53 +81,19 @@ export default function Filter() {
           </button>
         )}
 
-        <button
-          className={
-            filter === filterObj.CAKES ? 'clicked-button' : 'filter-button'
-          }
-          onClick={() => handleFilterClick(filterObj.CAKES)}
-        >
-          {filterObj.CAKES}
-        </button>
-
-        <button
-          className={
-            filter === filterObj.CUPCAKES ? 'clicked-button' : 'filter-button'
-          }
-          onClick={() => handleFilterClick(filterObj.CUPCAKES)}
-        >
-          {filterObj.CUPCAKES}
-        </button>
-
-        <button
-          className={
-            filter === filterObj.FRUIT_PLATTER
-              ? 'clicked-button'
-              : 'filter-button'
-          }
-          onClick={() => handleFilterClick(filterObj.FRUIT_PLATTER)}
-        >
-          {filterObj.FRUIT_PLATTER}
-        </button>
-        <button
-          className={
-            filter === filterObj.DESSERT_CUPS
-              ? 'clicked-button'
-              : 'filter-button'
-          }
-          onClick={() => handleFilterClick(filterObj.DESSERT_CUPS)}
-        >
-          {filterObj.DESSERT_CUPS}
-        </button>
-
-        <button
-          className={
-            filter === filterObj.COOKIES ? 'clicked-button' : 'filter-button'
-          }
-          onClick={() => handleFilterClick(filterObj.COOKIES)}
-        >
-          {filterObj.COOKIES}
-        </button>
+        {Object.keys(sweetFilter).map(filterKey => (
+          <button
+            key={filterKey}
+            className={
+              filter === sweetFilter[filterKey]
+                ? 'clicked-button'
+                : 'filter-button'
+            }
+            onClick={() => handleFilterClick(sweetFilter[filterKey])}
+          >
+            {sweetFilter[filterKey]}
+          </button>
+        ))}
       </>
     );
   }
@@ -142,24 +111,19 @@ export default function Filter() {
             All Savory
           </button>
         )}
-        <button
-          className={
-            filter === filterObj.SNACKS ? 'clicked-button' : 'filter-button'
-          }
-          onClick={() => handleFilterClick(filterObj.SNACKS)}
-        >
-          {filterObj.SNACKS}
-        </button>
-        <button
-          className={
-            filter === filterObj.BREAK_FAST_BOX
-              ? 'clicked-button'
-              : 'filter-button'
-          }
-          onClick={() => handleFilterClick(filterObj.BREAK_FAST_BOX)}
-        >
-          {filterObj.BREAK_FAST_BOX}
-        </button>
+        {Object.keys(savoryFilter).map(filterKey => (
+          <button
+            key={filterKey}
+            className={
+              filter === savoryFilter[filterKey]
+                ? 'clicked-button'
+                : 'filter-button'
+            }
+            onClick={() => handleFilterClick(savoryFilter[filterKey])}
+          >
+            {savoryFilter[filterKey]}
+          </button>
+        ))}
       </>
     );
   }
