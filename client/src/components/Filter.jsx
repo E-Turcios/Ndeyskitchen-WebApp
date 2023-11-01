@@ -111,6 +111,7 @@ export default function Filter() {
             All Savory
           </button>
         )}
+
         {Object.keys(savoryFilter).map(filterKey => (
           <button
             key={filterKey}
