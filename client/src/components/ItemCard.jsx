@@ -2,6 +2,10 @@ import React from 'react';
 import Image from './Image';
 
 export default function ItemCard(props) {
+  function truncateComponentList(components) {
+    if (components.length > 31) return components.slice(0, 5) + '...';
+    return components;
+  }
   return (
     <div className="item-container">
       <div className="item-card-container">
@@ -13,7 +17,7 @@ export default function ItemCard(props) {
         </div>
         <p className="item-name">{props.name}</p>
         <div className="item-component-container">
-          <i>{props.components}</i>
+          <i>{truncateComponentList(props.components)}</i>
         </div>
 
         <button className="buy-item-btn">
