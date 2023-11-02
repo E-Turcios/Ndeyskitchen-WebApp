@@ -32,7 +32,7 @@ const itemsData = [
     components: 'Vanilla + Red Velvet Tiers, Strawberry + Cream Cheese Filling',
     price: 9000,
     image: image.weddingCake,
-    alt: 'image',
+    alt: '2-Tier Wedding Cake',
   },
   {
     name: 'Chocolate Overload Cake',
@@ -41,16 +41,16 @@ const itemsData = [
     components: 'Chocolate Ganache, White Chocolate Buttercream',
     price: 6500,
     image: image.chocolateOverload,
-    alt: 'image',
+    alt: 'Chocolate Overload Cake',
   },
   {
-    name: ' 12 Chocolate Cupcakes',
+    name: '12 Chocolate Cupcakes',
     category: 'Sweet',
     filter: filter.CUPCAKES,
     components: 'White Chocolate Buttercream',
     price: 2000,
     image: image.pinkFloral,
-    alt: 'image',
+    alt: '12 Chocolate Cupcakes',
   },
   {
     name: 'Sugar Cookies',
@@ -59,7 +59,7 @@ const itemsData = [
     components: '25 Sugar Cookies',
     price: 2500,
     image: image.pinkFloral,
-    alt: 'image',
+    alt: 'Sugar Cookies',
   },
   {
     name: 'Biscoff Drip Cake',
@@ -69,7 +69,7 @@ const itemsData = [
       'Vanilla Cake, White Chocolate Biscoff Buttercream, Biscoff Spread',
     price: 5000,
     image: image.biscoffCake,
-    alt: 'image',
+    alt: 'Biscoff Drip Cake',
   },
   {
     name: 'Fruit Platter',
@@ -78,7 +78,7 @@ const itemsData = [
     components: 'Watermelon, Pineapple, Orange, Mandarine, Grapes',
     price: 2500,
     image: image.fruitPlatter,
-    alt: 'image',
+    alt: 'Fruit Platter',
   },
   {
     name: 'Cheesecake Dessert Cups',
@@ -88,7 +88,7 @@ const itemsData = [
       'Chocolate Mousse, Oreo Cream, Kinder Bueno/Ferrero Rocher, Biscoff Cream',
     price: 2500,
     image: image.pinkFloral,
-    alt: 'image',
+    alt: 'Cheesecake Dessert Cups',
   },
   {
     name: 'Finger Licking Snacks',
@@ -98,7 +98,7 @@ const itemsData = [
       '(5 Each) Mini Burgers, Mini Pizza, Chicken Batbout, Hotdogs, Beef Wraps',
     price: 3000,
     image: image.snacks,
-    alt: 'image',
+    alt: 'Finger Licking Snacks',
   },
   {
     name: 'Breakfast Box',
@@ -108,7 +108,7 @@ const itemsData = [
       'Wings, Spaghettis, Sardine Sandwich, Meat Pie, Waffles, Yogurt, Fruits (Varies Weekly)',
     price: 1500,
     image: image.breakFastBox,
-    alt: 'image',
+    alt: 'Breakfast Box',
   },
   {
     name: 'Purple Floral Design Cake',
@@ -117,7 +117,7 @@ const itemsData = [
     components: 'Flavor of Choice',
     price: 5000,
     image: image.purpleFloral,
-    alt: 'image',
+    alt: 'Purple Floral Design Cake',
   },
   {
     name: 'Pink Floral Chocolate Cake',
@@ -126,7 +126,7 @@ const itemsData = [
     components: 'Chocolate icing',
     price: 5000,
     image: image.pinkFloral,
-    alt: 'image',
+    alt: 'Pink Floral Chocolate Cake',
   },
 ];
 
