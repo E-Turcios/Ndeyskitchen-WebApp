@@ -1,0 +1,171 @@
+.view-container{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.item-view-container{
+    margin: 150px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+/* Card */
+
+.item-view-image-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%
+}
+
+
+.item-view-card{
+    display: flex;
+    width: 900px;
+    height: 620px;
+    border: 1px solid #bfb9b9;
+    border-radius: 5px;
+}
+
+/* Image */
+
+.item-view-image{
+    background-color: #f1eeeca7;
+    width: 320px;
+    height: 320px;
+    margin-left: 10px;
+    border-radius: 4px;
+}
+
+/* Price */
+
+.item-price{
+    font-family: 'Rubik', sans-serif;
+    font-size: 17px;
+}
+
+/* Information */
+
+.item-view-information-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.item-view-card-header{
+    color:#371821;
+    margin: 10px;
+    font-size: 25px;
+}
+
+.tag{
+    color: #371821;
+}
+
+/* Body */
+
+.item-view-card-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.divider {
+    margin-top: 18px;
+    height: 1px;
+    width: 400px;
+    border-top: 1px solid #bfb9b9; 
+  }
+
+.tag{
+    text-align: center;
+    color:#371821;
+    font-size: 20px;
+}
+
+.content{
+    color:#000000;
+}
+
+/* Quantity */
+
+.quantity{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.quantity p{
+    margin: 0;
+}
+
+.quantity span{
+    border: 2px solid #000000;
+    transition: background-color .3s;
+}
+
+.quantity span:hover{
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: 2px solid #000000
+}
+
+/* Size */
+
+.size-container{
+    display: flex;
+    gap: 20px;
+}
+
+.size-container p{
+   padding: 8px;
+   margin: 0;
+   background-color: #FFF;
+   border: 1px solid #371821;
+   border-radius: 5px;
+   transition: color .3s;
+}
+
+.size-container p:hover{
+    cursor: pointer;
+    background-color: #371821;
+    color: #FFF;
+    border-radius: 5px;
+ }
+
+ /* Additional Instructions */
+
+ .additional-instructions{
+    border-radius: 5px;
+ }
+
+ /* Add Item */
+
+ .add-item-btn{
+    background-color:#371821;
+    color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin-top: 25px;
+    width: 200px;
+    height: 50px ;
+    gap: 5px;
+    border: none;
+    border-radius: 5px;
+    transition: color .3s;
+}
+
+ .add-item-btn:hover{
+    cursor: pointer;
+    background-color:#FFF;
+    color: #371821;
+    border: 1px solid #371821;
+}
