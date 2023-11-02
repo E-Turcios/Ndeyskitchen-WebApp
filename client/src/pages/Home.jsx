@@ -50,6 +50,7 @@ export default function Home() {
                 .map(item => (
                   <ItemCard
                     key={item._id}
+                    id={item._id}
                     name={item.name}
                     price={item.price}
                     components={item.components}
@@ -64,6 +65,7 @@ export default function Home() {
                 .map(item => (
                   <ItemCard
                     key={item._id}
+                    id={item._id}
                     name={item.name}
                     price={item.price}
                     components={item.components}
@@ -82,6 +84,7 @@ export default function Home() {
                 .map(item => (
                   <ItemCard
                     key={item._id}
+                    id={item._id}
                     name={item.name}
                     price={item.price}
                     components={item.components}
@@ -100,6 +103,7 @@ export default function Home() {
                 .map(item => (
                   <ItemCard
                     key={item._id}
+                    id={item._id}
                     name={item.name}
                     price={item.price}
                     components={item.components}
