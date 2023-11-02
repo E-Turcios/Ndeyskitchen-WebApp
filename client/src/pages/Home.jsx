@@ -4,7 +4,6 @@ import LoyaltyProgramBanner from '../components/LoyaltyProgramBanner';
 import Category from '../components/Category';
 import Filter from '../components/Filter';
 import ItemCard from '../components/ItemCard';
-import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import Loader from '../components/Loader';
 import categoryStore from '../stores/categoryStore';
@@ -113,7 +112,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Contact />
       <Footer />
     </div>
   );
