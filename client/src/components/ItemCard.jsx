@@ -24,12 +24,17 @@ export default function ItemCard(props) {
           <i>{truncateComponentList(props.components)}</i>
         </div>
 
-        <a href={`/item/${props.id}`} target="_blank">
-          <button className="buy-item-btn">
-            <span className="material-symbols-outlined">shopping_cart</span>
-          </button>
-        </a>
+        <button className="buy-item-btn">
+          <span className="material-symbols-outlined">shopping_cart</span>
+        </button>
       </div>
     </div>
   );
+}
+{
+  /* <a
+      href={`/item/${props.id}`}
+      target="_blank"
+      style={{ textDecoration: 'none', color: '#000000' }}
+    ></a> */
 }
