@@ -9,6 +9,7 @@ export default function ItemCard(props) {
       return components.slice(0, maxLength) + '...';
     return components;
   }
+
   return (
     <div className="item-container">
       <div className="item-card-container">
@@ -23,9 +24,11 @@ export default function ItemCard(props) {
           <i>{truncateComponentList(props.components)}</i>
         </div>
 
-        <button className="buy-item-btn">
-          <span class="material-symbols-outlined">shopping_cart</span>
-        </button>
+        <a href={`/item/${props.id}`} target="_blank">
+          <button className="buy-item-btn">
+            <span className="material-symbols-outlined">shopping_cart</span>
+          </button>
+        </a>
       </div>
     </div>
   );
