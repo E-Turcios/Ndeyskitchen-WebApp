@@ -17,7 +17,6 @@ const sweetFilter = {
 };
 
 const savoryFilter = {
-  WINGS: 'Wings',
   BREAK_FAST_BOX: 'Breakfast Box',
   SNACKS: 'Snacks',
 };
