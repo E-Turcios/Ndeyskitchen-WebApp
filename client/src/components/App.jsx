@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
 import Signup from '../pages/Signup';
@@ -7,6 +7,7 @@ import ForgotPassword from '../pages/ForgotPassword';
 import ResetPassword from '../pages/ResetPassword';
 import RedirectToForgotPassword from '../pages/RedirectToForgotPassword';
 import VerifyEmail from '../pages/VerifyEmail';
+import ItemView from '../pages/ItemView';
 import useAuthContext from '../hooks/useAuthContext';
 import '../style/style.css';
 import '../style/login.css';
@@ -49,6 +50,8 @@ export default function App() {
                 path="/redirect-to-forgot-password"
                 element={<RedirectToForgotPassword />}
               />
+
+              <Route path="/item/:id" element={<ItemView />} />
             </Routes>
           )}
         </div>
