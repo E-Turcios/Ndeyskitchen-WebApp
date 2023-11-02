@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function useFetchedItems() {
   const [items, setItems] = useState([]);
@@ -6,7 +6,7 @@ export default function useFetchedItems() {
 
   useEffect(() => {
     async function getItems() {
-      const response = await fetch('api/items', {
+      const response = await fetch('/api/items', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
