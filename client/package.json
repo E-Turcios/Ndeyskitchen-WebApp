@@ -1,7 +1,6 @@
 {
     "name": "ndeyskitchen",
     "version": "0.1.0",
-    "proxy": "http://server:8080",
     "private": true,
     "dependencies": {
         "@babel/plugin-proposal-private-property-in-object": "^7.21.11",

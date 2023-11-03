@@ -31,6 +31,7 @@ services:
     build: ./client
     environment:
       - PORT=8081
+      - REACT_APP_PROXY=http://server:8080/
     env_file:
       - ./client/.env.development.local
     networks:
