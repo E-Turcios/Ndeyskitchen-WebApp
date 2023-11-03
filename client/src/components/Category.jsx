@@ -1,4 +1,4 @@
-import { React, useState, useSyncExternalStore } from 'react';
+import { React, useState } from 'react';
 import categoryStore from '../stores/categoryStore';
 import filterStore from '../stores/filterStore';
 import searchResultStore from '../stores/searchResultStore';
