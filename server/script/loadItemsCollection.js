@@ -131,7 +131,9 @@ const itemsData = [
 ];
 
 mongoose
-  .connect('mongodb://localhost:27017/TestDatabase')
+  .connect(
+    'mongodb+srv://boundy99:MyDatabase@cluster0.dllurye.mongodb.net/Ndeyskitchen'
+  )
   .then(() => {
     console.log(chalk.cyan('Database Connection Established'));
   })
