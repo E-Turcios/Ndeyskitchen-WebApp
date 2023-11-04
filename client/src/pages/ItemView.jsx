@@ -1,5 +1,6 @@
 import { React } from 'react';
 import { useParams } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import Loader from '../components/Loader';
 import Image from '../components/Image';
 import Quantity from '../components/Quantity';
@@ -10,25 +11,42 @@ export default function ItemView() {
   const { id } = useParams();
   const { items, isLoading } = useFetchedItems();
 
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1050px)' });
+  const isSmallScreen = useMediaQuery({ query: '(max-width: 1050px)' });
+
   const item = items.find(item => item._id === id);
 
   return isLoading ? (
     <Loader />
   ) : (
     <div className="view-container">
+      <a href="/" className="back-btn-container">
+        <span className="material-symbols-outlined">arrow_back</span>
+        <>Back</>
+      </a>
+
       <div className="item-view-container">
         <div className="item-view-card">
           <div className="item-view-image-container">
-            <div className="header-price-container">
-              <p className="item-view-card-header">{item.name}</p>
-              <p className="item-price"> D {item.price}</p>
-            </div>
+            {isBigScreen && (
+              <div className="header-price-container">
+                <p className="item-view-card-header">{item.name}</p>
+                <p className="item-price"> D {item.price}</p>
+              </div>
+            )}
 
             <Image
               alt={item.alt}
               className="item-view-image"
               src={item.image}
             />
+
+            {isSmallScreen && (
+              <div className="header-price-container">
+                <p className="item-view-card-header">{item.name}</p>
+                <p className="item-price"> D {item.price}</p>
+              </div>
+            )}
           </div>
 
           <div className="item-view-information-container">

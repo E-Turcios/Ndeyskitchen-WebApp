@@ -1,8 +1,6 @@
 .view-container{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     height: 100vh;
 }
 
@@ -10,9 +8,34 @@
     margin: 150px 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    margin: 0;
     width: 100%;
 }
+
+/* Back button */
+
+.back-btn-container{
+    color: #371821;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto 20px 20px;
+    padding: 10px;
+    width: 100px;
+    font-size: 20px;
+    border: 1px solid #371821;
+    border-radius: 3px;
+    text-decoration: none;
+    gap: 5px;
+    transition: background-color .3s;
+    transition: color .3s;
+}
+
+.back-btn-container:hover{
+    background-color: #371821;
+    color: #FFF;
+}
+
 
 /* Card */
 
@@ -200,4 +223,33 @@
 .date-and-time-container input{
     padding: 10px;
     border-radius: 5px;
+}
+
+/* Media Queries */
+
+@media (max-width: 1600px){
+
+   
+   
+}
+
+@media (max-width: 850px){
+
+   
+}
+
+
+@media (max-width: 570px){
+
+   
+}
+
+@media (max-width: 450px) {
+    
+   
+}
+
+@media (max-width: 350px) {
+
+   
 }
