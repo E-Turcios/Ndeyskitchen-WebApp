@@ -1,10 +1,9 @@
 import { React } from 'react';
 import { useParams } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import Loader from '../components/Loader';
 import Image from '../components/Image';
 import Quantity from '../components/Quantity';
+import DateAndTime from '../components/DateAndTime';
 import useFetchedItems from '../hooks/useFetchedItems';
 
 export default function ItemView() {
@@ -17,20 +16,22 @@ export default function ItemView() {
     <Loader />
   ) : (
     <div className="view-container">
-      <Navbar />
       <div className="item-view-container">
         <div className="item-view-card">
           <div className="item-view-image-container">
+            <div className="header-price-container">
+              <p className="item-view-card-header">{item.name}</p>
+              <p className="item-price"> D {item.price}</p>
+            </div>
+
             <Image
               alt={item.alt}
               className="item-view-image"
               src={item.image}
             />
-            <p className="item-price"> D {item.price}</p>
           </div>
 
           <div className="item-view-information-container">
-            <p className="item-view-card-header">{item.name}</p>
             <div className="item-view-card-body">
               <span className="divider"></span>
 
@@ -54,6 +55,10 @@ export default function ItemView() {
 
               <span className="divider"></span>
 
+              <DateAndTime />
+
+              <span className="divider"></span>
+
               <p className="tag">Additional Instructions</p>
               <textarea
                 name=""
@@ -71,7 +76,6 @@ export default function ItemView() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
