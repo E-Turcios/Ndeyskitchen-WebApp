@@ -74,7 +74,7 @@ export default function ItemView() {
 
               <span className="divider"></span>
 
-              <DateAndTime />
+              <DateAndTime item={item} />
 
               <span className="divider"></span>
 
