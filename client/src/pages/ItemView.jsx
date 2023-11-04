@@ -51,9 +51,10 @@ export default function ItemView() {
 
           <div className="item-view-information-container">
             <div className="item-view-card-body">
-              <span className="divider"></span>
+              {isBigScreen && <span className="divider"></span>}
 
               <p className="tag">Components</p>
+
               <span className="content"> {item.components} </span>
 
               <span className="divider"></span>
