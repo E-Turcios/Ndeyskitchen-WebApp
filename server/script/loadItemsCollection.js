@@ -3,14 +3,15 @@ const mongoose = require('mongoose');
 const chalk = require('chalk');
 
 const image = {
-  biscoffCake: 'items/biscoff-cake.png',
-  breakFastBox: 'items/breakfast-box.png',
-  chocolateOverload: 'items/chocolate-overload.png',
-  fruitPlatter: 'items/fruit-platter.png',
-  snacks: 'items/snacks.png',
-  weddingCake: 'items/wedding-cake.png',
-  purpleFloral: 'items/purple-floral-cake.png',
-  pinkFloral: 'items/pink-floral-cake.png',
+  biscoffCake: 'items/biscoff-cake.jpg',
+  breakFastBox: 'items/breakfast-box.jpg',
+  chocolateOverload: 'items/chocolate-overload.jpg',
+  cookies: 'items/cookies.jpg',
+  fruitPlatter: 'items/fruit-platter.jpg',
+  snacks: 'items/snacks.jpg',
+  weddingCake: 'items/wedding-cake.jpg',
+  purpleFloral: 'items/purple-floral-cake.jpg',
+  pinkFloral: 'items/pink-floral-cake.jpg',
 };
 
 const filter = {
@@ -58,7 +59,7 @@ const itemsData = [
     filter: filter.COOKIES,
     components: '25 Sugar Cookies',
     price: 2500,
-    image: image.pinkFloral,
+    image: image.cookies,
     alt: 'Sugar Cookies',
   },
   {
