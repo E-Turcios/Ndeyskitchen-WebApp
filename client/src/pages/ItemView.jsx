@@ -20,12 +20,10 @@ export default function ItemView() {
 
   const item = items.find(item => item._id === id);
 
-  const handleSizeSelect = (size, price) => {
+  function handleSizeSelect(size, price) {
     setSelectedSize(size);
     setSelectedSizePrice(price);
-  };
-
-  console.log(selectedSize, selectedSizePrice);
+  }
 
   return isLoading ? (
     <Loader />
