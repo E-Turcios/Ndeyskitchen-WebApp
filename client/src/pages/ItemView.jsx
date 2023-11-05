@@ -1,9 +1,10 @@
-import { React } from 'react';
+import { React, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import Loader from '../components/Loader';
 import Image from '../components/Image';
 import Quantity from '../components/Quantity';
+import Size from '../components/Size';
 import DateAndTime from '../components/DateAndTime';
 import useFetchedItems from '../hooks/useFetchedItems';
 
@@ -11,10 +12,20 @@ export default function ItemView() {
   const { id } = useParams();
   const { items, isLoading } = useFetchedItems();
 
+  const [selectedSize, setSelectedSize] = useState('');
+  const [selectedSizePrice, setSelectedSizePrice] = useState('');
+
   const isBigScreen = useMediaQuery({ query: '(min-width: 1050px)' });
   const isSmallScreen = useMediaQuery({ query: '(max-width: 1050px)' });
 
   const item = items.find(item => item._id === id);
+
+  const handleSizeSelect = (size, price) => {
+    setSelectedSize(size);
+    setSelectedSizePrice(price);
+  };
+
+  console.log(selectedSize, selectedSizePrice);
 
   return isLoading ? (
     <Loader />
@@ -31,7 +42,9 @@ export default function ItemView() {
             {isBigScreen && (
               <div className="header-price-container">
                 <p className="item-view-card-header">{item.name}</p>
-                <p className="item-price"> D {item.price}</p>
+                <p className="item-price">
+                  D {selectedSize ? `${selectedSizePrice}` : `${item.price}`}{' '}
+                </p>
               </div>
             )}
 
@@ -63,14 +76,11 @@ export default function ItemView() {
 
               <span className="divider"></span>
 
-              <p className="tag">Size</p>
-              <div className="size-container">
-                <p>Small</p>
-
-                <p>Medium</p>
-
-                <p>Large</p>
-              </div>
+              <Size
+                item={item}
+                onSizeSelect={handleSizeSelect}
+                selectedSize={selectedSize}
+              />
 
               <span className="divider"></span>
 
