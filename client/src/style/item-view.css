@@ -161,7 +161,6 @@
 .size-container p{
    padding: 8px;
    margin: 0;
-   background-color: #FFF;
    border: 1px solid #371821;
    border-radius: 5px;
    transition: color .3s;
@@ -174,11 +173,10 @@
     border-radius: 5px;
 }
 
-.size-container p:focus{
-    cursor: pointer;
+.size-container-clicked {
     background-color: #371821;
     color: #FFF;
-    border-radius: 5px;
+    
 }
 
  /* Additional Instructions */
@@ -220,7 +218,10 @@
 }
 
 .date-and-time-container input{
-    padding: 10px;
+    background-color: #FFF;
+    color: #000;
+    padding: 5px;
+    border: 1px solid #000;
     border-radius: 5px;
 }
 
