@@ -1,25 +1,31 @@
 import { React, useState } from 'react';
-import { priceAndSize } from '../scripts/priceAndSize.js';
+import { itemOptions } from '../scripts/itemOptions.js';
 
-export default function Size({ item, handleSizeSelect, selectedSize }) {
-  const viewItem = priceAndSize.find(viewItem => viewItem.name === item.name);
+export default function Size({ item, handleSizeSelect }) {
+  const viewItem = itemOptions.find(viewItem => viewItem.name === item.name);
+  const [price, setPrice] = useState(item.price);
 
   return (
     <>
       <p className="tag">Size</p>
       <div className="size-container">
         {Object.keys(viewItem.size).map(size => (
-          <p
+          <div
             key={size}
             className={
-              size === selectedSize && 'size-container size-container-clicked'
+              price === viewItem.size[size]
+                ? 'size-price-card size-price-card-clicked'
+                : 'size-price-card'
             }
             onClick={() => {
-              handleSizeSelect(size, viewItem.size[size]);
+              setPrice(viewItem.size[size]);
+              handleSizeSelect(size, price);
             }}
           >
-            {size}
-          </p>
+            <p>{size}</p>
+
+            <p className="size-price">D {viewItem.size[size]}</p>
+          </div>
         ))}
       </div>
     </>

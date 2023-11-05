@@ -76,11 +76,7 @@ export default function ItemView() {
 
               <span className="divider"></span>
 
-              <Size
-                item={item}
-                handleSizeSelect={handleSizeSelect}
-                selectedSize={selectedSize}
-              />
+              <Size item={item} handleSizeSelect={handleSizeSelect} />
 
               <span className="divider"></span>
 
