@@ -43,7 +43,7 @@ export default function ItemView() {
               <div className="header-price-container">
                 <p className="item-view-card-header">{item.name}</p>
                 <p className="item-price">
-                  D {selectedSize ? `${selectedSizePrice}` : `${item.price}`}{' '}
+                  D {selectedSize ? `${selectedSizePrice}` : `${item.price}`}
                 </p>
               </div>
             )}
@@ -57,7 +57,9 @@ export default function ItemView() {
             {isSmallScreen && (
               <div className="header-price-container">
                 <p className="item-view-card-header">{item.name}</p>
-                <p className="item-price"> D {item.price}</p>
+                <p className="item-price">
+                  D {selectedSize ? `${selectedSizePrice}` : `${item.price}`}
+                </p>
               </div>
             )}
           </div>
