@@ -10,11 +10,9 @@ const ItemSchema = new Schema(
     components: { type: String, required: true },
     image: { type: String, required: true },
     alt: { type: String, required: true },
-    flavor: { type: String, default: 'N/A' },
+    price: { type: String, required: true },
+    size: { type: String, required: true },
     topping: { type: String, default: 'N/A' },
-    icing: { type: String, default: 'N/A' },
-    size: { type: String, default: 'N/A' },
-    price: { type: String, default: 'N/A' },
   },
   { timestamps: true }
 );
