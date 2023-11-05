@@ -30,6 +30,8 @@ export default function getDateAndTime({ item }) {
 
   const minimumDate = `${minYear + `-` + minMonth + `-` + minDay}`;
   const maximumDate = `${maxYear + `-` + maxMonth + `-` + maxDay}`;
+  const minimumTime = '12:00';
+  const maximumTime = '20:00';
 
-  return { maximumDate, minimumDate };
+  return { maximumDate, minimumDate, minimumTime, maximumTime };
 }
