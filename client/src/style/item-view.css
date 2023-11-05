@@ -158,25 +158,35 @@
     gap: 20px;
 }
 
-.size-container p{
-   padding: 8px;
-   margin: 0;
-   border: 1px solid #371821;
-   border-radius: 5px;
-   transition: color .3s;
-}
-
-.size-container p:hover{
-    cursor: pointer;
-    background-color: #371821;
-    color: #FFF;
+.size-price-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 20px;
+    border: 1px solid #371821;
     border-radius: 5px;
+    gap: 3px;
+    transition: border .3s;
 }
 
-.size-container-clicked {
-    background-color: #371821;
-    color: #FFF;
-    
+.size-price-card-clicked {
+    border: 1px solid #DC952F;
+    transform: scale(1.1);
+    transition: transform .1s;
+}
+
+.size-price-card p{
+  margin: 0;
+}
+
+.size-price{
+    font-size: 14px;
+    color: #6b6868
+}
+
+.size-price-card p:hover{
+    cursor: pointer; 
 }
 
  /* Additional Instructions */
@@ -272,6 +282,10 @@
     .divider{
         margin-bottom: 10px;
     }
+
+    .size-price{
+        font-size: 13px;
+    }
    
 }
 
@@ -285,15 +299,36 @@
 
     .header-price-container{
         gap: 5px;
-        font-size: 26px;
+        font-size: 19.5px;
     }
 
     .item-price {
-        font-size: 16px;
+        font-size: 13.5px;
     }
 
-    .size-container p{
-        padding: 6px;
+    .tag{
+        font-size: 18.5px;
+    }
+
+    .content{
+        max-width: 410px;
+        font-size: 15.7px;
+        text-align: center;
+    }
+
+    .size-price-card{
+        padding: 5px 12px;
+        gap: 3px;
+        
+    }
+
+    .size-price-card p{
+      font-size: 15.7px;
+    }
+
+    .size-price-card .size-price{
+        font-size: 12px;
+       
     }
 
     .date-and-time-container input{
@@ -310,7 +345,6 @@
         width: 70px;
         font-size: 17px;
     }
-
 
     .item-view-image{
         width: 370px;
@@ -355,7 +389,19 @@
         padding: 6px;
         border-radius: 5px;
     }
- 
+
+    .size-price-card{
+        padding: 3px 8px;
+        gap: 0
+    }
+
+    .size-price-card p{
+      font-size: 15.5px;
+    }
+
+    .size-price-card .size-price{
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 450px) {
@@ -406,6 +452,19 @@
     .date-and-time-container input{
         padding: 8px;
         border-radius: 5px;
+    }
+
+    .size-price-card{
+        padding: 1px 6px;
+        gap: 0
+    }
+
+    .size-price-card p{
+      font-size: 14px;
+    }
+
+    .size-price-card .size-price{
+        font-size: 11px;
     }
 }
 
