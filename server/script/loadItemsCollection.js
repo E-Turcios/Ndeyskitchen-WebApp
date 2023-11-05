@@ -32,36 +32,44 @@ const itemsData = [
     filter: filter.CAKES,
     components: 'Vanilla + Red Velvet Tiers, Strawberry + Cream Cheese Filling',
     price: 9000,
+    size: 'Large',
     image: image.weddingCake,
     alt: '2-Tier Wedding Cake',
   },
+
   {
     name: 'Chocolate Overload Cake',
     category: 'Sweet',
     filter: filter.CAKES,
     components: 'Chocolate Ganache, White Chocolate Buttercream',
     price: 6500,
+    size: 'Medium',
     image: image.chocolateOverload,
     alt: 'Chocolate Overload Cake',
   },
+
   {
     name: '12 Chocolate Cupcakes',
     category: 'Sweet',
     filter: filter.CUPCAKES,
     components: 'White Chocolate Buttercream',
     price: 2000,
+    size: '12Pcs',
     image: image.pinkFloral,
     alt: '12 Chocolate Cupcakes',
   },
+
   {
     name: 'Sugar Cookies',
     category: 'Sweet',
     filter: filter.COOKIES,
     components: '25 Sugar Cookies',
     price: 2500,
+    size: '25Pcs',
     image: image.cookies,
     alt: 'Sugar Cookies',
   },
+
   {
     name: 'Biscoff Drip Cake',
     category: 'Sweet',
@@ -69,18 +77,22 @@ const itemsData = [
     components:
       'Vanilla Cake, White Chocolate Biscoff Buttercream, Biscoff Spread',
     price: 5000,
+    size: 'Medium',
     image: image.biscoffCake,
     alt: 'Biscoff Drip Cake',
   },
+
   {
     name: 'Fruit Platter',
     category: 'Sweet',
     filter: filter.FRUIT_PLATTER,
     components: 'Watermelon, Pineapple, Orange, Mandarine, Grapes',
     price: 2500,
+    size: '1Pc',
     image: image.fruitPlatter,
     alt: 'Fruit Platter',
   },
+
   {
     name: 'Cheesecake Dessert Cups',
     category: 'Sweet',
@@ -88,9 +100,11 @@ const itemsData = [
     components:
       'Chocolate Mousse, Oreo Cream, Kinder Bueno/Ferrero Rocher, Biscoff Cream',
     price: 2500,
+    size: '12Pcs',
     image: image.pinkFloral,
     alt: 'Cheesecake Dessert Cups',
   },
+
   {
     name: 'Finger Licking Snacks',
     category: 'Savory',
@@ -98,9 +112,11 @@ const itemsData = [
     components:
       '(5 Each) Mini Burgers, Mini Pizza, Chicken Batbout, Hotdogs, Beef Wraps',
     price: 3000,
+    size: '25Pcs',
     image: image.snacks,
     alt: 'Finger Licking Snacks',
   },
+
   {
     name: 'Breakfast Box',
     category: 'Savory',
@@ -108,24 +124,29 @@ const itemsData = [
     components:
       'Wings, Spaghettis, Sardine Sandwich, Meat Pie, Waffles, Yogurt, Fruits (Varies Weekly)',
     price: 1500,
+    size: '1Box',
     image: image.breakFastBox,
     alt: 'Breakfast Box',
   },
+
   {
     name: 'Purple Floral Design Cake',
     category: 'Sweet',
     filter: filter.CAKES,
     components: 'Flavor of Choice',
     price: 5000,
+    size: 'Medium',
     image: image.purpleFloral,
     alt: 'Purple Floral Design Cake',
   },
+
   {
     name: 'Pink Floral Chocolate Cake',
     category: 'Sweet',
     filter: filter.CAKES,
     components: 'Chocolate icing',
     price: 5000,
+    size: 'Medium',
     image: image.pinkFloral,
     alt: 'Pink Floral Chocolate Cake',
   },
