@@ -78,7 +78,7 @@ export default function ItemView() {
 
               <Size
                 item={item}
-                onSizeSelect={handleSizeSelect}
+                handleSizeSelect={handleSizeSelect}
                 selectedSize={selectedSize}
               />
 

@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import { priceAndSize } from '../scripts/priceAndSize.js';
 
-export default function Size({ item, onSizeSelect, selectedSize }) {
+export default function Size({ item, handleSizeSelect, selectedSize }) {
   const viewItem = priceAndSize.find(viewItem => viewItem.name === item.name);
 
   return (
@@ -15,7 +15,7 @@ export default function Size({ item, onSizeSelect, selectedSize }) {
               size === selectedSize && 'size-container size-container-clicked'
             }
             onClick={() => {
-              onSizeSelect(size, viewItem.size[size]);
+              handleSizeSelect(size, viewItem.size[size]);
             }}
           >
             {size}
