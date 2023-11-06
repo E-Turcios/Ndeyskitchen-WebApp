@@ -8,6 +8,7 @@ import ResetPassword from '../pages/ResetPassword';
 import RedirectToForgotPassword from '../pages/RedirectToForgotPassword';
 import VerifyEmail from '../pages/VerifyEmail';
 import ItemView from '../pages/ItemView';
+import Cart from '../pages/Cart';
 import useAuthContext from '../hooks/useAuthContext';
 import '../style/style.css';
 import '../style/login.css';
@@ -19,6 +20,7 @@ import '../style/navbar.css';
 import '../style/filter.css';
 import '../style/item-card.css';
 import '../style/item-view.css';
+import '../style/cart.css';
 
 export default function App() {
   const { user } = useAuthContext();
@@ -53,6 +55,8 @@ export default function App() {
               />
 
               <Route path="/item/:id" element={<ItemView />} />
+
+              <Route path="/cart" element={<Cart />} />
             </Routes>
           )}
         </div>
