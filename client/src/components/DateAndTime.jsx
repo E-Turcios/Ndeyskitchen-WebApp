@@ -4,7 +4,6 @@ import dateAndTime from '../scripts/dateAndTime';
 export default function DateAndTime({ item }) {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
-  const [value, onChange] = useState('10:00');
 
   const { minimumDate, maximumDate, minimumTime, maximumTime } = dateAndTime({
     item,
@@ -19,17 +18,16 @@ export default function DateAndTime({ item }) {
           min={minimumDate}
           max={maximumDate}
           onChange={event => setDate(event.target.value)}
-          required
+          // required
         />
 
         <input
           type="time"
-          step="3600"
-          min={minimumTime}
-          max={maximumTime}
           onChange={event => setTime(event.target.value)}
-          required
+          // required
         />
+        {/* min={minimumTime}
+          max={maximumTime} */}
       </div>
     </div>
   );
