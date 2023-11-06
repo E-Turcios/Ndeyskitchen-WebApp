@@ -28,10 +28,13 @@ export default function ItemCard(props) {
             <i>{truncateComponentList(props.components)}</i>
           </div>
         </div>
+
+        <div className="buy-btn-container">
+          <button className="buy-item-btn">
+            <span className="material-symbols-outlined">shopping_cart</span>
+          </button>
+        </div>
       </a>
-      <button className="buy-item-btn">
-        <span className="material-symbols-outlined">shopping_cart</span>
-      </button>
     </div>
   );
 }

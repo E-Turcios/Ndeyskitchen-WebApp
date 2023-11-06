@@ -51,7 +51,7 @@
 
  .item-name{
     color:#371821;
-    margin: 0 auto;
+    margin: 2px auto;
     font-size: 19px;
  }
 
@@ -69,6 +69,13 @@
  }
 
  /* Buy Button  */
+
+ .buy-btn-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
 
  .buy-item-btn{
     background-color: #371821;
