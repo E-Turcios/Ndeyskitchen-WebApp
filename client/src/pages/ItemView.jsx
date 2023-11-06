@@ -8,17 +8,16 @@ import Quantity from '../components/Quantity';
 import Size from '../components/Size';
 import DateAndTime from '../components/DateAndTime';
 import useFetchedItems from '../hooks/useFetchedItems';
+import useCartSizeContext from '../hooks/useCartSizeContext';
 
 export default function ItemView() {
   const { id } = useParams();
   const { items, isLoading } = useFetchedItems();
 
-  let localStorageCart = JSON.parse(localStorage.getItem('cart'));
+  const { cartSize } = useCartSizeContext();
+  const { dispatch } = useCartSizeContext();
 
   const [instructions, setInstructions] = useState('');
-  const [cartSize, setCartSize] = useState(
-    localStorageCart !== null ? localStorageCart.length : ''
-  );
 
   let itemSize;
   let itemPrice;
@@ -55,12 +54,17 @@ export default function ItemView() {
       alt: item.alt,
     };
 
+    let localStorageCart = JSON.parse(localStorage.getItem('cart'));
+
     if (localStorageCart === null) localStorageCart = [];
 
     localStorageCart.push(addedItem);
 
     localStorage.setItem('cart', JSON.stringify(localStorageCart));
-    setCartSize(localStorageCart.length);
+    dispatch({
+      type: 'SET_CART_SIZE',
+      payload: localStorageCart !== null ? localStorageCart.length : '',
+    });
   }
 
   return isLoading ? (
