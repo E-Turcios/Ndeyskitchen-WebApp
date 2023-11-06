@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Headroom from 'react-headroom';
 import Image from './Image';
@@ -7,11 +7,16 @@ import useAuthContext from '../hooks/useAuthContext';
 import useCartSizeContext from '../hooks/useCartSizeContext';
 
 export default function ComputerNavbar() {
-  const { dispatch } = useAuthContext();
-  const { user } = useAuthContext();
+  const { user, dispatch } = useAuthContext();
+  const { cartSize } = useCartSizeContext();
+
   const navigate = useNavigate();
 
-  const { cartSize } = useCartSizeContext();
+  console.log(useCartSizeContext());
+
+  useEffect(() => {
+    console.log('Size Changed');
+  }, [cartSize]);
 
   function logOut() {
     localStorage.removeItem('token');

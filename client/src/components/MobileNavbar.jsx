@@ -4,10 +4,12 @@ import Headroom from 'react-headroom';
 import Image from './Image';
 import SearchBar from './SearchBar';
 import useAuthContext from '../hooks/useAuthContext';
+import useCartSizeContext from '../hooks/useCartSizeContext';
 
 export default function MobileNavbar() {
   const { dispatch } = useAuthContext();
   const { user } = useAuthContext();
+  const { cartSize } = useCartSizeContext();
   const navigate = useNavigate();
 
   const [isActive, setIsActive] = useState(false);
@@ -49,9 +51,7 @@ export default function MobileNavbar() {
 
           <div className="hamburger-menu-navbar-icons-container">
             <div className="navbar-shopping-bag-container">
-              <span className="items-number">
-                {cart !== null ? cart.length : ''}
-              </span>
+              <span className="items-number">{cartSize}</span>
               <span className="material-symbols-outlined navbar-icons">
                 shopping_bag
               </span>
