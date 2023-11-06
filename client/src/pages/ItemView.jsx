@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useSyncExternalStore } from 'react';
 import { useParams } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import Headroom from 'react-headroom';
@@ -13,8 +13,12 @@ export default function ItemView() {
   const { id } = useParams();
   const { items, isLoading } = useFetchedItems();
 
+  const [instructions, setInstructions] = useState('');
+  const [cartSize, setCartSize] = useState('');
+
   let itemSize;
   let itemPrice;
+  let quantity;
 
   const isBigScreen = useMediaQuery({ query: '(min-width: 1050px)' });
   const isSmallScreen = useMediaQuery({ query: '(max-width: 1050px)' });
@@ -29,10 +33,32 @@ export default function ItemView() {
     itemPrice = price;
   }
 
+  function getQuantity(amount) {
+    quantity = amount;
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(itemSize);
-    console.log(itemPrice);
+
+    const addedItem = {
+      name: item.name,
+      components: item.components,
+      quantity: quantity,
+      price: itemPrice,
+      size: itemSize,
+      instructions: instructions,
+      image: item.image,
+      alt: item.alt,
+    };
+
+    let localStorageCart = JSON.parse(localStorage.getItem('cart'));
+
+    if (localStorageCart === null) localStorageCart = [];
+
+    localStorageCart.push(addedItem);
+
+    localStorage.setItem('cart', JSON.stringify(localStorageCart));
+    setCartSize(localStorageCart.length);
   }
 
   return isLoading ? (
@@ -50,7 +76,7 @@ export default function ItemView() {
 
           <div className="shopping-bag-container">
             <a>
-              <span className="items-number">1</span>
+              <span className="items-number">{cartSize}</span>
               <span className="material-symbols-outlined">shopping_bag</span>
             </a>
           </div>
@@ -91,7 +117,7 @@ export default function ItemView() {
 
               <span className="divider"></span>
 
-              <Quantity />
+              <Quantity getQuantity={getQuantity} />
 
               <span className="divider"></span>
 
@@ -109,8 +135,9 @@ export default function ItemView() {
 
               <p className="tag">Additional Instructions</p>
               <textarea
-                name=""
-                id=""
+                onChange={event => {
+                  setInstructions(event.target.value);
+                }}
                 cols="40"
                 rows="3"
                 className="additional-instructions"
