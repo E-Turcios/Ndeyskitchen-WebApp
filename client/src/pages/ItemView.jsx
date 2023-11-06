@@ -1,9 +1,8 @@
 import { React, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive';
-import Headroom from 'react-headroom';
+import ItemViewImageAndName from '../components/ItemViewImageAndName';
+import ItemViewNavbar from '../components/ItemViewNavbar';
 import Loader from '../components/Loader';
-import Image from '../components/Image';
 import Quantity from '../components/Quantity';
 import Size from '../components/Size';
 import DateAndTime from '../components/DateAndTime';
@@ -14,7 +13,6 @@ export default function ItemView() {
   const { id } = useParams();
   const { items, isLoading } = useFetchedItems();
 
-  const { cartSize } = useCartSizeContext();
   const { dispatch } = useCartSizeContext();
 
   const [instructions, setInstructions] = useState('');
@@ -22,9 +20,6 @@ export default function ItemView() {
   let itemSize;
   let itemPrice;
   let quantity;
-
-  const isBigScreen = useMediaQuery({ query: '(min-width: 1050px)' });
-  const isSmallScreen = useMediaQuery({ query: '(max-width: 1050px)' });
 
   const item = items.find(item => item._id === id);
 
@@ -71,47 +66,11 @@ export default function ItemView() {
     <Loader />
   ) : (
     <div className="view-container">
-      <Headroom>
-        <div className="item-view-navbar">
-          <div className="back-button">
-            <a href="/" className="back-btn-container">
-              <span className="material-symbols-outlined">arrow_back</span>
-              <>Back</>
-            </a>
-          </div>
-
-          <div className="shopping-bag-container">
-            <a>
-              <span className="items-number">{cartSize}</span>
-              <span className="material-symbols-outlined">shopping_bag</span>
-            </a>
-          </div>
-        </div>
-      </Headroom>
+      <ItemViewNavbar />
 
       <div className="item-view-container">
         <form className="item-view-card" onSubmit={handleSubmit}>
-          <div className="item-view-image-container">
-            {isBigScreen && (
-              <div className="header-price-container">
-                <p className="item-view-card-header">{item.name}</p>
-                <p className="item-price">D {item.price}</p>
-              </div>
-            )}
-
-            <Image
-              alt={item.alt}
-              className="item-view-image"
-              src={item.image}
-            />
-
-            {isSmallScreen && (
-              <div className="header-price-container">
-                <p className="item-view-card-header">{item.name}</p>
-                <p className="item-price">D {item.price}</p>
-              </div>
-            )}
-          </div>
+          <ItemViewImageAndName item={item} />
 
           <div className="item-view-information-container">
             <div className="item-view-card-body">
