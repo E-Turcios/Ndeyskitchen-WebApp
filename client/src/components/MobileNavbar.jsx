@@ -12,6 +12,8 @@ export default function MobileNavbar() {
 
   const [isActive, setIsActive] = useState(false);
 
+  const cart = JSON.parse(localStorage.getItem('cart'));
+
   function hamburgerMenuClicked() {
     setIsActive(!isActive);
   }
@@ -44,10 +46,16 @@ export default function MobileNavbar() {
           <a href="/">
             <Image className="img" src={'ndeys-kitchen.png'} />
           </a>
+
           <div className="hamburger-menu-navbar-icons-container">
-            <span className="material-symbols-outlined navbar-icons">
-              shopping_bag
-            </span>
+            <div className="navbar-shopping-bag-container">
+              <span className="items-number">
+                {cart !== null ? cart.length : ''}
+              </span>
+              <span className="material-symbols-outlined navbar-icons">
+                shopping_bag
+              </span>
+            </div>
 
             <span
               className={`material-symbols-outlined navbar-icons hamburger-menu ${

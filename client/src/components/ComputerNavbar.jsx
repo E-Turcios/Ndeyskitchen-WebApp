@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Headroom from 'react-headroom';
 import Image from './Image';
@@ -9,6 +9,8 @@ export default function ComputerNavbar() {
   const { dispatch } = useAuthContext();
   const { user } = useAuthContext();
   const navigate = useNavigate();
+
+  const cart = JSON.parse(localStorage.getItem('cart'));
 
   function logOut() {
     localStorage.removeItem('token');
@@ -42,9 +44,14 @@ export default function ComputerNavbar() {
             }}
           />
 
-          <span className="material-symbols-outlined navbar-icons">
-            shopping_bag
-          </span>
+          <a className="navbar-shopping-bag-container">
+            <span className="items-number">
+              {cart !== null ? cart.length : ''}
+            </span>
+            <span className="material-symbols-outlined navbar-icons">
+              shopping_bag
+            </span>
+          </a>
 
           {user && (
             <span className="material-symbols-outlined navbar-icons">
