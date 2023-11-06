@@ -140,6 +140,20 @@
 
 /* Navbar Icons */
 
+.navbar-shopping-bag-container{
+    position: relative;
+}
+
+.navbar-shopping-bag-container .items-number{
+    position: absolute;
+    color: #DC952F;
+    z-index: 1;
+    font-size: 13px;
+    left: 50%; 
+    top: 54%; 
+    transform: translate(-50%, -50%); 
+}
+
 .navbar-icons-container{
     position:absolute;
     right:150px;
@@ -228,7 +242,6 @@
     transition: border .3s;
 }
 
-
 .hamburger-search-bar-container .navbar-icons{
   border-left: 2px solid #c5c0c0;
 }
@@ -261,7 +274,6 @@
     transition: color .3s;
 }
 
-
 .hamburger-menu-information:hover {
     cursor: pointer;
     cursor: pointer;
@@ -274,7 +286,7 @@
     right: 80px;
     justify-content:center;
     align-items: center;
-    gap:5px
+    
 }
 
 .hamburger-menu-items{
@@ -294,6 +306,10 @@
 /* Media Queries */
 
 @media (max-width: 1600px) {
+
+    .navbar-shopping-bag-container .items-number{
+        font-size: 12px; 
+    }
 
     .navbar-start{
         left:100px;
