@@ -1,9 +1,10 @@
 import { React, useState } from 'react';
 
-export default function Quantity() {
+export default function Quantity({ getQuantity }) {
   const [quantity, setQuantity] = useState(1);
   return (
     <>
+      {getQuantity(quantity)}
       <p className="tag">Quantity</p>
       <div className="quantity">
         <span
