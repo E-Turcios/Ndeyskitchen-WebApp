@@ -1,4 +1,4 @@
-import { React, useState, useSyncExternalStore } from 'react';
+import { React, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import Headroom from 'react-headroom';
@@ -13,8 +13,12 @@ export default function ItemView() {
   const { id } = useParams();
   const { items, isLoading } = useFetchedItems();
 
+  let localStorageCart = JSON.parse(localStorage.getItem('cart'));
+
   const [instructions, setInstructions] = useState('');
-  const [cartSize, setCartSize] = useState('');
+  const [cartSize, setCartSize] = useState(
+    localStorageCart !== null ? localStorageCart.length : ''
+  );
 
   let itemSize;
   let itemPrice;
@@ -50,8 +54,6 @@ export default function ItemView() {
       image: item.image,
       alt: item.alt,
     };
-
-    let localStorageCart = JSON.parse(localStorage.getItem('cart'));
 
     if (localStorageCart === null) localStorageCart = [];
 
