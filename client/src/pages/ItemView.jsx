@@ -16,6 +16,8 @@ export default function ItemView() {
   const { dispatch } = useCartSizeContext();
 
   const [instructions, setInstructions] = useState('');
+  const [validateButton, setValidateButtonText] = useState('Add to');
+  const [isDisabled, setIsDisabled] = useState(false);
 
   let itemSize;
   let itemPrice;
@@ -56,10 +58,14 @@ export default function ItemView() {
     localStorageCart.push(addedItem);
 
     localStorage.setItem('cart', JSON.stringify(localStorageCart));
+
     dispatch({
       type: 'SET_CART_SIZE',
       payload: localStorageCart !== null ? localStorageCart.length : '',
     });
+
+    setIsDisabled(true);
+    setValidateButtonText('Item added to');
   }
 
   return isLoading ? (
@@ -108,8 +114,12 @@ export default function ItemView() {
                 className="additional-instructions"
               ></textarea>
 
-              <button className="add-item-btn" type="submit">
-                Add to cart
+              <button
+                disabled={isDisabled}
+                className="add-item-btn"
+                type="submit"
+              >
+                {validateButton}
                 <span className="material-symbols-outlined">shopping_cart</span>
               </button>
             </div>
