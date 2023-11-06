@@ -245,11 +245,22 @@
     transition: color .3s;
 }
 
+.add-item-btn:disabled{
+    
+    background-color:#FFF;
+    color: #371821;
+    border: 1px solid #371821;
+}
+
  .add-item-btn:hover{
     cursor: pointer;
     background-color:#FFF;
     color: #371821;
     border: 1px solid #371821;
+}
+
+.add-item-btn:disabled:hover{
+    cursor: not-allowed;
 }
 
 /* Date And Time */
