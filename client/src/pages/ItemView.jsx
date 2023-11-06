@@ -15,13 +15,15 @@ export default function ItemView() {
 
   const { dispatch } = useCartSizeContext();
 
-  const [instructions, setInstructions] = useState('');
+  const [instructions, setInstructions] = useState('No instructions');
   const [validateButton, setValidateButtonText] = useState('Add to');
   const [isDisabled, setIsDisabled] = useState(false);
 
   let itemSize;
   let itemPrice;
   let quantity;
+  let date;
+  let time;
 
   const item = items.find(item => item._id === id);
 
@@ -37,6 +39,11 @@ export default function ItemView() {
     quantity = amount;
   }
 
+  function getDateAndTime(pickedDate, pickedTime) {
+    date = pickedDate;
+    time = pickedTime;
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -46,6 +53,8 @@ export default function ItemView() {
       quantity: quantity,
       price: itemPrice,
       size: itemSize,
+      date: date,
+      time: time,
       instructions: instructions,
       image: item.image,
       alt: item.alt,
@@ -65,7 +74,7 @@ export default function ItemView() {
     });
 
     setIsDisabled(true);
-    setValidateButtonText('Item added to');
+    setValidateButtonText('Item added');
   }
 
   return isLoading ? (
@@ -100,7 +109,7 @@ export default function ItemView() {
 
               <span className="divider"></span>
 
-              <DateAndTime item={item} />
+              <DateAndTime item={item} getDateAndTime={getDateAndTime} />
 
               <span className="divider"></span>
 
@@ -120,7 +129,9 @@ export default function ItemView() {
                 type="submit"
               >
                 {validateButton}
-                <span className="material-symbols-outlined">shopping_cart</span>
+                <span className="material-symbols-outlined">
+                  {isDisabled ? 'done' : 'shopping_cart'}
+                </span>
               </button>
             </div>
           </div>

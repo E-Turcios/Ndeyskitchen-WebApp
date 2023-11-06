@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import dateAndTime from '../scripts/dateAndTime';
 
-export default function DateAndTime({ item }) {
+export default function DateAndTime({ item, getDateAndTime }) {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
 
@@ -11,6 +11,7 @@ export default function DateAndTime({ item }) {
 
   return (
     <div>
+      {getDateAndTime(date, time)}
       <p className="tag">Select Date & Time</p>
       <div className="date-and-time-container">
         <input
@@ -18,16 +19,16 @@ export default function DateAndTime({ item }) {
           min={minimumDate}
           max={maximumDate}
           onChange={event => setDate(event.target.value)}
-          // required
+          required
         />
 
         <input
           type="time"
           onChange={event => setTime(event.target.value)}
-          // required
+          required
+          min={minimumTime}
+          max={maximumTime}
         />
-        {/* min={minimumTime}
-          max={maximumTime} */}
       </div>
     </div>
   );
