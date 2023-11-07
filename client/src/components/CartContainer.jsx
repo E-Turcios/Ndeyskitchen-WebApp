@@ -3,6 +3,8 @@ import Image from './Image';
 
 export default function CartContainer() {
   const [cart, setCart] = useState([]);
+  const [subtotals, setSubtotals] = useState([]);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart'));
@@ -10,11 +12,31 @@ export default function CartContainer() {
     if (storedCart) setCart(storedCart);
   }, []);
 
+  useEffect(() => {
+    const newSubtotals = cart.map(
+      item => parseInt(item.quantity) * parseInt(item.price)
+    );
+
+    setSubtotals(newSubtotals);
+
+    const newTotal = newSubtotals.reduce((acc, subtotal) => acc + subtotal, 0);
+    setTotal(newTotal);
+  }, [cart]);
+
   function handleClick(itemId) {
+    const removedItem = cart.find(item => item.id === itemId);
     const updatedCart = cart.filter(item => item.id !== itemId);
 
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+    const removedSubtotal =
+      parseInt(removedItem.quantity) * parseInt(removedItem.price);
+    setTotal(total - removedSubtotal);
+  }
+
+  function handleCheckOutClick() {
+    localStorage.setItem('total', JSON.stringify(total));
   }
 
   return cart.length !== 0 ? (
@@ -22,7 +44,7 @@ export default function CartContainer() {
       <p className="cart-header">Cart</p>
 
       <div className="cart-container">
-        {cart.map(item => (
+        {cart.map((item, index) => (
           <div className="card-container" key={item.id}>
             <div className="cart-card">
               <div className="cart-image-container">
@@ -39,12 +61,14 @@ export default function CartContainer() {
                   <p className="cart-item-price">D {item.price}</p>
                 </div>
 
-                <p className="cart-item-components">
-                  Components: {item.components}
-                </p>
+                <p className="cart-item-components">{item.components}</p>
 
-                <p>Size: {item.size}</p>
-                <p>Quantity: {item.quantity}</p>
+                <p>{item.size}</p>
+
+                <p> Sub total: </p>
+                <p>
+                  {item.quantity} x D {item.price} = D {subtotals[index]}
+                </p>
 
                 <p className="item-remove" onClick={() => handleClick(item.id)}>
                   Remove
@@ -58,7 +82,14 @@ export default function CartContainer() {
         ))}
       </div>
 
-      <button className="checkout-btn">Checkout</button>
+      <div className="total">
+        <p className="total-text"> Total:</p>
+        <p className="total-price">D {total}</p>
+      </div>
+
+      <button className="checkout-btn" onClick={handleCheckOutClick}>
+        Checkout
+      </button>
     </div>
   ) : (
     <div className="no-item-container">
