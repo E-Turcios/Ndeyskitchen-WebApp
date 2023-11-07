@@ -38,6 +38,7 @@
 /* Navbar */
 
 .home-button{
+    position: sticky;
     margin-right: auto;
 }
 
