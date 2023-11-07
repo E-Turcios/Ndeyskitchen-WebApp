@@ -50,7 +50,7 @@ export default function ComputerNavbar() {
             }}
           />
 
-          <a className="navbar-shopping-bag-container">
+          <a href="/cart" className="navbar-shopping-bag-container">
             <span className="items-number">{cartSize}</span>
             <span className="material-symbols-outlined navbar-icons">
               shopping_bag

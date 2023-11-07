@@ -16,7 +16,6 @@ export default function CartContainer() {
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   }
-  console.log(cart);
 
   return cart ? (
     <div className="cart-body">

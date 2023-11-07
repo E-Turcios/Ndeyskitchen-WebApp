@@ -15,9 +15,11 @@ export default function ItemViewNavbar() {
         </div>
 
         <div className="shopping-bag-container">
-          <a>
+          <a href="/cart" style={{ textDecoration: 'none' }}>
             <span className="items-number">{cartSize}</span>
-            <span className="material-symbols-outlined">shopping_bag</span>
+            <span className="material-symbols-outlined navbar-icons">
+              shopping_bag
+            </span>
           </a>
         </div>
       </div>

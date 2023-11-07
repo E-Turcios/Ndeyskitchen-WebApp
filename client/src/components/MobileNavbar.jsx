@@ -50,7 +50,12 @@ export default function MobileNavbar() {
           </a>
 
           <div className="hamburger-menu-navbar-icons-container">
-            <div className="navbar-shopping-bag-container">
+            <div
+              className="navbar-shopping-bag-container"
+              onClick={() => {
+                navigate('/cart');
+              }}
+            >
               <span className="items-number">{cartSize}</span>
               <span className="material-symbols-outlined navbar-icons">
                 shopping_bag
