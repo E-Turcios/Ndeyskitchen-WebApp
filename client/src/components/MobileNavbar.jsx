@@ -14,8 +14,6 @@ export default function MobileNavbar() {
 
   const [isActive, setIsActive] = useState(false);
 
-  const cart = JSON.parse(localStorage.getItem('cart'));
-
   function hamburgerMenuClicked() {
     setIsActive(!isActive);
   }
