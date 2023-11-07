@@ -48,6 +48,7 @@ export default function ItemView() {
     event.preventDefault();
 
     const addedItem = {
+      id: item._id,
       name: item.name,
       components: item.components,
       quantity: quantity,

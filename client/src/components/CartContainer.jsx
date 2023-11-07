@@ -1,8 +1,21 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import Image from './Image';
 
 export default function CartContainer() {
-  const cart = JSON.parse(localStorage.getItem('cart'));
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('cart'));
+
+    if (storedCart) setCart(storedCart);
+  }, []);
+
+  function handleClick(itemId) {
+    const updatedCart = cart.filter(item => item.id !== itemId);
+
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+  }
   console.log(cart);
 
   return cart ? (
@@ -11,8 +24,8 @@ export default function CartContainer() {
 
       <div className="cart-container">
         {cart.map(item => (
-          <div className="card-container">
-            <div className="cart-card" key={item.name}>
+          <div className="card-container" key={item.id}>
+            <div className="cart-card">
               <div className="cart-image-container">
                 <Image
                   src={item.image}
@@ -34,7 +47,9 @@ export default function CartContainer() {
                 <p>Size: {item.size}</p>
                 <p>Quantity: {item.quantity}</p>
 
-                <p className="item-remove">Remove</p>
+                <p className="item-remove" onClick={() => handleClick(item.id)}>
+                  Remove
+                </p>
               </div>
             </div>
             <div className="divider-container">
