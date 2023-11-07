@@ -62,7 +62,7 @@ export default function CartContainer() {
     </div>
   ) : (
     <div className="no-item-container">
-      <p>Cart is empty</p>
+      <p>Cart is empty.</p>
     </div>
   );
 }
