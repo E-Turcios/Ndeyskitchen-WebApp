@@ -10,32 +10,40 @@ export default function CartContainer() {
       <p className="cart-header">Cart</p>
 
       <div className="cart-container">
-        <div className="cart-card">
-          <div className="cart-image-container">
-            <Image
-              src={cart[0].image}
-              alt={cart[0].alt}
-              className="cart-item-image"
-            />
-          </div>
-          <div className="cart-item-information">
-            <div className="cart-name-price">
-              <p className="cart-item-name">{cart[0].name}</p>
+        {cart.map(item => (
+          <div className="card-container">
+            <div className="cart-card" key={item.name}>
+              <div className="cart-image-container">
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  className="cart-item-image"
+                />
+              </div>
+              <div className="cart-item-information">
+                <div className="cart-name-price">
+                  <p className="cart-item-name">{item.name}</p>
 
-              <p className="cart-item-price">D {cart[0].price}</p>
+                  <p className="cart-item-price">D {item.price}</p>
+                </div>
+
+                <p className="cart-item-components">
+                  Components: {item.components}
+                </p>
+
+                <p>Size: {item.size}</p>
+                <p>Quantity: {item.quantity}</p>
+
+                <p className="item-remove">Remove</p>
+              </div>
             </div>
-
-            <p className="cart-item-components">
-              Components: {cart[0].components}
-            </p>
-
-            <p>Size: {cart[0].size}</p>
-            <p>Quantity: {cart[0].quantity}</p>
-
-            <p className="item-remove">Remove</p>
+            <div className="divider-container">
+              <span className="divider"></span>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
+
       <button className="checkout-btn">Checkout</button>
     </div>
   ) : (
