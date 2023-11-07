@@ -17,7 +17,7 @@ export default function CartContainer() {
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   }
 
-  return cart ? (
+  return cart.length !== 0 ? (
     <div className="cart-body">
       <p className="cart-header">Cart</p>
 
