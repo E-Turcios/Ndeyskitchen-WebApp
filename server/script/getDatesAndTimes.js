@@ -1,4 +1,4 @@
-async function getDatesAndTimes({ item }) {
+function getDatesAndTimes({ item }) {
   const daysInMonth = new Date(
     new Date().getFullYear(),
     new Date().getMonth() + 1,
