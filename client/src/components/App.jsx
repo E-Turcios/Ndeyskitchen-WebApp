@@ -9,7 +9,9 @@ import RedirectToForgotPassword from '../pages/RedirectToForgotPassword';
 import VerifyEmail from '../pages/VerifyEmail';
 import ItemView from '../pages/ItemView';
 import Cart from '../pages/Cart';
+import Checkout from '../pages/Checkout';
 import useAuthContext from '../hooks/useAuthContext';
+import useCartSizeContext from '../hooks/useCartSizeContext';
 import '../style/style.css';
 import '../style/login.css';
 import '../style/signup.css';
@@ -24,6 +26,7 @@ import '../style/cart.css';
 
 export default function App() {
   const { user } = useAuthContext();
+  const { cartSize } = useCartSizeContext();
 
   return (
     <div className="App">
@@ -56,6 +59,7 @@ export default function App() {
               <Route path="/item/:id" element={<ItemView />} />
 
               <Route path="/cart" element={<Cart />} />
+              {cartSize && <Route path="/checkout" element={<Checkout />} />}
             </Routes>
           )}
         </div>

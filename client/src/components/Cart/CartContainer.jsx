@@ -1,10 +1,13 @@
 import { React, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Image from '../Image';
 
 export default function CartContainer() {
   const [cart, setCart] = useState([]);
   const [subtotals, setSubtotals] = useState([]);
   const [total, setTotal] = useState(0);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart'));
@@ -37,6 +40,7 @@ export default function CartContainer() {
 
   function handleCheckOutClick() {
     localStorage.setItem('total', JSON.stringify(total));
+    navigate('/checkout');
   }
 
   return cart.length !== 0 ? (
