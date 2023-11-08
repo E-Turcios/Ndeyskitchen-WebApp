@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from 'react';
-import dateAndTime from '../scripts/dateAndTime';
 
 export default function DateAndTime({ item, getDateAndTime }) {
   const [dates, setDates] = useState({
