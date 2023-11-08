@@ -1,0 +1,103 @@
+
+/* #DC952F #371821 */
+
+.checkout-page-container{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Checkout Page Content */
+
+.checkout-content-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    height: 100%;
+}
+
+
+.checkout-content-container .checkout-header{
+    color: #371821;
+    font-size: 28px;
+    letter-spacing: 2px;
+   margin-bottom: 15px;
+}
+
+.checkout-content-container p{
+    margin: 0
+}
+
+.checkout-content-container .section{
+    color: #DC952F;
+    font-size: 29px;
+    letter-spacing: .5px;
+    margin-bottom: 15px;
+}
+
+.checkout-content-container .divider{
+    width : 450px;
+    margin: 28px 0 15px 0;
+}
+
+/* Form */
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container .input-box{
+    text-align: center;
+    margin: 5px;
+    width: 270px;
+}
+
+/* Service */
+
+.service-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.service-button-container{
+    display: flex;
+    gap: 25px;
+}
+
+.service-button-container .service-btn{
+    background-color: #371821;
+    color: #FFF;
+    border: 1px solid #371821;
+    border-radius: 5px;
+    font-size: 17.5px;
+    padding: 9px;
+    transition: background-color .3s;
+    transition: color .3s;
+}
+
+.service-button-container .service-btn:hover{
+    cursor: pointer;
+    background-color: #FFF;
+    color: #371821;
+    border: 1px solid #371821;
+}
+
+.service-button-container .clicked-service-btn{
+    background-color: #FFF;
+    color: #371821;
+    border: 1px solid #371821;
+    border-radius: 5px;
+    font-size: 17.5px;
+    padding: 9px;
+    transition: background-color .3s;
+    transition: color .3s;
+}
+
+.service-button-container .clicked-service-btn:hover{
+    cursor: pointer;
+}
+
