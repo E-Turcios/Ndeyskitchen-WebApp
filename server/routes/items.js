@@ -4,6 +4,6 @@ const itemController = require('../controllers/itemController');
 
 router.get('/', itemController.getItems);
 
-router.get('/get-dates-and-times', itemController.getDatesTimes);
+router.post('/get-dates-and-times', itemController.getDatesTimes);
 
 module.exports = router;
