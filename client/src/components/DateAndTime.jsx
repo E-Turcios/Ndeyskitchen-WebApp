@@ -1,13 +1,45 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import dateAndTime from '../scripts/dateAndTime';
 
 export default function DateAndTime({ item, getDateAndTime }) {
+  const [dates, setDates] = useState({
+    minimumDate: '',
+    maximumDate: '',
+    minimumTime: '',
+    maximumTime: '',
+  });
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
 
-  const { minimumDate, maximumDate, minimumTime, maximumTime } = dateAndTime({
-    item,
-  });
+  useEffect(() => {
+    async function fetchDatesAndTimes() {
+      const response = await fetch('/api/items/get-dates-and-times', {
+        method: 'POST',
+        body: JSON.stringify({ item: item }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        console.log(json.status);
+        return;
+      }
+
+      setDates({
+        minimumDate: json.minimumDate,
+        maximumDate: json.maximumDate,
+        minimumTime: json.minimumTime,
+        maximumTime: json.maximumTime,
+      });
+
+      console.log(json);
+    }
+
+    fetchDatesAndTimes();
+  }, []);
 
   return (
     <div>
@@ -16,8 +48,8 @@ export default function DateAndTime({ item, getDateAndTime }) {
       <div className="date-and-time-container">
         <input
           type="date"
-          min={minimumDate}
-          max={maximumDate}
+          min={dates.minimumDate}
+          max={dates.maximumDate}
           onChange={event => setDate(event.target.value)}
           required
         />
@@ -26,8 +58,8 @@ export default function DateAndTime({ item, getDateAndTime }) {
           type="time"
           onChange={event => setTime(event.target.value)}
           required
-          min={minimumTime}
-          max={maximumTime}
+          min={dates.minimumTime}
+          max={dates.maximumTime}
         />
       </div>
     </div>
