@@ -19,12 +19,8 @@ export const CartSizeContextProvider = ({ children }) => {
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem('cart'));
 
-    console.log(cart && cart.length);
-
     dispatch({ type: 'SET_CART_SIZE', payload: cart && cart.length });
   }, []);
-
-  console.log('CartSizeContext state: ', state);
 
   return (
     <CartSizeContext.Provider value={{ ...state, dispatch }}>
