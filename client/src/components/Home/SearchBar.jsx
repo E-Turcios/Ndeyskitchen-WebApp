@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import SearchResult from './SearchResult';
-import searchResultStore from '../stores/searchResultStore';
+import searchResultStore from '../../stores/searchResultStore';
 import useOnclickOutside from 'react-cool-onclickoutside';
 
 export default function SearchBar(props) {

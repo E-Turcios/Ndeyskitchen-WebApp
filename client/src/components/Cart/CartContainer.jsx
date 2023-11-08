@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import Image from './Image';
+import Image from '../Image';
 
 export default function CartContainer() {
   const [cart, setCart] = useState([]);

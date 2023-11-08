@@ -1,6 +1,6 @@
 import React from 'react';
-import useFetchedItems from '../hooks/useFetchedItems';
-import searchResultStore from '../stores/searchResultStore';
+import useFetchedItems from '../../hooks/useFetchedItems';
+import searchResultStore from '../../stores/searchResultStore';
 
 export default function SearchResult({ open, searchText, closeHamburgerMenu }) {
   const { items, isLoading } = useFetchedItems();

@@ -1,8 +1,8 @@
 import { React, useState, useSyncExternalStore } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import categoryStore from '../stores/categoryStore';
-import filterStore from '../stores/filterStore';
-import searchResultStore from '../stores/searchResultStore';
+import categoryStore from '../../stores/categoryStore';
+import filterStore from '../../stores/filterStore';
+import searchResultStore from '../../stores/searchResultStore';
 
 const filterObj = {
   ALL: 'All',

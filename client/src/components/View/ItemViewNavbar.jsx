@@ -1,6 +1,6 @@
 import React from 'react';
 import Headroom from 'react-headroom';
-import useCartSizeContext from '../hooks/useCartSizeContext';
+import useCartSizeContext from '../../hooks/useCartSizeContext';
 
 export default function ItemViewNavbar() {
   const { cartSize } = useCartSizeContext();

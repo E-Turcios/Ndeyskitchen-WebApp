@@ -1,11 +1,11 @@
 import { React, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ItemViewImageAndName from '../components/ItemViewImageAndName';
-import ItemViewNavbar from '../components/ItemViewNavbar';
+import ItemViewImageAndName from '../components/View/ItemViewImageAndName';
+import ItemViewNavbar from '../components/View/ItemViewNavbar';
 import Loader from '../components/Loader';
-import Quantity from '../components/Quantity';
-import Size from '../components/Size';
-import DateAndTime from '../components/DateAndTime';
+import Quantity from '../components/View/Quantity';
+import Size from '../components/View/Size';
+import DateAndTime from '../components/View/DateAndTime';
 import useFetchedItems from '../hooks/useFetchedItems';
 import useCartSizeContext from '../hooks/useCartSizeContext';
 

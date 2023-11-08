@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from './Image';
+import Image from '../Image';
 
 export default function ItemCard(props) {
   function truncateComponentList(components) {

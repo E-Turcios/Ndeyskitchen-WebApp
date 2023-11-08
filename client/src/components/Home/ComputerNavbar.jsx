@@ -1,10 +1,10 @@
 import { React, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Headroom from 'react-headroom';
-import Image from './Image';
+import Image from '../Image';
 import SearchBar from './SearchBar';
-import useAuthContext from '../hooks/useAuthContext';
-import useCartSizeContext from '../hooks/useCartSizeContext';
+import useAuthContext from '../../hooks/useAuthContext';
+import useCartSizeContext from '../../hooks/useCartSizeContext';
 
 export default function ComputerNavbar() {
   const { user, dispatch } = useAuthContext();
