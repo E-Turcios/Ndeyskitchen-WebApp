@@ -33,8 +33,6 @@ export default function DateAndTime({ item, getDateAndTime }) {
         minimumTime: json.minimumTime,
         maximumTime: json.maximumTime,
       });
-
-      console.log(json);
     }
 
     fetchDatesAndTimes();
