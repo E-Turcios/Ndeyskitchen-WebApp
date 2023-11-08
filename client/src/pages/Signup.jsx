@@ -100,7 +100,6 @@ export default function Signup() {
           }
           value={firstName}
           maxLength="30"
-          minLength="2"
           style={{ textTransform: 'capitalize' }}
           required
         />
@@ -113,7 +112,6 @@ export default function Signup() {
           }
           value={lastName}
           maxLength="30"
-          minLength="2"
           style={{ textTransform: 'capitalize' }}
           required
         />
@@ -140,8 +138,7 @@ export default function Signup() {
         <input
           className="input-box"
           type="tel"
-          maxLength="10"
-          minLength="10"
+          maxLength="20"
           placeholder="Phone number"
           onChange={event => setNumber(event.target.value.trim())}
           value={number}
