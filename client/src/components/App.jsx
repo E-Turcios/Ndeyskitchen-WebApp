@@ -23,6 +23,7 @@ import '../style/filter.css';
 import '../style/item-card.css';
 import '../style/item-view.css';
 import '../style/cart.css';
+import '../style/checkout.css';
 
 export default function App() {
   const { user } = useAuthContext();
