@@ -8,7 +8,7 @@ const UserSchema = new Schema(
     lastName: { type: String, required: true, minlength: 2, maxlength: 50 },
     email: { type: String, required: true, unique: true, maxlength: 100 },
     password: { type: String, default: 'N/A', maxlength: 100 },
-    number: { type: String, default: 'N/A', unique: true, maxlength: 10 },
+    number: { type: String, default: 'N/A', unique: true, maxlength: 20 },
     sub: {
       type: String,
       required: false,
