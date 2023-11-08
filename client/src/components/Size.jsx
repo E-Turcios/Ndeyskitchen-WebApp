@@ -1,16 +1,41 @@
-import { React, useState } from 'react';
-import { itemOptions } from '../scripts/itemOptions.js';
+import { React, useState, useEffect } from 'react';
 
 export default function Size({
   item,
   handleSizeSelect,
   handleSizeSelectPrice,
 }) {
-  const viewItem = itemOptions.find(viewItem => viewItem.name === item.name);
+  const [itemOptions, setItemOptions] = useState([]);
   const [price, setPrice] = useState(item.price);
   const [itemSize, setSize] = useState(item.size);
+  const [isLoading, setIsLoading] = useState(true);
 
-  return (
+  useEffect(() => {
+    async function fetchItemOptions() {
+      const response = await fetch('/api/items/get-item-options', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        console.log(json.status);
+        return;
+      }
+
+      setItemOptions(json);
+      setIsLoading(false);
+    }
+
+    fetchItemOptions();
+  }, []);
+
+  const viewItem = itemOptions.find(viewItem => viewItem.name === item.name);
+
+  return !isLoading ? (
     <>
       <p className="tag">Size</p>
       {handleSizeSelectPrice(price)}
@@ -37,5 +62,7 @@ export default function Size({
         ))}
       </div>
     </>
+  ) : (
+    <>Loading...</>
   );
 }
