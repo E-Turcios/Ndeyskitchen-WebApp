@@ -1,8 +1,13 @@
 const Item = require('../database/models/itemModel');
 const { getDatesAndTimes } = require('../script/getDatesAndTimes');
 const { itemOptions } = require('../script/itemOptions');
+const jwt = require('jsonwebtoken');
 
-const { ITEMS_NOT_FOUND } = require('../messages');
+const {
+  ITEMS_NOT_FOUND,
+  CART_TOKEN_MISSING,
+  LOCAL_STORAGE_MISSING,
+} = require('../messages');
 
 async function getItems(req, res) {
   const items = await Item.find();
@@ -31,4 +36,8 @@ async function getItemsOptions(req, res) {
   return res.status(200).json(itemOptions);
 }
 
-module.exports = { getItems, getDatesTimes, getItemsOptions };
+module.exports = {
+  getItems,
+  getDatesTimes,
+  getItemsOptions,
+};
