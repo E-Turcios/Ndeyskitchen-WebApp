@@ -54,7 +54,7 @@ export default function MobileNavbar() {
                 navigate('/cart');
               }}
             >
-              <span className="items-number">{cartSize}</span>
+              <span className="items-number">{cartSize ? cartSize : 0}</span>
               <span className="material-symbols-outlined navbar-icons">
                 shopping_bag
               </span>

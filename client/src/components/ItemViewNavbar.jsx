@@ -4,6 +4,7 @@ import useCartSizeContext from '../hooks/useCartSizeContext';
 
 export default function ItemViewNavbar() {
   const { cartSize } = useCartSizeContext();
+
   return (
     <Headroom>
       <div className="item-view-navbar">
@@ -16,7 +17,7 @@ export default function ItemViewNavbar() {
 
         <div className="shopping-bag-container">
           <a href="/cart" style={{ textDecoration: 'none' }}>
-            <span className="items-number">{cartSize}</span>
+            <span className="items-number">{cartSize ? cartSize : 0}</span>
             <span className="material-symbols-outlined navbar-icons">
               shopping_bag
             </span>

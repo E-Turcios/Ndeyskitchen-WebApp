@@ -12,12 +12,6 @@ export default function ComputerNavbar() {
 
   const navigate = useNavigate();
 
-  console.log(useCartSizeContext());
-
-  useEffect(() => {
-    console.log('Size Changed');
-  }, [cartSize]);
-
   function logOut() {
     localStorage.removeItem('token');
     dispatch({ type: 'LOGOUT' });
@@ -51,7 +45,7 @@ export default function ComputerNavbar() {
           />
 
           <a href="/cart" className="navbar-shopping-bag-container">
-            <span className="items-number">{cartSize}</span>
+            <span className="items-number">{cartSize ? cartSize : 0}</span>
             <span className="material-symbols-outlined navbar-icons">
               shopping_bag
             </span>
