@@ -19,11 +19,7 @@ export default function ItemView() {
   const [validateButton, setValidateButtonText] = useState('Add to');
   const [isDisabled, setIsDisabled] = useState(false);
 
-  let itemSize;
-  let itemPrice;
-  let quantity;
-  let date;
-  let time;
+  let itemSize, itemPrice, quantity, date, time;
 
   const item = items.find(item => item._id === id);
 
