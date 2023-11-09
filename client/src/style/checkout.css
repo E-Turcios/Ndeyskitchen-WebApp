@@ -136,12 +136,22 @@
     cursor: pointer;
     background-color:#371821;
     color:#DC952F;
-    font-size: 20px;
+}
+
+.order-placed{
+    background-color:#371821;
+    color:#DC952F;
+    font-size: 19px;
     padding: 10px;
     margin: 15px 0;
     border: 1px solid #371821;
     border-radius: 5px;
 }
+
+.order-placed:disabled{
+    cursor: not-allowed;
+}
+
 
 /* Media Queries */
 @media (max-width: 1050px) {
@@ -186,7 +196,7 @@
         margin-bottom: 8px;
     }
 
-    .place-order{
+    .place-order, .order-placed{
         font-size: 17px;
         padding: 10px;
         margin: 10px 0;
@@ -250,7 +260,7 @@
         margin-bottom: 7px;
     }
 
-    .place-order{
+    .place-order, .order-placed{
         font-size: 16px;
         padding: 9px;
         margin: 8px 0;
@@ -305,7 +315,7 @@
         margin-bottom: 7px;
     }
 
-    .place-order{
+    .place-order, .order-placed{
         font-size: 15px;
         padding: 9px;
         margin: 8px 0;
