@@ -7,6 +7,7 @@ import Payment from '../components/checkout/Payment.jsx';
 export default function Checkout() {
   const [service, setService] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [userData, setUser] = useState({
     firstName: '',
     lastName: '',
@@ -30,7 +31,10 @@ export default function Checkout() {
     setPaymentMethod(id);
   }
 
-  function handlePlaceOrderClick() {}
+  function handleClick(event) {
+    event.preventDefault();
+    setIsButtonClicked(true);
+  }
 
   return (
     <div className="checkout-page-container">
@@ -43,7 +47,26 @@ export default function Checkout() {
         <span className="divider"></span>
         <Payment onButtonClick={handlePaymentMethodCollection} />
         <span className="divider"></span>
-        <button className="place-order">Place order</button>
+        <button
+          className={!isButtonClicked ? 'place-order' : 'order-placed'}
+          disabled={isButtonClicked}
+          onClick={event => handleClick(event)}
+        >
+          {!isButtonClicked ? (
+            'Place order'
+          ) : (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              Order placed
+              <span className="material-symbols-outlined">done</span>
+            </div>
+          )}
+        </button>
       </form>
     </div>
   );
