@@ -17,7 +17,6 @@
     gap: 15px;
 }
 
-
 .checkout-content-container .checkout-header{
     color: #371821;
     font-size: 28px;
@@ -47,7 +46,7 @@
     align-items: center;
 }
 
-.form-container .input-box{
+.form-container .input-box, .payment-form .input-box{
     text-align: center;
     margin: 5px;
     width: 270px;
@@ -114,13 +113,9 @@
     margin-top: 30px;
 }
 
-.payment-form .input-box{
-    text-align: center;
-}
-
 .payment-form .payment-method-letterhead{
     color: #371821;
-    font-size: 17px;
+    font-size: 18px;
     margin-bottom: 10px;
 }
 
@@ -146,4 +141,173 @@
     border: 1px solid #371821;
     border-radius: 5px;
 }
+
+/* Media Queries */
+@media (max-width: 1050px) {
+
+    .checkout-content-container{
+        padding: 10px 0;
+        gap: 10px;
+    }
+    
+    .checkout-content-container .checkout-header{
+        font-size: 25px;
+        letter-spacing: 1px;
+    }
+    .checkout-content-container .section{
+        font-size: 26px;
+        letter-spacing: .4px;
+        margin-bottom: 10px;
+    }
+    
+    .checkout-content-container .divider{
+        width : 420px;
+    }
+
+    .form-container .input-box, .payment-form .input-box{
+        font-size: 15px;
+        margin: 5px;
+        width: 250px;
+    }
+
+    .button-container{
+        gap: 19px;
+    }
+    
+    .button-container .btn{
+        font-size: 16.5px;
+        padding: 8px;
+    }
+
+    .payment-form .payment-method-letterhead{
+        font-size: 17px;
+        margin-bottom: 7px;
+    }
+
+    .place-order{
+        font-size: 18px;
+        padding: 10px;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 850px) {
+
+    .cart-button .back-btn-container{
+        padding: 8px;
+        width: 90px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 660px) {
+
+    .cart-button .back-btn-container{
+        padding: 8px;
+        width: 75px;
+        font-size: 17px;
+    }
+
+    .checkout-content-container{
+        padding: 10px 0;
+        gap: 8px;
+    }
+    
+    .checkout-content-container .checkout-header{
+        font-size: 23px;
+        letter-spacing: 1px;
+    }
+    .checkout-content-container .section{
+        font-size: 24px;
+        letter-spacing: .4px;
+        margin-bottom: 8px;
+    }
+    
+    .checkout-content-container .divider{
+        width : 380px;
+    }
+
+    .form-container .input-box, .payment-form .input-box{
+        font-size: 14px;
+        margin: 5px;
+        width: 215px;
+    }
+
+    .button-container{
+        gap: 16px;
+    }
+    
+    .button-container .btn{
+        font-size: 15px;
+        padding: 7px;
+    }
+
+    .payment-form .payment-method-letterhead{
+        font-size: 15.8px;
+        margin-bottom: 7px;
+    }
+
+    .place-order{
+        font-size: 17px;
+        padding: 9px;
+        margin: 8px 0;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .cart-button .back-btn-container{
+        padding: 6px;
+        width: 68px;
+        font-size: 16px;
+    }
+
+    .checkout-content-container{
+        padding: 10px 0;
+        gap: 5px;
+    }
+    
+    .checkout-content-container .checkout-header{
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+    .checkout-content-container .section{
+        font-size: 21px;
+        letter-spacing: .4px;
+        margin-bottom: 5px;
+    }
+    
+    .checkout-content-container .divider{
+        width : 300px;
+    }
+
+    .form-container .input-box, .payment-form .input-box{
+        font-size: 13.5px;
+        margin: 4.5px;
+        width: 200px;
+    }
+
+    .button-container{
+        gap: 10px;
+    }
+    
+    .button-container .btn{
+        font-size: 14px;
+        padding: 6px;
+    }
+
+    .payment-form .payment-method-letterhead{
+        font-size: 15px;
+        margin-bottom: 7px;
+    }
+
+    .place-order{
+        font-size: 16px;
+        padding: 9px;
+        margin: 5px 0;
+    }
+}
+
+
+
 
