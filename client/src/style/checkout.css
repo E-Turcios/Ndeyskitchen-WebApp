@@ -18,9 +18,10 @@
 }
 
 .checkout-content-container .checkout-header{
-    color: #371821;
-    font-size: 28px;
+    color: #000;
+    font-size: 25px;
     letter-spacing: 2px;
+    margin-bottom: 14px;
 }
 
 .checkout-content-container p{
@@ -28,14 +29,14 @@
 }
 
 .checkout-content-container .section{
-    color: #DC952F;
-    font-size: 29px;
+    color: #371821;
+    font-size: 22px;
     letter-spacing: .5px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .checkout-content-container .divider{
-    width : 450px;
+    width : 360px;
 }
 
 /* Form */
@@ -49,7 +50,7 @@
 .form-container .input-box, .payment-form .input-box{
     text-align: center;
     margin: 5px;
-    width: 270px;
+    width: 250px;
 }
 
 /* Service */
@@ -70,7 +71,7 @@
     color: #371821;
     border: 1px solid #371821;
     border-radius: 5px;
-    font-size: 17.5px;
+    font-size: 16.5px;
     padding: 9px;
     transition: background-color .3s;
     transition: color .3s;
@@ -115,7 +116,7 @@
 
 .payment-form .payment-method-letterhead{
     color: #371821;
-    font-size: 18px;
+    font-size: 17px;
     margin-bottom: 10px;
 }
 
@@ -124,7 +125,7 @@
 .place-order{
     background-color:#DC952F;
     color:#371821;
-    font-size: 20px;
+    font-size: 19px;
     padding: 10px;
     margin: 15px 0;
     border: 1px solid #371821;
@@ -151,23 +152,24 @@
     }
     
     .checkout-content-container .checkout-header{
-        font-size: 25px;
+        font-size: 24px;
         letter-spacing: 1px;
+        margin-bottom: 13px;
     }
     .checkout-content-container .section{
-        font-size: 26px;
-        letter-spacing: .4px;
-        margin-bottom: 10px;
+        font-size: 21px;
+        letter-spacing: .5px;
+        margin-bottom: 19px;
     }
     
     .checkout-content-container .divider{
-        width : 420px;
+        width : 338px;
     }
 
     .form-container .input-box, .payment-form .input-box{
-        font-size: 15px;
+        font-size: 14px;
         margin: 5px;
-        width: 250px;
+        width: 240px;
     }
 
     .button-container{
@@ -180,12 +182,12 @@
     }
 
     .payment-form .payment-method-letterhead{
-        font-size: 17px;
-        margin-bottom: 7px;
+        font-size: 16px;
+        margin-bottom: 8px;
     }
 
     .place-order{
-        font-size: 18px;
+        font-size: 17px;
         padding: 10px;
         margin: 10px 0;
     }
@@ -210,21 +212,22 @@
 
     .checkout-content-container{
         padding: 10px 0;
-        gap: 8px;
+        gap: 10px;
     }
     
     .checkout-content-container .checkout-header{
-        font-size: 23px;
+        font-size: 22px;
         letter-spacing: 1px;
+        margin-bottom: 13px;
     }
     .checkout-content-container .section{
-        font-size: 24px;
-        letter-spacing: .4px;
-        margin-bottom: 8px;
+        font-size: 19px;
+        letter-spacing: .5px;
+        margin-bottom: 16px;
     }
     
     .checkout-content-container .divider{
-        width : 380px;
+        width : 310px;
     }
 
     .form-container .input-box, .payment-form .input-box{
@@ -248,7 +251,7 @@
     }
 
     .place-order{
-        font-size: 17px;
+        font-size: 16px;
         padding: 9px;
         margin: 8px 0;
     }
@@ -258,32 +261,33 @@
 
     .cart-button .back-btn-container{
         padding: 6px;
-        width: 68px;
-        font-size: 16px;
+        width: 55px;
+        font-size: 15px;
     }
 
     .checkout-content-container{
-        padding: 10px 0;
-        gap: 5px;
+        padding: 5px 0;
+        gap: 10px;
     }
     
     .checkout-content-container .checkout-header{
         font-size: 20px;
         letter-spacing: 1px;
+        margin-bottom: 13px;
     }
     .checkout-content-container .section{
-        font-size: 21px;
-        letter-spacing: .4px;
-        margin-bottom: 5px;
+        font-size: 17px;
+        letter-spacing: .3px;
+        margin-bottom: 16px;
     }
     
     .checkout-content-container .divider{
-        width : 300px;
+        width : 280px;
     }
 
     .form-container .input-box, .payment-form .input-box{
-        font-size: 13.5px;
-        margin: 4.5px;
+        font-size: 13px;
+        margin: 5px;
         width: 200px;
     }
 
@@ -293,7 +297,7 @@
     
     .button-container .btn{
         font-size: 14px;
-        padding: 6px;
+        padding: 7px;
     }
 
     .payment-form .payment-method-letterhead{
@@ -302,9 +306,9 @@
     }
 
     .place-order{
-        font-size: 16px;
+        font-size: 15px;
         padding: 9px;
-        margin: 5px 0;
+        margin: 8px 0;
     }
 }
 
