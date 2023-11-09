@@ -5,7 +5,7 @@ export default function CheckoutNavbar() {
   return (
     <Headroom>
       <div className="item-view-navbar ">
-        <div className="home-button">
+        <div className="home-button cart-button">
           <a href="/cart" className="back-btn-container">
             <>Cart</>
           </a>
