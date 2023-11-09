@@ -10,19 +10,15 @@ export default function Service({ onButtonClick }) {
   return (
     <div className="service-container">
       <p className="section">Service</p>
-      <div className="service-button-container">
+      <div className="button-container">
         <button
-          className={
-            buttonId === 'Pick-up' ? 'clicked-service-btn' : 'service-btn'
-          }
+          className={buttonId === 'Pick-up' ? 'clicked-btn' : 'btn'}
           onClick={() => handleServiceButtonClick('Pick-up')}
         >
           Pick up
         </button>
         <button
-          className={
-            buttonId === 'Delivery' ? 'clicked-service-btn' : 'service-btn'
-          }
+          className={buttonId === 'Delivery' ? 'clicked-btn' : 'btn'}
           onClick={() => {
             handleServiceButtonClick('Delivery');
           }}
@@ -30,7 +26,6 @@ export default function Service({ onButtonClick }) {
           Delivery
         </button>
       </div>
-      <span className="divider"></span>
     </div>
   );
 }

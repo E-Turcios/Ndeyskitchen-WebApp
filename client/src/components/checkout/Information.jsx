@@ -60,7 +60,6 @@ export default function CheckoutPageContent({ onFormChange }) {
         onChange={handleChange}
         required
       />
-      <span className="divider"></span>
     </form>
   );
 }
