@@ -12,7 +12,6 @@ const ItemSchema = new Schema(
     alt: { type: String, required: true },
     price: { type: String, required: true },
     size: { type: String, required: true },
-    topping: { type: String, default: 'N/A' },
   },
   { timestamps: true }
 );
