@@ -6,6 +6,6 @@ router.get('/', itemController.getItems);
 
 router.get('/get-item-options', itemController.getItemsOptions);
 
-router.post('/get-dates-and-times', itemController.getDatesTimes);
+router.get('/get-dates-and-times', itemController.getDatesTimes);
 
 module.exports = router;

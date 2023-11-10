@@ -1,13 +1,8 @@
 const Item = require('../database/models/itemModel');
 const { getDatesAndTimes } = require('../script/getDatesAndTimes');
 const { itemOptions } = require('../script/itemOptions');
-const jwt = require('jsonwebtoken');
 
-const {
-  ITEMS_NOT_FOUND,
-  CART_TOKEN_MISSING,
-  LOCAL_STORAGE_MISSING,
-} = require('../messages');
+const { ITEMS_NOT_FOUND } = require('../messages');
 
 async function getItems(req, res) {
   const items = await Item.find();
@@ -18,16 +13,11 @@ async function getItems(req, res) {
 }
 
 async function getDatesTimes(req, res) {
-  const { item } = req.body;
+  if (!itemOptions) return res.status(404).json({ Message: ITEMS_NOT_FOUND });
 
-  if (!item.filter) return res.status(404).json({ Message: ITEMS_NOT_FOUND });
+  const { nonCake, cake } = getDatesAndTimes();
 
-  const { maximumDate, minimumDate, minimumTime, maximumTime } =
-    getDatesAndTimes({ item });
-
-  return res
-    .status(200)
-    .json({ maximumDate, minimumDate, minimumTime, maximumTime });
+  return res.status(200).json({ nonCake, cake });
 }
 
 async function getItemsOptions(req, res) {
