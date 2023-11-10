@@ -8,6 +8,9 @@ export default function Checkout() {
   const [service, setService] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [items, setItems] = useState([]);
+  const [total, setTotal] = useState('');
+
   const [userData, setUser] = useState({
     firstName: '',
     lastName: '',
@@ -34,6 +37,8 @@ export default function Checkout() {
   function handleClick(event) {
     event.preventDefault();
     setIsButtonClicked(true);
+    setItems(JSON.parse(localStorage.getItem('cart')));
+    setTotal(JSON.parse(localStorage.getItem('total')));
   }
 
   return (
