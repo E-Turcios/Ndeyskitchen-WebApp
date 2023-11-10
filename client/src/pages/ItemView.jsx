@@ -41,6 +41,7 @@ export default function ItemView() {
       id: item._id,
       name: item.name,
       components: item.components,
+      filter: item.filter,
       quantity: quantity,
       price: itemPrice,
       size: itemSize,
