@@ -5,14 +5,13 @@ import ItemViewNavbar from '../components/view/ItemViewNavbar';
 import Loader from '../components/Loader';
 import Quantity from '../components/view/Quantity';
 import Size from '../components/view/Size';
-import DateAndTime from '../components/view/DateAndTime';
 import useFetchedItems from '../hooks/useFetchedItems';
 import useCartSizeContext from '../hooks/useCartSizeContext';
 
 export default function ItemView() {
   const { id } = useParams();
-  const { items, isLoading } = useFetchedItems();
 
+  const { items, isLoading } = useFetchedItems();
   const { dispatch } = useCartSizeContext();
 
   const [instructions, setInstructions] = useState('No instructions');
@@ -35,11 +34,6 @@ export default function ItemView() {
     quantity = amount;
   }
 
-  function getDateAndTime(pickedDate, pickedTime) {
-    date = pickedDate;
-    time = pickedTime;
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -50,8 +44,6 @@ export default function ItemView() {
       quantity: quantity,
       price: itemPrice,
       size: itemSize,
-      date: date,
-      time: time,
       instructions: instructions,
       image: item.image,
       alt: item.alt,
@@ -103,10 +95,6 @@ export default function ItemView() {
                 handleSizeSelect={handleSizeSelect}
                 handleSizeSelectPrice={handleSizeSelectPrice}
               />
-
-              <span className="divider"></span>
-
-              <DateAndTime item={item} getDateAndTime={getDateAndTime} />
 
               <span className="divider"></span>
 
