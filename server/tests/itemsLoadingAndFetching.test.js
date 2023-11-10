@@ -1,7 +1,7 @@
 const app = require('../../server/index');
 const supertest = require('supertest');
 const Item = require('../../server/database/models/itemModel');
-const databaseConnection = require('../database/databaseConnection');
+const databaseConnection = require('./database/databaseConnection');
 
 const chalk = require('chalk');
 

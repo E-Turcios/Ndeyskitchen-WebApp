@@ -1,7 +1,7 @@
-const app = require('../../index');
+const app = require('../index');
 const supertest = require('supertest');
-const User = require('../../database/models/userModel');
-const databaseConnection = require('../database/databaseConnection');
+const User = require('../database/models/userModel');
+const databaseConnection = require('./database/databaseConnection');
 
 const data = {
   firstName: 'John',

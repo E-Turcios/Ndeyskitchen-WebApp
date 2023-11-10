@@ -2,7 +2,7 @@ const app = require('../../server/index');
 const supertest = require('supertest');
 const bcrypt = require('bcrypt');
 const User = require('../../server/database/models/userModel');
-const databaseConnection = require('../database/databaseConnection');
+const databaseConnection = require('./database/databaseConnection');
 
 const data = {
   firstName: 'Jane',

@@ -1,4 +1,4 @@
-const app = require('../../index');
+const app = require('../index');
 const supertest = require('supertest');
 
 describe('Items options fetching', () => {
