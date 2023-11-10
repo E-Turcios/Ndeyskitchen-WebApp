@@ -14,6 +14,7 @@ export default function CartContainer() {
     nonCake: { selectedDate: '', selectedTime: '' },
     cake: { selectedDate: '', selectedTime: '' },
   });
+
   const [total, setTotal] = useState(0);
 
   const { data } = useDatesAndTimes();
@@ -44,16 +45,11 @@ export default function CartContainer() {
     setTotal(newTotal);
   }, [cart]);
 
-  function handleClick(itemId) {
+  function handleItemRemove(itemId) {
     const updatedCart = cart.filter(item => item.id !== itemId);
 
     setCart(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
-  }
-
-  function handleCheckOutClick() {
-    localStorage.setItem('total', JSON.stringify(total));
-    navigate('/checkout');
   }
 
   function handleDateTimeChange(itemType, selectedDate, selectedTime) {
@@ -64,6 +60,19 @@ export default function CartContainer() {
         selectedTime,
       },
     }));
+  }
+
+  function handleCheckOutClick() {
+    localStorage.setItem('total-price', JSON.stringify(total));
+    localStorage.setItem(
+      'non-cake-date-and-time',
+      JSON.stringify(selectedDateTime.nonCake)
+    );
+    localStorage.setItem(
+      'cake-date-and-time',
+      JSON.stringify(selectedDateTime.cake)
+    );
+    navigate('/checkout');
   }
 
   if (!data) return <Loader />;
@@ -91,7 +100,7 @@ export default function CartContainer() {
                 item={item}
                 index={index}
                 subtotals={nonCakeSubtotals}
-                handleClick={handleClick}
+                handleClick={handleItemRemove}
               />
             ))}
         </div>
@@ -114,7 +123,7 @@ export default function CartContainer() {
                 item={item}
                 index={index}
                 subtotals={cakeSubtotals}
-                handleClick={handleClick}
+                handleClick={handleItemRemove}
               />
             ))}
         </div>
