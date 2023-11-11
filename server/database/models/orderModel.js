@@ -1,17 +1,11 @@
 const mongoose = require('mongoose');
+const Counter = require('./counterModel');
 
 const Schema = mongoose.Schema;
 
-const CounterSchema = new Schema({
-  name: { type: String, required: true },
-  value: { type: Number, default: 1 },
-});
-
-const Counter = mongoose.model('Counter', CounterSchema);
-
 const OrderSchema = new Schema(
   {
-    orderNumber: { type: Number, required: false, maxlength: 10 },
+    orderNumber: { type: String, required: false, maxlength: 10 },
     userId: { type: String, maxlength: 50 },
     firstName: { type: String, required: true, minlength: 2, maxlength: 50 },
     lastName: { type: String, required: true, minlength: 2, maxlength: 50 },

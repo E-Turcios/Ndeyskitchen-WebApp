@@ -1,4 +1,5 @@
 const Order = require('../database/models/orderModel');
+const Counter = require('../database/models/counterModel');
 const { itemOptions } = require('../script/itemOptions');
 const { sendEmail } = require('../sendEmail');
 
@@ -19,7 +20,14 @@ async function createOrder(req, res) {
   } = req.body;
 
   try {
+    const counter = await Counter.findOneAndUpdate(
+      { name: 'orderNumberCounter' },
+      { $inc: { value: 1 } },
+      { upsert: true, new: true }
+    );
+
     const order = await Order.create({
+      orderNumber: counter.value.toString().padStart(5, '0'),
       firstName,
       lastName,
       email,
