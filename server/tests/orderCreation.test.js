@@ -1,6 +1,7 @@
 const app = require('../index');
 const supertest = require('supertest');
 const Order = require('../database/models/orderModel');
+const Counter = require('../database/models/counterModel');
 const databaseConnection = require('./database/databaseConnection');
 
 const firstName = 'John';
@@ -22,25 +23,30 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
+  await Order.deleteMany({}).then(() => {
+    console.log('All order deleted successfully');
+  });
+
+  await Counter.deleteMany({}).then(() => {
+    console.log('All counters deleted successfully');
+  });
   await databaseConnection.closeDBConnection();
 });
 
 describe('Order creation test', () => {
   it('Successfull order creation test', async () => {
-    const reponse = await supertest(app)
-      .post('/api/orders')
-      .send({
-        firstName,
-        lastName,
-        email,
-        number,
-        residence,
-        service,
-        paymentMethod,
-        total,
-        cart,
-        datesAndTimes,
-      });
+    const reponse = await supertest(app).post('/api/orders').send({
+      firstName,
+      lastName,
+      email,
+      number,
+      residence,
+      service,
+      paymentMethod,
+      total,
+      cart,
+      datesAndTimes,
+    });
 
     expect(reponse.status).toBe(200);
   });
