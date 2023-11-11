@@ -10,6 +10,6 @@ module.exports = {
   EMAIL_BEING_VERIFIED: 'Email being verified',
   EMAIL_VERIFICATION_FAILED: 'Email verification failed',
   ITEMS_NOT_FOUND: 'Items not found',
-  CART_TOKEN_MISSING: 'Cart token missing',
-  LOCAL_STORAGE_MISSING: 'Local storage missing',
+  ORDER_VALIDATION_FAILED: 'Oder validation failed',
+  ORDER_PLACED: 'Order placed',
 };
