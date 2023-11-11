@@ -12,7 +12,7 @@ export default function CheckoutPageContent({ onFormChange }) {
   }
 
   return (
-    <form className="form-container">
+    <div className="form-container">
       <p className="section">Information</p>
       <input
         className="input-box"
@@ -54,12 +54,12 @@ export default function CheckoutPageContent({ onFormChange }) {
       <input
         className="input-box"
         type="text"
-        placeholder="Residence"
+        placeholder="Address"
         name="residence"
         maxLength="50"
         onChange={handleChange}
         required
       />
-    </form>
+    </div>
   );
 }

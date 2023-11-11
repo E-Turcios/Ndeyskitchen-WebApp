@@ -41,7 +41,7 @@ export default function Payment({ onButtonClick }) {
         </div>
 
         {buttonId !== '' && buttonId !== 'Cash' && (
-          <form className="payment-form">
+          <div className="payment-form">
             <p className="payment-method-letterhead">Account Information</p>
 
             {buttonId === 'GT Bank' && (
@@ -89,7 +89,7 @@ export default function Payment({ onButtonClick }) {
                 />
               </>
             )}
-          </form>
+          </div>
         )}
       </div>
     </div>
