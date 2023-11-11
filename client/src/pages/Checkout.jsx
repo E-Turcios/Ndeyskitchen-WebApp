@@ -7,9 +7,21 @@ import Payment from '../components/checkout/Payment.jsx';
 export default function Checkout() {
   const [service, setService] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
-  const [items, setItems] = useState([]);
   const [total, setTotal] = useState('');
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+
+  const [datesAndTimes, setDatesAndTimes] = useState({
+    nonCake: { selectedDate: '', selectedTime: '' },
+    cake: { selectedDate: '', selectedTime: '' },
+  });
+
+  const { selectedDate: selectedCakeDate, selectedTime: selectedCakeTime } =
+    JSON.parse(localStorage.getItem('cake-date-and-time'));
+
+  const {
+    selectedDate: selectedNonCakeDate,
+    selectedTime: selectedNonCakeTime,
+  } = JSON.parse(localStorage.getItem('non-cake-date-and-time'));
 
   const [userData, setUser] = useState({
     firstName: '',
@@ -34,11 +46,48 @@ export default function Checkout() {
     setPaymentMethod(id);
   }
 
-  function handleClick(event) {
+  function handleSubmit(event) {
     event.preventDefault();
-    setIsButtonClicked(true);
-    setItems(JSON.parse(localStorage.getItem('cart')));
-    setTotal(JSON.parse(localStorage.getItem('total')));
+
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    setTotal(JSON.parse(localStorage.getItem('total-price')));
+    setDatesAndTimes({
+      nonCake: {
+        selectedDate: selectedNonCakeDate,
+        selectedTime: selectedNonCakeTime,
+      },
+      cake: { selectedDate: selectedCakeDate, selectedTime: selectedCakeTime },
+    });
+
+    const information = {
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      email: userData.email,
+      number: userData.number,
+      residence: userData.residence,
+      service,
+      paymentMethod,
+      items: cart,
+      total,
+      datesAndTimes,
+    };
+
+    async function onSubmit() {
+      const response = await fetch('/api/orders', {
+        method: 'POST',
+        body: JSON.stringify({ information }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      const json = await response.json();
+
+      if (!response.ok) console.log(json.Message);
+
+      console.log(json.Message);
+      setIsButtonClicked(true);
+    }
+
+    onSubmit();
   }
 
   return (
@@ -55,7 +104,7 @@ export default function Checkout() {
         <button
           className={!isButtonClicked ? 'place-order' : 'order-placed'}
           disabled={isButtonClicked}
-          onClick={event => handleClick(event)}
+          onClick={event => handleSubmit(event)}
         >
           {!isButtonClicked ? (
             'Place order'
