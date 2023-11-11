@@ -148,7 +148,7 @@ export default function Signup() {
           className="input-box"
           type="text"
           maxLength="50"
-          placeholder="Residence"
+          placeholder="Address"
           onChange={event =>
             setResidence(capitalizeFirstLetter(event.target.value))
           }
