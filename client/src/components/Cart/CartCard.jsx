@@ -11,7 +11,9 @@ export default function CartCard({ item, index, subtotals, handleClick }) {
         <div className="cart-item-information">
           <div className="cart-name-price">
             <p className="cart-item-name">{item.name}</p>
-            <p className="cart-item-price">D {item.price}</p>
+            <p className="cart-item-price">
+              D {parseInt(item.quantity) * parseInt(item.price)}{' '}
+            </p>
           </div>
           <p className="cart-item-components">{item.components}</p>
           <p>{item.size}</p>
