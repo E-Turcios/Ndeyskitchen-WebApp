@@ -1,19 +1,14 @@
-import { React, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function DateAndTime({
   minDate,
   maxDate,
   minTime,
   maxTime,
+  minTimeMessage,
+  maxTimeMessage,
   onChange,
 }) {
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
-
-  const minDateArray = minDate.split('-');
-  const maxDateArray = maxDate.split('-');
-  console.log(minDateArray);
-
   const months = {
     '01': 'Jan',
     '02': 'Feb',
@@ -29,14 +24,34 @@ export default function DateAndTime({
     12: 'Dec',
   };
 
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [dateError, setDateError] = useState(false);
+  const [timeError, setTimeError] = useState('');
+  const [lastDate, setLastDate] = useState('');
+  const [lastTime, setLastTime] = useState('');
+
+  const minDateArray = minDate.split('-');
+  const maxDateArray = maxDate.split('-');
+
+  useEffect(() => {
+    if (!dateError && !timeError && date && time) {
+      if (date !== lastDate || time !== lastTime) {
+        onChange(date, time);
+        setLastDate(date);
+        setLastTime(time);
+      }
+    }
+  }, [date, time, dateError, timeError, onChange, lastDate, lastTime]);
+
   function handleDateChange(event) {
     setDate(event.target.value);
-    onChange(event.target.value, time);
+    setDateError(false);
   }
 
   function handleTimeChange(event) {
     setTime(event.target.value);
-    onChange(date, event.target.value);
+    setTimeError(false);
   }
 
   return (
@@ -49,16 +64,15 @@ export default function DateAndTime({
           max={maxDate}
           value={date}
           onChange={handleDateChange}
-          onInvalid={e =>
-            e.target.setCustomValidity(
-              `Date must be between ${months[minDateArray[1]]} ${
-                minDateArray[2]
-              }, ${minDateArray[0]} and ${months[maxDateArray[1]]} ${
-                maxDateArray[2]
-              }, ${maxDateArray[0]}`
-            )
-          }
-          onInput={e => e.target.setCustomValidity('')}
+          onInvalid={event => {
+            event.preventDefault();
+            setDateError(true);
+            event.target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+            });
+          }}
+          onInput={() => setDateError(false)}
           required
         />
 
@@ -68,15 +82,63 @@ export default function DateAndTime({
           max={maxTime}
           value={time}
           onChange={handleTimeChange}
-          onInvalid={e =>
-            e.target.setCustomValidity(
-              `Time must be between ${minTime} and ${maxTime}`
-            )
-          }
-          onInput={e => e.target.setCustomValidity('')}
+          onInvalid={event => {
+            event.preventDefault();
+            setTimeError(true);
+            event.target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+            });
+          }}
+          onInput={() => setTimeError(false)}
           required
         />
       </div>
+
+      {(dateError || timeError) && (
+        <div className="date-time-error-message-container">
+          {dateError && (
+            <span>
+              <p>
+                Date must be between{' '}
+                <span className="date-and-time-error-message-span">
+                  {months[minDateArray[1]]}{' '}
+                </span>
+                <span className="date-and-time-error-message-span">
+                  {minDateArray[2]},{' '}
+                </span>
+                <span className="date-and-time-error-message-span">
+                  {minDateArray[0]}
+                </span>
+                <span> and </span>
+                <span className="date-and-time-error-message-span">
+                  {months[maxDateArray[1]]}{' '}
+                </span>
+                <span className="date-and-time-error-message-span">
+                  {maxDateArray[2]},{' '}
+                </span>
+                <span className="date-and-time-error-message-span">
+                  {maxDateArray[0]}
+                </span>
+              </p>
+            </span>
+          )}
+          {timeError && (
+            <span>
+              <p>
+                Time must be between{' '}
+                <span className="date-and-time-error-message-span">
+                  {minTimeMessage}
+                </span>
+                <span> and </span>
+                <span className="date-and-time-error-message-span">
+                  {maxTimeMessage}
+                </span>
+              </p>
+            </span>
+          )}
+        </div>
+      )}
     </div>
   );
 }

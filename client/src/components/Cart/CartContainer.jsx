@@ -88,6 +88,8 @@ export default function CartContainer() {
             maxDate={data.nonCake.maximumDate}
             minTime={data.nonCake.minimumTime}
             maxTime={data.nonCake.maximumTime}
+            minTimeMessage={data.minTimeMessage}
+            maxTimeMessage={data.maxTimeMessage}
             onChange={(date, time) =>
               handleDateTimeChange('nonCake', date, time)
             }
@@ -113,6 +115,8 @@ export default function CartContainer() {
             maxDate={data.cake.maximumDate}
             minTime={data.cake.minimumTime}
             maxTime={data.cake.maximumTime}
+            minTimeMessage={data.minTimeMessage}
+            maxTimeMessage={data.maxTimeMessage}
             onChange={(date, time) => handleDateTimeChange('cake', date, time)}
           />
           {cart
