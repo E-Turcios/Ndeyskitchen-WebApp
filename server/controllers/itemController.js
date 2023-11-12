@@ -15,9 +15,11 @@ async function getItems(req, res) {
 async function getDatesTimes(req, res) {
   if (!itemOptions) return res.status(404).json({ Message: ITEMS_NOT_FOUND });
 
-  const { nonCake, cake } = getDatesAndTimes();
+  const { nonCake, cake, minTimeMessage, maxTimeMessage } = getDatesAndTimes();
 
-  return res.status(200).json({ nonCake, cake });
+  return res
+    .status(200)
+    .json({ nonCake, cake, minTimeMessage, maxTimeMessage });
 }
 
 async function getItemsOptions(req, res) {
