@@ -25,6 +25,6 @@ node server/scripts/loadItemsCollection.js
 ```
 7. Then launch in your preferred browser the link: http://localhost:8081/
 
-## NO ACCESS KEYS REQUIRED
+## ACCESS KEYS REQUIRED
 
 
