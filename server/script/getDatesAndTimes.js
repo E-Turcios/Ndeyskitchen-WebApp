@@ -5,6 +5,16 @@ function getDatesAndTimes(items) {
     0
   ).getDate();
 
+  const date = new Date(Date.UTC(2012, 11, 12, 3, 0, 0));
+  const dateString = date.toLocaleTimeString();
+  let systemFormat;
+
+  if (dateString.match(/am|pm/i) || date.toString().match(/am|pm/i)) {
+    systemFormat = '12 hour';
+  } else {
+    systemFormat = '24 hour';
+  }
+
   let minDay = new Date().getDate().toString();
   let maxDay = ((new Date().getDate() + 1) % daysInMonth).toString();
 
@@ -35,8 +45,9 @@ function getDatesAndTimes(items) {
 
   const minimumDate = `${minYear}-${minMonth}-${minDay}`;
   const maximumDate = `${maxYear}-${maxMonth}-${maxDay}`;
-  const minimumTime = '12:00';
-  const maximumTime = '20:00';
+
+  const minimumTime = systemFormat !== '12 hour' ? '12:00' : '12:00 PM';
+  const maximumTime = systemFormat !== '12 hour' ? '20:00' : '8:00 PM';
 
   const cakeMinimumDate = `${minYear}-${minMonth}-${cakeMinDay}`;
   const cakeMaximumDate = `${cakeMaxYear}-${cakeMaxMonth}-${maxDay}`;
