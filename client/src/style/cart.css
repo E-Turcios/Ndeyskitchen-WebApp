@@ -45,6 +45,28 @@
     border-radius: 5px;
 }
 
+.date-time-error-message-container{
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px 0 0 0 ;
+    padding: 10px;
+    border: 1px solid #DC952F;
+    border-radius: 5px;
+    gap: 6px
+}
+
+.date-time-error-message-container p{
+    font-size: 15px;
+    margin: 0
+}
+
+.date-and-time-error-message-span{
+    color: #DC952F;
+    text-decoration: underline;
+}
+
 /* Divider */
 
 .divider-container {
@@ -197,6 +219,16 @@
 
 @media (max-width: 1050px){
 
+    .date-time-error-message-container{
+        margin: 7px 0 0 0 ;
+        padding: 10px;
+        gap: 5px
+    }
+    
+    .date-time-error-message-container p{
+        font-size: 15px;
+    }
+
     .home-button .back-btn-container{
         padding: 8px;
         width: 90px;
@@ -212,9 +244,20 @@
         letter-spacing: 2px;
         margin: 8px 0;
     }
+    
 }
 
 @media (max-width: 850px){
+
+    .date-time-error-message-container{
+        margin: 8px 0 0 0 ;
+        padding: 10px;
+        gap: 5px
+    }
+    
+    .date-time-error-message-container p{
+        font-size: 14.5px;
+    }
 
     .home-button .back-btn-container{
         padding: 6px;
@@ -299,6 +342,16 @@
 
 @media (max-width: 750px){
 
+    .date-time-error-message-container{
+        margin: 12px 0 0 0 ;
+        padding: 9px;
+        gap: 5px
+    }
+    
+    .date-time-error-message-container p{
+        font-size: 14px;
+    }
+
     .cart-container{
         padding: 5px;
     }
@@ -382,6 +435,16 @@
 
 @media (max-width: 600px){
 
+    .date-time-error-message-container{
+        margin: 12px 0 0 0 ;
+        padding: 9px;
+        gap: 3.5px
+    }
+    
+    .date-time-error-message-container p{
+        font-size: 13.5px;
+    }
+
     .cart-container{
         padding: 5px;
     }
@@ -449,6 +512,16 @@
 }
 
 @media (max-width: 550px) {
+
+    .date-time-error-message-container{
+        margin: 13px 0 0 0 ;
+        padding: 8px;
+        gap: 3.5px
+    }
+    
+    .date-time-error-message-container p{
+        font-size: 12.7px;
+    }
 
     .cart-container{
         padding: 5px;
@@ -521,6 +594,16 @@
 
 @media (max-width: 500px) {
 
+    .date-time-error-message-container{
+        margin: 13px 0 0 0 ;
+        padding: 8px;
+        gap: 3.5px
+    }
+    
+    .date-time-error-message-container p{
+        font-size: 12.3px;
+    }
+
     .cart-container{
         padding: 4px;
     }
@@ -587,6 +670,16 @@
 
 
 @media (max-width: 450px) {
+
+    .date-time-error-message-container{
+        margin: 13px 0 0 0 ;
+        padding: 7px;
+        gap: 3px
+    }
+    
+    .date-time-error-message-container p{
+        font-size: 11.8px;
+    }
     
     .home-button .back-btn-container{
         padding: 5px;
