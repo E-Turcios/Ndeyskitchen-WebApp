@@ -12,4 +12,6 @@ module.exports = {
   ITEMS_NOT_FOUND: 'Items not found',
   ORDER_VALIDATION_FAILED: 'Oder validation failed',
   ORDER_PLACED: 'Order placed',
+  ORDER_COULD_NOT_BE_PLACED: 'Order could not be placed',
+  WRONG_Parameters: 'Wrong parameters',
 };
