@@ -27,6 +27,7 @@ async function createOrder(req, res) {
 
     const order = await Order.create({
       orderNumber: orderNumber,
+      userId: information.id,
       firstName: information.firstName,
       lastName: information.lastName,
       email: information.email,
