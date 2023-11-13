@@ -11,7 +11,11 @@ const ItemSchema = new Schema(
     image: { type: String, required: true },
     alt: { type: String, required: true },
     price: { type: String, required: true },
-    size: { type: String, required: true },
+    size: {
+      type: Map,
+      of: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
