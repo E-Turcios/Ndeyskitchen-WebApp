@@ -17,7 +17,7 @@ const itemOptions = [
   {
     name: 'Fruit Platter',
     size: {
-      '1 Platter': '2500',
+      '1Pc': '2500',
     },
   },
 
