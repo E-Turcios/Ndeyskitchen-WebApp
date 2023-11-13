@@ -15,11 +15,12 @@ const OrderSchema = new Schema(
     total: { type: String, required: true, maxlength: 10 },
     service: { type: String, required: true, maxlength: 10 },
     paymentMethod: { type: String, required: true, maxlength: 15 },
-    nonCakesDate: { type: String, required: true, maxlength: 11 },
-    nonCakesTime: { type: String, required: true, maxlength: 14 },
-    cakesDate: { type: String, required: true, maxlength: 11 },
-    cakesTime: { type: String, required: true, maxlength: 14 },
+    nonCakesDate: { type: String, maxlength: 11 },
+    nonCakesTime: { type: String, maxlength: 14 },
+    cakesDate: { type: String, maxlength: 11 },
+    cakesTime: { type: String, maxlength: 14 },
     items: { type: Array, required: true },
+    status: { type: String, default: 'Unpaid', maxlength: 6 },
   },
   { timestamps: true }
 );
