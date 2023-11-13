@@ -1,10 +1,13 @@
 import { React, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CheckoutNavbar from '../components/checkout/CheckoutNavbar.jsx';
 import Information from '../components/checkout/Information.jsx';
 import Service from '../components/checkout/Service.jsx';
 import Payment from '../components/checkout/Payment.jsx';
 
 export default function Checkout() {
+  const navigate = useNavigate();
+
   const [service, setService] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
   const [total, setTotal] = useState('');
@@ -14,14 +17,6 @@ export default function Checkout() {
     nonCake: { selectedDate: '', selectedTime: '' },
     cake: { selectedDate: '', selectedTime: '' },
   });
-
-  const { selectedDate: selectedCakeDate, selectedTime: selectedCakeTime } =
-    JSON.parse(localStorage.getItem('cake-date-and-time'));
-
-  const {
-    selectedDate: selectedNonCakeDate,
-    selectedTime: selectedNonCakeTime,
-  } = JSON.parse(localStorage.getItem('non-cake-date-and-time'));
 
   const [userData, setUser] = useState({
     firstName: '',
@@ -50,6 +45,14 @@ export default function Checkout() {
     event.preventDefault();
 
     const cart = JSON.parse(localStorage.getItem('cart'));
+    const { selectedDate: selectedCakeDate, selectedTime: selectedCakeTime } =
+      JSON.parse(localStorage.getItem('cake-date-and-time'));
+
+    const {
+      selectedDate: selectedNonCakeDate,
+      selectedTime: selectedNonCakeTime,
+    } = JSON.parse(localStorage.getItem('non-cake-date-and-time'));
+
     setTotal(JSON.parse(localStorage.getItem('total-price')));
     setDatesAndTimes({
       nonCake: {
@@ -81,10 +84,17 @@ export default function Checkout() {
 
       const json = await response.json();
 
-      if (!response.ok) console.log(json.Message);
+      if (!response.ok) {
+        console.log(json.Message);
+        return;
+      }
 
-      console.log(json.Message);
       setIsButtonClicked(true);
+      localStorage.removeItem('cart');
+      localStorage.removeItem('total-price');
+      localStorage.removeItem('cake-date-and-time');
+      localStorage.removeItem('non-cake-date-and-time');
+      setTimeout(() => navigate('/'), 2000);
     }
 
     onSubmit();
