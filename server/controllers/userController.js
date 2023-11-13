@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const crypto = require('crypto');
 const User = require('../database/models/userModel');
 const bcrypt = require('bcrypt');
@@ -9,7 +8,8 @@ require('dotenv').config();
 
 const {
   USER_NOT_FOUND,
-  USERS_NOT_FOUND,
+  USER_DELETED,
+  USER_NOT_DELETED,
   UNAUTHORIZED_REQUEST,
   PASSWORD_INCORRECT,
   RESET_PASSWORD,
@@ -249,45 +249,28 @@ async function resetPassword(req, res) {
   return res.status(200).json({ Message: PASSWORD_RESET });
 }
 
-async function getAllUsers(req, res) {
-  const users = await User.find().sort();
-
-  if (req.user) {
-    if (!users) return res.status(404).json({ Message: USERS_NOT_FOUND });
-    return res.status(200).json(users);
-  }
-
-  return res.status(401).json({ Message: UNAUTHORIZED_REQUEST });
-}
-
-async function isUserValid(id) {
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ Message: USER_NOT_FOUND });
-  }
-}
-
 async function getUser(req, res) {
-  const id = req.params.id;
+  if (!req.user) return res.status(401).json({ Message: USER_NOT_FOUND });
 
-  isUserValid(id);
-
-  const user = await User.findById(id);
-
-  if (!user) return res.status(404).json({ Message: USER_NOT_FOUND });
-
-  res.status(200).json(user);
+  return res.status(200).json({
+    id: req.user._id,
+    firstName: req.user.firstName,
+    lastName: req.user.lastName,
+    email: req.user.email,
+    number: req.user.number,
+    residence: req.user.residence,
+  });
 }
 
 async function deleteUser(req, res) {
-  const id = req.params.id;
-
-  isUserValid(id);
+  if (!req.user) return res.status(401).json({ Message: USER_NOT_FOUND });
 
   try {
-    const user = await User.deleteOne({ _id: id });
-    if (!user) res.status(200).json({ mssg: 'Deletion Complete' });
+    const deletedUser = await User.deleteOne({ _id: id });
+    if (!deletedUser) return res.status(200).json({ Message: USER_DELETED });
+    return res.status(200).json({ Message: USER_NOT_DELETED });
   } catch (err) {
-    res.status(200).json({ mssg: 'Deletion Incomplete' });
+    res.status(200).json({ Message: err });
   }
 }
 
@@ -296,7 +279,6 @@ module.exports = {
   createGoogleUser,
   getUser,
   forgotPassword,
-  getAllUsers,
   deleteUser,
   getUserCredentials,
   getGoogleUserCredentials,
