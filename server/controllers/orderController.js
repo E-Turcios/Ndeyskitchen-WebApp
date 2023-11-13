@@ -45,6 +45,53 @@ async function createOrder(req, res) {
     if (!order)
       return res.status(400).json({ Message: ORDER_COULD_NOT_BE_PLACED });
 
+    const userReceiver = information.email;
+    const userSubject = 'Order Placed - Confirmation Email';
+    const itemsList = information.items
+      .map(
+        item =>
+          `<tr>
+         <td>${item.name}</td>
+         <td style="text-align: right;">${item.quantity} x D ${item.price}</td>
+         <td style="text-align: right;">${item.quantity * item.price}
+         </td>
+      </tr>`
+      )
+      .join('');
+
+    const userMessage = `
+      <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto;">
+      <p style="font-size: 17px;">Order Number: #${orderNumber}</p>
+        <p style="font-size: 18px;"><strong>Thank you for your order at Ndey's Kitchen!</strong></p>
+        <p style="font-size: 16px;">Your order details:</p>
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+          <thead>
+            <tr>
+              <th style="border-bottom: 1px solid #ddd;">Item</th>
+              <th style="text-align: right; border-bottom: 1px solid #ddd;">Quantity x Price</th>
+              <th style="text-align: right; border-bottom: 1px solid #ddd;">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${itemsList}
+          </tbody>
+        </table>
+        <hr style="border: 1px solid #ddd; margin: 10px 0;">
+        <p style="font-size: 16px; text-align: center;">Total: D ${information.total}</p>
+        <p style="font-size: 16px;">Payment Method: #${information.paymentMethod}</p>
+        <p style="font-size: 16px;">For any inquiries, please reach out to us:</p>
+        <a href="mailto:ndeyskitchen@gmail.com">ndeyskitchen@gmail.com</a>
+        <p>+220 794 4636</p>
+        <p style="font-size: 16px;">We appreciate your business!</p>
+      </div>
+    `;
+
+    const adminReceiver = `${process.env.EMAIL_ADDRESS}`;
+    const adminSubject = 'New Order Received';
+    const adminMessage = `A new order with Order Number #${orderNumber} has been received.`;
+
+    sendEmail(userSubject, userMessage, userReceiver);
+    sendEmail(adminSubject, adminMessage, adminReceiver);
     return res.status(200).json({ Message: ORDER_PLACED });
   } catch (err) {
     console.log(err);
