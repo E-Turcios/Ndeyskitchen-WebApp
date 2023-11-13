@@ -78,17 +78,17 @@ async function createOrder(req, res) {
         </table>
         <hr style="border: 1px solid #ddd; margin: 10px 0;">
         <p style="font-size: 16px; text-align: center;">Total: D ${information.total}</p>
-        <p style="font-size: 16px;">Payment Method: #${information.paymentMethod}</p>
+        <p style="font-size: 16px;">Payment Method: ${information.paymentMethod}</p>
         <p style="font-size: 16px;">For any inquiries, please reach out to us:</p>
-        <a href="mailto:ndeyskitchen@gmail.com">ndeyskitchen@gmail.com</a>
-        <p>+220 794 4636</p>
+        <a style="margin: 0;" href="mailto:ndeyskitchen@gmail.com">ndeyskitchen@gmail.com</a>
+        <p style="margin: 0;">WhatsApp: +220 794 4636</p>
         <p style="font-size: 16px;">We appreciate your business!</p>
       </div>
     `;
 
-    const adminReceiver = `${process.env.EMAIL_ADDRESS}`;
+    const adminReceiver = `${process.env.ADMIN_EMAIL_ADDRESS}`;
     const adminSubject = 'New Order Received';
-    const adminMessage = `A new order with Order Number #${orderNumber} has been received.`;
+    const adminMessage = `A new order came in.`;
 
     sendEmail(userSubject, userMessage, userReceiver);
     sendEmail(adminSubject, adminMessage, adminReceiver);
