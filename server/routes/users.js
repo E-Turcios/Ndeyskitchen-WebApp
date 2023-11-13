@@ -1,51 +1,36 @@
 const express = require('express');
-const {
-  createUser,
-  createGoogleUser,
-  getUser,
-  getAllUsers,
-  deleteUser,
-  getUserCredentials,
-  getGoogleUserCredentials,
-  forgotPassword,
-  resetPasswordLink,
-  resetPassword,
-  verifyEmailLink,
-} = require('../controllers/userController');
+const userController = require('../controllers/userController');
 
-const {
-  validateUser,
-  validateResetPasswordToken,
-  validateResetPasswordLinkToken,
-  verifyEmail,
-} = require('../middlewares');
+const middleware = require('../middlewares');
 
 const router = express.Router();
 
-router.post('/verify-email-link', verifyEmailLink);
+router.post('/verify-email-link', userController.verifyEmailLink);
 
-router.post('/', verifyEmail, createUser);
+router.post('/', middleware.verifyEmail, userController.createUser);
 
-router.post('/createGoogleUser', createGoogleUser);
+router.post('/createGoogleUser', userController.createGoogleUser);
 
-router.post('/forgot-password', forgotPassword);
+router.post('/forgot-password', userController.forgotPassword);
 
-router.post('/getUser', getUserCredentials);
+router.post('/getUser', userController.getUserCredentials);
 
-router.post('/getGoogleUser', getGoogleUserCredentials);
+router.post('/getGoogleUser', userController.getGoogleUserCredentials);
+
+router.post('/get-user-data', middleware.validateUser, userController.getUser);
+
+router.delete('/:id', middleware.validateUser, userController.deleteUser);
 
 router.post(
   '/reset-password-link',
-  validateResetPasswordLinkToken,
-  resetPasswordLink
+  middleware.validateResetPasswordLinkToken,
+  userController.resetPasswordLink
 );
 
-router.post('/reset-password', validateResetPasswordToken, resetPassword);
-
-router.get('/', validateUser, getAllUsers);
-
-router.get('/:id', validateUser, getUser);
-
-router.delete('/:id', validateUser, deleteUser);
+router.post(
+  '/reset-password',
+  middleware.validateResetPasswordToken,
+  userController.resetPassword
+);
 
 module.exports = router;
