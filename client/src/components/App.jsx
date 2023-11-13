@@ -37,6 +37,9 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/item/:id" element={<ItemView />} />
+              <Route path="/cart" element={<Cart />} />
+              {cartSize && <Route path="/checkout" element={<Checkout />} />}
             </Routes>
           ) : (
             <Routes>
