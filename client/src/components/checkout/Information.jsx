@@ -1,13 +1,42 @@
-import { React } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function CheckoutPageContent({ onFormChange }) {
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+export default function CheckoutPageContent({
+  user,
+  userInformation,
+  isLoading,
+  onFormChange,
+}) {
+  const [form, setForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    number: '',
+    residence: '',
+  });
+
+  useEffect(() => {
+    if (!user || isLoading) return;
+
+    setForm(prevForm => ({
+      ...prevForm,
+      firstName: userInformation.firstName || '',
+      lastName: userInformation.lastName || '',
+      email: userInformation.email || '',
+      number: userInformation.number || '',
+      residence: userInformation.residence || '',
+    }));
+    onFormChange(form);
+  }, [user, isLoading, userInformation]);
 
   function handleChange(event) {
+    setForm(prevForm => ({
+      ...prevForm,
+      [event.target.name]: event.target.value,
+    }));
+
     onFormChange({
-      [event.target.name]: capitalizeFirstLetter(event.target.value),
+      ...form,
+      [event.target.name]: event.target.value,
     });
   }
 
@@ -20,6 +49,7 @@ export default function CheckoutPageContent({ onFormChange }) {
         placeholder="First name"
         name="firstName"
         maxLength="30"
+        value={form.firstName}
         onChange={handleChange}
         required
       />
@@ -29,6 +59,7 @@ export default function CheckoutPageContent({ onFormChange }) {
         placeholder="Last name"
         name="lastName"
         maxLength="30"
+        value={form.lastName}
         onChange={handleChange}
         required
       />
@@ -39,6 +70,7 @@ export default function CheckoutPageContent({ onFormChange }) {
         name="email"
         maxLength="100"
         minLength="7"
+        value={form.email}
         onChange={handleChange}
         required
       />
@@ -48,6 +80,7 @@ export default function CheckoutPageContent({ onFormChange }) {
         placeholder="Phone number"
         name="number"
         maxLength="20"
+        value={form.number}
         onChange={handleChange}
         required
       />
@@ -57,6 +90,7 @@ export default function CheckoutPageContent({ onFormChange }) {
         placeholder="Address"
         name="residence"
         maxLength="50"
+        value={form.residence}
         onChange={handleChange}
         required
       />

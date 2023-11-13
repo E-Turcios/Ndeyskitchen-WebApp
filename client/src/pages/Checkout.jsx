@@ -5,10 +5,15 @@ import Information from '../components/checkout/Information.jsx';
 import Service from '../components/checkout/Service.jsx';
 import Payment from '../components/checkout/Payment.jsx';
 import useCartSizeContext from '../hooks/useCartSizeContext.js';
+import useAuthContext from '../hooks/useAuthContext';
+import useFetchedUserData from '../hooks/useFetchedUserData';
 
 export default function Checkout() {
   const navigate = useNavigate();
   const { dispatch } = useCartSizeContext();
+
+  const { user } = useAuthContext();
+  const { userInformation, isLoading } = useFetchedUserData();
 
   const [service, setService] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
@@ -64,7 +69,10 @@ export default function Checkout() {
       cake: { selectedDate: selectedCakeDate, selectedTime: selectedCakeTime },
     });
 
+    let id = 'N/A';
+
     const information = {
+      id: id,
       firstName: userData.firstName,
       lastName: userData.lastName,
       email: userData.email,
@@ -76,6 +84,10 @@ export default function Checkout() {
       total,
       datesAndTimes,
     };
+
+    if (user && userInformation) {
+      information.id = userInformation.id;
+    }
 
     async function onSubmit() {
       const response = await fetch('/api/orders', {
@@ -108,7 +120,12 @@ export default function Checkout() {
       <CheckoutNavbar />
       <form className="checkout-content-container">
         <p className="checkout-header">Checkout</p>
-        <Information onFormChange={handleUserInfoCollection} />
+        <Information
+          user={user}
+          userInformation={userInformation}
+          isLoading={isLoading}
+          onFormChange={handleUserInfoCollection}
+        />
         <span className="divider"></span>
         <Service onButtonClick={handleServiceCollection} />
         <span className="divider"></span>
