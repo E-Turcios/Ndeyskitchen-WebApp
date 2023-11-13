@@ -4,9 +4,11 @@ import CheckoutNavbar from '../components/checkout/CheckoutNavbar.jsx';
 import Information from '../components/checkout/Information.jsx';
 import Service from '../components/checkout/Service.jsx';
 import Payment from '../components/checkout/Payment.jsx';
+import useCartSizeContext from '../hooks/useCartSizeContext.js';
 
 export default function Checkout() {
   const navigate = useNavigate();
+  const { dispatch } = useCartSizeContext();
 
   const [service, setService] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
@@ -94,7 +96,8 @@ export default function Checkout() {
       localStorage.removeItem('total-price');
       localStorage.removeItem('cake-date-and-time');
       localStorage.removeItem('non-cake-date-and-time');
-      setTimeout(() => navigate('/'), 2000);
+      dispatch({ type: 'SET_CART_SIZE', payload: '0' });
+      navigate('/');
     }
 
     onSubmit();
