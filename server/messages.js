@@ -1,6 +1,7 @@
 module.exports = {
   USER_NOT_FOUND: 'User not found',
-  USERS_NOT_FOUND: 'Users not found',
+  USER_DELETED: 'User deleted',
+  USER_NOT_DELETED: 'User not deleted',
   UNAUTHORIZED_REQUEST: 'Unauthorized request',
   PASSWORD_INCORRECT: 'Password incorrect',
   RESET_PASSWORD: 'Reset password',
