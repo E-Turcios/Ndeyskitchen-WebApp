@@ -14,8 +14,6 @@ async function createOrder(req, res) {
   if (!req.match)
     return res.status(400).json({ Message: ORDER_VALIDATION_FAILED });
 
-  console.log(req.match);
-
   try {
     const counter = await Counter.findOneAndUpdate(
       { name: 'orderNumberCounter' },
