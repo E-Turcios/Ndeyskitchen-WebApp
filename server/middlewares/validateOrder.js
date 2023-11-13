@@ -1,22 +1,27 @@
-const { itemOptions } = require('../script/itemOptions');
+const Item = require('../database/models/itemModel');
 const { WRONG_PARAMETERS } = require('../messages');
 
-function validateOrder(req, res, next) {
+async function validateOrder(req, res, next) {
   const { information } = req.body;
   const subtotals = [];
 
-  information.items.forEach(item => {
-    const foundItem = itemOptions.find(
-      option =>
-        option.name === item.name && option.size[item.size] === item.price
-    );
+  for (const item of information.items) {
+    try {
+      const foundItem = await Item.findOne({
+        _id: item.id,
+        [`size.${item.size}`]: { $exists: true },
+      });
 
-    if (!foundItem) return res.status(400).json({ Message: WRONG_PARAMETERS });
+      if (!foundItem)
+        return res.status(400).json({ Message: WRONG_PARAMETERS });
 
-    subtotals.push(
-      parseInt(foundItem.size[item.size]) * parseInt(item.quantity)
-    );
-  });
+      subtotals.push(
+        parseInt(foundItem.size.get(item.size)) * parseInt(item.quantity)
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   if (subtotals.length === 0)
     return res.status(400).json({ Message: WRONG_PARAMETERS });
