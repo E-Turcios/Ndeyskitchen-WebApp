@@ -32,7 +32,9 @@ const itemsData = [
     filter: filter.CAKES,
     components: 'Vanilla + Red Velvet Tiers, Strawberry + Cream Cheese Filling',
     price: 9000,
-    size: 'Large',
+    size: {
+      Large: '9000',
+    },
     image: image.weddingCake,
     alt: '2-Tier Wedding Cake',
   },
@@ -43,9 +45,25 @@ const itemsData = [
     filter: filter.CAKES,
     components: 'Chocolate Ganache, White Chocolate Buttercream',
     price: 6500,
-    size: 'Medium',
+    size: {
+      Medium: '6500',
+      Large: '7000',
+    },
     image: image.chocolateOverload,
     alt: 'Chocolate Overload Cake',
+  },
+
+  {
+    name: 'Fruit Platter',
+    category: 'Sweet',
+    filter: filter.FRUIT_PLATTER,
+    components: 'Watermelon, Pineapple, Orange, Mandarine, Grapes',
+    price: 2500,
+    size: {
+      '1Pc': '2500',
+    },
+    image: image.fruitPlatter,
+    alt: 'Fruit Platter',
   },
 
   {
@@ -54,7 +72,9 @@ const itemsData = [
     filter: filter.CUPCAKES,
     components: 'White Chocolate Buttercream',
     price: 2000,
-    size: '12Pcs',
+    size: {
+      '12Pcs': '2000',
+    },
     image: image.pinkFloral,
     alt: '12 Chocolate Cupcakes',
   },
@@ -65,7 +85,9 @@ const itemsData = [
     filter: filter.COOKIES,
     components: '25 Sugar Cookies',
     price: 2500,
-    size: '25Pcs',
+    size: {
+      '25Pcs': '2500',
+    },
     image: image.cookies,
     alt: 'Sugar Cookies',
   },
@@ -77,20 +99,11 @@ const itemsData = [
     components:
       'Vanilla Cake, White Chocolate Biscoff Buttercream, Biscoff Spread',
     price: 5000,
-    size: 'Medium',
+    size: {
+      Medium: '5000',
+    },
     image: image.biscoffCake,
     alt: 'Biscoff Drip Cake',
-  },
-
-  {
-    name: 'Fruit Platter',
-    category: 'Sweet',
-    filter: filter.FRUIT_PLATTER,
-    components: 'Watermelon, Pineapple, Orange, Mandarine, Grapes',
-    price: 2500,
-    size: '1Pc',
-    image: image.fruitPlatter,
-    alt: 'Fruit Platter',
   },
 
   {
@@ -100,8 +113,10 @@ const itemsData = [
     components:
       'Chocolate Mousse, Oreo Cream, Kinder Bueno/Ferrero Rocher, Biscoff Cream',
     price: 2500,
-    size: '12Pcs',
-    image: image.pinkFloral,
+    size: {
+      '12Pcs': '2500',
+    },
+    image: image.purpleFloral,
     alt: 'Cheesecake Dessert Cups',
   },
 
@@ -112,7 +127,9 @@ const itemsData = [
     components:
       '(5 Each) Mini Burgers, Mini Pizza, Chicken Batbout, Hotdogs, Beef Wraps',
     price: 3000,
-    size: '25Pcs',
+    size: {
+      '25Pcs': '3000',
+    },
     image: image.snacks,
     alt: 'Finger Licking Snacks',
   },
@@ -124,7 +141,9 @@ const itemsData = [
     components:
       'Wings, Spaghettis, Sardine Sandwich, Meat Pie, Waffles, Yogurt, Fruits (Varies Weekly)',
     price: 1500,
-    size: '1Box',
+    size: {
+      '1Box': '1500',
+    },
     image: image.breakFastBox,
     alt: 'Breakfast Box',
   },
@@ -135,7 +154,9 @@ const itemsData = [
     filter: filter.CAKES,
     components: 'Flavor of Choice',
     price: 5000,
-    size: 'Medium',
+    size: {
+      Medium: '5000',
+    },
     image: image.purpleFloral,
     alt: 'Purple Floral Design Cake',
   },
@@ -146,7 +167,9 @@ const itemsData = [
     filter: filter.CAKES,
     components: 'Chocolate icing',
     price: 5000,
-    size: 'Medium',
+    size: {
+      Medium: '5000',
+    },
     image: image.pinkFloral,
     alt: 'Pink Floral Chocolate Cake',
   },
