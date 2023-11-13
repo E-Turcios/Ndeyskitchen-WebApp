@@ -55,6 +55,13 @@
 
 /* Service */
 
+.service-message-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
 .service-container{
     display: flex;
     flex-direction: column;
@@ -97,6 +104,12 @@
 
 .button-container .clicked-btn:hover{
     cursor: pointer;
+}
+
+.delivery-fees{
+    font-size: 15px;
+    color: #DC952F;
+    text-decoration: underline;
 }
 
 /* Payment */
@@ -201,6 +214,14 @@
         padding: 10px;
         margin: 10px 0;
     }
+
+    .service-message-container{
+        gap: 8px;
+    }
+
+    .delivery-fees{
+        font-size: 14.6px; 
+    }
 }
 
 @media (max-width: 850px) {
@@ -265,6 +286,14 @@
         padding: 9px;
         margin: 8px 0;
     }
+
+    .service-message-container{
+        gap: 7px;
+    }
+
+    .delivery-fees{
+        font-size: 13.5px; 
+    }
 }
 
 @media (max-width: 450px) {
@@ -319,6 +348,14 @@
         font-size: 15px;
         padding: 9px;
         margin: 8px 0;
+    }
+
+    .service-message-container{
+        gap: 6px;
+    }
+
+    .delivery-fees{
+        font-size: 13px; 
     }
 }
 
