@@ -1,12 +1,20 @@
 const Order = require('../database/models/orderModel');
 const Counter = require('../database/models/counterModel');
-const { itemOptions } = require('../script/itemOptions');
 const { sendEmail } = require('../sendEmail');
 
-const { ORDER_VALIDATION_FAILED, ORDER_PLACED } = require('../messages');
+const {
+  ORDER_VALIDATION_FAILED,
+  ORDER_PLACED,
+  ORDER_COULD_NOT_BE_PLACED,
+} = require('../messages');
 
 async function createOrder(req, res) {
   const { information } = req.body;
+
+  if (!req.match)
+    return res.status(400).json({ Message: ORDER_VALIDATION_FAILED });
+
+  console.log(req.match);
 
   try {
     const counter = await Counter.findOneAndUpdate(
@@ -15,8 +23,10 @@ async function createOrder(req, res) {
       { upsert: true, new: true }
     );
 
+    const orderNumber = counter.value.toString().padStart(5, '0');
+
     const order = await Order.create({
-      orderNumber: counter.value.toString().padStart(5, '0'),
+      orderNumber: orderNumber,
       firstName: information.firstName,
       lastName: information.lastName,
       email: information.email,
@@ -32,9 +42,13 @@ async function createOrder(req, res) {
       items: information.items,
     });
 
-    if (order) return res.status(200).json({ Message: ORDER_PLACED });
+    if (!order)
+      return res.status(400).json({ Message: ORDER_COULD_NOT_BE_PLACED });
+
+    return res.status(200).json({ Message: ORDER_PLACED });
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ Message: err });
   }
 }
 
