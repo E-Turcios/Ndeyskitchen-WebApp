@@ -5,64 +5,36 @@ export default function Size({
   handleSizeSelect,
   handleSizeSelectPrice,
 }) {
-  const [itemOptions, setItemOptions] = useState([]);
   const [price, setPrice] = useState(item.price);
-  const [itemSize, setSize] = useState(item.size);
-  const [isLoading, setIsLoading] = useState(true);
+  const [itemSize, setSize] = useState(Object.keys(item.size)[0]);
 
-  useEffect(() => {
-    async function fetchItemOptions() {
-      const response = await fetch('/api/items/get-item-options', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      const json = await response.json();
-
-      if (!response.ok) {
-        console.log(json.status);
-        return;
-      }
-
-      setItemOptions(json);
-      setIsLoading(false);
-    }
-
-    fetchItemOptions();
-  }, []);
-
-  const viewItem = itemOptions.find(viewItem => viewItem.name === item.name);
-
-  return !isLoading ? (
+  return (
     <>
       <p className="tag">Size</p>
       {handleSizeSelectPrice(price)}
 
       <div className="size-container">
-        {Object.keys(viewItem.size).map(size => (
+        {Object.keys(item.size).map(size => (
           <div
             key={size}
             className={
-              price === viewItem.size[size]
+              price === item.size[size]
                 ? 'size-price-card size-price-card-clicked'
                 : 'size-price-card'
             }
             onClick={() => {
-              setPrice(viewItem.size[size]);
+              setPrice(item.size[size]);
+              console.log(itemSize);
               setSize(size);
             }}
           >
             {handleSizeSelect(itemSize)}
             <p>{size}</p>
 
-            <p className="size-price">D {viewItem.size[size]}</p>
+            <p className="size-price">D {item.size[size]}</p>
           </div>
         ))}
       </div>
     </>
-  ) : (
-    <>Loading...</>
   );
 }

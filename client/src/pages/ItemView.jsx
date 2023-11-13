@@ -26,6 +26,8 @@ export default function ItemView() {
     itemSize = size;
   }
 
+  console.log(itemSize);
+
   function handleSizeSelectPrice(price) {
     itemPrice = price;
   }
