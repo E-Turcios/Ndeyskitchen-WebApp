@@ -43,6 +43,11 @@ export default function ComputerNavbar() {
               return;
             }}
           />
+          {user && (
+            <span className="material-symbols-outlined navbar-icons">
+              person
+            </span>
+          )}
 
           <a href="/cart" className="navbar-shopping-bag-container">
             <span className="items-number">{cartSize ? cartSize : 0}</span>
@@ -50,12 +55,6 @@ export default function ComputerNavbar() {
               shopping_bag
             </span>
           </a>
-
-          {user && (
-            <span className="material-symbols-outlined navbar-icons">
-              person
-            </span>
-          )}
 
           {user ? (
             <a className="navbar-btn-link" href="/" onClick={logOut}>
