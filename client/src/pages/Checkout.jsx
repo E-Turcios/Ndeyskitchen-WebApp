@@ -69,7 +69,7 @@ export default function Checkout() {
       cake: { selectedDate: selectedCakeDate, selectedTime: selectedCakeTime },
     });
 
-    let id = 'N/A';
+    let id;
 
     const information = {
       id: id,
