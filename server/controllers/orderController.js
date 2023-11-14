@@ -1,5 +1,6 @@
 const Order = require('../database/models/orderModel');
 const Counter = require('../database/models/counterModel');
+const User = require('../database/models/userModel');
 const { sendEmail } = require('../sendEmail');
 
 const {
@@ -15,6 +16,8 @@ async function createOrder(req, res) {
     return res.status(400).json({ Message: ORDER_VALIDATION_FAILED });
 
   try {
+    const user = await User.findById(information.id);
+
     const counter = await Counter.findOneAndUpdate(
       { name: 'orderNumberCounter' },
       { $inc: { value: 1 } },
@@ -25,7 +28,7 @@ async function createOrder(req, res) {
 
     const order = await Order.create({
       orderNumber: orderNumber,
-      userId: information.id,
+      userId: user ? user._id : 'N/A',
       firstName: information.firstName,
       lastName: information.lastName,
       email: information.email,
@@ -44,58 +47,63 @@ async function createOrder(req, res) {
     if (!order)
       return res.status(400).json({ Message: ORDER_COULD_NOT_BE_PLACED });
 
-    const userReceiver = information.email;
-    const userSubject = 'Order Placed - Confirmation Email';
-    const itemsList = information.items
-      .map(
-        item =>
-          `<tr>
-         <td>${item.name}</td>
-         <td style="text-align: right;">${item.quantity} x D ${item.price}</td>
-         <td style="text-align: right;">${item.quantity * item.price}
-         </td>
-      </tr>`
-      )
-      .join('');
+    sendEmailToUserAndAdmin(information, orderNumber);
 
-    const userMessage = `
-      <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto;">
-      <p style="font-size: 17px;">Order Number: #${orderNumber}</p>
-        <p style="font-size: 18px;"><strong>Thank you for your order at Ndey's Kitchen!</strong></p>
-        <p style="font-size: 16px;">Your order details:</p>
-        <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-          <thead>
-            <tr>
-              <th style="border-bottom: 1px solid #ddd;">Item</th>
-              <th style="text-align: right; border-bottom: 1px solid #ddd;">Quantity x Price</th>
-              <th style="text-align: right; border-bottom: 1px solid #ddd;">Subtotal</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${itemsList}
-          </tbody>
-        </table>
-        <hr style="border: 1px solid #ddd; margin: 10px 0;">
-        <p style="font-size: 16px; text-align: center;">Total: D ${information.total}</p>
-        <p style="font-size: 16px;">Payment Method: ${information.paymentMethod}</p>
-        <p style="font-size: 16px;">For any inquiries, please reach out to us:</p>
-        <a style="margin: 0;" href="mailto:ndeyskitchen@gmail.com">ndeyskitchen@gmail.com</a>
-        <p style="margin: 0;">WhatsApp: +220 794 4636</p>
-        <p style="font-size: 16px;">We appreciate your business!</p>
-      </div>
-    `;
-
-    const adminReceiver = `${process.env.ADMIN_EMAIL_ADDRESS}`;
-    const adminSubject = 'New Order Received';
-    const adminMessage = `A new order came in.`;
-
-    sendEmail(userSubject, userMessage, userReceiver);
-    sendEmail(adminSubject, adminMessage, adminReceiver);
     return res.status(200).json({ Message: ORDER_PLACED });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ Message: err });
   }
+}
+
+async function sendEmailToUserAndAdmin(information, orderNumber) {
+  const userReceiver = information.email;
+  const userSubject = 'Order Placed - Confirmation Email';
+  const itemsList = information.items
+    .map(
+      item =>
+        `<tr>
+       <td>${item.name}</td>
+       <td style="text-align: right;">${item.quantity} x D ${item.price}</td>
+       <td style="text-align: right;">${item.quantity * item.price}
+       </td>
+    </tr>`
+    )
+    .join('');
+
+  const userMessage = `
+    <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto;">
+    <p style="font-size: 17px;">Order Number: #${orderNumber}</p>
+      <p style="font-size: 18px;"><strong>Thank you for your order at Ndey's Kitchen!</strong></p>
+      <p style="font-size: 16px;">Your order details:</p>
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+        <thead>
+          <tr>
+            <th style="border-bottom: 1px solid #ddd;">Item</th>
+            <th style="text-align: right; border-bottom: 1px solid #ddd;">Quantity x Price</th>
+            <th style="text-align: right; border-bottom: 1px solid #ddd;">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${itemsList}
+        </tbody>
+      </table>
+      <hr style="border: 1px solid #ddd; margin: 10px 0;">
+      <p style="font-size: 16px; text-align: center;">Total: D ${information.total}</p>
+      <p style="font-size: 16px;">Payment Method: ${information.paymentMethod}</p>
+      <p style="font-size: 16px;">For any inquiries, please reach out to us:</p>
+      <a style="margin: 0;" href="mailto:ndeyskitchen@gmail.com">ndeyskitchen@gmail.com</a>
+      <p style="margin: 0;">WhatsApp: +220 794 4636</p>
+      <p style="font-size: 16px;">We appreciate your business!</p>
+    </div>
+  `;
+
+  const adminReceiver = `${process.env.ADMIN_EMAIL_ADDRESS}`;
+  const adminSubject = 'New Order Received';
+  const adminMessage = `A new order came in.`;
+
+  sendEmail(userSubject, userMessage, userReceiver);
+  sendEmail(adminSubject, adminMessage, adminReceiver);
 }
 
 module.exports = { createOrder };
