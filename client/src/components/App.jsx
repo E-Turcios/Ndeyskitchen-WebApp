@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
 import Signup from '../pages/Signup';
+import AddressAndNumberUpdatePage from '../pages/AddressAndNumberUpdatePage';
 import Home from '../pages/Home';
 import ForgotPassword from '../pages/ForgotPassword';
 import ResetPassword from '../pages/ResetPassword';
@@ -39,6 +40,10 @@ export default function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/item/:id" element={<ItemView />} />
               <Route path="/cart" element={<Cart />} />
+              <Route
+                path="/update-address-and-number"
+                element={<AddressAndNumberUpdatePage />}
+              />
               {cartSize && <Route path="/checkout" element={<Checkout />} />}
             </Routes>
           ) : (
