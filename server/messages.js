@@ -19,4 +19,7 @@ module.exports = {
   ORDER_PLACED: 'Order placed',
   ORDER_COULD_NOT_BE_PLACED: 'Order could not be placed',
   WRONG_PARAMETERS: 'Wrong parameters',
+  NO_TOKEN_FOUND: 'No token found',
+  INVALID_TOKEN: 'Invalid token',
+  TOKEN_VALIDATED: 'Token validated',
 };
