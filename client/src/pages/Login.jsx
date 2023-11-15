@@ -22,7 +22,7 @@ export default function Login() {
     const user = { email, password };
     setIsLoading(true);
 
-    const response = await fetch('api/users/getUser', {
+    const response = await fetch('api/users/get-user', {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
@@ -59,7 +59,7 @@ export default function Login() {
       sub: sub,
     };
 
-    const response = await fetch('api/users/getGoogleUser', {
+    const response = await fetch('api/users/get-google-user', {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
@@ -76,6 +76,16 @@ export default function Login() {
     if (response.ok) {
       localStorage.setItem('token', json.token);
       dispatch({ type: 'LOGIN', payload: json });
+
+      if (
+        (json.information.residence === 'N/A' ||
+          json.information.number === 'N/A') &&
+        json.userUpdateInfoToken
+      ) {
+        localStorage.setItem('userUpdateInfoToken', json.userUpdateInfoToken);
+        navigate('/update-address-and-number');
+        return;
+      }
       navigate('/');
     }
   }
