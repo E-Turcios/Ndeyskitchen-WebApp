@@ -2,7 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './components/App';
 import { AuthContextProvider } from './context/AuthContext';
-import { CartSizeContextProvider } from './context/cartSizeContext';
+import { CartSizeContextProvider } from './context/CartSizeContext';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const rootElement = document.getElementById('root');
