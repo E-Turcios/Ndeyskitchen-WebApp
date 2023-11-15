@@ -65,7 +65,7 @@ async function sendEmailToUserAndAdmin(information, orderNumber) {
         `<tr>
        <td>${item.name}</td>
        <td style="text-align: right;">${item.quantity} x D ${item.price}</td>
-       <td style="text-align: right;">${item.quantity * item.price}
+       <td style="text-align: right;">D ${item.quantity * item.price}
        </td>
     </tr>`
     )
