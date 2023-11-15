@@ -25,6 +25,12 @@ router.post(
   userController.updateAddressAndNumber
 );
 
+router.post(
+  '/verify-user-update-token',
+
+  userController.verifyUserUpdateToken
+);
+
 router.delete('/:id', middleware.validateUser, userController.deleteUser);
 
 router.post(

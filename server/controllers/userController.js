@@ -19,6 +19,9 @@ const {
   EMAIL_BEING_VERIFIED,
   EMAIL_VERIFICATION_FAILED,
   USER_UPDATE_TOKEN_NOT_FOUND,
+  NO_TOKEN_FOUND,
+  INVALID_TOKEN,
+  TOKEN_VALIDATED,
 } = require('../messages');
 
 async function verifyEmailLink(req, res) {
@@ -207,6 +210,19 @@ async function updateAddressAndNumber(req, res) {
   }
 }
 
+async function verifyUserUpdateToken(req, res) {
+  const { userUpdateInfoToken } = req.body;
+
+  if (userUpdateInfoToken === null)
+    return res.status(400).json({ Message: NO_TOKEN_FOUND });
+
+  const token = jwt.verify(userUpdateInfoToken, process.env.JWT);
+
+  if (!token) return res.status(400).json({ Message: INVALID_TOKEN });
+
+  return res.status(200).json({ Message: TOKEN_VALIDATED });
+}
+
 async function forgotPassword(req, res) {
   const { email } = req.body;
 
@@ -323,6 +339,7 @@ module.exports = {
   getUserCredentials,
   getGoogleUserCredentials,
   updateAddressAndNumber,
+  verifyUserUpdateToken,
   resetPasswordLink,
   resetPassword,
   verifyEmailLink,
