@@ -196,8 +196,6 @@ async function updateAddressAndNumber(req, res) {
       { number: form.number, residence: form.residence }
     );
 
-    console.log(user);
-
     if (!user)
       return res
         .status(200)
@@ -205,7 +203,6 @@ async function updateAddressAndNumber(req, res) {
 
     return res.status(200).json({ Message: ADDRESS_AND_NUMBER_UPDATED });
   } catch (err) {
-    console.log(err);
     return res.status(500).json({ Message: err });
   }
 }
