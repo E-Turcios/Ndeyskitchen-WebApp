@@ -2,6 +2,10 @@ module.exports = {
   USER_NOT_FOUND: 'User not found',
   USER_DELETED: 'User deleted',
   USER_NOT_DELETED: 'User not deleted',
+  USER_UPDATE_TOKEN_NOT_FOUND: 'User update token not found',
+  ADDRESS_AND_NUMBER_COULD_NOT_BE_UPDATED:
+    'Address and number could not be updated',
+  ADDRESS_AND_NUMBER_UPDATED: 'Address and number updated',
   UNAUTHORIZED_REQUEST: 'Unauthorized request',
   PASSWORD_INCORRECT: 'Password incorrect',
   RESET_PASSWORD: 'Reset password',
@@ -14,5 +18,5 @@ module.exports = {
   ORDER_VALIDATION_FAILED: 'Oder validation failed',
   ORDER_PLACED: 'Order placed',
   ORDER_COULD_NOT_BE_PLACED: 'Order could not be placed',
-  WRONG_Parameters: 'Wrong parameters',
+  WRONG_PARAMETERS: 'Wrong parameters',
 };
