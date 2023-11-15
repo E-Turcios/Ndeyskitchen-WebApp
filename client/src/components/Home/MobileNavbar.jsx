@@ -91,23 +91,13 @@ export default function MobileNavbar() {
 
           <a className="hamburger-menu-information">Rewards</a>
 
-          {user ? (
-            isActive ? (
-              <a className="hamburger-menu-information">Profile</a>
-            ) : (
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <span className="material-symbols-outlined navbar-icons">
-                  person
-                </span>
-              </div>
-            )
-          ) : null}
+          {user
+            ? isActive && (
+                <a className="hamburger-menu-information" href="/profile">
+                  Profile
+                </a>
+              )
+            : null}
 
           {user ? (
             <a className="navbar-btn-link" href="/" onClick={logOut}>

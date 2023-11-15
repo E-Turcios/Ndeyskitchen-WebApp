@@ -1,4 +1,4 @@
-import { React, useEffect } from 'react';
+import { React } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Headroom from 'react-headroom';
 import Image from '../Image';
@@ -44,7 +44,10 @@ export default function ComputerNavbar() {
             }}
           />
           {user && (
-            <span className="material-symbols-outlined navbar-icons">
+            <span
+              className="material-symbols-outlined navbar-icons"
+              onClick={() => navigate('/profile')}
+            >
               person
             </span>
           )}
