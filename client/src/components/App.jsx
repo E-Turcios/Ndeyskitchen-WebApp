@@ -13,7 +13,7 @@ import Cart from '../pages/Cart';
 import Checkout from '../pages/Checkout';
 import useAuthContext from '../hooks/useAuthContext';
 import useCartSizeContext from '../hooks/useCartSizeContext';
-import jwt_decode from 'jwt-decode';
+import useUserUpdateInfoTokenVerifier from '../hooks/useUserUpdateInfoTokenVerifier';
 import '../style/style.css';
 import '../style/login.css';
 import '../style/signup.css';
@@ -30,7 +30,7 @@ import '../style/checkout.css';
 export default function App() {
   const { user } = useAuthContext();
   const { cartSize } = useCartSizeContext();
-  const userUpdateInfoToken = localStorage.getItem('userUpdateInfoToken');
+  const { token } = useUserUpdateInfoTokenVerifier();
 
   return (
     <div className="App">
@@ -42,7 +42,7 @@ export default function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/item/:id" element={<ItemView />} />
               <Route path="/cart" element={<Cart />} />
-              {userUpdateInfoToken && (
+              {token && (
                 <Route
                   path="/update-address-and-number"
                   element={<AddressAndNumberUpdatePage />}
