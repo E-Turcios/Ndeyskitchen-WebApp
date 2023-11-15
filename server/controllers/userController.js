@@ -10,12 +10,15 @@ const {
   USER_NOT_FOUND,
   USER_DELETED,
   USER_NOT_DELETED,
+  ADDRESS_AND_NUMBER_COULD_NOT_BE_UPDATED,
+  ADDRESS_AND_NUMBER_UPDATED,
   UNAUTHORIZED_REQUEST,
   PASSWORD_INCORRECT,
   RESET_PASSWORD,
   PASSWORD_RESET,
   EMAIL_BEING_VERIFIED,
   EMAIL_VERIFICATION_FAILED,
+  USER_UPDATE_TOKEN_NOT_FOUND,
 } = require('../messages');
 
 async function verifyEmailLink(req, res) {
@@ -161,8 +164,48 @@ async function getGoogleUserCredentials(req, res) {
 
   try {
     const token = jwt.sign({ id: id }, process.env.JWT, { expiresIn: '1d' });
-    return res.status(200).json({ token: token });
+    const userUpdateInfoToken = jwt.sign(
+      { string: process.env.STRING },
+      process.env.JWT
+    );
+    console.log(userUpdateInfoToken);
+    return res.status(200).json({
+      token: token,
+      information: { residence: user.residence, number: user.number },
+      userUpdateInfoToken: userUpdateInfoToken,
+    });
   } catch (err) {
+    return res.status(500).json({ Message: err });
+  }
+}
+
+async function updateAddressAndNumber(req, res) {
+  const { userUpdateInfoToken, form } = req.body;
+
+  if (!req.user) return res.status(404).json({ Message: USER_NOT_FOUND });
+
+  if (!userUpdateInfoToken)
+    return res.status(404).json({ Message: USER_UPDATE_TOKEN_NOT_FOUND });
+
+  const token = jwt.verify(userUpdateInfoToken, process.env.JWT);
+  if (!token) res.status(404).json({ Message: USER_UPDATE_TOKEN_NOT_FOUND });
+
+  try {
+    const user = await User.updateMany(
+      { _id: req.user._id },
+      { number: form.number, residence: form.residence }
+    );
+
+    console.log(user);
+
+    if (!user)
+      return res
+        .status(200)
+        .json({ Message: ADDRESS_AND_NUMBER_COULD_NOT_BE_UPDATED });
+
+    return res.status(200).json({ Message: ADDRESS_AND_NUMBER_UPDATED });
+  } catch (err) {
+    console.log(err);
     return res.status(500).json({ Message: err });
   }
 }
@@ -282,6 +325,7 @@ module.exports = {
   deleteUser,
   getUserCredentials,
   getGoogleUserCredentials,
+  updateAddressAndNumber,
   resetPasswordLink,
   resetPassword,
   verifyEmailLink,
