@@ -171,7 +171,7 @@ async function getGoogleUserCredentials(req, res) {
       { string: process.env.STRING },
       process.env.JWT
     );
-    console.log(userUpdateInfoToken);
+
     return res.status(200).json({
       token: token,
       information: { residence: user.residence, number: user.number },
