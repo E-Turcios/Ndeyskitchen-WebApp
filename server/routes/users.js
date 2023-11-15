@@ -13,11 +13,17 @@ router.post('/createGoogleUser', userController.createGoogleUser);
 
 router.post('/forgot-password', userController.forgotPassword);
 
-router.post('/getUser', userController.getUserCredentials);
+router.post('/get-user', userController.getUserCredentials);
 
-router.post('/getGoogleUser', userController.getGoogleUserCredentials);
+router.post('/get-google-user', userController.getGoogleUserCredentials);
 
 router.post('/get-user-data', middleware.validateUser, userController.getUser);
+
+router.post(
+  '/update-address-and-number',
+  middleware.validateUser,
+  userController.updateAddressAndNumber
+);
 
 router.delete('/:id', middleware.validateUser, userController.deleteUser);
 
