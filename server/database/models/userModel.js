@@ -9,7 +9,7 @@ const UserSchema = new Schema(
     email: { type: String, required: true, unique: true, maxlength: 100 },
     password: { type: String, default: 'N/A', maxlength: 100 },
     number: { type: String, default: 'N/A', unique: true, maxlength: 20 },
-    countryCode: { type: String, required: true, maxlength: 4 },
+    countryCode: { type: String, default: 'N/A', maxlength: 4 },
     sub: {
       type: String,
       required: false,

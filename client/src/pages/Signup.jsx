@@ -12,6 +12,7 @@ export default function Signup() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setPasswordConfirmation] = useState('');
   const [number, setNumber] = useState('');
+  const [countryCode, setCountryCode] = useState('');
   const [residence, setResidence] = useState('');
   const [isSent, setIsSent] = useState(false);
 
@@ -27,12 +28,13 @@ export default function Signup() {
       password,
       number,
       residence,
+      countryCode,
     };
 
     if (password === confirmPassword) {
       const response = await fetch('/api/users/verify-email-link', {
         method: 'POST',
-        body: JSON.stringify(user),
+        body: JSON.stringify({ user }),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -42,6 +44,7 @@ export default function Signup() {
 
       if (!response.ok) {
         console.log(json.Message);
+        return;
       }
 
       if (json.Message === 'Email being verified') setIsSent(true);
@@ -56,8 +59,6 @@ export default function Signup() {
     const decoded = jwt_decode(data.credential);
 
     const { sub, given_name, family_name, email } = decoded;
-
-    console.log(decoded);
 
     const user = {
       firstName: given_name,
@@ -74,8 +75,6 @@ export default function Signup() {
         'Content-Type': 'application/json',
       },
     });
-
-    const json = await response.json();
 
     if (response.ok || response.status === 400) {
       navigate('/login');
@@ -100,7 +99,6 @@ export default function Signup() {
           }
           value={firstName}
           maxLength="30"
-          style={{ textTransform: 'capitalize' }}
           required
         />
         <input
@@ -112,7 +110,6 @@ export default function Signup() {
           }
           value={lastName}
           maxLength="30"
-          style={{ textTransform: 'capitalize' }}
           required
         />
         <input
@@ -135,6 +132,23 @@ export default function Signup() {
           setValue={setPasswordConfirmation}
           value={confirmPassword}
         />
+
+        <select
+          className="input-box"
+          value={countryCode}
+          onChange={event => setCountryCode(event.target.value)}
+          required
+        >
+          <option value="" disabled selected hidden>
+            Country code
+          </option>
+          <option className="country-code" value="+220">
+            +220
+          </option>
+          <option className="country-code" value="+223">
+            +223
+          </option>
+        </select>
         <input
           className="input-box"
           type="tel"

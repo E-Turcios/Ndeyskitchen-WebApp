@@ -169,6 +169,7 @@ async function getGoogleUserCredentials(req, res) {
   const { email, sub } = req.body;
 
   const user = await User.findOne({ email: email, sub: sub });
+  console.log(user);
 
   if (!user) return res.status(404).json({ Message: USER_NOT_FOUND });
 
@@ -205,7 +206,11 @@ async function updateAddressAndNumber(req, res) {
   try {
     const user = await User.updateMany(
       { _id: req.user._id },
-      { number: form.number, residence: form.residence }
+      {
+        number: form.number,
+        residence: form.residence,
+        countryCode: form.countryCode,
+      }
     );
 
     if (!user)
@@ -323,6 +328,7 @@ async function getUser(req, res) {
     lastName: req.user.lastName,
     email: req.user.email,
     number: req.user.number,
+    countryCode: req.user.countryCode,
     residence: req.user.residence,
   });
 }

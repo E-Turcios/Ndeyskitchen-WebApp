@@ -7,6 +7,7 @@ export default function AddressAndNumberUpdatePage() {
   const [form, setForm] = useState({
     residence: '',
     number: '',
+    countryCode: '',
   });
 
   function capitalizeFirstLetter(string) {
@@ -74,6 +75,28 @@ export default function AddressAndNumberUpdatePage() {
             onChange={handleChange}
             required
           />
+
+          <label className="form-label" htmlFor="country-code">
+            Enter your country code
+          </label>
+
+          <select
+            id="country-code"
+            className="input-box"
+            name="countryCode"
+            onChange={handleChange}
+            required
+          >
+            <option value="" disabled selected hidden>
+              {''}
+            </option>
+            <option className="country-code" value="+220">
+              +220
+            </option>
+            <option className="country-code" value="+223">
+              +223
+            </option>
+          </select>
 
           <label className="form-label" htmlFor="number">
             Enter your number
