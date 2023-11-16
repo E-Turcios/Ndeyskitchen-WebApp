@@ -10,6 +10,7 @@ const OrderSchema = new Schema(
     firstName: { type: String, required: true, minlength: 2, maxlength: 50 },
     lastName: { type: String, required: true, minlength: 2, maxlength: 50 },
     email: { type: String, required: true, maxlength: 100 },
+    countryCode: { type: String, required: true, maxlength: 4 },
     number: { type: String, required: true, maxlength: 20 },
     residence: { type: String, required: true, maxlength: 50 },
     total: { type: String, required: true, maxlength: 10 },

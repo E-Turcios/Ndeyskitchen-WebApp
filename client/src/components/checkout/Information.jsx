@@ -11,6 +11,7 @@ export default function CheckoutPageContent({
     lastName: '',
     email: '',
     number: '',
+    countryCode: '',
     residence: '',
   });
 
@@ -22,6 +23,7 @@ export default function CheckoutPageContent({
       firstName: userInformation.firstName || '',
       lastName: userInformation.lastName || '',
       email: userInformation.email || '',
+      countryCode: userInformation.countryCode || '',
       number: userInformation.number || '',
       residence: userInformation.residence || '',
     }));
@@ -74,6 +76,26 @@ export default function CheckoutPageContent({
         onChange={handleChange}
         required
       />
+
+      <select
+        id="country-code"
+        className="input-box"
+        name="countryCode"
+        value={form.countryCode}
+        onChange={handleChange}
+        required
+      >
+        <option value="" disabled selected hidden>
+          Country code
+        </option>
+        <option className="country-code" value="+220">
+          +220
+        </option>
+        <option className="country-code" value="+223">
+          +223
+        </option>
+      </select>
+
       <input
         className="input-box"
         type="tel"

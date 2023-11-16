@@ -32,6 +32,7 @@ async function createOrder(req, res) {
       firstName: information.firstName,
       lastName: information.lastName,
       email: information.email,
+      countryCode: information.countryCode,
       number: information.number,
       residence: information.residence,
       total: information.total,

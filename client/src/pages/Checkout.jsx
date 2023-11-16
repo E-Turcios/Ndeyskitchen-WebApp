@@ -29,6 +29,7 @@ export default function Checkout() {
     firstName: '',
     lastName: '',
     email: '',
+    countryCode: '',
     number: '',
     residence: '',
   });
@@ -76,6 +77,7 @@ export default function Checkout() {
       firstName: userData.firstName,
       lastName: userData.lastName,
       email: userData.email,
+      countryCode: userData.countryCode,
       number: userData.number,
       residence: userData.residence,
       service,
