@@ -25,7 +25,7 @@ const {
 } = require('../messages');
 
 async function verifyEmailLink(req, res) {
-  const { firstName, lastName, password, email, number, residence } = req.body;
+  const { user } = req.body;
 
   try {
     const promise = new Promise((resolve, reject) => {
@@ -40,12 +40,13 @@ async function verifyEmailLink(req, res) {
 
     const userToken = jwt.sign(
       {
-        firstName: firstName,
-        lastName: lastName,
-        password: password,
-        email: email,
-        number: number,
-        residence: residence,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        password: user.password,
+        email: user.email,
+        number: user.number,
+        countryCode: user.countryCode,
+        residence: user.residence,
         token: token,
       },
       process.env.JWT,
@@ -56,7 +57,7 @@ async function verifyEmailLink(req, res) {
 
     const link = `http://localhost:8081/verify-email/${userToken}`;
 
-    const receiver = email;
+    const receiver = user.email;
     const subject = 'Email Verification';
     const message = `
     <div>
@@ -81,12 +82,18 @@ async function verifyEmailLink(req, res) {
 }
 
 async function createUser(req, res) {
-  const { userToken } = req.body;
-
   if (!req.token)
     return res.status(401).json({ Message: EMAIL_VERIFICATION_FAILED });
 
-  const { firstName, lastName, email, password, number, residence } = req;
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    number,
+    residence,
+    countryCode,
+  } = req;
 
   const hash = await bcrypt.hash(password, 11);
 
@@ -98,6 +105,7 @@ async function createUser(req, res) {
       password: hash,
       number,
       residence,
+      countryCode,
     });
 
     const receiver = email;
@@ -128,6 +136,7 @@ async function createGoogleUser(req, res) {
       lastName,
       email,
       sub,
+      isGoogleUser: true,
     });
     res.status(200).json(user);
   } catch (error) {

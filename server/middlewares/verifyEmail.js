@@ -14,6 +14,7 @@ async function verifyEmail(req, res, next) {
       req.password = payload.password;
       req.number = payload.number;
       req.residence = payload.residence;
+      req.countryCode = payload.countryCode;
       next();
     }
     if (err && err.name === 'JsonWebTokenError') {
