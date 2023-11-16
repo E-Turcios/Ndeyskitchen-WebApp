@@ -1,8 +1,10 @@
 import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../components/Loader';
 
 export default function AddressAndNumberUpdatePage() {
-  const navigate = useNavigate('/');
+  const navigate = useNavigate('');
+  const userUpdateInfoToken = localStorage.getItem('userUpdateInfoToken');
 
   const [form, setForm] = useState({
     residence: '',
@@ -53,7 +55,9 @@ export default function AddressAndNumberUpdatePage() {
     }
   }
 
-  return (
+  return !userUpdateInfoToken ? (
+    <Loader />
+  ) : (
     <div className="adress-number-container">
       <div className="adress-number-form-container">
         <p className="welcome-message">Welcome to Ndeys's kitchen</p>

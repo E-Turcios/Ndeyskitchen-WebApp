@@ -83,10 +83,15 @@ export default function Login() {
         json.userUpdateInfoToken
       ) {
         localStorage.setItem('userUpdateInfoToken', json.userUpdateInfoToken);
-        navigate('/update-address-and-number');
-        return;
+        const token = localStorage.getItem('userUpdateInfoToken');
+
+        setTimeout(() => {
+          if (token) {
+            navigate('/update-address-and-number');
+            return;
+          }
+        }, 1000);
       }
-      navigate('/');
     }
   }
 
