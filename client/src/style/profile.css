@@ -1,0 +1,97 @@
+.profile-container{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Navbar */
+
+ .profile-navbar-container{
+    position: sticky;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Content */
+
+.profile-content-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    height: 100%;
+    gap: 20px;
+}
+
+.profile-content p{
+    margin: 0
+ }
+
+.profile-content-header-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}
+
+/* Information */
+
+.profile-content{
+    display: flex;
+    flex-direction: column;   
+}
+
+.profile-content-information{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #333;
+    border-radius: 5px;
+    padding: 30px 300px;
+    gap: 25px;
+}
+
+.profile-content-tag{
+    font-size: 15px;
+}
+
+.profile-content-data{
+    font-size: 18px;
+    color: #371821;
+}
+
+.information-edit-input{
+    padding: 7px;
+    border: none;
+    border-bottom: 1px solid #000;
+}
+
+/* Edit Save */
+
+.edit-save-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.edit-btn{
+    color: #371821;
+    margin: 0;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 15px;
+}
+
+.edit-save-container button{
+    background-color: #DC952F;
+    color: #371821;
+    font-size: 16px;
+    border: 1px solid #DC952F;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+
+
+
+

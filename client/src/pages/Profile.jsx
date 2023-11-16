@@ -1,45 +1,18 @@
-import { React, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useAuthContext from '../hooks/useAuthContext';
+import { React } from 'react';
+import Loader from '../components/Loader';
+import ProfilePageNavbar from '../components/profile/ProfilePageNavbar';
+import ProfilePageContent from '../components/profile/ProfilePageContent';
+import useFetchedUserData from '../hooks/useFetchedUserData';
 
 export default function Profile() {
-  const navigate = useNavigate();
-  const [users, setUsers] = useState(null);
+  const { userInformation, isLoading } = useFetchedUserData();
 
-  const { dispatch } = useAuthContext();
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await fetch('/api/users/', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: localStorage.getItem('token'),
-        },
-      });
-
-      const json = await response.json();
-
-      if (json.Message === 'Token expired') {
-        navigate('/login');
-      }
-
-      if (!response.ok) {
-        localStorage.removeItem('token');
-        dispatch({ type: 'LOGOUT' });
-      }
-
-      setUsers(json);
-      console.log(response.status);
-    };
-    fetchUsers();
-  }, []);
-
-  return (
-    <div className="profile">
-      <div className="users">
-        {users && users.map(user => <p key={user._id}>{user.password}</p>)}
-      </div>
+  return isLoading ? (
+    <Loader />
+  ) : (
+    <div className="profile-container">
+      <ProfilePageNavbar />
+      <ProfilePageContent userInformation={userInformation} />
     </div>
   );
 }
