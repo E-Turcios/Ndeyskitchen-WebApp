@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function ProfilePageInformation({ tag, data, isButtonClicked }) {
-  console.log(data);
   return (
     <div className="profile-content">
       {!isButtonClicked && (
