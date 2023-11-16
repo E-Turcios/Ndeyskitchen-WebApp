@@ -16,55 +16,43 @@ export default function ProfilePageContent({ userInformation }) {
     });
   }
 
+  const userFields = [
+    {
+      tag: 'Name',
+      data: `${userInformation.firstName + ' ' + userInformation.lastName}`,
+    },
+    {
+      tag: 'Email',
+      data: `${userInformation.email}`,
+    },
+    {
+      tag: 'Country Code',
+      data: `${userInformation.countryCode}`,
+    },
+    {
+      tag: 'Phone number',
+      data: `${userInformation.number}`,
+      isButtonClicked: isButtonClicked.editButton,
+    },
+    {
+      tag: 'Address',
+      data: `${userInformation.residence}`,
+      isButtonClicked: isButtonClicked.editButton,
+    },
+  ];
+
   return (
     <div className="profile-content-container">
       <p className="cart-header profile-content-header">Your profile</p>
       <div className="profile-content-information">
-        {isButtonClicked.editButton === true && (
-          <>
-            <ProfilePageInformation
-              tag={'Phone number'}
-              data={`${userInformation.number}`}
-              isButtonClicked={isButtonClicked}
-            />
-            <ProfilePageInformation
-              tag={'Address'}
-              data={`${userInformation.residence}`}
-            />
-          </>
-        )}
-
-        {isButtonClicked.editButton === false && (
-          <>
-            <ProfilePageInformation
-              tag={'Name'}
-              data={`${
-                userInformation.firstName + ' ' + userInformation.lastName
-              }`}
-              isButtonClicked={isButtonClicked.editButton}
-            />
-            <ProfilePageInformation
-              tag={'Email'}
-              data={`${userInformation.email}`}
-              isButtonClicked={isButtonClicked.editButton}
-            />
-            <ProfilePageInformation
-              tag={'Country Code'}
-              data={`${userInformation.countryCode}`}
-              isButtonClicked={isButtonClicked.editButton}
-            />
-            <ProfilePageInformation
-              tag={'Phone number'}
-              data={`${userInformation.number}`}
-              isButtonClicked={isButtonClicked.editButton}
-            />
-            <ProfilePageInformation
-              tag={'Address'}
-              data={`${userInformation.residence}`}
-              isButtonClicked={isButtonClicked.editButton}
-            />
-          </>
-        )}
+        {userFields.map((field, index) => (
+          <ProfilePageInformation
+            key={index}
+            tag={field.tag}
+            data={field.data}
+            isButtonClicked={field.isButtonClicked}
+          />
+        ))}
 
         <div className="edit-save-container">
           {isButtonClicked.editButton === false && (
