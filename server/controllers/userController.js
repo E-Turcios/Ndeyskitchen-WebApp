@@ -330,6 +330,7 @@ async function getUser(req, res) {
     number: req.user.number,
     countryCode: req.user.countryCode,
     residence: req.user.residence,
+    isGoogleUser: req.user.isGoogleUser,
   });
 }
 
