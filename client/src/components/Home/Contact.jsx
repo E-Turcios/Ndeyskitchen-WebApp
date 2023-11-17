@@ -9,7 +9,7 @@ import {
 
 export default function Contact() {
   return (
-    <div className="contact">
+    <div className="contact" id="contact">
       <div className="information">
         <div className="email-support">
           <p>Contact & IT Support</p>
