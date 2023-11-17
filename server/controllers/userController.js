@@ -192,7 +192,32 @@ async function getGoogleUserCredentials(req, res) {
   }
 }
 
-async function updateAddressAndNumber(req, res) {
+async function updateUserAddressAndNumber(req, res) {
+  const { form } = req.body;
+
+  if (!req.user) return res.status(404).json({ Message: USER_NOT_FOUND });
+
+  try {
+    const user = await User.updateMany(
+      { _id: req.user._id },
+      {
+        number: form.number,
+        residence: form.residence,
+      }
+    );
+
+    if (!user)
+      return res
+        .status(200)
+        .json({ Message: ADDRESS_AND_NUMBER_COULD_NOT_BE_UPDATED });
+
+    return res.status(200).json({ Message: ADDRESS_AND_NUMBER_UPDATED });
+  } catch (err) {
+    return res.status(500).json({ Message: err });
+  }
+}
+
+async function updateGoogleUserAddressAndNumber(req, res) {
   const { userUpdateInfoToken, form } = req.body;
 
   if (!req.user) return res.status(404).json({ Message: USER_NOT_FOUND });
@@ -338,9 +363,12 @@ async function deleteUser(req, res) {
   if (!req.user) return res.status(401).json({ Message: USER_NOT_FOUND });
 
   try {
-    const deletedUser = await User.deleteOne({ _id: id });
-    if (!deletedUser) return res.status(200).json({ Message: USER_DELETED });
-    return res.status(200).json({ Message: USER_NOT_DELETED });
+    const deletedUser = await User.deleteOne({ _id: req.user });
+
+    if (!deletedUser)
+      return res.status(200).json({ Message: USER_NOT_DELETED });
+
+    return res.status(200).json({ Message: USER_DELETED });
   } catch (err) {
     res.status(200).json({ Message: err });
   }
@@ -354,7 +382,8 @@ module.exports = {
   deleteUser,
   getUserCredentials,
   getGoogleUserCredentials,
-  updateAddressAndNumber,
+  updateUserAddressAndNumber,
+  updateGoogleUserAddressAndNumber,
   verifyUserUpdateToken,
   resetPasswordLink,
   resetPassword,
