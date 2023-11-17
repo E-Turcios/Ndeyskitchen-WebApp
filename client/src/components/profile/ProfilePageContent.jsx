@@ -164,7 +164,7 @@ export default function ProfilePageContent({ userInformation }) {
         <p
           className="edit-btn delete-btn"
           data-name="editButton"
-          onClick={() => setIsDeleteButtonClicked(!isDeleteButtonClicked)}
+          onClick={() => setIsDeleteButtonClicked(true)}
         >
           Delete account
         </p>
@@ -180,7 +180,7 @@ export default function ProfilePageContent({ userInformation }) {
             </span>{' '}
             <span
               className="button-no"
-              onClick={() => setIsDeleteButtonClicked(!isDeleteButtonClicked)}
+              onClick={() => setIsDeleteButtonClicked(false)}
             >
               No
             </span>
