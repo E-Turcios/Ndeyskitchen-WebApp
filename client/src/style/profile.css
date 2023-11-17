@@ -25,7 +25,7 @@
 
 .profile-content p{
     margin: 0
- }
+}
 
 .profile-content-header-container{
     display: flex;
@@ -44,9 +44,9 @@
 .profile-content-information{
     display: flex;
     flex-direction: column;
-    border: 2px solid #333;
+    border: 1px solid #333;
     border-radius: 5px;
-    padding: 30px 300px;
+    padding: 30px 90px;
     gap: 25px;
 }
 
@@ -60,8 +60,12 @@
 }
 
 .information-edit-input{
+    color: #371821;
+    font-size: 18px;
+    width: 100%;
     padding: 7px;
     border: none;
+    border-radius: 0;
     border-bottom: 1px solid #000;
 }
 
@@ -71,7 +75,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
 }
 
 .edit-btn{
@@ -89,6 +92,219 @@
     border: 1px solid #DC952F;
     border-radius: 3px;
     padding: 5px;
+}
+
+.delete-btn{
+    color: #da1500;
+    
+}
+
+/* Media Queries */
+
+@media (max-width: 1600px) {
+
+    .profile-navbar-container .navbar-icons{
+        font-size: 40px;
+    }
+    
+}
+
+@media (max-width: 1050px) {
+
+    .profile-navbar-container .navbar-icons{
+        font-size: 37px;
+    }
+
+    .profile-content-container{
+        padding-top: 13px;
+        gap: 16px;
+    }
+
+    .profile-content-information{
+        padding: 30px 85px;
+        gap: 25px;
+    }
+
+    .profile-content-tag{
+        font-size: 14.9px;
+    }
+
+    .profile-content-data{
+        font-size: 17.9px;
+    }
+
+    .information-edit-input{
+        font-size: 17.9px;
+        padding: 5px;
+    }
+
+    .edit-btn{
+        font-size: 15px;
+    }
+
+    .edit-save-container button{
+        font-size: 16px;
+        padding: 5px;
+    }
+    
+}
+
+@media (max-width: 850px) {
+
+    .profile-navbar-container .navbar-icons{
+        font-size: 37px;
+    }
+
+    .profile-content-container{
+        padding-top: 12px;
+        gap: 15px;
+    }
+
+    .profile-content-information{
+        padding: 15px 70px;
+        gap: 22px;
+    }
+
+    .profile-content-tag{
+        font-size: 14.7px;
+    }
+
+    .profile-content-data{
+        font-size: 17.7px;
+    }
+
+    .information-edit-input{
+        font-size: 17.7px;
+        padding: 5px;
+    }
+
+    .edit-btn{
+        font-size: 14.5px;
+    }
+
+    .edit-save-container button{
+        font-size: 15.5px;
+        padding: 5px;
+    }
+    
+}
+
+@media (max-width: 750px) {
+
+    .profile-navbar-container .navbar-icons{
+        font-size: 30px;
+    }
+
+    .profile-content-container{
+        padding-top: 10px;
+        gap: 10px;
+    }
+
+    .profile-content-information{
+        padding: 15px 70px;
+        gap: 22px;
+    }
+
+    .profile-content-tag{
+        font-size: 14.7px;
+    }
+
+    .profile-content-data{
+        font-size: 17.7px;
+    }
+
+    .information-edit-input{
+        font-size: 17.7px;
+        padding: 5px;
+    }
+
+    .edit-btn{
+        font-size: 14.5px;
+    }
+
+    .edit-save-container button{
+        font-size: 15.5px;
+        padding: 5px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .profile-navbar-container .navbar-icons{
+        font-size: 25px;
+    }
+
+    .profile-content-container{
+        padding-top: 0px;
+        gap: 10px;
+    }
+
+    .profile-content-information{
+        padding: 15px 70px;
+        gap: 22px;
+    }
+
+    .profile-content-tag{
+        font-size: 14px;
+    }
+
+    .profile-content-data{
+        font-size: 17px;
+    }
+
+    .information-edit-input{
+        font-size: 17px;
+        padding: 5px;
+    }
+
+    .edit-btn{
+        font-size: 14px;
+    }
+
+    .edit-save-container button{
+        font-size: 15px;
+        padding: 5px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .profile-navbar-container .navbar-icons{
+        font-size: 22px;
+    }
+
+    .profile-content-container{
+        gap: 8px;
+    }
+
+    .profile-content-information{
+        padding: 15px 60px;
+        gap: 20px;
+    }
+
+    .profile-content-tag{
+        font-size: 13.5px;
+    }
+
+    .profile-content-data{
+        font-size: 16.5px;
+    }
+
+    .information-edit-input{
+        font-size: 16.5px;
+        padding: 5px;
+    }
+
+    .edit-btn{
+        font-size: 13.5px;
+    }
+
+    .edit-save-container button{
+        font-size: 14.5px;
+        padding: 5px;
+    }
+
 }
 
 
