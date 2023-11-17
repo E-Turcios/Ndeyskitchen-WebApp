@@ -8,10 +8,7 @@ export default function ProfilePageContent({ userInformation }) {
     number: userInformation.number,
     residence: userInformation.residence,
   });
-  const [isButtonClicked, setIsButtonClicked] = useState({
-    editButton: false,
-    saveButton: false,
-  });
+  const [isSaveButtonClicked, setIsSaveButtonClicked] = useState(false);
 
   const [isDeleteButtonClicked, setIsDeleteButtonClicked] = useState(false);
   const [isYesButtonClicked, setIsYesButtonClicked] = useState(false);
@@ -27,18 +24,8 @@ export default function ProfilePageContent({ userInformation }) {
     });
   }
 
-  function handleButtonClick(event) {
-    const buttonName = event.target.dataset.name;
-
-    setIsButtonClicked({
-      ...isButtonClicked,
-      editButton: buttonName === 'editButton',
-      saveButton: buttonName === 'saveButton',
-    });
-  }
-
   useEffect(() => {
-    if (!isButtonClicked.saveButton) return;
+    if (!isSaveButtonClicked) return;
 
     if (
       form.number === userInformation.number &&
@@ -64,12 +51,10 @@ export default function ProfilePageContent({ userInformation }) {
         console.log(json.Message);
         return;
       }
-
-      navigate('/profile');
     }
 
     updateAddress();
-  }, [isButtonClicked.saveButton]);
+  }, [isSaveButtonClicked]);
 
   useEffect(() => {
     if (!isYesButtonClicked) return;
@@ -115,13 +100,11 @@ export default function ProfilePageContent({ userInformation }) {
       tag: 'Phone number',
       name: 'number',
       data: `${userInformation.number}`,
-      isButtonClicked: isButtonClicked.editButton,
     },
     {
       tag: 'Address',
       name: 'residence',
       data: `${userInformation.residence}`,
-      isButtonClicked: isButtonClicked.editButton,
     },
   ];
 
@@ -135,28 +118,13 @@ export default function ProfilePageContent({ userInformation }) {
             tag={field.tag}
             data={field.data}
             name={field.name}
-            isButtonClicked={field.isButtonClicked}
             formValue={form[field.name]}
             handleFormChange={handleFormChange}
           />
         ))}
 
         <div className="edit-save-container">
-          {isButtonClicked.editButton === false && (
-            <p
-              className="edit-btn"
-              data-name="editButton"
-              onClick={handleButtonClick}
-            >
-              Edit
-            </p>
-          )}
-
-          {isButtonClicked.editButton && (
-            <button data-name="saveButton" onClick={handleButtonClick}>
-              Save
-            </button>
-          )}
+          <button onClick={() => setIsSaveButtonClicked(true)}>Save</button>
         </div>
       </div>
 

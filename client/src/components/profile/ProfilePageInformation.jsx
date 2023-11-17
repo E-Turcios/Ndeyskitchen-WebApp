@@ -4,20 +4,19 @@ export default function ProfilePageInformation({
   tag,
   data,
   name,
-  isButtonClicked,
   formValue,
   handleFormChange,
 }) {
   return (
     <div className="profile-content">
-      {!isButtonClicked && (
+      {!formValue && (
         <>
           <p className="profile-content-tag">{tag} </p>
           <p className="profile-content-data">{data}</p>
         </>
       )}
 
-      {isButtonClicked && (
+      {formValue && (
         <>
           <p className="profile-content-tag">{tag} </p>
           <input
