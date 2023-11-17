@@ -90,7 +90,7 @@ export default function Login() {
             navigate('/update-address-and-number');
             return;
           }
-        }, 1000);
+        }, 2000);
       }
     }
   }
