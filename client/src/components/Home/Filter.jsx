@@ -23,8 +23,6 @@ export default function Filter() {
     filterStore.getFilter
   );
 
-  console.log(filter);
-
   function arrowHandleClick() {
     setIsClicked(!isClicked);
   }
