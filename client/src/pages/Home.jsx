@@ -27,7 +27,7 @@ export default function Home() {
     searchResultStore.getResult
   );
 
-  if (searchResult) filterStore.setId('');
+  if (searchResult) filterStore.setId('All');
 
   const { items, isLoading } = useFetchedItems();
 

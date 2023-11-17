@@ -23,6 +23,8 @@ export default function Filter() {
     filterStore.getFilter
   );
 
+  console.log(filter);
+
   function arrowHandleClick() {
     setIsClicked(!isClicked);
   }
@@ -58,7 +60,7 @@ export default function Filter() {
         <>
           <button
             className={filter === 'All' ? 'clicked-button' : 'filter-button'}
-            onClick={() => handleFilterClick(filterObj.ALL)}
+            onClick={() => handleFilterClick('All')}
           >
             All
           </button>
@@ -75,7 +77,7 @@ export default function Filter() {
         {category === 'Sweet' && (
           <button
             className={filter === 'All' ? 'clicked-button' : 'filter-button'}
-            onClick={() => handleFilterClick(filterObj.ALL)}
+            onClick={() => handleFilterClick('All')}
           >
             All Sweets
           </button>
