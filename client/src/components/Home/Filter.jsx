@@ -3,25 +3,12 @@ import { useMediaQuery } from 'react-responsive';
 import categoryStore from '../../stores/categoryStore';
 import filterStore from '../../stores/filterStore';
 import searchResultStore from '../../stores/searchResultStore';
-
-const filterObj = {
-  ALL: 'All',
-};
-
-const sweetFilter = {
-  CAKES: 'Cakes',
-  CUPCAKES: 'Cupcakes',
-  COOKIES: 'Cookies',
-  FRUIT_PLATTER: 'Fruit Platter',
-  DESSERT_CUPS: 'Dessert Cups',
-};
-
-const savoryFilter = {
-  BREAK_FAST_BOX: 'Breakfast Box',
-  SNACKS: 'Snacks',
-};
+import useFetchedItems from '../../hooks/useFetchedItems';
 
 export default function Filter() {
+  const { items } = useFetchedItems();
+  const uniqueFilters = new Set();
+
   const [isClicked, setIsClicked] = useState(false);
   const isSmallScreen = useMediaQuery({ query: '(max-width: 850px)' });
   const isBigScreen = useMediaQuery({ query: '(min-width: 850px)' });
@@ -45,14 +32,32 @@ export default function Filter() {
     searchResultStore.setResult('');
   }
 
+  const filteredSweetItems = items
+    .map(item => {
+      if (item.category === 'Sweet' && !uniqueFilters.has(item.filter)) {
+        uniqueFilters.add(item.filter);
+        return item;
+      }
+      return null;
+    })
+    .filter(Boolean);
+
+  const filteredSavoryItems = items
+    .map(item => {
+      if (item.category === 'Savory' && !uniqueFilters.has(item.filter)) {
+        uniqueFilters.add(item.filter);
+        return item;
+      }
+      return null;
+    })
+    .filter(Boolean);
+
   function All() {
     return (
       category === 'All' && (
         <>
           <button
-            className={
-              filter === filterObj.ALL ? 'clicked-button' : 'filter-button'
-            }
+            className={filter === 'All' ? 'clicked-button' : 'filter-button'}
             onClick={() => handleFilterClick(filterObj.ALL)}
           >
             All
@@ -69,26 +74,25 @@ export default function Filter() {
       <>
         {category === 'Sweet' && (
           <button
-            className={
-              filter === filterObj.ALL ? 'clicked-button' : 'filter-button'
-            }
+            className={filter === 'All' ? 'clicked-button' : 'filter-button'}
             onClick={() => handleFilterClick(filterObj.ALL)}
           >
             All Sweets
           </button>
         )}
 
-        {Object.keys(sweetFilter).map(filterKey => (
+        {filteredSweetItems.map(item => (
           <button
-            key={filterKey}
+            key={item._id}
             className={
-              filter === sweetFilter[filterKey]
-                ? 'clicked-button'
-                : 'filter-button'
+              filter === item.filter ? 'clicked-button' : 'filter-button'
             }
-            onClick={() => handleFilterClick(sweetFilter[filterKey])}
+            onClick={() => {
+              handleFilterClick(item.filter);
+              uniqueFilters.add(item.filter);
+            }}
           >
-            {sweetFilter[filterKey]}
+            {item.filter}
           </button>
         ))}
       </>
@@ -100,26 +104,25 @@ export default function Filter() {
       <>
         {category === 'Savory' && (
           <button
-            className={
-              filter === filterObj.ALL ? 'clicked-button' : 'filter-button'
-            }
+            className={filter === 'All' ? 'clicked-button' : 'filter-button'}
             onClick={() => handleFilterClick(filterObj.ALL)}
           >
             All Savory
           </button>
         )}
 
-        {Object.keys(savoryFilter).map(filterKey => (
+        {filteredSavoryItems.map(item => (
           <button
-            key={filterKey}
+            key={item._id}
             className={
-              filter === savoryFilter[filterKey]
-                ? 'clicked-button'
-                : 'filter-button'
+              filter === item.filter ? 'clicked-button' : 'filter-button'
             }
-            onClick={() => handleFilterClick(savoryFilter[filterKey])}
+            onClick={() => {
+              handleFilterClick(item.filter);
+              uniqueFilters.add(item.filter);
+            }}
           >
-            {savoryFilter[filterKey]}
+            {item.filter}
           </button>
         ))}
       </>
