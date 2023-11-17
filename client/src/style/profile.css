@@ -46,7 +46,7 @@
     flex-direction: column;
     border: 1px solid #333;
     border-radius: 5px;
-    padding: 30px 90px;
+    padding: 30px 65px;
     gap: 25px;
 }
 
@@ -144,7 +144,7 @@
     }
 
     .profile-content-information{
-        padding: 30px 85px;
+        padding: 30px 55px;
         gap: 25px;
     }
 
@@ -183,7 +183,7 @@
     }
 
     .profile-content-information{
-        padding: 15px 70px;
+        padding: 15px 45px;
         gap: 22px;
     }
 
@@ -222,7 +222,7 @@
     }
 
     .profile-content-information{
-        padding: 15px 70px;
+        padding: 15px 40px;
         gap: 22px;
     }
 
@@ -261,7 +261,7 @@
     }
 
     .profile-content-information{
-        padding: 15px 70px;
+        padding: 15px 35px;
         gap: 22px;
     }
 
@@ -298,7 +298,7 @@
     }
 
     .profile-content-information{
-        padding: 15px 60px;
+        padding: 15px 30px;
         gap: 20px;
     }
 
