@@ -84,15 +84,17 @@
     border-radius: 5px;  
 }
 
-.search-result p{
-    margin: 3px;
+.search-result a{
+    color: #000;
+    margin: 2px;
     padding: 2px;
-    border-bottom: 1px solid #eeeeee;
+    font-family: 'Open Sans', sans-serif;
     overflow-y: scroll;
-    transition: color .3s
+    transition: color .3s;
+    text-decoration: none;
 }
 
-.search-result p:hover{
+.search-result a:hover{
    cursor: pointer;
    color: #DC952F
 }
