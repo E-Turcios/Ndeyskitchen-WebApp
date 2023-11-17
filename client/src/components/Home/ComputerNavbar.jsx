@@ -32,7 +32,6 @@ export default function ComputerNavbar() {
           <div className="navbar-information">
             <a href="#menu">Menu</a>
             <a>Orders</a>
-            <a>Rewards</a>
           </div>
         </div>
 

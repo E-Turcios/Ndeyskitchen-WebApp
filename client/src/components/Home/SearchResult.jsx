@@ -18,15 +18,16 @@ export default function SearchResult({ open, searchText, closeHamburgerMenu }) {
           <p>No result.</p>
         ) : (
           filteredItems.map((item, id) => (
-            <p
+            <a
               key={id}
+              href="#menu"
               onClick={() => {
                 searchResultStore.setResult(item.name);
                 closeHamburgerMenu();
               }}
             >
               {item.name}
-            </p>
+            </a>
           ))
         )}
       </div>

@@ -89,8 +89,6 @@ export default function MobileNavbar() {
           </a>
           <a className="hamburger-menu-information">Orders</a>
 
-          <a className="hamburger-menu-information">Rewards</a>
-
           {user
             ? isActive && (
                 <a className="hamburger-menu-information" href="/profile">
