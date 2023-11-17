@@ -29,17 +29,20 @@ export default function AddressAndNumberUpdatePage() {
     const userUpdateInfoToken = localStorage.getItem('userUpdateInfoToken');
 
     try {
-      const response = await fetch('/api/users/update-address-and-number', {
-        method: 'POST',
-        body: JSON.stringify({
-          form,
-          user,
-          userUpdateInfoToken,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await fetch(
+        '/api/users/update-google-user-address-and-number',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            form,
+            user,
+            userUpdateInfoToken,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
 
       const json = await response.json();
 
