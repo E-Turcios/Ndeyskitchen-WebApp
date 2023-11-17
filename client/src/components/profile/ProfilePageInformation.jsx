@@ -1,6 +1,13 @@
 import React from 'react';
 
-export default function ProfilePageInformation({ tag, data, isButtonClicked }) {
+export default function ProfilePageInformation({
+  tag,
+  data,
+  name,
+  isButtonClicked,
+  formValue,
+  handleFormChange,
+}) {
   return (
     <div className="profile-content">
       {!isButtonClicked && (
@@ -16,7 +23,9 @@ export default function ProfilePageInformation({ tag, data, isButtonClicked }) {
           <input
             type="text"
             className="profile-content-tag information-edit-input"
-            value={data}
+            value={formValue}
+            name={name}
+            onChange={handleFormChange}
           />
         </>
       )}

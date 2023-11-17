@@ -1,21 +1,102 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ProfilePageInformation from './ProfilePageInformation';
+import useAuthContext from '../../hooks/useAuthContext';
 
 export default function ProfilePageContent({ userInformation }) {
+  const [form, setForm] = useState({
+    number: userInformation.number,
+    residence: userInformation.residence,
+  });
   const [isButtonClicked, setIsButtonClicked] = useState({
     editButton: false,
     saveButton: false,
   });
+
   const [isDeleteButtonClicked, setIsDeleteButtonClicked] = useState(false);
+  const [isYesButtonClicked, setIsYesButtonClicked] = useState(false);
+
+  const { user, dispatch } = useAuthContext();
+  const navigate = useNavigate();
+
+  function handleFormChange(event) {
+    event.preventDefault();
+    setForm({
+      ...form,
+      [event.target.name]: event.target.value,
+    });
+  }
 
   function handleButtonClick(event) {
     const buttonName = event.target.dataset.name;
 
     setIsButtonClicked({
+      ...isButtonClicked,
       editButton: buttonName === 'editButton',
       saveButton: buttonName === 'saveButton',
     });
   }
+
+  useEffect(() => {
+    if (!isButtonClicked.saveButton) return;
+
+    if (
+      form.number === userInformation.number &&
+      form.residence === userInformation.residence
+    )
+      return;
+
+    async function updateAddress() {
+      const response = await fetch(
+        '/api/users/update-user-address-and-number',
+        {
+          method: 'POST',
+          body: JSON.stringify({ user, form }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        console.log(json.Message);
+        return;
+      }
+
+      navigate('/profile');
+    }
+
+    updateAddress();
+  }, [isButtonClicked.saveButton]);
+
+  useEffect(() => {
+    if (!isYesButtonClicked) return;
+
+    async function deleteUser() {
+      const response = await fetch('/api/users/delete-user', {
+        method: 'POST',
+        body: JSON.stringify({ user }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        console.log(json.Message);
+        return;
+      }
+
+      localStorage.removeItem('token');
+      dispatch({ type: 'LOGOUT' });
+      navigate('/');
+    }
+
+    deleteUser();
+  }, [isYesButtonClicked]);
 
   const userFields = [
     {
@@ -32,11 +113,13 @@ export default function ProfilePageContent({ userInformation }) {
     },
     {
       tag: 'Phone number',
+      name: 'number',
       data: `${userInformation.number}`,
       isButtonClicked: isButtonClicked.editButton,
     },
     {
       tag: 'Address',
+      name: 'residence',
       data: `${userInformation.residence}`,
       isButtonClicked: isButtonClicked.editButton,
     },
@@ -51,7 +134,10 @@ export default function ProfilePageContent({ userInformation }) {
             key={index}
             tag={field.tag}
             data={field.data}
+            name={field.name}
             isButtonClicked={field.isButtonClicked}
+            formValue={form[field.name]}
+            handleFormChange={handleFormChange}
           />
         ))}
 
@@ -73,13 +159,34 @@ export default function ProfilePageContent({ userInformation }) {
           )}
         </div>
       </div>
-      <p
-        className="edit-btn delete-btn"
-        data-name="editButton"
-        onClick={() => setIsDeleteButtonClicked(true)}
-      >
-        Delete account
-      </p>
+
+      <div className="delete-container">
+        <p
+          className="edit-btn delete-btn"
+          data-name="editButton"
+          onClick={() => setIsDeleteButtonClicked(!isDeleteButtonClicked)}
+        >
+          Delete account
+        </p>
+
+        {isDeleteButtonClicked && (
+          <p className="edit-btn confirmation">
+            Are you sure?{' '}
+            <span
+              className="button-yes"
+              onClick={() => setIsYesButtonClicked(true)}
+            >
+              Yes
+            </span>{' '}
+            <span
+              className="button-no"
+              onClick={() => setIsDeleteButtonClicked(!isDeleteButtonClicked)}
+            >
+              No
+            </span>
+          </p>
+        )}
+      </div>
     </div>
   );
 }

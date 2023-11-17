@@ -8,7 +8,7 @@ export default function ProfilePageNavbar() {
     <Headroom>
       <nav className="profile-navbar-container">
         <span
-          class="material-symbols-outlined navbar-icons"
+          className="material-symbols-outlined navbar-icons"
           onClick={() => navigate('/')}
         >
           arrow_back_ios
