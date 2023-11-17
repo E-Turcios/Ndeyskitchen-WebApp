@@ -95,7 +95,10 @@
 
 .delete-btn{
     color: #da1500;
-    
+}
+
+.edit-save-container button:hover, .delete-btn:hover{
+    cursor: pointer;
 }
 
 /* Media Queries */
@@ -104,8 +107,7 @@
 
     .profile-navbar-container .navbar-icons{
         font-size: 40px;
-    }
-    
+    } 
 }
 
 @media (max-width: 1050px) {
