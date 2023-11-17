@@ -5,7 +5,7 @@ export default function useFetchedUserData() {
   const [userInformation, setUserInformation] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-  const { user } = useAuthContext();
+  const { user, dispatch } = useAuthContext();
 
   useEffect(() => {
     async function getUserData() {
@@ -21,6 +21,14 @@ export default function useFetchedUserData() {
       const json = await response.json();
 
       if (!response.ok) console.log(json.Message);
+
+      if (
+        json.Message === 'Token expired' ||
+        json.Message === 'User not found'
+      ) {
+        localStorage.removeItem('token');
+        dispatch({ type: 'LOGOUT' });
+      }
 
       setUserInformation(json);
       setIsLoading(false);
