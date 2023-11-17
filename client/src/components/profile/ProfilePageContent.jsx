@@ -43,7 +43,7 @@ export default function ProfilePageContent({ userInformation }) {
 
   return (
     <div className="profile-content-container">
-      <p className="cart-header profile-content-header">Your profile</p>
+      <p className="cart-header profile-content-header">Profile</p>
       <div className="profile-content-information">
         {userFields.map((field, index) => (
           <ProfilePageInformation
@@ -72,6 +72,13 @@ export default function ProfilePageContent({ userInformation }) {
           )}
         </div>
       </div>
+      <p
+        className="edit-btn delete-btn"
+        data-name="editButton"
+        onClick={handleButtonClick}
+      >
+        Delete account
+      </p>
     </div>
   );
 }
