@@ -14,9 +14,9 @@
     height: 100vh;
 }
 
-/* Loyalty Program Banner */
+/* Large Event Catering */
 
-.loyalty-program-banner{
+.large-events-catering{
     background-color: #f0f0f0;
     width:100%;
     height:50px;
@@ -25,10 +25,12 @@
     align-items: center;
 }
 
-.loyalty-program-banner a{
+.large-events-catering a{
     text-decoration: underline;
-    color:#000000;
+    color:#DC952F;
 }
+
+
 
 /* Catgory */
 
@@ -214,11 +216,11 @@
 
 @media (max-width: 570px){
     
-    .loyalty-program-banner{
+    .large-events-catering{
         height: 35px;
     }
     
-    .loyalty-program-banner a{
+    .large-events-catering a{
        font-size: 14px;
     }
 
@@ -261,7 +263,7 @@
 
 @media (max-width: 450px) {
 
-    .loyalty-program-banner a{
+    .large-events-catering a{
         font-size: 12.1px;
     }
     
