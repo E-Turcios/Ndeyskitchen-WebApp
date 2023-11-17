@@ -1,6 +1,6 @@
 import { React, useSyncExternalStore } from 'react';
 import Navbar from '../components/Home/Navbar';
-import LoyaltyProgramBanner from '../components/Home/LoyaltyProgramBanner';
+import LargeEventCateringBanner from '../components/Home/LargeEventCateringBanner';
 import Category from '../components/Home/Category';
 import Filter from '../components/Home/Filter';
 import ItemCard from '../components/Home/ItemCard';
@@ -36,7 +36,7 @@ export default function Home() {
   ) : (
     <div className="home-page-container">
       <Navbar />
-      <LoyaltyProgramBanner />
+      <LargeEventCateringBanner />
       <Category />
       <div className="filter-menu-container">
         <Filter />
