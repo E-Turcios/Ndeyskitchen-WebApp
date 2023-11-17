@@ -6,6 +6,7 @@ export default function ProfilePageContent({ userInformation }) {
     editButton: false,
     saveButton: false,
   });
+  const [isDeleteButtonClicked, setIsDeleteButtonClicked] = useState(false);
 
   function handleButtonClick(event) {
     const buttonName = event.target.dataset.name;
@@ -75,7 +76,7 @@ export default function ProfilePageContent({ userInformation }) {
       <p
         className="edit-btn delete-btn"
         data-name="editButton"
-        onClick={handleButtonClick}
+        onClick={() => setIsDeleteButtonClicked(true)}
       >
         Delete account
       </p>
