@@ -51,6 +51,8 @@ export default function ProfilePageContent({ userInformation }) {
         console.log(json.Message);
         return;
       }
+
+      console.log(json.Message);
     }
 
     updateAddress();
