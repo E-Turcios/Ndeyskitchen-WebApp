@@ -93,11 +93,33 @@
     padding: 5px;
 }
 
+/* Delete */
+
+.delete-container{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .delete-btn{
     color: #da1500;
 }
 
-.edit-save-container button:hover, .delete-btn:hover{
+.edit-btn, .edit-save-container button:hover, .delete-btn:hover{
+    cursor: pointer;
+}
+
+.confirmation{
+    color: #000;
+    text-decoration: none;
+}
+
+.confirmation .button-yes, .confirmation .button-no{
+    color: #DC952F;
+    text-decoration: underline;
+}
+
+.confirmation .button-yes:hover, .confirmation .button-no:hover{
     cursor: pointer;
 }
 
