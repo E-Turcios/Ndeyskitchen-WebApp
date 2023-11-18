@@ -112,11 +112,15 @@ async function sendEmailToUserAndAdmin(information, orderNumber) {
 async function getUserOrders(req, res) {
   if (!req.user) return res.status(404).json({ Message: USER_NOT_FOUND });
 
-  const orders = await Order.find({ userId: req.user._id });
+  try {
+    const orders = await Order.find({ userId: req.user._id });
 
-  if (!orders) return res.status(404).json({ Message: ORDERS_NOT_FOUND });
+    if (!orders) return res.status(404).json({ Message: ORDERS_NOT_FOUND });
 
-  return res.status(200).json({ orders: orders });
+    return res.status(200).json({ orders: orders });
+  } catch (err) {
+    res.status(500).json({ Message: err });
+  }
 }
 
 module.exports = { createOrder, getUserOrders };
