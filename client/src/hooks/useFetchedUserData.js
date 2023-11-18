@@ -10,6 +10,7 @@ export default function useFetchedUserData() {
   useEffect(() => {
     async function getUserData() {
       if (!user) return;
+
       const response = await fetch('/api/users/get-user-data', {
         method: 'POST',
         body: JSON.stringify({ user: user }),
