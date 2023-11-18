@@ -65,6 +65,7 @@ export default function App() {
 
               <Route path="/cart" element={<Cart />} />
               {cartSize && <Route path="/checkout" element={<Checkout />} />}
+              <Route path="/orders" element={<Orders />} />
             </Routes>
           )}
         </div>
