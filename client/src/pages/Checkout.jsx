@@ -1,9 +1,9 @@
 import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CheckoutNavbar from '../components/Checkout/CheckoutNavbar.jsx';
-import Information from '../components/Checkout/Information.jsx';
-import Service from '../components/Checkout/Service.jsx';
-import Payment from '../components/Checkout/Payment.jsx';
+import CheckoutNavbar from '../components/checkout/CheckoutNavbar.jsx';
+import Information from '../components/checkout/Information.jsx';
+import Service from '../components/checkout/Service.jsx';
+import Payment from '../components/checkout/Payment.jsx';
 import useCartSizeContext from '../hooks/useCartSizeContext.js';
 import useAuthContext from '../hooks/useAuthContext';
 import useFetchedUserData from '../hooks/useFetchedUserData';
