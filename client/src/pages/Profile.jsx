@@ -1,6 +1,6 @@
 import { React } from 'react';
 import Loader from '../components/Loader';
-import ProfilePageNavbar from '../components/profile/ProfilePageNavbar';
+import ProfilePageNavbar from '../components/ProfileAndOrderPagesNavbar';
 import ProfilePageContent from '../components/profile/ProfilePageContent';
 import useFetchedUserData from '../hooks/useFetchedUserData';
 
