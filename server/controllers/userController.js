@@ -2,7 +2,7 @@ const crypto = require('crypto');
 const User = require('../database/models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { sendEmail } = require('../sendEmail');
+const { sendEmail } = require('../script/sendEmail');
 
 require('dotenv').config();
 
