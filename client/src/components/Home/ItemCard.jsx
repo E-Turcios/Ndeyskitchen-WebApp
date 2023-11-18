@@ -1,15 +1,8 @@
 import React from 'react';
 import Image from '../Image';
+import truncateComponentList from '../../scripts/truncateComponentList';
 
 export default function ItemCard(props) {
-  function truncateComponentList(components) {
-    const maxLength = 35;
-
-    if (components.length > maxLength)
-      return components.slice(0, maxLength) + '...';
-    return components;
-  }
-
   return (
     <div className="item-container">
       <a
@@ -25,7 +18,7 @@ export default function ItemCard(props) {
           </div>
           <p className="item-name">{props.name}</p>
           <div className="item-component-container">
-            <i>{truncateComponentList(props.components)}</i>
+            <i>{truncateComponentList(props.components, 35)}</i>
           </div>
         </div>
 
