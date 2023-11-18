@@ -73,26 +73,19 @@ export default function Login() {
       console.log(json.Message);
     }
 
-    if (response.ok) {
-      localStorage.setItem('token', json.token);
-      dispatch({ type: 'LOGIN', payload: json });
+    localStorage.setItem('token', json.token);
+    dispatch({ type: 'LOGIN', payload: json });
 
-      if (
-        (json.information.residence === 'N/A' ||
-          json.information.number === 'N/A') &&
-        json.userUpdateInfoToken
-      ) {
-        localStorage.setItem('userUpdateInfoToken', json.userUpdateInfoToken);
-        const token = localStorage.getItem('userUpdateInfoToken');
-
-        setTimeout(() => {
-          if (token) {
-            navigate('/update-address-and-number');
-            return;
-          }
-        }, 2000);
-      }
+    if (
+      (json.information.residence === 'N/A' ||
+        json.information.number === 'N/A') &&
+      json.userUpdateInfoToken
+    ) {
+      localStorage.setItem('userUpdateInfoToken', json.userUpdateInfoToken);
+      navigate('/update-address-and-number');
+      return;
     }
+    navigate('/');
   }
 
   return (
