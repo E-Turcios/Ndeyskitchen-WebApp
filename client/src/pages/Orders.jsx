@@ -6,6 +6,7 @@ import useFetchedUserOrders from '../hooks/useFetchedUserOrders';
 
 export default function Orders() {
   const { orders, isLoading } = useFetchedUserOrders();
+
   return isLoading ? (
     <Loader />
   ) : (
