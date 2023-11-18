@@ -22,4 +22,5 @@ module.exports = {
   NO_TOKEN_FOUND: 'No token found',
   INVALID_TOKEN: 'Invalid token',
   TOKEN_VALIDATED: 'Token validated',
+  ORDERS_NOT_FOUND: 'Orders not found',
 };
