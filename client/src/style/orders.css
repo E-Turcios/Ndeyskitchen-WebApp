@@ -1,0 +1,26 @@
+
+.orders-page-container{
+   
+    height: 100vh
+}
+
+/* Content */
+
+.orders-content-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%
+}
+
+/* Card */
+
+.order-card{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order-card p{
+    margin: 0
+}
