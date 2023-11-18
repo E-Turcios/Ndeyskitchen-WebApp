@@ -25,7 +25,6 @@ export default function useFetchedUserOrders() {
 
       setOrders(json);
       setIsLoading(false);
-      console.log(json.Message);
     }
     getOrders();
   }, [user]);
