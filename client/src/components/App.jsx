@@ -11,6 +11,7 @@ import VerifyEmail from '../pages/VerifyEmail';
 import ItemView from '../pages/ItemView';
 import Cart from '../pages/Cart';
 import Checkout from '../pages/Checkout';
+import Orders from '../pages/Orders';
 import useAuthContext from '../hooks/useAuthContext';
 import useCartSizeContext from '../hooks/useCartSizeContext';
 import useUserUpdateInfoTokenVerifier from '../hooks/useUserUpdateInfoTokenVerifier';
@@ -39,6 +40,7 @@ export default function App() {
               )}
 
               {cartSize && <Route path="/checkout" element={<Checkout />} />}
+              <Route path="/orders" element={<Orders />} />
             </Routes>
           ) : (
             <Routes>

@@ -87,7 +87,7 @@ export default function MobileNavbar() {
           >
             Menu
           </a>
-          <a className="hamburger-menu-information" href="/menu">
+          <a className="hamburger-menu-information" href="/orders">
             Orders
           </a>
 

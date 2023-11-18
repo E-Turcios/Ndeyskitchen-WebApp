@@ -31,7 +31,7 @@ export default function ComputerNavbar() {
 
           <div className="navbar-information">
             <a href="#menu">Menu</a>
-            <a href="/menu">Orders</a>
+            <a href="/orders">Orders</a>
           </div>
         </div>
 
