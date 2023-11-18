@@ -1,12 +1,14 @@
 const Order = require('../database/models/orderModel');
 const Counter = require('../database/models/counterModel');
 const User = require('../database/models/userModel');
-const { sendEmail } = require('../sendEmail');
+const { sendEmail } = require('../script/sendEmail');
 
 const {
   ORDER_VALIDATION_FAILED,
   ORDER_PLACED,
   ORDER_COULD_NOT_BE_PLACED,
+  USER_NOT_FOUND,
+  ORDERS_NOT_FOUND,
 } = require('../messages');
 
 async function createOrder(req, res) {
@@ -107,4 +109,14 @@ async function sendEmailToUserAndAdmin(information, orderNumber) {
   sendEmail(adminSubject, adminMessage, adminReceiver);
 }
 
-module.exports = { createOrder };
+async function getUserOrders(req, res) {
+  if (!req.user) return res.status(404).json({ Message: USER_NOT_FOUND });
+
+  const orders = await Order.find({ userId: req.user._id });
+
+  if (!orders) return res.status(404).json({ Message: ORDERS_NOT_FOUND });
+
+  return res.status(200).json({ orders: orders });
+}
+
+module.exports = { createOrder, getUserOrders };
