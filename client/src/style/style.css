@@ -1,4 +1,17 @@
 
+@import url('./login.css');
+@import url('./signup.css');
+@import url('./forgot-password.css');
+@import url('./reset-password.css');
+@import url('./home.css');
+@import url('./navbar.css');
+@import url('./filter.css');
+@import url('./item-card.css');
+@import url('./item-view.css');
+@import url('./cart.css');
+@import url('./checkout.css');
+@import url('./profile.css');
+
 body, html {
     max-width: 100%;
     overflow-x: clip;
@@ -7,7 +20,6 @@ body, html {
     min-width: 380px;
     scroll-behavior: smooth;
 }
-
 
 /* image */
 

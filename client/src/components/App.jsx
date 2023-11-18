@@ -15,18 +15,6 @@ import useAuthContext from '../hooks/useAuthContext';
 import useCartSizeContext from '../hooks/useCartSizeContext';
 import useUserUpdateInfoTokenVerifier from '../hooks/useUserUpdateInfoTokenVerifier';
 import '../style/style.css';
-import '../style/login.css';
-import '../style/signup.css';
-import '../style/forgot-password.css';
-import '../style/reset-password.css';
-import '../style/home.css';
-import '../style/navbar.css';
-import '../style/filter.css';
-import '../style/item-card.css';
-import '../style/item-view.css';
-import '../style/cart.css';
-import '../style/checkout.css';
-import '../style/profile.css';
 
 export default function App() {
   const { user } = useAuthContext();
