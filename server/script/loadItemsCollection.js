@@ -30,7 +30,9 @@ const itemsData = [
     name: '2-Tier Wedding Cake',
     category: 'Sweet',
     filter: filter.CAKES,
-    components: 'Vanilla + Red Velvet Tiers, Strawberry + Cream Cheese Filling',
+    flavors: ['Chocolate', 'Vanilla', 'Red Velvet'],
+    components:
+      'Vanilla + Red Velvet Layers, Strawberry + Cream Cheese Filling',
     price: 9000,
     size: {
       Large: '9000',
@@ -43,6 +45,7 @@ const itemsData = [
     name: 'Chocolate Overload Cake',
     category: 'Sweet',
     filter: filter.CAKES,
+    flavors: ['Chocolate', 'Vanilla', 'Red Velvet'],
     components: 'Chocolate Ganache, White Chocolate Buttercream',
     price: 6500,
     size: {
@@ -96,6 +99,7 @@ const itemsData = [
     name: 'Biscoff Drip Cake',
     category: 'Sweet',
     filter: filter.CAKES,
+    flavors: ['Chocolate', 'Vanilla', 'Red Velvet'],
     components:
       'Vanilla Cake, White Chocolate Biscoff Buttercream, Biscoff Spread',
     price: 5000,
@@ -152,6 +156,7 @@ const itemsData = [
     name: 'Purple Floral Design Cake',
     category: 'Sweet',
     filter: filter.CAKES,
+    flavors: ['Chocolate', 'Vanilla', 'Red Velvet'],
     components: 'Flavor of Choice',
     price: 5000,
     size: {
@@ -165,6 +170,7 @@ const itemsData = [
     name: 'Pink Floral Chocolate Cake',
     category: 'Sweet',
     filter: filter.CAKES,
+    flavors: ['Chocolate', 'Vanilla', 'Red Velvet'],
     components: 'Chocolate icing',
     price: 5000,
     size: {
