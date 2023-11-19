@@ -3,13 +3,37 @@
     height: 100vh
 }
 
+/* No orders */
+
+.no-orders-container{
+    color: #7f7f7f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+} 
+
+.no-orders-container p{
+    margin: 0
+}
+
+.no-orders-container a{
+    color: #7f7f7f;
+    text-decoration: underline;
+}
+
+.no-orders-container a:hover{
+    cursor: pointer;
+}
+
 /* Content */
 
 .orders-content-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%
+    height: 100%;
+    
 }
 
 /* Card */
@@ -17,6 +41,7 @@
 .order-card{
     display: flex;
     flex-direction: column;
+    min-width: 467px;
     gap: 10px;
 }
 
@@ -27,7 +52,7 @@
 .order-card-date{
     color: #371821;
     font-size: 15px;
-    text-align: right;
+    text-align: center;
 }
 
 .order-card-user-name{
@@ -56,12 +81,6 @@
     margin-left: auto
 }
 
-.items-names-components .order-card-item-components{
-    color: #333;
-    min-width: 467px;
-    font-size: 15px;
-}
-
 .order-total{
     color:#371821;
     text-align: center;
@@ -76,9 +95,19 @@
     font-size: 15px;
     border: 1px solid #371821;
     border-radius: 3px;
+    transition: background-color .3s;
+    transition: color .3s;
+}
+
+.orders-cards-container button:hover{
+    cursor: pointer;
+    background-color: #371821;
+    color: #FFF;
+    border: 1px solid #371821;
 }
 
 .orders-cards-container .divider{
+    margin-bottom: 18px;
     width: 100%;
 }
 
@@ -87,7 +116,12 @@
 
 @media (max-width: 1050px) {
 
+    .no-orders-container{
+        gap: 3px;
+    } 
+
     .order-card{
+        min-width: 467px;
         gap: 10px;
     }
 
@@ -113,12 +147,6 @@
     .name-price-container .price-quantity-tag, .order-total{
         font-size: 15px;
     }
-    
-    .items-names-components .order-card-item-components{
-        color: #333;
-        min-width: 467px;
-        font-size: 14.5px;
-    }
 
     .orders-cards-container button{
         width: 80px;
@@ -132,7 +160,13 @@
 
 @media (max-width: 600px) {
 
+    .no-orders-container{
+        font-size: 15px;
+        gap: 1px;
+    } 
+
     .order-card{
+        min-width: 435px;
         gap: 8px;
     }
 
@@ -160,12 +194,6 @@
     .name-price-container .price-quantity-tag, .order-total{
         font-size: 13.5px;
     }
-    
-    .items-names-components .order-card-item-components{
-        color: #333;
-        min-width: 435px;
-        font-size: 14px;
-    }
 
     .orders-cards-container button{
         width: 75px;
@@ -178,7 +206,12 @@
 
 @media (max-width: 550px) {
 
+    .no-orders-container{
+        font-size: 14.3px;
+    } 
+
     .order-card{
+        min-width: 405px;
         gap: 6px;
     }
 
@@ -206,12 +239,6 @@
     .name-price-container .price-quantity-tag, .order-total{
         font-size: 12.7px;
     }
-    
-    .items-names-components .order-card-item-components{
-        color: #333;
-        min-width: 405px;
-        font-size: 13.5px;
-    }
 
     .orders-cards-container button{
         width: 70px;
@@ -223,7 +250,13 @@
 
 @media (max-width: 450px) {
 
+    .no-orders-container{
+        font-size: 14px;
+    } 
+
+
     .order-card{
+        min-width: 370px;
         gap: 5px;
     }
 
@@ -249,12 +282,6 @@
 
     .name-price-container .price-quantity-tag, .order-total{
         font-size: 12.2px;
-    }
-    
-    .items-names-components .order-card-item-components{
-        color: #333;
-        min-width: 370px;
-        font-size: 13.3px;
     }
 
     .orders-cards-container button{
