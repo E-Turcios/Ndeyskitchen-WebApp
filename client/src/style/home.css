@@ -25,9 +25,16 @@
     align-items: center;
 }
 
+.large-events-catering p{
+   text-align: center;
+  
+}
+
+
 .large-events-catering a{
     text-decoration: underline;
     color:#DC952F;
+    white-space: nowrap;
 }
 
 
@@ -201,6 +208,10 @@
 }
 
 @media (max-width: 850px){
+
+    .large-events-catering p{
+        font-size: 15px;
+    }
     
     .filter-menu-container{
         display: flex;
@@ -214,14 +225,15 @@
 
    }
 
+
 @media (max-width: 570px){
     
     .large-events-catering{
         height: 35px;
     }
     
-    .large-events-catering a{
-       font-size: 14px;
+    .large-events-catering p{
+       font-size: 13px;
     }
 
     .category-container{
@@ -241,7 +253,6 @@
         font-size: 21px;
 
     }
-
     
     .information{
         gap: 75px;
@@ -263,8 +274,8 @@
 
 @media (max-width: 450px) {
 
-    .large-events-catering a{
-        font-size: 12.1px;
+    .large-events-catering p{
+        font-size: 12px;
     }
     
     .information{
