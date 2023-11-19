@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
 import Signup from '../pages/Signup';
@@ -32,11 +32,33 @@ export default function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/item/:id" element={<ItemView />} />
               <Route path="/cart" element={<Cart />} />
-              {token && (
-                <Route
-                  path="/update-address-and-number"
-                  element={<AddressAndNumberUpdatePage />}
-                />
+              {token ? (
+                <>
+                  <Route
+                    path="/update-address-and-number"
+                    element={<AddressAndNumberUpdatePage />}
+                  />
+                  <Route
+                    path="*"
+                    element={
+                      <Navigate
+                        to="/update-address-and-number"
+                        replace={true}
+                      />
+                    }
+                  />
+                </>
+              ) : (
+                <>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/item/:id" element={<ItemView />} />
+                  <Route path="/cart" element={<Cart />} />
+                  {cartSize && (
+                    <Route path="/checkout" element={<Checkout />} />
+                  )}
+                  <Route path="/orders" element={<Orders />} />
+                </>
               )}
 
               {cartSize && <Route path="/checkout" element={<Checkout />} />}
