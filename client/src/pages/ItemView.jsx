@@ -5,6 +5,7 @@ import ItemViewNavbar from '../components/item-view/ItemViewNavbar';
 import Loader from '../components/Loader';
 import Quantity from '../components/item-view/Quantity';
 import Size from '../components/item-view/Size';
+import Flavor from '../components/item-view/Flavor';
 import useFetchedItems from '../hooks/useFetchedItems';
 import useCartSizeContext from '../hooks/useCartSizeContext';
 
@@ -14,6 +15,7 @@ export default function ItemView() {
   const { items, isLoading } = useFetchedItems();
   const { dispatch } = useCartSizeContext();
 
+  const [flavor, setFlavor] = useState('');
   const [instructions, setInstructions] = useState('No instructions');
   const [validateButton, setValidateButtonText] = useState('Add to');
   const [isDisabled, setIsDisabled] = useState(false);
@@ -34,6 +36,10 @@ export default function ItemView() {
     quantity = amount;
   }
 
+  function handleFlavorSelect(flavor) {
+    setFlavor(flavor);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -42,6 +48,7 @@ export default function ItemView() {
       name: item.name,
       components: item.components,
       filter: item.filter,
+      flavor: flavor,
       quantity: quantity,
       price: itemPrice,
       size: itemSize,
@@ -90,6 +97,14 @@ export default function ItemView() {
               <Quantity getQuantity={getQuantity} />
 
               <span className="divider"></span>
+
+              {item.filter === 'Cakes' && (
+                <>
+                  <Flavor item={item} handleFlavorSelect={handleFlavorSelect} />
+
+                  <span className="divider"></span>
+                </>
+              )}
 
               <Size
                 item={item}
