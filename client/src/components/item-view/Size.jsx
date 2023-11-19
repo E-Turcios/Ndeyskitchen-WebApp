@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 
 export default function Size({
   item,
@@ -24,7 +24,6 @@ export default function Size({
             }
             onClick={() => {
               setPrice(item.size[size]);
-              console.log(itemSize);
               setSize(size);
             }}
           >
