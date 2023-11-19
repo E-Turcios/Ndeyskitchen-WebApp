@@ -11,6 +11,7 @@ const ItemSchema = new Schema(
     image: { type: String, required: true },
     alt: { type: String, required: true },
     price: { type: String, required: true },
+    flavors: { type: Array, default: 'N/A' },
     size: {
       type: Map,
       of: String,
