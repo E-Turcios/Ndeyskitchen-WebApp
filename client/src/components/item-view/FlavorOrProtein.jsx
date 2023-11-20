@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 
-export default function Size({ item, handleFlavorSelect }) {
+export default function FlavorOrProtein({ item, handleFlavorSelect }) {
   const [buttonClicked, setButtonClicked] = useState(false);
 
   function handleButtonClick(flavor) {
@@ -10,7 +10,7 @@ export default function Size({ item, handleFlavorSelect }) {
 
   return (
     <>
-      <p className="tag">Flavor</p>
+      <p className="tag">{item.filter === 'Cakes' ? 'Flavor' : 'Protein'}</p>
 
       <div className="size-container" required>
         {item.flavors.map(flavor => (

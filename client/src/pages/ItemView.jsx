@@ -4,8 +4,8 @@ import ItemViewImageAndName from '../components/item-view/ItemViewImageAndName';
 import ItemViewNavbar from '../components/item-view/ItemViewNavbar';
 import Loader from '../components/Loader';
 import Quantity from '../components/item-view/Quantity';
-import Size from '../components/item-view/Size';
-import Flavor from '../components/item-view/Flavor';
+import Options from '../components/item-view/Options';
+import FlavorOrProtein from '../components/item-view/FlavorOrProtein';
 import useFetchedItems from '../hooks/useFetchedItems';
 import useCartSizeContext from '../hooks/useCartSizeContext';
 
@@ -98,15 +98,18 @@ export default function ItemView() {
 
               <span className="divider"></span>
 
-              {item.filter === 'Cakes' && (
+              {(item.filter === 'Cakes' || item.filter === 'Pizza') && (
                 <>
-                  <Flavor item={item} handleFlavorSelect={handleFlavorSelect} />
+                  <FlavorOrProtein
+                    item={item}
+                    handleFlavorSelect={handleFlavorSelect}
+                  />
 
                   <span className="divider"></span>
                 </>
               )}
 
-              <Size
+              <Options
                 item={item}
                 handleSizeSelect={handleSizeSelect}
                 handleSizeSelectPrice={handleSizeSelectPrice}
