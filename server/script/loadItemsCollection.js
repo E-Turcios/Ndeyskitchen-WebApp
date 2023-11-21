@@ -139,7 +139,7 @@ const itemsData = [
       '1 Dish': '300',
     },
     image: image.chickenAfra,
-    alt: 'Chicken Afra ',
+    alt: 'Chicken Afra',
   },
 
   {
