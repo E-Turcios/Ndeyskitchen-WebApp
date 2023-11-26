@@ -89,7 +89,7 @@ export default function AddressAndNumberUpdatePage() {
 
           <select
             id="country-code"
-            className="input-box"
+            className="input-box country-code"
             name="countryCode"
             onChange={handleChange}
             required
