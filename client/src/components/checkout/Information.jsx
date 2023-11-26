@@ -79,7 +79,7 @@ export default function CheckoutPageContent({
 
       <select
         id="country-code"
-        className="input-box"
+        className="input-box country-code"
         name="countryCode"
         value={form.countryCode}
         onChange={handleChange}
@@ -88,12 +88,8 @@ export default function CheckoutPageContent({
         <option value="" disabled selected hidden>
           Country code
         </option>
-        <option className="country-code" value="+220">
-          +220
-        </option>
-        <option className="country-code" value="+223">
-          +223
-        </option>
+        <option value="+220">+220</option>
+        <option value="+223">+223</option>
       </select>
 
       <input
