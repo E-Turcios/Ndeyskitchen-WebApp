@@ -29,64 +29,24 @@ export default function Payment({ onButtonClick }) {
           >
             GT Bank
           </button>
-
-          <button
-            className={buttonId === 'Orange Money' ? 'clicked-btn' : 'btn'}
-            onClick={event => {
-              handlePaymentMethodButtonClick(event, 'Orange Money');
-            }}
-          >
-            Orange Money
-          </button>
         </div>
 
         {buttonId !== '' && buttonId !== 'Cash' && (
           <div className="payment-form">
-            <p className="payment-method-letterhead">Account Information</p>
+            <p className="payment-method-letterhead">Money Transfer</p>
 
             {buttonId === 'GT Bank' && (
               <>
-                <input
-                  className="input-box"
-                  type="text"
-                  placeholder="Account holder's name"
-                  name="accountHoldersName"
-                  maxLength="50"
-                  onChange={handlePaymentChange}
-                  required
-                />
-                <input
-                  className="input-box"
-                  type="text"
-                  placeholder="Account number"
-                  name="accountNumber"
-                  maxLength="30"
-                  onChange={handlePaymentChange}
-                  required
-                />
-              </>
-            )}
-
-            {buttonId === 'Orange Money' && (
-              <>
-                <input
-                  className="input-box"
-                  type="text"
-                  placeholder="Account holder's name"
-                  name="accountHoldersName"
-                  maxLength="50"
-                  onChange={handlePaymentChange}
-                  required
-                />
-                <input
-                  className="input-box"
-                  type="text"
-                  placeholder="Phone number"
-                  name="phoneNumber"
-                  maxLength="30"
-                  onChange={handlePaymentChange}
-                  required
-                />
+                <p className="delivery-fees">
+                  Make and payment to 2011272741590.
+                </p>
+                <p className="delivery-fees">
+                  Send a screenshot of the payment to the WhatsApp number +220
+                  756 3799
+                </p>
+                <p className="delivery-fees">
+                  with the order number from the email you will receive.
+                </p>
               </>
             )}
           </div>
