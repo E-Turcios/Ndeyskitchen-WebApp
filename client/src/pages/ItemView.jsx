@@ -98,7 +98,9 @@ export default function ItemView() {
 
               <span className="divider"></span>
 
-              {(item.filter === 'Cakes' || item.filter === 'Pizza') && (
+              {(item.filter === 'Cakes' ||
+                item.filter === 'Pizza' ||
+                item.filter === 'Noodles') && (
                 <>
                   <FlavorOrProtein
                     item={item}

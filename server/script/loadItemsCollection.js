@@ -81,12 +81,11 @@ const itemsData = [
     name: 'Stir Fried Noodles',
     category: 'Savory',
     filter: filter.NOODLES,
+    flavors: ['Beef', 'Chicken', 'Shrimp'],
     components: 'Onions, Carrots, Protein, Cabbage',
     price: 350,
     size: {
-      Beef: '350',
-      Chicken: '350',
-      Shrimp: '350',
+      Protein: '350',
       Mixed: '450',
     },
     image: image.stirFriedNoodles,
@@ -166,7 +165,7 @@ const itemsData = [
     category: 'Savory',
     filter: filter.SHRIMPS,
     components: 'Shrimps, Fries, Ketchup',
-    price: 350,
+    price: 400,
     size: {
       Medium: '400',
       Large: '600',
