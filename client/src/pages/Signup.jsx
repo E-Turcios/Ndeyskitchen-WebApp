@@ -82,7 +82,7 @@ export default function Signup() {
   }
 
   return (
-    <div className="singup-container">
+    <div className="signup-container">
       <a className="home-link" href="/">
         <Image className="img" src={'ndeys-kitchen.png'} />
       </a>
@@ -134,7 +134,7 @@ export default function Signup() {
         />
 
         <select
-          className="input-box"
+          className="input-box country-code"
           value={countryCode}
           onChange={event => setCountryCode(event.target.value)}
           required
@@ -142,12 +142,8 @@ export default function Signup() {
           <option value="" disabled selected hidden>
             Country code
           </option>
-          <option className="country-code" value="+220">
-            +220
-          </option>
-          <option className="country-code" value="+223">
-            +223
-          </option>
+          <option value="+220">+220</option>
+          <option value="+223">+223</option>
         </select>
         <input
           className="input-box"
@@ -183,14 +179,17 @@ export default function Signup() {
         </p>
       </form>
 
-      <GoogleLogin
-        onSuccess={createGoogleUser}
-        theme="outline"
-        shape="circle"
-        width="20px"
-        logo_alignment="center"
-        onScriptLoadError={() => console.log('Error')}
-      ></GoogleLogin>
+      <div className="google-button">
+        <GoogleLogin
+          className="google-btn"
+          onSuccess={createGoogleUser}
+          theme="outline"
+          shape="circle"
+          width="20px"
+          logo_alignment="center"
+          onScriptLoadError={() => console.log('Error')}
+        ></GoogleLogin>
+      </div>
     </div>
   );
 }
