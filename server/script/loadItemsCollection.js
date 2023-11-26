@@ -24,6 +24,7 @@ const image = {
   pinkFloralCake1: 'items/pink-floral-cake-1.jpg',
   pinkFloralCake2: 'items/pink-floral-cake-2.jpg',
   pinkFloralCake3: 'items/pink-floral-cake-3.jpg',
+  whitePinkFloralCake: 'items/floral-white-and-pink-cake.jpg',
   pizza: 'items/pizza.jpg',
   purpleFloralCake: 'items/purple-floral-cake.jpg',
   redVelvetCake: 'items/red-velvet-cake.jpg',
@@ -36,6 +37,10 @@ const image = {
   weddingCake2: 'items/wedding-cake-2.jpg',
   whiteFloralCake: 'items/white-floral-cake.jpg',
   whitePrincessThemedCake: 'items/white-princess-cake.jpg',
+  chocolateBrownies: 'items/chocolate-brownies.jpg',
+  cocomelonCake: 'items/cocomelon-themed-cake.jpg',
+  princessCake1: 'items/princess-themed-cake-1.jpg',
+  princessCake2: 'items/princess-themed-cake-2.jpg',
 };
 
 const filter = {
@@ -53,6 +58,7 @@ const filter = {
   NOODLES: 'Noodles',
   FRUITS: 'Fruits',
   DONUTS: 'Donuts',
+  BROWNIES: 'Brownies',
 };
 
 const itemsData = [
@@ -75,7 +81,7 @@ const itemsData = [
     name: 'Stir Fried Noodles',
     category: 'Savory',
     filter: filter.NOODLES,
-    components: 'Onions, Protein, ',
+    components: 'Onions, Carrots, Protein, Cabbage',
     price: 350,
     size: {
       Beef: '350',
@@ -119,7 +125,7 @@ const itemsData = [
     name: 'Donuts',
     category: 'Sweet',
     filter: filter.DONUTS,
-    components: 'To be filled',
+    components: 'Vanilla Custard, Berry Jam, Nutella Filling',
     price: 300,
     size: {
       '3Pcs': '300',
@@ -133,13 +139,26 @@ const itemsData = [
     name: 'Chicken Afra',
     category: 'Savory',
     filter: filter.CHICKEN,
-    components: 'To be filled',
+    components: 'Chicken, Mashed Potatotes, BBQ Sauce',
     price: 300,
     size: {
       '1 Dish': '300',
     },
     image: image.chickenAfra,
     alt: 'Chicken Afra',
+  },
+
+  {
+    name: 'Ebbeh',
+    category: 'Savory',
+    filter: filter.SOUPS,
+    components: 'Crabs, Cassava, Palm Oil',
+    price: 250,
+    size: {
+      '1 Dish': '250',
+    },
+    image: image.ebbeh,
+    alt: 'Ebbeh',
   },
 
   {
@@ -191,11 +210,11 @@ const itemsData = [
     category: 'Sweet',
     filter: filter.CAKES,
     flavors: ['Chocolate', 'Vanilla', 'Red Velvet'],
-    components: 'White Chocolate Buttercream',
+    components: 'Chocalate Icing, White Chocolate Buttercream',
     price: 5500,
     size: {
       Small: '4500',
-      Medium: '4500',
+      Medium: '5500',
       Large: '6500',
     },
     image: image.squareCake,
@@ -207,7 +226,7 @@ const itemsData = [
     category: 'Sweet',
     filter: filter.CAKES,
     flavors: ['Chocolate', 'Vanilla', 'Red Velvet'],
-    components: 'Gold Sheets, Candy Pearls',
+    components: 'Gold Sheets, Candy Pearls, White Chocolate Buttercream',
     price: 3000,
     size: {
       Small: '3000',
@@ -220,7 +239,8 @@ const itemsData = [
     name: 'Savory Delights',
     category: 'Savory',
     filter: filter.SNACKS,
-    components: 'Chicken Leg, Shrimp Spring Roll, Nems, Beef Bun',
+    components:
+      'Grilled Drum Sticks, Shrimp Spring Roll, Shrimp Frirecrackers, Meat Pie',
     price: 200,
     size: {
       '1 Pack': '200',
@@ -400,6 +420,38 @@ const itemsData = [
   },
 
   {
+    name: 'Princess Themed Cake',
+    category: 'Sweet',
+    filter: filter.CAKES,
+    flavors: ['Chocolate', 'Vanilla', 'Red Velvet'],
+    components: 'Chocolate icing',
+    price: 5000,
+    size: {
+      Medium: '5000',
+      Large: '6500',
+      XLarge: '7500',
+    },
+    image: image.princessCake1,
+    alt: 'Princess Themed Cake',
+  },
+
+  {
+    name: 'Princess Themed Cake',
+    category: 'Sweet',
+    filter: filter.CAKES,
+    flavors: ['Chocolate', 'Vanilla', 'Red Velvet'],
+    components: 'Chocolate icing',
+    price: 5000,
+    size: {
+      Medium: '5000',
+      Large: '6500',
+      XLarge: '7500',
+    },
+    image: image.princessCake2,
+    alt: 'Princess Themed Cake',
+  },
+
+  {
     name: 'Finger Food Tray',
     category: 'Savory',
     filter: filter.SNACKS,
@@ -411,6 +463,21 @@ const itemsData = [
     },
     image: image.fingerFoodTray,
     alt: 'Finger Food Tray',
+  },
+
+  {
+    name: 'Chocolate Brownies',
+    category: 'Sweet',
+    filter: filter.BROWNIES,
+    components: 'Nutella and Biscoff Topping',
+    price: 1500,
+    size: {
+      '4Pcs': '500',
+      '8Pcs': '800',
+      '12Pcs': '1500',
+    },
+    image: image.chocolateBrownies,
+    alt: 'Chocolate Brownies',
   },
 
   {
@@ -429,11 +496,26 @@ const itemsData = [
   },
 
   {
+    name: 'Cocomelon Themed Cake',
+    category: 'Sweet',
+    filter: filter.CAKES,
+    flavors: ['Chocolate', 'Vanilla', 'Red Velvet'],
+    components: 'Chocolate icing',
+    price: 4500,
+    size: {
+      Medium: '4500',
+      Large: '5500',
+    },
+    image: image.cocomelonCake,
+    alt: 'Cocomelon Themed Cake',
+  },
+
+  {
     name: 'Sliced Cake',
     category: 'Sweet',
     filter: filter.CAKES,
     flavors: ['Chocolate', 'Vanilla', 'Red Velvet'],
-    components: 'To be filled',
+    components: 'Chocolate Mousse, Chocolate Ganache',
     price: 400,
     size: {
       '1 Slice': '400',
@@ -454,6 +536,22 @@ const itemsData = [
     },
     image: image.breakFastBox,
     alt: 'Breakfast Box',
+  },
+
+  {
+    name: 'White-Pink Floral Cake',
+    category: 'Sweet',
+    filter: filter.CAKES,
+    flavors: ['Chocolate', 'Vanilla', 'Red Velvet'],
+    components: 'Chocolate icing',
+    price: 4500,
+    size: {
+      Medium: '4500',
+      Large: '5500',
+      XLarge: '6500',
+    },
+    image: image.whitePinkFloralCake,
+    alt: 'White-Pink Floral Cake',
   },
 
   {
