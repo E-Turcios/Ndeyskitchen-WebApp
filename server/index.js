@@ -1,13 +1,15 @@
 const express = require('express');
+const morgan = require('morgan');
+const path = require('path');
+const cors = require('cors');
 const userRoutes = require('./routes/users');
 const itemsRoutes = require('./routes/items');
 const ordersRoutes = require('./routes/orders');
-const morgan = require('morgan');
-const cors = require('cors');
 
 const app = express();
 
 app.use(express.json());
+app.use(express.static('static'));
 app.use(morgan('dev'));
 app.use((req, res, next) => {
   console.log(req.path, req.method);
@@ -16,6 +18,10 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
   res.json({ mssg: 'Welcome' });
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'static/index.html'));
 });
 
 //routes
