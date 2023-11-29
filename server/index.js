@@ -1,6 +1,5 @@
 const express = require('express');
 const morgan = require('morgan');
-const path = require('path');
 const cors = require('cors');
 const userRoutes = require('./routes/users');
 const itemsRoutes = require('./routes/items');
@@ -18,10 +17,6 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
   res.json({ mssg: 'Welcome' });
-});
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'static/index.html'));
 });
 
 //routes
