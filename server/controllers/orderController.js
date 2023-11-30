@@ -95,8 +95,8 @@ async function sendEmailToUserAndAdmin(information, orderNumber) {
       <p style="font-size: 16px; text-align: center;">Total: D ${information.total}</p>
       <p style="font-size: 16px;">Payment Method: ${information.paymentMethod}</p>
       <p style="font-size: 16px;">For any inquiries, please reach out to us:</p>
-      <a style="margin: 0;" href="mailto:ndeyskitchen@gmail.com">ndeyskitchen@gmail.com</a>
-      <p style="margin: 0;">WhatsApp: +220 794 4636</p>
+      <a style="font-size: 16px; margin: 0;" href="mailto:ndeyskitchen@gmail.com">ndeyskitchen@gmail.com</a>
+      <p style="font-size: 16px; margin: 0;">WhatsApp: +220 794 4636</p>
       <p style="font-size: 16px;">We appreciate your business!</p>
     </div>
   `;
