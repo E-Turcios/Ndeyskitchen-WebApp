@@ -13,7 +13,7 @@ export default function Contact() {
       <div className="information">
         <div className="email-support">
           <p>Contact & IT Support</p>
-          <a href="mailto:ndeyskitchen@gmail.com">ndeyskitchen@gmail.com</a>
+          <a href="mailto:ndeyskitchen@gmail.com">support@ndeyskitchen.com</a>
           <a target="_blank">
             <FontAwesomeIcon icon={faWhatsapp} size="lg" />
             <span> Gambia +220 794 4636</span>
