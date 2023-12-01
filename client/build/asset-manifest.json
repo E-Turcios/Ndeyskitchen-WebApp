@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.0df83e4c.css",
-    "main.js": "/static/js/main.dff4149e.js",
+    "main.css": "/static/css/main.ce28e41e.css",
+    "main.js": "/static/js/main.5c960906.js",
     "static/media/chicken-batbouts.jpg": "/static/media/chicken-batbouts.8d960cf352a6b30f10f3.jpg",
     "static/media/chocolate-overload-cake.jpg": "/static/media/chocolate-overload-cake.407c0ab15f3c4d157468.jpg",
     "static/media/pink-floral-cake-1.jpg": "/static/media/pink-floral-cake-1.acaa509bcd8f7c926d1b.jpg",
@@ -41,12 +41,10 @@
     "static/media/fruit-platter.jpg": "/static/media/fruit-platter.96fcb2eba5e8f2e73a5f.jpg",
     "static/media/breakfast-box.jpg": "/static/media/breakfast-box.4540857cf518235c956d.jpg",
     "static/media/ndeys-kitchen.png": "/static/media/ndeys-kitchen.a2bf5ef145e1e12a72b3.png",
-    "index.html": "/index.html",
-    "main.0df83e4c.css.map": "/static/css/main.0df83e4c.css.map",
-    "main.dff4149e.js.map": "/static/js/main.dff4149e.js.map"
+    "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.0df83e4c.css",
-    "static/js/main.dff4149e.js"
+    "static/css/main.ce28e41e.css",
+    "static/js/main.5c960906.js"
   ]
 }
