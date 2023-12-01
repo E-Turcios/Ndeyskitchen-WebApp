@@ -105,7 +105,7 @@ export default function Filter() {
         {category === 'Savory' && (
           <button
             className={filter === 'All' ? 'clicked-button' : 'filter-button'}
-            onClick={() => handleFilterClick(filterObj.ALL)}
+            onClick={() => handleFilterClick('All')}
           >
             All Savory
           </button>
