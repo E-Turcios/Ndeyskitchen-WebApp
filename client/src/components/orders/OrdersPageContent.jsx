@@ -25,7 +25,7 @@ export default function OrdersPageContent({ orders, isLoading }) {
           </div>
         )}
 
-        {isLoading ? (
+        {user && isLoading ? (
           <Loader />
         ) : !orders ? (
           <div className="no-orders-container">
