@@ -61,7 +61,6 @@ async function verifyEmailLink(req, res) {
     const subject = 'Email Verification';
     const message = `
     <div>
-    <p><strong>From: Ndey's Kitchen</strong></p>
     <p>Hello,</p>
     <p>You are almost done signing up.</p>
     <p>Click the link below to veify your email:</p>
