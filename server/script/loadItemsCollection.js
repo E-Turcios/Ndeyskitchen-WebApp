@@ -375,20 +375,6 @@ const itemsData = [
   },
 
   {
-    name: 'Cheesecake Dessert Cups',
-    category: 'Sweet',
-    filter: filter.DESSERT_CUPS,
-    components:
-      'Chocolate Mousse, Oreo Cream, Kinder Bueno/Ferrero Rocher, Biscoff Cream',
-    price: 2500,
-    size: {
-      '12Pcs': '2500',
-    },
-    image: image.purpleFloralCake,
-    alt: 'Cheesecake Dessert Cups',
-  },
-
-  {
     name: 'Pink Floral Cake',
     category: 'Sweet',
     filter: filter.CAKES,
