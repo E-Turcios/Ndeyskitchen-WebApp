@@ -337,7 +337,7 @@ const itemsData = [
     category: 'Savory',
     filter: filter.CHICKEN,
     components: 'Chicken, Lettuce, Cheese, Special Sauce',
-    price: 500,
+    price: 450,
     size: {
       '1 Dish': '450',
     },
