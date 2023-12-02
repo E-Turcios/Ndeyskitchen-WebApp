@@ -45,20 +45,14 @@ const image = {
 
 const filter = {
   CAKES: 'Cakes',
-  CUPCAKES: 'Cupcakes',
-  COOKIES: 'Cookies',
-  DESSERT_CUPS: 'Dessert Cups',
-  BREAK_FAST_BOX: 'Breakfast Box',
+  GOODIES: 'Goodies',
   SNACKS: 'Snacks',
-  PASTA: 'Pasta',
   SHRIMPS: 'Shrimps',
   SOUPS: 'Soups',
   CHICKEN: 'Chicken',
   PIZZA: 'Pizza',
   NOODLES: 'Noodles',
   FRUITS: 'Fruits',
-  DONUTS: 'Donuts',
-  BROWNIES: 'Brownies',
 };
 
 const itemsData = [
@@ -123,7 +117,7 @@ const itemsData = [
   {
     name: 'Donuts',
     category: 'Sweet',
-    filter: filter.DONUTS,
+    filter: filter.GOODIES,
     components: 'Vanilla Custard, Berry Jam, Nutella Filling',
     price: 300,
     size: {
@@ -177,7 +171,7 @@ const itemsData = [
   {
     name: 'Alfredo Pasta',
     category: 'Savory',
-    filter: filter.PASTA,
+    filter: filter.NOODLES,
     components: 'Creamy Alfredo Sauce, Protein',
     price: 350,
     size: {
@@ -307,7 +301,7 @@ const itemsData = [
   {
     name: 'Chocolate Cupcakes',
     category: 'Sweet',
-    filter: filter.CUPCAKES,
+    filter: filter.GOODIES,
     components: 'White Chocolate Buttercream',
     price: 2000,
     size: {
@@ -348,7 +342,7 @@ const itemsData = [
   {
     name: 'Sugar Cookies',
     category: 'Sweet',
-    filter: filter.COOKIES,
+    filter: filter.GOODIES,
     components: 'Sugar Cookies',
     price: 2500,
     size: {
@@ -453,7 +447,7 @@ const itemsData = [
   {
     name: 'Chocolate Brownies',
     category: 'Sweet',
-    filter: filter.BROWNIES,
+    filter: filter.GOODIES,
     components: 'Nutella and Biscoff Topping',
     price: 1500,
     size: {
@@ -512,7 +506,7 @@ const itemsData = [
   {
     name: 'Breakfast Box',
     category: 'Savory',
-    filter: filter.BREAK_FAST_BOX,
+    filter: filter.SNACKS,
     components:
       'Wings, Spaghettis, Sardine Sandwich, Meat Pie, Waffles, Yogurt, Fruits (Varies Weekly)',
     price: 1500,
