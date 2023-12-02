@@ -23,10 +23,17 @@ export default function CheckoutPageContent({
       firstName: userInformation.firstName || '',
       lastName: userInformation.lastName || '',
       email: userInformation.email || '',
-      countryCode: userInformation.countryCode || '',
-      number: userInformation.number || '',
-      residence: userInformation.residence || '',
+      ...(userInformation.countryCode !== 'N/A' && {
+        countryCode: userInformation.countryCode || '',
+      }),
+      ...(userInformation.number !== 'N/A' && {
+        number: userInformation.number || '',
+      }),
+      ...(userInformation.residence !== 'N/A' && {
+        residence: userInformation.residence || '',
+      }),
     }));
+
     onFormChange(form);
   }, [user, isLoading, userInformation]);
 
