@@ -215,51 +215,6 @@ async function updateUserAddressAndNumber(req, res) {
   }
 }
 
-async function updateGoogleUserAddressAndNumber(req, res) {
-  const { userUpdateInfoToken, form } = req.body;
-
-  if (!req.user) return res.status(404).json({ Message: USER_NOT_FOUND });
-
-  if (!userUpdateInfoToken)
-    return res.status(404).json({ Message: USER_UPDATE_TOKEN_NOT_FOUND });
-
-  const token = jwt.verify(userUpdateInfoToken, process.env.JWT);
-  if (!token) res.status(404).json({ Message: USER_UPDATE_TOKEN_NOT_FOUND });
-
-  try {
-    const user = await User.updateMany(
-      { _id: req.user._id },
-      {
-        number: form.number,
-        residence: form.residence,
-        countryCode: form.countryCode,
-      }
-    );
-
-    if (!user)
-      return res
-        .status(200)
-        .json({ Message: ADDRESS_AND_NUMBER_COULD_NOT_BE_UPDATED });
-
-    return res.status(200).json({ Message: ADDRESS_AND_NUMBER_UPDATED });
-  } catch (err) {
-    return res.status(500).json({ Message: err });
-  }
-}
-
-async function verifyUserUpdateToken(req, res) {
-  const { userUpdateInfoToken } = req.body;
-
-  if (userUpdateInfoToken === null)
-    return res.status(400).json({ Message: NO_TOKEN_FOUND });
-
-  const token = jwt.verify(userUpdateInfoToken, process.env.JWT);
-
-  if (!token) return res.status(400).json({ Message: INVALID_TOKEN });
-
-  return res.status(200).json({ Message: TOKEN_VALIDATED });
-}
-
 async function forgotPassword(req, res) {
   const { email } = req.body;
 
@@ -381,8 +336,6 @@ module.exports = {
   getUserCredentials,
   getGoogleUserCredentials,
   updateUserAddressAndNumber,
-  updateGoogleUserAddressAndNumber,
-  verifyUserUpdateToken,
   resetPasswordLink,
   resetPassword,
   verifyEmailLink,

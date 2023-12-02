@@ -20,21 +20,9 @@ router.post('/get-google-user', userController.getGoogleUserCredentials);
 router.post('/get-user-data', middleware.validateUser, userController.getUser);
 
 router.post(
-  '/update-google-user-address-and-number',
-  middleware.validateUser,
-  userController.updateGoogleUserAddressAndNumber
-);
-
-router.post(
   '/update-user-address-and-number',
   middleware.validateUser,
   userController.updateUserAddressAndNumber
-);
-
-router.post(
-  '/verify-user-update-token',
-
-  userController.verifyUserUpdateToken
 );
 
 router.post('/delete-user', middleware.validateUser, userController.deleteUser);

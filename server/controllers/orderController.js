@@ -20,6 +20,18 @@ async function createOrder(req, res) {
   try {
     const user = await User.findById(information.id);
 
+    if (user)
+      await User.updateMany(
+        { number: 'N/A', residence: 'N/A', countryCode: 'N/A' },
+        {
+          $set: {
+            number: information.number,
+            countryCode: information.countryCode,
+            residence: information.residence,
+          },
+        }
+      );
+
     const counter = await Counter.findOneAndUpdate(
       { name: 'orderNumberCounter' },
       { $inc: { value: 1 } },

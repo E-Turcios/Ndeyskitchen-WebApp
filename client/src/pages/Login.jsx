@@ -75,16 +75,6 @@ export default function Login() {
 
     localStorage.setItem('token', json.token);
     dispatch({ type: 'LOGIN', payload: json });
-
-    if (
-      (json.information.residence === 'N/A' ||
-        json.information.number === 'N/A') &&
-      json.userUpdateInfoToken
-    ) {
-      localStorage.setItem('userUpdateInfoToken', json.userUpdateInfoToken);
-      navigate('/update-address-and-number');
-      return;
-    }
     navigate('/');
   }
 
