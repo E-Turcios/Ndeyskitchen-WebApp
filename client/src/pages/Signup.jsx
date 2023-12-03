@@ -182,6 +182,7 @@ export default function Signup() {
       <div className="google-button">
         <GoogleLogin
           className="google-btn"
+          useOneTap
           onSuccess={createGoogleUser}
           theme="outline"
           shape="circle"

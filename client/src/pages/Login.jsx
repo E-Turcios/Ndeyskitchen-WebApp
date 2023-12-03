@@ -133,6 +133,8 @@ export default function Login() {
 
         <GoogleLogin
           onSuccess={getGoogleUser}
+          cookiePolicy={'single_host_origin'}
+          useOneTap
           theme="outline"
           shape="circle"
           width="20px"
