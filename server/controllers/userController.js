@@ -135,7 +135,6 @@ async function createGoogleUser(req, res) {
       lastName,
       email,
       sub,
-      isGoogleUser: true,
     });
     res.status(200).json(user);
   } catch (error) {
@@ -305,10 +304,10 @@ async function getUser(req, res) {
     firstName: req.user.firstName,
     lastName: req.user.lastName,
     email: req.user.email,
-    number: req.user.number,
-    countryCode: req.user.countryCode,
-    residence: req.user.residence,
-    isGoogleUser: req.user.isGoogleUser,
+    number: req.user.number === undefined ? 'N/A' : req.user.number,
+    countryCode:
+      req.user.countryCode === undefined ? 'N/A' : req.user.countryCode,
+    residence: req.user.residence === undefined ? 'N/A' : req.user.residence,
   });
 }
 
