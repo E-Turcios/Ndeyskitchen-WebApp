@@ -109,10 +109,12 @@ export default function Checkout() {
       }
 
       setIsButtonClicked(true);
+
       localStorage.removeItem('cart');
       localStorage.removeItem('total-price');
       localStorage.removeItem('cake-date-and-time');
       localStorage.removeItem('non-cake-date-and-time');
+
       dispatch({ type: 'SET_CART_SIZE', payload: '0' });
       navigate('/');
     } catch (err) {
