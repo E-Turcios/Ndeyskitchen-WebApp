@@ -22,7 +22,7 @@ async function createOrder(req, res) {
 
     if (user)
       await User.updateMany(
-        { number: 'N/A', residence: 'N/A', countryCode: 'N/A' },
+        { number: undefined, residence: undefined, countryCode: undefined },
         {
           $set: {
             number: information.number,
