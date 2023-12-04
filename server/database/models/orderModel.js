@@ -21,7 +21,7 @@ const OrderSchema = new Schema(
     cakesDate: { type: String, maxlength: 11 },
     cakesTime: { type: String, maxlength: 14 },
     items: { type: Array, required: true },
-    confirmation: { type: String, default: 'Not Confirmed', maxlength: 14 },
+    confirmation: { type: String, maxlength: 14 },
     status: { type: String, default: 'Not Complete', maxlength: 14 },
   },
   { timestamps: true }
