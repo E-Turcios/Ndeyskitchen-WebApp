@@ -57,6 +57,8 @@ async function createOrder(req, res) {
       cakesDate: information.datesAndTimes.cake.selectedDate,
       cakesTime: information.datesAndTimes.cake.selectedTime,
       items: information.items,
+      confirmation:
+        information.paymentMethod === 'Cash' ? 'Confirmed' : 'Not confirmed',
     });
 
     if (!order)
