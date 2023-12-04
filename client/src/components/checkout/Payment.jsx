@@ -2,6 +2,8 @@ import { React, useState } from 'react';
 
 export default function Payment({ onButtonClick }) {
   const [buttonId, setButtonId] = useState('');
+  const cart = JSON.parse(localStorage.getItem('cart'));
+  const foundCakesFilter = cart.filter(item => item.filter === 'Cakes');
 
   function handlePaymentMethodButtonClick(event, id) {
     event.preventDefault();
@@ -9,18 +11,20 @@ export default function Payment({ onButtonClick }) {
     onButtonClick(id);
   }
 
-  function handlePaymentChange() {}
   return (
     <div className="payment-container">
       <p className="section">Payment</p>
       <div className="payment-method-container">
         <div className="button-container">
-          <button
-            className={buttonId === 'Cash' ? 'clicked-btn' : 'btn'}
-            onClick={event => handlePaymentMethodButtonClick(event, 'Cash')}
-          >
-            Cash
-          </button>
+          {!foundCakesFilter && (
+            <button
+              className={buttonId === 'Cash' ? 'clicked-btn' : 'btn'}
+              onClick={event => handlePaymentMethodButtonClick(event, 'Cash')}
+            >
+              Cash
+            </button>
+          )}
+
           <button
             className={buttonId === 'GT Bank' ? 'clicked-btn' : 'btn'}
             onClick={event => {
