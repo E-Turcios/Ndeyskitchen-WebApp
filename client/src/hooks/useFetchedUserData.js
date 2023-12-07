@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import useAuthContext from '../hooks/useAuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function useFetchedUserData() {
   const [userInformation, setUserInformation] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   const { user, dispatch } = useAuthContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getUserData() {
@@ -29,6 +31,7 @@ export default function useFetchedUserData() {
       ) {
         localStorage.removeItem('token');
         dispatch({ type: 'LOGOUT' });
+        navigate('/login');
       }
 
       setUserInformation(json);
