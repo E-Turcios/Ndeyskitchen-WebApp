@@ -51,7 +51,7 @@ async function verifyEmailLink(req, res) {
       }
     );
 
-    const link = `http://localhost:8081/verify-email/${userToken}`;
+    const link = `http://ndeyskitchen.com/verify-email/${userToken}`;
 
     const receiver = user.email;
     const subject = 'Email Verification';
@@ -107,7 +107,6 @@ async function createUser(req, res) {
     const subject = 'Verification Completed';
     const message = `
     <div>
-      <p><strong>From: Ndey's Kitchen</strong></p>
       <p>Hello,</p>
       <p>You have been verified.</p>
       <p>Best regards,<br>Ndey's Kitchen</p>
@@ -242,7 +241,6 @@ async function forgotPassword(req, res) {
     const subject = 'Reset Password';
     const message = `
     <div>
-      <p><strong>From: Ndey's Kitchen</strong></p>
       <p>Hello,</p>
       <p>You have requested to reset your password for your Ndey's Kitchen account.</p>
       <p>Click the link below to reset your password:</p>
