@@ -51,7 +51,7 @@ async function verifyEmailLink(req, res) {
       }
     );
 
-    const link = `https://ndeyskitchen.com/verify-email/${userToken}`;
+    const link = `https://${req.get('host')}/verify-email/${userToken}`;
 
     const receiver = user.email;
     const subject = 'Email Verification';
@@ -235,7 +235,7 @@ async function forgotPassword(req, res) {
       expiresIn: '15m',
     });
 
-    const link = `https://ndeyskitchen.com/reset-password/${userToken}`;
+    const link = `https://${req.get('host')}/verify-email/${userToken}`;
 
     const receiver = user.email;
     const subject = 'Reset Password';
