@@ -18,10 +18,6 @@ const {
   PASSWORD_RESET,
   EMAIL_BEING_VERIFIED,
   EMAIL_VERIFICATION_FAILED,
-  USER_UPDATE_TOKEN_NOT_FOUND,
-  NO_TOKEN_FOUND,
-  INVALID_TOKEN,
-  TOKEN_VALIDATED,
 } = require('../messages');
 
 async function verifyEmailLink(req, res) {
@@ -240,7 +236,7 @@ async function forgotPassword(req, res) {
       expiresIn: '15m',
     });
 
-    const link = `http://localhost:8081/reset-password/${userToken}`;
+    const link = `https://ndeyskitchen.com/reset-password/${userToken}`;
 
     const receiver = user.email;
     const subject = 'Reset Password';
