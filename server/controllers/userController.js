@@ -241,7 +241,7 @@ async function forgotPassword(req, res) {
     const subject = 'Reset Password';
     const message = `
     <div>
-      <p>Hi,</p>
+      <p>Hi, ${user.firstName}</p>
       <p>You have requested to reset your password for your Ndey's Kitchen account.</p>
       <p>Click the link below to reset your password:</p>
       <p><a href="${link}">Reset Password</a></p>
