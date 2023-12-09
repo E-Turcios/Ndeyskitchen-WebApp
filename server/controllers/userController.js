@@ -51,7 +51,7 @@ async function verifyEmailLink(req, res) {
       }
     );
 
-    const link = `http://ndeyskitchen.com/verify-email/${userToken}`;
+    const link = `https://ndeyskitchen.com/verify-email/${userToken}`;
 
     const receiver = user.email;
     const subject = 'Email Verification';
