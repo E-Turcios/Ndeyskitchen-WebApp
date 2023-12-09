@@ -241,7 +241,7 @@ async function forgotPassword(req, res) {
     const subject = 'Reset Password';
     const message = `
     <div>
-      <p>Hello,</p>
+      <p>Hi,</p>
       <p>You have requested to reset your password for your Ndey's Kitchen account.</p>
       <p>Click the link below to reset your password:</p>
       <p><a href="${link}">Reset Password</a></p>
@@ -277,8 +277,7 @@ async function resetPassword(req, res) {
     const subject = 'Password Successfully Reset';
     const message = `
     <div>
-      <p><strong>From: Ndey's Kitchen</strong></p>
-      <p>Hello,</p>
+      <p>Hi, ${req.user.firstName}</p>
       <p>You are password has been reset as requested.</p>
       <p>Best regards,<br>Ndey's Kitchen</p>
     </div>
