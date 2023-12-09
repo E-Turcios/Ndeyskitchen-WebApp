@@ -16,7 +16,7 @@ export default function Payment({ onButtonClick }) {
       <p className="section">Payment</p>
       <div className="payment-method-container">
         <div className="button-container">
-          {!foundCakesFilter && (
+          {foundCakesFilter.length === 0 && (
             <button
               className={buttonId === 'Cash' ? 'clicked-btn' : 'btn'}
               onClick={event => handlePaymentMethodButtonClick(event, 'Cash')}
