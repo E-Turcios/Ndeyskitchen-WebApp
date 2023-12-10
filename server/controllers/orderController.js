@@ -38,7 +38,7 @@ async function createOrder(req, res) {
       { upsert: true, new: true }
     );
 
-    const orderNumber = counter.value.toString().padStart(5, '0');
+    const orderNumber = String(counter.value).padStart(5, '0');
 
     const order = await Order.create({
       orderNumber: orderNumber,
