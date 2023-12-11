@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CheckoutNavbar from '../components/checkout/CheckoutNavbar.jsx';
 import Information from '../components/checkout/Information.jsx';
@@ -19,12 +19,10 @@ export default function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState('');
   const [total, setTotal] = useState('');
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-
   const [datesAndTimes, setDatesAndTimes] = useState({
     nonCake: { selectedDate: '', selectedTime: '' },
     cake: { selectedDate: '', selectedTime: '' },
   });
-
   const [userData, setUser] = useState({
     firstName: '',
     lastName: '',
@@ -33,6 +31,32 @@ export default function Checkout() {
     number: '',
     residence: '',
   });
+
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('cart'));
+    const { selectedDate: selectedCakeDate, selectedTime: selectedCakeTime } =
+      JSON.parse(localStorage.getItem('cake-date-and-time'));
+
+    const {
+      selectedDate: selectedNonCakeDate,
+      selectedTime: selectedNonCakeTime,
+    } = JSON.parse(localStorage.getItem('non-cake-date-and-time'));
+
+    setCart(storedCart || []);
+    setTotal(JSON.parse(localStorage.getItem('total-price')) || '');
+    setDatesAndTimes({
+      nonCake: {
+        selectedDate: selectedNonCakeDate,
+        selectedTime: selectedNonCakeTime,
+      },
+      cake: {
+        selectedDate: selectedCakeDate,
+        selectedTime: selectedCakeTime,
+      },
+    });
+  }, []);
 
   function handleUserInfoCollection(updatedData) {
     setUser({
@@ -51,27 +75,6 @@ export default function Checkout() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    const { selectedDate: selectedCakeDate, selectedTime: selectedCakeTime } =
-      JSON.parse(localStorage.getItem('cake-date-and-time'));
-
-    const {
-      selectedDate: selectedNonCakeDate,
-      selectedTime: selectedNonCakeTime,
-    } = JSON.parse(localStorage.getItem('non-cake-date-and-time'));
-
-    setTotal(JSON.parse(localStorage.getItem('total-price')));
-    setDatesAndTimes({
-      nonCake: {
-        selectedDate: selectedNonCakeDate,
-        selectedTime: selectedNonCakeTime,
-      },
-      cake: {
-        selectedDate: selectedCakeDate,
-        selectedTime: selectedCakeTime,
-      },
-    });
 
     let id;
 
@@ -121,7 +124,6 @@ export default function Checkout() {
       console.log(err);
     }
   }
-
   return (
     <div className="checkout-page-container">
       <CheckoutNavbar />

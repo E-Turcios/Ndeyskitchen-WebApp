@@ -18,8 +18,7 @@ export default function CheckoutPageContent({
   useEffect(() => {
     if (!user || isLoading) return;
 
-    setForm(prevForm => ({
-      ...prevForm,
+    const updatedForm = {
       firstName: userInformation.firstName || '',
       lastName: userInformation.lastName || '',
       email: userInformation.email || '',
@@ -32,20 +31,23 @@ export default function CheckoutPageContent({
       ...(userInformation.residence !== 'N/A' && {
         residence: userInformation.residence || '',
       }),
-    }));
+    };
 
-    onFormChange(form);
+    setForm(updatedForm);
+    onFormChange(updatedForm);
   }, [user, isLoading, userInformation]);
 
   function handleChange(event) {
+    const { name, value } = event.target;
+
     setForm(prevForm => ({
       ...prevForm,
-      [event.target.name]: event.target.value,
+      [name]: value,
     }));
 
     onFormChange({
       ...form,
-      [event.target.name]: event.target.value,
+      [name]: value,
     });
   }
 

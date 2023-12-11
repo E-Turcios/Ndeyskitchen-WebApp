@@ -52,6 +52,18 @@ export default function CartContainer() {
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   }
 
+  useEffect(() => {
+    localStorage.setItem(
+      'non-cake-date-and-time',
+      JSON.stringify(selectedDateTime.nonCake)
+    );
+    localStorage.setItem(
+      'cake-date-and-time',
+      JSON.stringify(selectedDateTime.cake)
+    );
+    localStorage.setItem('total-price', JSON.stringify(total));
+  }, [selectedDateTime, total]);
+
   function handleDateTimeChange(itemType, selectedDate, selectedTime) {
     setSelectedDateTime(prevState => ({
       ...prevState,
@@ -63,15 +75,6 @@ export default function CartContainer() {
   }
 
   function handleCheckOutClick() {
-    localStorage.setItem('total-price', JSON.stringify(total));
-    localStorage.setItem(
-      'non-cake-date-and-time',
-      JSON.stringify(selectedDateTime.nonCake)
-    );
-    localStorage.setItem(
-      'cake-date-and-time',
-      JSON.stringify(selectedDateTime.cake)
-    );
     navigate('/checkout');
   }
 
