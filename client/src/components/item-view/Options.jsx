@@ -6,7 +6,17 @@ export default function Options({
   handleSizeSelectPrice,
 }) {
   const [price, setPrice] = useState(item.price);
-  const [itemSize, setSize] = useState(Object.keys(item.size)[0]);
+  const [itemSize, setSize] = useState(getSizeForPrice(item, item.price));
+
+  function getSizeForPrice(item, targetPrice) {
+    for (const [size, sizePrice] of Object.entries(item.size)) {
+      if (sizePrice === targetPrice) {
+        return size;
+      }
+    }
+
+    return Object.keys(item.size)[0];
+  }
 
   return (
     <>
