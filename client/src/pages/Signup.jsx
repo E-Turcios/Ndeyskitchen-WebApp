@@ -148,6 +148,7 @@ export default function Signup() {
         <input
           className="input-box"
           type="tel"
+          inputMode="numeric"
           maxLength="20"
           placeholder="Phone number"
           onChange={event => setNumber(event.target.value.trim())}
