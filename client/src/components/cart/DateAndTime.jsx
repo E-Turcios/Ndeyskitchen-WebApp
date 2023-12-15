@@ -61,7 +61,6 @@ export default function DateAndTime({
         <input
           type="date"
           min={minDate}
-          max={maxDate}
           value={date}
           onChange={handleDateChange}
           onInvalid={event => {
@@ -100,7 +99,7 @@ export default function DateAndTime({
           {dateError && (
             <span>
               <p>
-                Date must be between{' '}
+                Date must not be less than{' '}
                 <span className="date-and-time-error-message-span">
                   {months[minDateArray[1]]}{' '}
                 </span>
@@ -109,16 +108,6 @@ export default function DateAndTime({
                 </span>
                 <span className="date-and-time-error-message-span">
                   {minDateArray[0]}
-                </span>
-                <span> and </span>
-                <span className="date-and-time-error-message-span">
-                  {months[maxDateArray[1]]}{' '}
-                </span>
-                <span className="date-and-time-error-message-span">
-                  {maxDateArray[2]},{' '}
-                </span>
-                <span className="date-and-time-error-message-span">
-                  {maxDateArray[0]}
                 </span>
               </p>
             </span>

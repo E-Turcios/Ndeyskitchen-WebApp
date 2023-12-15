@@ -11,10 +11,10 @@ function getDatesAndTimes(items) {
 
   if (dateString.match(/am|pm/i) || date.toString().match(/am|pm/i)) {
     minTimeMessage = '12:00 PM';
-    maxTimeMessage = '8:00 PM';
+    maxTimeMessage = '6:00 PM';
   } else {
     minTimeMessage = '12:00';
-    maxTimeMessage = '20:00';
+    maxTimeMessage = '18:00';
   }
 
   let minDay = new Date().getDate().toString();
@@ -49,7 +49,7 @@ function getDatesAndTimes(items) {
   const maximumDate = `${maxYear}-${maxMonth}-${maxDay}`;
 
   const minimumTime = '12:00';
-  const maximumTime = '20:00';
+  const maximumTime = '18:00';
 
   const cakeMinimumDate = `${minYear}-${minMonth}-${cakeMinDay}`;
   const cakeMaximumDate = `${cakeMaxYear}-${cakeMaxMonth}-${maxDay}`;
