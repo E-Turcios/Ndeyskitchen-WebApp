@@ -33,23 +33,42 @@ export default function Payment({ onButtonClick }) {
           >
             GT Bank
           </button>
+
+          <button
+            className={buttonId === 'Cash pick up' ? 'clicked-btn' : 'btn'}
+            onClick={event => {
+              handlePaymentMethodButtonClick(event, 'Cash pick up');
+            }}
+          >
+            Cash Pick up
+          </button>
         </div>
 
         {buttonId !== '' && buttonId !== 'Cash' && (
           <div className="payment-form">
-            <p className="payment-method-letterhead">Money Transfer</p>
+            <p className="payment-method-letterhead">Method</p>
 
             {buttonId === 'GT Bank' && (
               <>
                 <p className="delivery-fees">
-                  Make and payment to 2011272741590.
+                  Submit a payment to: <span>2011272741590</span>
                 </p>
                 <p className="delivery-fees">
-                  Send a screenshot of the payment to the WhatsApp number +220
-                  756 3799
+                  Name: <span>Ndey Koumba Sillah</span>
+                </p>
+                <p className="delivery-fees">
+                  Send payment proof on WhatsApp: <span>+220 794 4636</span>
                 </p>
                 <p className="delivery-fees">
                   with the order number from the email you will receive.
+                </p>
+              </>
+            )}
+
+            {buttonId === 'Cash pick up' && (
+              <>
+                <p className="delivery-fees">
+                  A driver will collect the total amount plus <span>D 350</span>
                 </p>
               </>
             )}
