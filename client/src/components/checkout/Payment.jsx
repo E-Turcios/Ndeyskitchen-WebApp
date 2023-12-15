@@ -68,7 +68,7 @@ export default function Payment({ onButtonClick }) {
             {buttonId === 'Cash pick up' && (
               <>
                 <p className="delivery-fees">
-                  A driver will collect the total amount plus <span>D 150</span>
+                  A driver will collect the total amount plus <span>D 200</span>
                 </p>
               </>
             )}
