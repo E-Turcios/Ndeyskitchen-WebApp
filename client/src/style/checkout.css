@@ -118,7 +118,10 @@
     font-size: 15px;
     color: #DC952F;
     text-align: center;
-    text-decoration: underline;
+}
+
+.delivery-fees span{
+    color:#371821;
 }
 
 /* Payment */
